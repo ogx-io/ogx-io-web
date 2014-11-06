@@ -9,8 +9,15 @@ img {
   }
 // override for the 'Home' navigation link
 .navbar-brand {
-  font-size: inherit;
+  //font-size: inherit;
   }
+
+.breadcrumb {
+  background-color: #fff;
+  margin-top: 5px;
+  margin-left: 0;
+  margin-bottom: 10px;
+}
 
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create your own classes
@@ -32,13 +39,18 @@ img {
   @extend .btn-lg;
   }
 // apply styles to HTML elements
+
+body {
+  background-image: url(seamless_paper_texture.png);
+}
+
 // to make views framework-neutral
 main {
   @extend .container;
-  background-color: #eee;
+  background-color: #fff;
   padding-bottom: 80px;
-  width: 100%;
-  margin-top: 51px; // accommodate the navbar
+//  width: 100%;
+  margin-top: 66px; // accommodate the navbar
   }
 section {
   @extend .row;
@@ -79,4 +91,25 @@ section {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-xs;
+}
+
+.simpleform {
+  padding-top: 30px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.simpleform form {
+  @extend .well;
+  @extend .well-lg;
+  padding-bottom: 40px;
+}
+.simpleform .right {
+  float: right !important;
+}
+.simpleform .button {
+  @extend .btn;
+  @extend .btn-primary;
+}
+.simpleform fieldset {
+  @extend .well;
 }
