@@ -1,0 +1,23 @@
+<h1>Listing moderator_applications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @moderator_applications.each do |moderator_application| %>
+      <tr>
+        <td><%= link_to 'Show', moderator_application %></td>
+        <td><%= link_to 'Edit', edit_moderator_application_path(moderator_application) %></td>
+        <td><%= link_to 'Destroy', moderator_application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Moderator application', new_moderator_application_path %>

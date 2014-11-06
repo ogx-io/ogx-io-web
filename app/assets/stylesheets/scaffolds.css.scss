@@ -1,0 +1,121 @@
+body {
+  background-color: #fff;
+  color: #666;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+h2 {
+  color: #333;
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.m10 {
+  margin: 10px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.p10 {
+  padding: 10px;
+}
+
+.fs13 {
+  font-size: 13px;
+}
+.fs14 {
+  font-size: 13px;
+}
+
+.list-item {
+  .panel-body {
+    padding: 10px;
+    color: #666;
+  }
+  .panel-footer {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+    color: #BBB;
+    span, a {
+      color: #999;
+    }
+    ul {
+      margin: 0;
+      font-size: 12px;
+    }
+  }
+  .list-detail {
+    margin-left: 70px;
+  }
+  .list-detail-body {
+    margin-top: 5px;
+  }
+}

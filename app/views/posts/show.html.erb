@@ -1,0 +1,22 @@
+<div class="row">
+  <ol class="breadcrumb pull-left">
+    <li><%= link_to 'root', boards_path %></li>
+    <li><%= link_to @board.path, board_posts_path(@board) %></li>
+    <li><%= @post._id %></li>
+  </ol>
+  <%= link_to '申请新版', new_board_path, class: 'breadcrumb pull-right' %>
+</div>
+
+<div class="row">
+  <div class="col-sm-9">
+    <div class="clearfix">
+      <h2 class="no-margin mb10 pull-left"><%= @post.title %></h2>
+    </div>
+    <div class="clearfix">
+      <%= @post.body %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+
+  </div>
+</div>

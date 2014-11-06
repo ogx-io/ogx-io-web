@@ -1,0 +1,53 @@
+<%= render 'common/path' %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="clearfix mb10">
+      <h2 class="no-margin mb10 pull-left"><%= @board.name %></h2>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="clearfix mb10">
+      <div class="pull-left">主帖：123 &nbsp;&nbsp; 回帖：123</div>
+      <div class="pull-right"><%= link_to '发表文章', new_board_post_path, class: 'pull-right' %></div>
+    </div>
+    <% @posts.each do |post| %>
+      <div class="list-item panel panel-default">
+        <div class="panel-body">
+          <img src="<%= post.author.get_avatar(60) %>" class="img-rounded pull-left">
+          <div class="list-detail">
+            <%= link_to post.title, post %>
+            <div class="list-detail-body">
+              <%= truncate post.body, length: 100, omission: '...' %>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="clearfix">
+          <div class="pull-left">
+            <span><%= link_to post.author.name, post.author %></span> 发表于 <span><%= post.created_at.strftime("%F %T") %></span>
+          </div>
+          <div class="pull-right">
+            <ul class="list-inline">
+              <li>
+                <a href="#">
+                  <span>回复</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-3">
+
+  </div>
+</div>
+

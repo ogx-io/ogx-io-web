@@ -1,0 +1,15 @@
+<div class="row">
+  <ol class="breadcrumb pull-left">
+    <li>root</li>
+  </ol>
+  <%= link_to '申请新版', new_board_path, class: 'breadcrumb pull-right' %>
+</div>
+<div class="row">
+  <div class="col-sm-4 col-md-3 lead">
+    <% @boards.each do |board| %>
+      <%= link_to board.name, board_posts_path(board) %>
+    <% end %>
+  </div>
+</div>
+<br>
+

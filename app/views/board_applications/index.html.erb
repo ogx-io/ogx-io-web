@@ -1,0 +1,33 @@
+<h1>Listing board_applications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>版面名称</th>
+      <th>版面路径</th>
+      <th>申请人</th>
+      <th>当前状态</th>
+      <th colspan="3">操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @board_applications.each do |board_application| %>
+      <tr>
+        <td><%= board_application._id %></td>
+        <td><%= link_to board_application.name, board_application %></td>
+        <td><%= link_to board_application.path, board_application %></td>
+        <td><%= link_to board_application.applier.name, board_application.applier %></td>
+        <td><%= board_application.status %></td>
+        <td><%= link_to 'Approve', approve_board_application_path(board_application), method: :patch %></td>
+        <td><%= link_to 'Reject', reject_board_application_path(board_application), method: :patch %></td>
+        <td><%= link_to 'Destroy', board_application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Board application', new_board_application_path %>
