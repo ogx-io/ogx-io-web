@@ -1,4 +1,10 @@
-<%= render 'common/path' %>
+<div class="row">
+  <ol class="breadcrumb pull-left">
+    <li><%= link_to 'root', boards_path %></li>
+    <li><%= @board.path %></li>
+  </ol>
+  <%= link_to '申请新版', new_board_application_path, class: 'breadcrumb pull-right' %>
+</div>
 
 <div class="row">
   <div class="col-sm-12">
@@ -11,14 +17,14 @@
     <table class="topic-list table table-hover">
       <thead>
         <th>主题</th>
-        <th class="text-center" style="width: 150px">发起人</th>
+        <th class="text-center" style="width: 120px">发起人</th>
         <th class="text-center" style="width: 80px">回应</th>
         <th class="text-center" style="width: 100px">最后回复</th>
       </thead>
       <tbody>
         <% @topics.each do |topic| %>
           <tr>
-            <td><%= link_to topic.title, board_topic_path(@board, topic) %></td>
+            <td class="topic-title"><%= link_to topic.title, board_topic_path(@board, topic) %></td>
             <td class="text-center"><%= link_to topic.posts.first.author.name, topic.posts.first.author %></td>
             <td class="text-center"><%= topic.posts.count > 1 ? topic.posts.count - 1 : '' %></td>
             <td class="text-right"><%= topic.updated_at.strftime('%F') %></td>

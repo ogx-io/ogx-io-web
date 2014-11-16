@@ -1,10 +1,10 @@
 <div class="row">
   <ol class="breadcrumb pull-left">
     <li><%= link_to 'root', boards_path %></li>
-    <li><%= link_to @board.path, board_posts_path(@board) %></li>
+    <li><%= link_to @board.path, board_topics_path(@board) %></li>
     <li><%= @post.title %></li>
   </ol>
-  <%= link_to '申请新版', new_board_path, class: 'breadcrumb pull-right' %>
+  <%= link_to '申请新版', new_board_application_path, class: 'breadcrumb pull-right' %>
 </div>
 
 <div class="row">
