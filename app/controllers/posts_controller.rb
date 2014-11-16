@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.desc(:created_at)
   end
 
   # GET /posts/1
@@ -17,6 +17,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @parent = Post.find(params[:parent]) if params[:parent]
   end
 
   # GET /posts/1/edit
@@ -28,8 +29,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.board = @board
-    @post.parent = 0
-    @post.root = 0
     @post.author = current_user
 
     respond_to do |format|
@@ -79,6 +78,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params[:post].permit(:title, :body)
+      params[:post].permit(:title, :body, :parent, :topic_id)
     end
 end

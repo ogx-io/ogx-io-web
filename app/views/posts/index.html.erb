@@ -6,19 +6,19 @@
       <h2 class="no-margin mb10 pull-left"><%= @board.name %></h2>
     </div>
   </div>
-  <div class="col-sm-8">
-    <div class="clearfix mb10">
-      <div class="pull-left">主帖：123 &nbsp;&nbsp; 回帖：123</div>
+  <div class="col-sm-9">
+    <div class="topic-bar clearfix mb10">
+      <div class="pull-left">帖子数：<%= @board.posts.count %></div>
       <div class="pull-right"><%= link_to '发表文章', new_board_post_path, class: 'pull-right' %></div>
     </div>
     <% @posts.each do |post| %>
       <div class="list-item panel panel-default">
         <div class="panel-body">
-          <img src="<%= post.author.get_avatar(60) %>" class="img-rounded pull-left">
+          <img src="<%= post.author.get_avatar(70) %>" class="img-rounded pull-left">
           <div class="list-detail">
-            <%= link_to post.title, post %>
+            <%= link_to post.title, board_topic_path(@board, post.topic) %>
             <div class="list-detail-body">
-              <%= truncate post.body, length: 100, omission: '...' %>
+              <%= truncate post.body, length: 90, omission: '...' %>
             </div>
           </div>
         </div>

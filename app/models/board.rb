@@ -12,4 +12,5 @@ class Board
   has_one :board_application
   has_and_belongs_to_many :moderators, class_name: "User", inverse_of: :managing_boards
   has_many :posts
+  has_many :topics
 end

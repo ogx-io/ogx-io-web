@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :boards do
     resources :posts, shallow: true
+    resources :topics
   end
 
   concern :approvable do

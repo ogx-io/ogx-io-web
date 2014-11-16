@@ -1,0 +1,25 @@
+<div class="post-item panel panel-default">
+  <div class="panel-body">
+    <div class="avatar pull-left">
+      <img src="<%= post.author.get_avatar(70) %>" class="img-rounded">
+      <p class="text-center"><%= link_to post.author.name, post.author %></p>
+    </div>
+    <div class="post-detail">
+      <div class="floor pull-right">#<%= post.floor %></div>
+      <h4><%= post.title %></h4>
+      <div class="post-content">
+        <%= post.body %>
+      </div>
+      <div class="post-footer clearfix">
+        <div class="post-time pull-left">发表于 <%= post.created_at.strftime("%F %T") %></div>
+        <div class="pull-right">
+          <ul class="list-inline">
+            <li>
+              <%= link_to '回复', new_board_post_path(board, parent: post.id) %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
