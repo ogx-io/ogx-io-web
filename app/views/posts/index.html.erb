@@ -3,16 +3,13 @@
     <li><%= link_to 'root', boards_path %></li>
     <li><%= @board.path %></li>
   </ol>
-  <%= link_to '申请新版', new_board_application_path, class: 'breadcrumb pull-right' %>
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
-    <div class="clearfix mb10">
-      <h2 class="no-margin mb10 pull-left"><%= @board.name %></h2>
-    </div>
-  </div>
+  <%= render 'boards/board_head' %>
   <div class="col-sm-9">
+    <%= render 'boards/board_intro' %>
+    <%= render partial: 'boards/board_nav', locals: {index: 2} %>
     <div class="topic-bar clearfix mb10">
       <div class="pull-left">帖子数：<%= @board.posts.count %></div>
       <div class="pull-right"><%= link_to '发表文章', new_board_post_path, class: 'pull-right' %></div>

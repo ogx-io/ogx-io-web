@@ -2,8 +2,8 @@
 <li><%= link_to '首页', root_path %></li>
 <li><%= link_to '版面列表', boards_path %></li>
 <% if user_signed_in? %>
-    <li><%= link_to '版面申请', board_applications_path %></li>
     <% if current_user.admin? %>
-        <li><%= link_to 'Users', users_path %></li>
+        <li><%= link_to '版面管理', manage_boards_path %></li>
+        <li><%= link_to '用户管理', users_path %></li>
     <% end %>
 <% end %>

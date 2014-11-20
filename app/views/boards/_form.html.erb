@@ -10,8 +10,32 @@
       </ul>
     </div>
   <% end %>
+    <div class="form-group">
+      <%= f.label '名称' %>
+      <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label '路径' %>
+      <%= f.text_field :path, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label '版主' %>
+      <%= f.text_field :moderator_ids, class: 'form-control', value: @board.moderators.collect{|user| user.name}.join(' ') if @board %>
+    </div>
+    <div class="form-group">
+      <%= f.label '治版方针' %>
+      <%= f.text_area :strategy, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label '版面规定' %>
+      <%= f.text_area :rule, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label '版面公告' %>
+      <%= f.text_area :notice, class: 'form-control' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions clearfix">
+    <%= f.submit '提交', :class => 'button right' %>
   </div>
 <% end %>

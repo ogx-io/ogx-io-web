@@ -1,0 +1,6 @@
+<div class="mb10">
+  版主：<% @board.moderators.each do |user| %><%= link_to user.name, user %> <% end %>
+</div>
+<div class="mb20">
+  简介：<%= @board.notice %>
+</div>

@@ -42,7 +42,8 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
 
-  enum :role, [:user, :vip, :admin], default: :user
+  Roles = [:user, :admin]
+  enum :role, Roles, default: :user
 
   #validates_presence_of :name, message: "请输入用户名"
   #validates_presence_of :email, message: "请输入邮箱地址"

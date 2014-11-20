@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :moderator_applications
 
   resources :boards do
+    collection do
+      get :manage
+    end
     resources :posts, shallow: true
     resources :topics
   end

@@ -7,6 +7,10 @@ class BoardsController < ApplicationController
     @boards = Board.all
   end
 
+  def manage
+    @boards = Board.all.desc(:updated_at).page(params[:page]).per(25)
+  end
+
   # GET /boards/1
   # GET /boards/1.json
   def show
@@ -28,7 +32,7 @@ class BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.save
-        format.html { redirect_to @board, notice: 'Board was successfully created.' }
+        format.html { redirect_to manage_boards_path(page: params[:page]) }
         format.json { render :show, status: :created, location: @board }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class BoardsController < ApplicationController
   def update
     respond_to do |format|
       if @board.update(board_params)
-        format.html { redirect_to @board, notice: 'Board was successfully updated.' }
+        format.html { redirect_to manage_boards_path(page: params[:page]) }
         format.json { render :show, status: :ok, location: @board }
       else
         format.html { render :edit }
@@ -69,6 +73,8 @@ class BoardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      params[:board]
+      p = params[:board].permit(:name, :path, :strategy, :rule, :notice, :moderator_ids, :status)
+      p[:moderator_ids] = p[:moderator_ids].split.collect{|user_name| User.find_by(name: user_name).id} if p[:moderator_ids]
+      p
     end
 end

@@ -3,16 +3,13 @@
     <li><%= link_to 'root', boards_path %></li>
     <li><%= @board.path %></li>
   </ol>
-  <%= link_to '申请新版', new_board_application_path, class: 'breadcrumb pull-right' %>
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
-    <div class="clearfix mb10">
-      <h2 class="no-margin mb10 pull-left"><%= @board.name %></h2>
-    </div>
-  </div>
+  <%= render 'boards/board_head' %>
   <div class="col-sm-9">
+    <%= render 'boards/board_intro' %>
+    <%= render partial: 'boards/board_nav', locals: {index: 1} %>
     <%= render 'topics_paginate_bar' %>
     <table class="topic-list table table-hover">
       <thead>

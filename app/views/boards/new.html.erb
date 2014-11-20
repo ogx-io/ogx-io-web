@@ -1,5 +1,12 @@
-<h1>New board</h1>
+<div class="row">
+  <ol class="breadcrumb pull-left">
+    <li><%= link_to 'root', boards_path %></li>
+    <li><%= link_to '版面管理', manage_boards_path %></li>
+    <li>新建版面</li>
+  </ol>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', boards_path %>
+<div class="simpleform">
+  <h3>新建版面</h3>
+  <%= render 'form' %>
+</div>

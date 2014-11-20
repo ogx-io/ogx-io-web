@@ -1,7 +1,15 @@
+<div class="row">
+  <ol class="breadcrumb pull-left">
+    <li><%= link_to 'root', boards_path %></li>
+    <li><%= link_to '版面申请', board_applications_path %></li>
+    <li>申请新版</li>
+  </ol>
+  <%= link_to '申请新版', new_board_application_path, class: 'breadcrumb pull-right' %>
+</div>
+
 <div class="simpleform">
-<h1>New board_application</h1>
+<h3 class="text-center">申请新版</h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', board_applications_path %>
 </div>

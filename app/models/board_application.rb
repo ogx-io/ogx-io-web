@@ -10,7 +10,7 @@ class BoardApplication
   field :ru, as: :rule, type: String
   enum :status, [:unknown, :approved, :rejected], default: :unknown
 
-  belongs_to :applier, class_name: "User", inverse_of: :board_applications
+  belongs_to :applicant, class_name: "User", inverse_of: :board_applications
   belongs_to :board
 
   def approve
