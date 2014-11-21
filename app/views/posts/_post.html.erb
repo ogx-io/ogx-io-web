@@ -14,6 +14,7 @@
         <div class="post-time pull-left">发表于 <%= post.created_at.strftime("%F %T") %></div>
         <div class="pull-right">
           <ul class="list-inline">
+            <% if post.board.is_moderator?(current_user) %>
             <li>
               <% if post.elite == 1 %>
                 <%= link_to '取消精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
@@ -21,6 +22,7 @@
                 <%= link_to '设为精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
               <% end %>
             </li>
+            <% end %>
             <li>
               <%= link_to '回复', new_board_post_path(board, parent: post.id) %>
             </li>
