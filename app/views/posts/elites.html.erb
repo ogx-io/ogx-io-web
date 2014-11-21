@@ -1,0 +1,39 @@
+<div class="row">
+  <ol class="breadcrumb pull-left">
+    <li><%= link_to 'root', boards_path %></li>
+    <li><%= @board.path %></li>
+  </ol>
+</div>
+
+<div class="row">
+  <%= render 'boards/board_head' %>
+  <div class="col-sm-9">
+    <%= render 'boards/board_intro' %>
+    <%= render partial: 'boards/board_nav', locals: {index: 3} %>
+    <%= render 'posts_paginate_bar' %>
+    <table class="table table-hover">
+      <thead>
+      <th>文章</th>
+      <th class="text-center" style="width: 150px">作者</th>
+      <th class="text-center" style="width: 100px">发表时间</th>
+      </thead>
+      <tbody>
+      <% @posts.each do |post| %>
+          <tr>
+            <td>
+              <%= link_to post.title, board_topic_path(@board, post.topic) %><br/>
+              <%= truncate post.body, length: 43, omission: '...' %>
+            </td>
+            <td class="text-center" align="center" valign="middle"><%= link_to post.author.name, post.author %></td>
+            <td class="text-center" align="center" valign="middle"><%= post.created_at.strftime("%F") %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= render 'posts_paginate_bar' %>
+  </div>
+  <div class="col-sm-3">
+
+  </div>
+</div>
+

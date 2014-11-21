@@ -6,7 +6,7 @@
     </div>
     <div class="post-detail">
       <div class="floor pull-right">#<%= post.id %></div>
-      <h4><%= post.title %></h4>
+      <h4><%= post.title %> <i class="elite-mark" style="<%= 'display: none' if post.elite == 0 %>">精华帖</i></h4>
       <div class="post-content">
         <%= post.body %>
       </div>
@@ -14,6 +14,13 @@
         <div class="post-time pull-left">发表于 <%= post.created_at.strftime("%F %T") %></div>
         <div class="pull-right">
           <ul class="list-inline">
+            <li>
+              <% if post.elite == 1 %>
+                <%= link_to '取消精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
+              <% else %>
+                <%= link_to '设为精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
+              <% end %>
+            </li>
             <li>
               <%= link_to '回复', new_board_post_path(board, parent: post.id) %>
             </li>

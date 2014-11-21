@@ -5,7 +5,14 @@ Rails.application.routes.draw do
     collection do
       get :manage
     end
-    resources :posts, shallow: true
+    resources :posts, shallow: true do
+      member do
+        patch :toggle
+      end
+      collection do
+        get :elites
+      end
+    end
     resources :topics
   end
 

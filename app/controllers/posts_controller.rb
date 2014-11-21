@@ -1,11 +1,15 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_board, only: [:index, :new, :create]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :toggle]
+  before_action :set_board, only: [:index, :new, :create, :elites]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.desc(:created_at).page(params[:page]).per(10)
+    @posts = @board.posts.desc(:created_at).page(params[:page]).per(10)
+  end
+
+  def elites
+    @posts = @board.posts.elites.desc(:created_at).page(params[:page]).per(10)
   end
 
   # GET /posts/1
@@ -56,6 +60,21 @@ class PostsController < ApplicationController
     end
   end
 
+  def toggle
+    p = Hash.new
+    pp = post_params
+    pp.each do |k, v|
+      pp[k] = p[k] = 1 - @post.send(k)
+    end
+    respond_to do |format|
+      if @post.update(pp)
+        format.json { render json: p, status: :ok, location: @post }
+      else
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
@@ -78,6 +97,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params[:post].permit(:title, :body, :parent, :topic_id)
+      params[:post].permit(:title, :body, :parent, :topic_id, :elite)
     end
 end

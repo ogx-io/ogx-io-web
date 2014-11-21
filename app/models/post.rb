@@ -7,6 +7,9 @@ class Post
   field :b, as: :body, type: String
   field :p, as: :parent, type: Integer
   field :f, as: :floor, type: Integer
+  field :e, as: :elite, type: Integer, default: 0
+
+  scope :elites, -> { where(elite: 1) }
 
   belongs_to :board
   belongs_to :author, class_name: "User", inverse_of: :posts
