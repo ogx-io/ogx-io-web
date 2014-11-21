@@ -15,4 +15,8 @@ class Board
   has_and_belongs_to_many :moderators, class_name: "User", inverse_of: :managing_boards
   has_many :posts
   has_many :topics
+
+  def is_moderator?(user)
+    self.moderator_ids.include?(user.id)
+  end
 end

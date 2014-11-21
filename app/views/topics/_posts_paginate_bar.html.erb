@@ -2,7 +2,14 @@
   <%= paginate @pagination_posts, left: 1, right: 1 %>
   帖子数：<%= @topic.posts.count %>
   <div class="post-links pull-right">
-    <%= link_to '新建主题', new_board_post_path(@board) %>
-    <%= link_to '回复主题', new_board_post_path(@board, parent: @first.id) %>
+    <% if @board.is_moderator?(current_user) %>
+        <% if @topic.top == 0 %>
+            <%= link_to '设为置顶', board_topic_path(@board, @topic, 'topic[top]' => 1), method: :patch %>
+        <% else %>
+            <%= link_to '取消置顶', board_topic_path(@board, @topic, 'topic[top]' => 0), method: :patch %>
+        <% end %>
+    <% end %>
+    <%= link_to '新主题', new_board_post_path(@board) %>
+    <%= link_to '回复', new_board_post_path(@board, parent: @first.id) %>
   </div>
 </nav>

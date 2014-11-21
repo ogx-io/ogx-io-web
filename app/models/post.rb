@@ -25,6 +25,6 @@ class Post
   end
 
   def update_topic
-    self.topic.update(updated_at: self.created_at)
+    self.topic.update(replied_at: self.created_at)
   end
 end

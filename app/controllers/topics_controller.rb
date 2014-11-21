@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
   respond_to :html, :xml, :json
 
   def index
-    @topics = @board.topics.desc(:updated_at).page(params[:page]).per(25)
+    @topics = @board.topics.desc(:top, :updated_at, :replied_at).page(params[:page]).per(25)
     respond_with(@topics)
   end
 
@@ -37,8 +37,12 @@ class TopicsController < ApplicationController
   end
 
   def update
-    @topic.update(topic_params)
-    respond_with(@topic)
+    authorize @topic
+    p = topic_params
+    @topic.update(p)
+    @topic.update(updated_at: @topic.replied_at) if p['top'] == '0'
+    redirect_to :back
+    # respond_with(@topic)
   end
 
   def destroy
@@ -56,6 +60,6 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params[:topic]
+    params[:topic].permit(:top)
   end
 end

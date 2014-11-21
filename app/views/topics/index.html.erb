@@ -13,6 +13,7 @@
     <%= render 'topics_paginate_bar' %>
     <table class="topic-list table table-hover">
       <thead>
+        <th class="topic-mark" style="width: 20px"></th>
         <th>主题</th>
         <th class="text-center" style="width: 120px">发起人</th>
         <th class="text-center" style="width: 80px">回应</th>
@@ -21,10 +22,19 @@
       <tbody>
         <% @topics.each do |topic| %>
           <tr>
-            <td class="topic-title"><%= link_to topic.title, board_topic_path(@board, topic) %></td>
+            <td class="topic-mark">
+              <% if topic.top == 1 %>
+                <i class="glyphicon glyphicon-circle-arrow-up" style="color: red"></i>
+              <% else %>
+                <i class="glyphicon glyphicon-circle-arrow-right" style="color: green"></i>
+              <% end %>
+            </td>
+            <td class="topic-title">
+              <%= link_to topic.title, board_topic_path(@board, topic) %>
+            </td>
             <td class="text-center"><%= link_to topic.posts.first.author.name, topic.posts.first.author %></td>
             <td class="text-center"><%= topic.posts.count > 1 ? topic.posts.count - 1 : '' %></td>
-            <td class="text-right"><%= topic.updated_at.strftime('%F') %></td>
+            <td class="text-right"><%= topic.replied_at.strftime('%F') %></td>
           </tr>
         <% end %>
       </tbody>
