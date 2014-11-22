@@ -8,7 +8,11 @@
 
 <div class="row">
   <div class="col-sm-9">
-    <%= render partial: 'post', locals: {post: @post, board: @board} %>
+    <% if !@post.is_deleted? || @board.is_moderator?(current_user) %>
+      <%= render partial: 'post', locals: {post: @post, board: @board} %>
+    <% else %>
+      对不起，此贴已被删除。
+    <% end %>
   </div>
   <div class="col-sm-3">
 

@@ -1,6 +1,6 @@
 <nav class="topic-bar clearfix">
   <%= paginate @pagination_posts, left: 1, right: 1 %>
-  帖子数：<%= @topic.posts.count %>
+  帖子数：<%= @topic.posts.normal.count %>
   <div class="post-links pull-right">
     <% if @board.is_moderator?(current_user) %>
         <% if @topic.top == 0 %>

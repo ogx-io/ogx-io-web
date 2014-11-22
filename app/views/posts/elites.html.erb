@@ -21,7 +21,7 @@
       <% @posts.each do |post| %>
           <tr>
             <td>
-              <%= link_to post.title, board_topic_path(@board, post.topic) %><br/>
+              <%= link_to post.title, post_path(post) %><br/>
               <%= truncate post.body, length: 43, omission: '...' %>
             </td>
             <td class="text-center" align="center" valign="middle"><%= link_to post.author.name, post.author %></td>

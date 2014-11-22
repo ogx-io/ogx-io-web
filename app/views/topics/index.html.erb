@@ -33,7 +33,8 @@
               <%= link_to topic.title, board_topic_path(@board, topic) %>
             </td>
             <td class="text-center"><%= link_to topic.posts.first.author.name, topic.posts.first.author %></td>
-            <td class="text-center"><%= topic.posts.count > 1 ? topic.posts.count - 1 : '' %></td>
+            <% count = topic.posts.first.is_deleted? ? topic.posts.normal.count : topic.posts.normal.count - 1 %>
+            <td class="text-center"><%= count > 0 ? count : '' %></td>
             <td class="text-right"><%= topic.replied_at.strftime('%F') %></td>
           </tr>
         <% end %>

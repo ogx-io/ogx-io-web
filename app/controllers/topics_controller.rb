@@ -5,19 +5,20 @@ class TopicsController < ApplicationController
   respond_to :html, :xml, :json
 
   def index
-    @topics = @board.topics.desc(:top, :updated_at, :replied_at).page(params[:page]).per(25)
+    @topics = @board.topics.normal.desc(:top, :updated_at, :replied_at).page(params[:page]).per(25)
     respond_with(@topics)
   end
 
   def show
-    @first = @topic.posts.first
+    not_found if @topic.deleted == 1
+    @first = @topic.posts.first or not_found
     per_page = 10
     if params[:page]
       page = params[:page].to_i
     else
       page = 1
     end
-    @posts = @topic.posts.where(floor: {'$gte' => (page - 1) * per_page, '$lt' => page * per_page}).collect{|topic| topic}
+    @posts = @topic.posts.normal.where(floor: {'$gte' => (page - 1) * per_page, '$lt' => page * per_page}).collect{|topic| topic}
     @pagination_posts = Kaminari.paginate_array([], total_count: @topic.last_floor + 1).page(page).per(per_page)
     respond_with(@topic)
   end

@@ -8,7 +8,9 @@ class Post
   field :p, as: :parent, type: Integer
   field :f, as: :floor, type: Integer
   field :e, as: :elite, type: Integer, default: 0
+  field :d, as: :deleted, type: Integer, default: 0 # 0: normal, 1:deleted
 
+  scope :normal, -> { where(deleted: 0) }
   scope :elites, -> { where(elite: 1) }
 
   belongs_to :board
@@ -29,5 +31,14 @@ class Post
 
   def update_topic
     self.topic.update(replied_at: self.created_at)
+  end
+
+  def is_deleted?
+    self.deleted == 1
+  end
+
+  def delete_myself
+    self.update(deleted: 1)
+    self.topic.update(deleted: 1) if self.topic.posts.normal.count == 0
   end
 end

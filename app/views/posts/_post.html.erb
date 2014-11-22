@@ -6,7 +6,13 @@
     </div>
     <div class="post-detail">
       <div class="floor pull-right">#<%= post.id %></div>
-      <h4><%= post.title %> <i class="elite-mark" style="<%= 'display: none' if post.elite == 0 %>">精华帖</i></h4>
+      <h4>
+        <%= post.title %>
+        <i class="elite-mark" style="<%= 'display: none' if post.elite == 0 %>">精华帖</i>
+        <% if post.is_deleted? %>
+          <i class="deleted-mark">已删除</i>
+        <% end %>
+      </h4>
       <div class="post-content">
         <%= post.body %>
       </div>
@@ -23,6 +29,9 @@
               <% end %>
             </li>
             <% end %>
+            <li>
+              <%= link_to '删除', post_path(post), method: :delete, remote: true, class: 'delete-post' %>
+            </li>
             <li>
               <%= link_to '回复', new_board_post_path(board, parent: post.id) %>
             </li>

@@ -1,5 +1,5 @@
 <nav class="topic-bar clearfix">
   <%= paginate @topics, left: 1, right: 1 %>
-  主题数：<%= @board.topics.count %>
+  主题数：<%= @board.topics.normal.count %>
   <div class="pull-right"><%= link_to '新建主题', new_board_post_path, class: 'pull-right' %></div>
 </nav>

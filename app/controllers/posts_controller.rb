@@ -5,11 +5,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = @board.posts.desc(:created_at).page(params[:page]).per(10)
+    @all_posts = @board.posts.normal
+    @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
   end
 
   def elites
-    @posts = @board.posts.elites.desc(:created_at).page(params[:page]).per(10)
+    @all_posts = @board.posts.normal.elites
+    @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
   end
 
   # GET /posts/1
@@ -78,9 +80,10 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
+    authorize @post
+    @post.delete_myself
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      # format.html { redirect_to board_posts_path(@post.board), notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

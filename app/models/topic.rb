@@ -5,12 +5,19 @@ class Topic
   field :f, as: :last_floor, type: Integer, default: 0
   field :t, as: :top, type: Integer, default: 0 # 0: normal, 1: always on top
   field :r_at, as: :replied_at, type: Time
+  field :d, as: :deleted, type: Integer, default: 0 # 0:normal, 1: deleted
+
+  scope :normal, -> { where(deleted: 0) }
 
   has_many :posts
   belongs_to :board
 
   def title
     self.posts.first.title
+  end
+
+  def is_deleted?
+    self.deleted == 1
   end
 
   def self.new_floor(topic_id)

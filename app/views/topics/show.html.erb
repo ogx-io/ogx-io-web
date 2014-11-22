@@ -8,12 +8,16 @@
 
 <div class="row">
   <div class="col-sm-10">
-    <div class="topic-head clearfix">
-      <h3 class="pull-left"><%= @first.title %></h3>
-    </div>
-    <%= render 'posts_paginate_bar' %>
-    <%= render partial: '/posts/post', collection: @posts, locals: {board: @board} %>
-    <%= render 'posts_paginate_bar' %>
+    <% if !@topic.is_deleted? || @board.is_moderator?(current_user) %>
+      <div class="topic-head clearfix">
+        <h3 class="pull-left"><%= @first.title %></h3>
+      </div>
+      <%= render 'posts_paginate_bar' %>
+      <%= render partial: '/posts/post', collection: @posts, locals: {board: @board} %>
+      <%= render 'posts_paginate_bar' %>
+    <% else %>
+      对不起，此主题已被删除。
+    <% end %>
   </div>
   <div class="col-sm-2">
 

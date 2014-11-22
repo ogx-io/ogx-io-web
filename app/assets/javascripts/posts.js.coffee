@@ -9,6 +9,7 @@ ready = ->
     if data['elite'] == 0
       $(this).parents(".post-detail").find(".elite-mark").hide()
       $(this).text('设为精华')
-
+  $('.delete-post').bind 'ajax:success', (e, data)->
+    $(this).parents('.post-item').hide()
 $(document).ready(ready)
 $(document).on('page:load', ready)
