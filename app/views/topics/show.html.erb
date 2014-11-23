@@ -10,7 +10,12 @@
   <div class="col-sm-10">
     <% if !@topic.is_deleted? || @board.is_moderator?(current_user) %>
       <div class="topic-head clearfix">
-        <h3 class="pull-left"><%= @first.title %></h3>
+        <h3 class="pull-left">
+          <%= @first.title %>
+          <% if @topic.is_deleted? %>
+            <i class="deleted-mark">已删除</i>
+          <% end %>
+        </h3>
       </div>
       <%= render 'posts_paginate_bar' %>
       <%= render partial: '/posts/post', collection: @posts, locals: {board: @board} %>

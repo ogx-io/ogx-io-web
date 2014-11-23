@@ -1,5 +1,8 @@
-<ul class="mb20 nav nav-tabs" role="tablist">
+<ul class="mb10 nav nav-tabs" role="tablist">
   <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to '主题列表', board_topics_path(@board) %></li>
   <li role="presentation" class="<%= "active" if index == 2 %>"><%= link_to '帖子列表', board_posts_path(@board) %></li>
   <li role="presentation" class="<%= "active" if index == 3 %>"><%= link_to '精华区', elites_board_posts_path(@board) %></li>
+  <% if @board.is_moderator?(current_user) %>
+    <li role="presentation" class="<%= "active" if index == 4 %>"><%= link_to '版主专用', deleted_board_posts_path(@board) %></li>
+  <% end %>
 </ul>

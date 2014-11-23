@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :toggle]
-  before_action :set_board, only: [:index, :new, :create, :elites]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :toggle, :resume]
+  before_action :set_board, only: [:index, :new, :create, :elites, :deleted]
 
   # GET /posts
   # GET /posts.json
@@ -12,6 +12,11 @@ class PostsController < ApplicationController
   def elites
     @all_posts = @board.posts.normal.elites
     @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
+  end
+
+  def deleted
+    @all_posts = @board.posts.deleted
+    @posts = @all_posts.desc(:updated_at).page(params[:page]).per(10)
   end
 
   # GET /posts/1
@@ -74,6 +79,14 @@ class PostsController < ApplicationController
       else
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def resume
+    authorize @post
+    @post.update(deleted: 0)
+    respond_to do |format|
+      format.html { redirect_to :back }
     end
   end
 

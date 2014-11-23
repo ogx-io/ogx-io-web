@@ -1,0 +1,44 @@
+<div class="row">
+  <ol class="breadcrumb pull-left">
+    <li><%= link_to 'root', boards_path %></li>
+    <li><%= @board.path %></li>
+  </ol>
+</div>
+
+<div class="row">
+  <%= render 'boards/board_head' %>
+  <div class="col-sm-9">
+    <%= render 'boards/board_intro' %>
+    <%= render partial: 'boards/board_nav', locals: {index: 4} %>
+    <%= render partial: 'boards/board_admin_nav', locals: {index: 1} %>
+    <%= render 'posts_paginate_bar' %>
+    <table class="table table-hover">
+      <thead>
+      <th>文章</th>
+      <th class="text-center" style="width: 150px">作者</th>
+      <th class="text-center" style="width: 100px">更新时间</th>
+      <th class="text-center" style="width: 60px">操作</th>
+      </thead>
+      <tbody>
+      <% @posts.each do |post| %>
+          <tr>
+            <td>
+              <%= link_to post.title, post_path(post) %><br/>
+              <%= truncate post.body, length: 40, omission: '...' %>
+            </td>
+            <td class="text-center"><%= link_to post.author.name, post.author %></td>
+            <td class="text-center"><%= post.created_at.strftime("%F") %></td>
+            <td class="text-center">
+              <%= link_to '恢复', resume_post_path(post), method: :patch %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= render 'posts_paginate_bar' %>
+  </div>
+  <div class="col-sm-3">
+
+  </div>
+</div>
+

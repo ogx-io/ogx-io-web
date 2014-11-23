@@ -81,6 +81,10 @@ div {
   margin-bottom: 20px;
 }
 
+.p0 {
+  padding: 0;
+}
+
 .p10 {
   padding: 10px;
 }
@@ -196,4 +200,8 @@ div {
 .deleted-mark {
   color: gray;
   font-size: 12px;
+}
+
+.board-content {
+  padding-top: 10px;
 }

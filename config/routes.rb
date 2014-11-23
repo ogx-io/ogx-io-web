@@ -8,12 +8,21 @@ Rails.application.routes.draw do
     resources :posts, shallow: true do
       member do
         patch :toggle
+        patch :resume
       end
       collection do
         get :elites
+        get :deleted
       end
     end
-    resources :topics
+    resources :topics, shallow: true do
+      collection do
+        get :deleted
+      end
+      member do
+        patch :resume
+      end
+    end
   end
 
   concern :approvable do

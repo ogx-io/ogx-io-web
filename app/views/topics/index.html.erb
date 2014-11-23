@@ -10,6 +10,7 @@
   <div class="col-sm-9">
     <%= render 'boards/board_intro' %>
     <%= render partial: 'boards/board_nav', locals: {index: 1} %>
+    <div class="board-content">
     <%= render 'topics_paginate_bar' %>
     <table class="topic-list table table-hover">
       <thead>
@@ -30,7 +31,7 @@
               <% end %>
             </td>
             <td class="topic-title">
-              <%= link_to topic.title, board_topic_path(@board, topic) %>
+              <%= link_to topic.title, topic_path(topic) %>
             </td>
             <td class="text-center"><%= link_to topic.posts.first.author.name, topic.posts.first.author %></td>
             <% count = topic.posts.first.is_deleted? ? topic.posts.normal.count : topic.posts.normal.count - 1 %>
@@ -41,6 +42,7 @@
       </tbody>
     </table>
     <%= render 'topics_paginate_bar' %>
+    </div>
   </div>
   <div class="col-sm-2">
 

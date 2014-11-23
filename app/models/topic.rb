@@ -8,6 +8,7 @@ class Topic
   field :d, as: :deleted, type: Integer, default: 0 # 0:normal, 1: deleted
 
   scope :normal, -> { where(deleted: 0) }
+  scope :deleted, -> { where(deleted: 1) }
 
   has_many :posts
   belongs_to :board

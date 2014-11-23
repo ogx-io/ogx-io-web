@@ -11,6 +11,7 @@ class Post
   field :d, as: :deleted, type: Integer, default: 0 # 0: normal, 1:deleted
 
   scope :normal, -> { where(deleted: 0) }
+  scope :deleted, -> { where(deleted: 1) }
   scope :elites, -> { where(elite: 1) }
 
   belongs_to :board

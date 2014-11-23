@@ -4,9 +4,14 @@
   <div class="post-links pull-right">
     <% if @board.is_moderator?(current_user) %>
         <% if @topic.top == 0 %>
-            <%= link_to '设为置顶', board_topic_path(@board, @topic, 'topic[top]' => 1), method: :patch %>
+            <%= link_to '设为置顶', topic_path(@topic, 'topic[top]' => 1), method: :patch %>
         <% else %>
-            <%= link_to '取消置顶', board_topic_path(@board, @topic, 'topic[top]' => 0), method: :patch %>
+            <%= link_to '取消置顶', topic_path(@topic, 'topic[top]' => 0), method: :patch %>
+        <% end %>
+        <% if @topic.is_deleted? %>
+          <%= link_to '恢复', resume_topic_path(@topic), method: :patch %>
+        <% else %>
+          <%= link_to '删除', topic_path(@topic), method: :delete %>
         <% end %>
     <% end %>
     <%= link_to '新主题', new_board_post_path(@board) %>

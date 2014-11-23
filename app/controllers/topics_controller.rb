@@ -1,17 +1,24 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
-  before_action :set_board, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy, :resume]
+  before_action :set_board, only: [:index, :edit, :update, :deleted]
 
   respond_to :html, :xml, :json
 
   def index
-    @topics = @board.topics.normal.desc(:top, :updated_at, :replied_at).page(params[:page]).per(25)
+    @all_topics = @board.topics.normal
+    @topics = @all_topics.desc(:top, :updated_at, :replied_at).page(params[:page]).per(25)
+    respond_with(@topics)
+  end
+
+  def deleted
+    @all_topics = @board.topics.deleted
+    @topics = @all_topics.desc(:top, :updated_at, :replied_at).page(params[:page]).per(25)
     respond_with(@topics)
   end
 
   def show
-    not_found if @topic.deleted == 1
-    @first = @topic.posts.first or not_found
+    @board = @topic.board
+    @first = @topic.posts.first
     per_page = 10
     if params[:page]
       page = params[:page].to_i
@@ -46,9 +53,14 @@ class TopicsController < ApplicationController
     # respond_with(@topic)
   end
 
+  def resume
+    @topic.update(deleted: 0)
+    redirect_to :back
+  end
+
   def destroy
-    @topic.destroy
-    respond_with(@topic)
+    @topic.update(deleted: 1)
+    redirect_to :back
   end
 
   private
