@@ -1,7 +1,8 @@
 <div class="row">
   <ol class="breadcrumb pull-left">
     <li><%= link_to 'root', boards_path %></li>
-    <li><%= @board.path %></li>
+    <li><%= link_to @board.path, board_topics_path(@board) %></li>
+    <li>posts</li>
   </ol>
 </div>
 

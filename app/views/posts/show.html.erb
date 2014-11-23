@@ -2,6 +2,11 @@
   <ol class="breadcrumb pull-left">
     <li><%= link_to 'root', boards_path %></li>
     <li><%= link_to @board.path, board_topics_path(@board) %></li>
+    <% if params[:parent] == 'elites' %>
+        <li><%= link_to 'elites', elites_board_posts_path(@board) %></li>
+    <% else %>
+        <li><%= link_to 'posts', board_posts_path(@board) %></li>
+    <% end %>
     <li><%= @post.title %></li>
   </ol>
 </div>
