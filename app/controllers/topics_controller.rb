@@ -11,6 +11,7 @@ class TopicsController < ApplicationController
   end
 
   def deleted
+    authorize @board, :blocked_users?
     @all_topics = @board.topics.deleted
     @topics = @all_topics.desc(:top, :updated_at, :replied_at).page(params[:page]).per(25)
     respond_with(@topics)
@@ -54,11 +55,13 @@ class TopicsController < ApplicationController
   end
 
   def resume
+    authorize @topic
     @topic.update(deleted: 0)
     redirect_to :back
   end
 
   def destroy
+    authorize @topic
     @topic.update(deleted: 1)
     redirect_to :back
   end

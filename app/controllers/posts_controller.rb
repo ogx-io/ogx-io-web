@@ -15,6 +15,7 @@ class PostsController < ApplicationController
   end
 
   def deleted
+    authorize @board, :blocked_users?
     @all_posts = @board.posts.deleted
     @posts = @all_posts.desc(:updated_at).page(params[:page]).per(10)
   end

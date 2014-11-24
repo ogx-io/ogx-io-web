@@ -2,7 +2,7 @@
   <%= paginate @pagination_posts, left: 1, right: 1 %>
   帖子数：<%= @topic.posts.normal.count %>
   <div class="post-links pull-right">
-    <% if @board.is_moderator?(current_user) %>
+    <% if policy(@topic).update? %>
         <% if @topic.top == 0 %>
             <%= link_to '设为置顶', topic_path(@topic, 'topic[top]' => 1), method: :patch %>
         <% else %>

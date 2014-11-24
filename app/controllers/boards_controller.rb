@@ -12,6 +12,7 @@ class BoardsController < ApplicationController
   end
 
   def blocked_users
+    authorize @board
     @all_users = @board.blocked_users
     @users = @all_users.page(params[:page]).per(25)
   end
