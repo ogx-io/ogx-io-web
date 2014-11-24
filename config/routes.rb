@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
       member do
         patch :resume
+        get :show_post
       end
     end
   end

@@ -1,6 +1,6 @@
 <div class="row">
   <ol class="breadcrumb pull-left">
-    <li><%= link_to 'root', boards_path %></li>
+    <li><%= link_to 'boards', boards_path %></li>
     <li><%= link_to @board.path, board_topics_path(@board) %></li>
     <% if params[:parent] == 'elites' %>
         <li><%= link_to 'elites', elites_board_posts_path(@board) %></li>
@@ -14,6 +14,12 @@
 <div class="row">
   <div class="col-sm-9">
     <% if !@post.is_deleted? || @board.is_moderator?(current_user) %>
+      <nav class="topic-bar clearfix">
+        本帖所在主题：<%= link_to @post.topic.title, @post.topic %>
+        <div class="post-links pull-right">
+          <%= link_to '在主题内查看', show_post_topic_path(@post.topic, for_post: @post.id) + '#post-' + @post.id.to_s %>
+        </div>
+      </nav>
       <%= render partial: 'post', locals: {post: @post, board: @board} %>
     <% else %>
       对不起，此贴已被删除。

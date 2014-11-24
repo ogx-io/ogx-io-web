@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy, :resume]
+  before_action :set_topic, only: [:show, :show_post, :edit, :update, :destroy, :resume]
   before_action :set_board, only: [:index, :edit, :update, :deleted]
 
   respond_to :html, :xml, :json
@@ -20,15 +20,26 @@ class TopicsController < ApplicationController
   def show
     @board = @topic.board
     @first = @topic.posts.first
+    @all_posts = @topic.posts.normal
     per_page = 10
-    if params[:page]
-      page = params[:page].to_i
+    if params[:for_post] && !params[:page]
+      page = @all_posts.where(_id: {'$lt' => params[:for_post].to_i}).count / per_page + 1
     else
-      page = 1
+      page = params[:page]
     end
-    @posts = @topic.posts.normal.where(floor: {'$gte' => (page - 1) * per_page, '$lt' => page * per_page}).collect{|topic| topic}
-    @pagination_posts = Kaminari.paginate_array([], total_count: @topic.last_floor + 1).page(page).per(per_page)
+    @all_posts = @topic.posts.normal
+    @posts = @all_posts.page(page).per(per_page)
     respond_with(@topic)
+  end
+
+  def show_post
+    post = Post.find(params[:for_post])
+    if post
+      page = @topic.posts.normal.where(_id: {'$lt' => post.id}).count / 10 + 1
+      redirect_to topic_path(post.topic, page: page)
+    else
+      redirect_to :back
+    end
   end
 
   def new
