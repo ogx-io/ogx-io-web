@@ -23,16 +23,8 @@
       <%= f.text_field :moderator_ids, class: 'form-control', value: @board.moderators.collect{|user| user.name}.join(' ') if @board %>
     </div>
     <div class="form-group">
-      <%= f.label '治版方针' %>
-      <%= f.text_area :strategy, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label '版面规定' %>
-      <%= f.text_area :rule, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label '版面公告' %>
-      <%= f.text_area :notice, class: 'form-control' %>
+      <%= f.label '版面简介' %>
+      <%= f.text_area :intro, class: 'form-control' %>
     </div>
 
   <div class="actions clearfix">

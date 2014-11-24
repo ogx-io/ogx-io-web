@@ -89,7 +89,7 @@ class BoardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      p = params[:board].permit(:name, :path, :strategy, :rule, :notice, :moderator_ids, :status)
+      p = params[:board].permit(:name, :path, :intro, :moderator_ids, :status)
       p[:moderator_ids] = p[:moderator_ids].split.collect{|user_name| User.find_by(name: user_name).id} if p[:moderator_ids]
       p
     end

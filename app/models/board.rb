@@ -5,9 +5,7 @@ class Board
 
   field :n, as: :name, type: String
   field :p, as: :path, type: String
-  field :s, as: :strategy, type: String
-  field :ru, as: :rule, type: String
-  field :nt, as: :notice, type: String
+  field :i, as: :intro, type: String
   enum :status, [:normal, :blocked, :deleted], default: :normal
 
   belongs_to :board_application

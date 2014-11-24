@@ -2,13 +2,40 @@
   <ol class="breadcrumb pull-left">
     <li>boards</li>
   </ol>
-  <%= link_to '申请新版', new_board_application_path, class: 'breadcrumb pull-right' %>
 </div>
 <div class="row">
-  <div class="col-sm-4 col-md-3 lead">
-    <% @boards.each do |board| %>
-      <%= link_to board.name, board_topics_path(board) %>
-    <% end %>
+  <div class="col-sm-10">
+    <table class="table table-hover">
+      <thead>
+      <th>板块</th>
+      <th class="text-center" style="width: 100px;">路径</th>
+      <th class="text-center" style="width: 150px;">版主</th>
+      <th class="text-center" style="width: 60px;">主题数</th>
+      <th class="text-center" style="width: 60px;">帖子数</th>
+      <th class="text-center" style="width: 100px;">创建时间</th>
+      </thead>
+      <tbody>
+      <% @boards.each do |board| %>
+          <tr>
+            <td title="<%= board.intro %>">
+              <span style="font-size: 16px;"><%= link_to board.name, board_topics_path(board) %></span><br/>
+              <%= truncate board.intro, length: 36, omission: '...' %>
+            </td>
+            <td class="text-center"><%= link_to board.path, board_topics_path(board) %></td>
+            <td class="text-center">
+              <ul class="list-inline">
+                <% board.moderators.each do |user| %>
+                    <li><%= link_to user.name, user %></li>
+                <% end %>
+              </ul>
+            </td>
+            <td class="text-center"><%= board.topics.normal.count %></td>
+            <td class="text-center"><%= board.posts.normal.count %></td>
+            <td class="text-center"><%= board.created_at.strftime("%F") %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 <br>

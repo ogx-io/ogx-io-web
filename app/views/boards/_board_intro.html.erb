@@ -2,5 +2,5 @@
   版主：<ul class="list-inline" style="display: inline-block"><% @board.moderators.each do |user| %><li><%= link_to user.name, user %></li><% end %></ul>
 </div>
 <div class="mb20">
-  简介：<%= @board.notice %>
+  简介：<%= @board.intro %>
 </div>
