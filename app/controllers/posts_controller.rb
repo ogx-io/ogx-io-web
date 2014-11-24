@@ -28,6 +28,8 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @post.board = @board
+    authorize @post
     @parent = Post.find(params[:parent]) if params[:parent]
   end
 
@@ -40,6 +42,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.board = @board
+    authorize @post
     @post.author = current_user
 
     respond_to do |format|
@@ -56,6 +59,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    authorize @post
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -68,6 +72,7 @@ class PostsController < ApplicationController
   end
 
   def toggle
+    authorize @post
     p = Hash.new
     pp = post_params
     pp.each do |k, v|

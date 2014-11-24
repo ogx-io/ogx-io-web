@@ -1,24 +1,35 @@
 Rails.application.routes.draw do
+  resources :blocked_users
+
   resources :moderator_applications
 
   resources :boards do
     collection do
       get :manage
     end
+
+    member do
+      get :blocked_users
+      post :block_user
+    end
+
     resources :posts, shallow: true do
       member do
         patch :toggle
         patch :resume
       end
+
       collection do
         get :elites
         get :deleted
       end
     end
+
     resources :topics, shallow: true do
       collection do
         get :deleted
       end
+
       member do
         patch :resume
       end

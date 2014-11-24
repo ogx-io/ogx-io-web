@@ -15,8 +15,16 @@ class Board
   has_and_belongs_to_many :moderators, class_name: "User", inverse_of: :managing_boards
   has_many :posts
   has_many :topics
+  has_many :blocked_users, as: :blockable
 
   def is_moderator?(user)
     self.moderator_ids.include?(user.id)
+  end
+
+  def is_blocked?(user)
+    self.blocked_users.each do |u|
+      return true if u.user_id == user.id
+    end
+    false
   end
 end

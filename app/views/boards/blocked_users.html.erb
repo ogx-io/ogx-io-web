@@ -1,0 +1,45 @@
+<div class="row">
+  <ol class="breadcrumb pull-left">
+    <li><%= link_to 'root', boards_path %></li>
+    <li><%= @board.path %></li>
+  </ol>
+</div>
+
+<div class="row">
+  <%= render 'boards/board_head' %>
+  <div class="col-sm-9">
+    <%= render 'boards/board_intro' %>
+    <%= render partial: 'boards/board_nav', locals: {index: 4} %>
+    <%= render partial: 'boards/board_admin_nav', locals: {index: 3} %>
+    <%= render 'board_blocked_users_paginate_bar' %>
+    <%= form_tag block_user_board_path(@board), class: 'ml10' do -%>
+    用户ID：<input type="text" name="user_id"/>
+        <%= submit_tag '封禁' %>
+    <% end -%>
+    <table class="table table-hover">
+      <thead>
+      <th>用户</th>
+      <th class="text-center" style="width: 150px">操作人</th>
+      <th class="text-center" style="width: 100px">封禁时间</th>
+      <th class="text-center" style="width: 60px">操作</th>
+      </thead>
+      <tbody>
+      <% @users.each do |blocked_user| %>
+          <tr>
+            <td><%= link_to blocked_user.user.name, blocked_user.user %></td>
+            <td class="text-center"><%= link_to blocked_user.operator.name, blocked_user.operator %></td>
+            <td class="text-center"><%= blocked_user.created_at.strftime("%F") %></td>
+            <td class="text-center">
+              <%= link_to '解封', blocked_user_path(blocked_user), method: :delete %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= render 'board_blocked_users_paginate_bar' %>
+  </div>
+  <div class="col-sm-3">
+
+  </div>
+</div>
+

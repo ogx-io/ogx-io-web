@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: [:show, :edit, :update, :destroy]
+  before_action :set_board, only: [:show, :edit, :update, :destroy, :blocked_users, :block_user]
 
   # GET /boards
   # GET /boards.json
@@ -9,6 +9,11 @@ class BoardsController < ApplicationController
 
   def manage
     @boards = Board.all.desc(:updated_at).page(params[:page]).per(25)
+  end
+
+  def blocked_users
+    @all_users = @board.blocked_users
+    @users = @all_users.page(params[:page]).per(25)
   end
 
   # GET /boards/1
@@ -63,6 +68,16 @@ class BoardsController < ApplicationController
       format.html { redirect_to boards_url, notice: 'Board was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def block_user
+    user_id = params[:user_id].to_i
+    if User.where(_id: user_id).exists?
+      blocked_user = BlockedUser.create(user_id: user_id, operator_id: current_user.id)
+      @board.blocked_users << blocked_user
+    end
+
+    redirect_to :back
   end
 
   private
