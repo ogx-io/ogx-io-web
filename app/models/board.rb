@@ -16,6 +16,7 @@ class Board
   has_many :blocked_users, as: :blockable
 
   def is_moderator?(user)
+    return false if not user
     self.moderator_ids.include?(user.id)
   end
 

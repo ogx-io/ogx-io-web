@@ -4,6 +4,18 @@ class BoardPolicy < ApplicationPolicy
     record.is_moderator?(user)
   end
 
+  def update?
+    user && user.admin?
+  end
+
+  def create?
+    update?
+  end
+
+  def manage?
+    update?
+  end
+
   class Scope < Scope
     def resolve
       scope

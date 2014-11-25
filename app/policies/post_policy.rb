@@ -5,19 +5,19 @@ class PostPolicy < ApplicationPolicy
   end
 
   def resume?
-    record.board.is_moderator?(user)
+    record.board.is_moderator?(user) && user
   end
 
   def create?
-    !record.board.is_blocked?(user)
+    !record.board.is_blocked?(user) && user
   end
 
   def update?
-    create?
+    create? && user
   end
 
   def toggle?
-    resume?
+    resume? && user
   end
 
   class Scope < Scope
