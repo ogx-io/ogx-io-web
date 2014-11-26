@@ -46,7 +46,7 @@ Rails.application.routes.draw do
 
   resources :board_applications, concerns: :approvable
 
-  root to: 'visitors#index'
+  root to: 'boards#index'
   devise_for :users
   resources :users
 end
