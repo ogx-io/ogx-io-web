@@ -8,7 +8,7 @@ module DevisePermittedParameters
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :name << :email
+    devise_parameter_sanitizer.for(:sign_up) << :name << :email << :nick
     devise_parameter_sanitizer.for(:account_update) << :name << :email
   end
 

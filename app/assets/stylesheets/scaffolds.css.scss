@@ -33,9 +33,9 @@ div {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+  input {
+    border-color: red;
+  }
 }
 
 #error_explanation {
@@ -204,4 +204,9 @@ div {
 
 .board-content {
   padding-top: 10px;
+}
+
+.err-msg {
+  color: red;
+  font-size: 12px;
 }

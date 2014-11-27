@@ -49,7 +49,14 @@ class User
   field :nick, type: String, default: ""  # a user will be displayed as 'nick(@name)'
 
   validates_presence_of :name, message: "请输入用户名"
-  # validates_presence_of :email, message: "请输入邮箱地址"
+  validates_uniqueness_of :name, message: "该用户名已存在"
+  validates_format_of :name, with: /[a-z0-9_]{4,20}/, message: "格式不对"
+
+  validates_presence_of :nick, message: "请输入昵称"
+  validates_length_of :nick, maximum: 20, message: '昵称太长了'
+
+  validates_presence_of :email, message: "请输入邮件地址"
+  validates_format_of :email, with: /([a-z0-9_\.-]{1,20})@([\da-z\.-]+)\.([a-z\.]{2,6})/, message: "请输入正确的邮件地址"
 
   has_many :board_applications, inverse_of: :applier
   has_and_belongs_to_many :managing_boards, class_name: "Board", inverse_of: :moderators
@@ -57,6 +64,6 @@ class User
   has_many :blocked_users
 
   def get_avatar(size=70)
-    'http://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(self.email) + '?r=R&s=' + size.to_s
+    'http://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(self.email) + '?r=G&s=' + size.to_s
   end
 end

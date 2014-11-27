@@ -45,6 +45,10 @@ zh_CN:
         user:
           attributes:
             email:
-              blank: "您还没有输入邮件地址"
+              blank: "请输入邮件地址"
+              invalid: "请输入正确的邮件地址"
             password:
               blank: "密码不能为空"
+              too_short: "密码太短了"
+            password_confirmation:
+              confirmation: "密码确认不对"

@@ -1,28 +1,17 @@
-<div class="authform">
+<div class="registerform">
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:role => 'form'}) do |f| %>
       <h3>注册新用户</h3>
-      <%= devise_error_messages! %>
-      <div class="form-group">
-        <%= f.label :name, '用户名' %>
-        <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :nick, '昵称' %>
-        <%= f.text_field :nick, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :email, '邮件地址' %>
-        <%= f.email_field :email, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password, '密码' %>
-        <%= f.password_field :password, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation, '密码确认' %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-      </div>
 
-      <%= f.submit '注册', :class => 'button right' %>
+      <%- [
+                  [:name, 'text_field', '用户名', '4-20个小写英文字母、数字或下划线'],
+                  [:nick, 'text_field', '昵称', '20个以内任意字符，用户将标识为：昵称(@用户名)'],
+                  [:email, 'email_field', '邮件地址', 'name@example.com'],
+                  [:password, 'password_field', '密码', '至少8个字符'],
+                  [:password_confirmation, 'password_field', '密码确认', '重复输入一次密码']
+          ].each do |i| %>
+          <%= render partial: 'common/form_field', locals: {form: f, field: i[0], type: i[1], label_text: i[2], tips: i[3]} %>
+      <% end -%>
+
+      <%= f.submit '注册', :class => 'button right clearfix' %>
   <% end %>
 </div>

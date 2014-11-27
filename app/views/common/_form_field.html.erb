@@ -1,0 +1,9 @@
+<div class="form-group">
+  <div class="clearfix">
+    <%= form.label field, label_text, class: 'pull-left' %>
+    <% if resource.errors[field].presence %>
+        <label class="pull-right err-msg"><%= resource.errors[field][0] %></label>
+    <% end %>
+  </div>
+  <%= form.send type, field, class: 'form-control', placeholder: tips %>
+</div>
