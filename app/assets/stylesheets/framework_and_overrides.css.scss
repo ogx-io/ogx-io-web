@@ -8,9 +8,10 @@ img {
   margin: 0 auto;
   }
 // override for the 'Home' navigation link
-.navbar-brand {
-  //font-size: inherit;
-  }
+.navbar-inverse .navbar-brand {
+//  font-size: 18px;
+  color: #DDD;
+}
 
 .breadcrumb {
   background-color: #fff;

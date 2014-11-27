@@ -45,8 +45,11 @@ class User
   Roles = [:user, :admin]
   enum :role, Roles, default: :user
 
-  #validates_presence_of :name, message: "请输入用户名"
-  #validates_presence_of :email, message: "请输入邮箱地址"
+  ## User Info
+  field :nick, type: String, default: ""  # a user will be displayed as 'nick(@name)'
+
+  validates_presence_of :name, message: "请输入用户名"
+  # validates_presence_of :email, message: "请输入邮箱地址"
 
   has_many :board_applications, inverse_of: :applier
   has_and_belongs_to_many :managing_boards, class_name: "Board", inverse_of: :moderators

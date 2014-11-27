@@ -19,7 +19,7 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-zh:
+zh_CN:
   hello: "Hello world"
 
   views:
@@ -38,3 +38,13 @@ zh:
           other: "Displaying <b>all %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+
+  mongoid:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "您还没有输入邮件地址"
+            password:
+              blank: "密码不能为空"
