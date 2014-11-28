@@ -47,6 +47,7 @@ zh_CN:
             email:
               blank: "请输入邮件地址"
               invalid: "请输入正确的邮件地址"
+              taken: "该邮件地址已被注册"
             password:
               blank: "密码不能为空"
               too_short: "密码太短了"
