@@ -1,14 +1,14 @@
 <div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-    <h3>Change your password</h3>
-    <%= devise_error_messages! %>
-    <%= f.hidden_field :reset_password_token %>
-    <div class="form-group">
-      <%= f.label :password, 'New password' %>
-        <%= f.password_field :password, autofocus: true, autocomplete: 'off', class: 'form-control' %>
-      <%= f.label :password_confirmation, 'Confirm new password' %>
-        <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
-    </div>
-     <%= f.submit 'Change my Password', :class => 'button right' %>
+  <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :put}) do |f| %>
+      <h3>重设密码</h3>
+      <% if resource.errors[:reset_password_token].presence %>
+          <div class="has-error">
+            <p class="help-block">Token已过期</p>
+          </div>
+      <% end %>
+      <%= f.hidden_field :reset_password_token %>
+      <%= f.input :password, label: '密码', hint: '至少8个字符' %>
+      <%= f.input :password_confirmation, label: '密码确认', hint: '重复输入一次密码' %>
+      <%= f.submit '重设密码', :class => 'button right' %>
   <% end %>
 </div>

@@ -1,13 +1,13 @@
 <div class="update-user-form register-form">
-  <h3>更新用户信息</h3>
   <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :role => 'form'}) do |f| %>
+      <h3>更新用户信息</h3>
       <%= f.input :name, label: '用户名', hint: '4-20个小写英文字母、数字或下划线', autofocus: true %>
       <%= f.input :nick, label: '昵称', hint: '20个以内任意字符，用户将标识为：昵称(@用户名)' %>
       <%= f.input :email, label: '邮件地址', hint: devise_mapping.confirmable? && resource.pending_reconfirmation? ? "正在等待验证的邮件地址：#{resource.unconfirmed_email}" : '' %>
 
       <fieldset>
-        <p>当前头像：</p>
-        <img src="<%= resource.get_avatar %>" class="img-rounded avatar">
+        <div><div class="pull-left">当前头像：</div> <img src="<%= resource.get_avatar %>" class="img-rounded avatar">
+        </div>
         <div>用这里的邮件地址到 <%= link_to '这里注册或登录', 'http://en.gravatar.com', target: '_blank' %> 修改头像</div>
       </fieldset>
       <fieldset>
