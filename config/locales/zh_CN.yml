@@ -53,3 +53,5 @@ zh_CN:
               too_short: "密码太短了"
             password_confirmation:
               confirmation: "密码确认不对"
+            current_password:
+              blank: "还没有输入当前的密码"

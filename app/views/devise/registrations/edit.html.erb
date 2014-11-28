@@ -1,41 +1,24 @@
-<div class="authform">
-  <h3>Edit <%= resource_name.to_s.humanize %></h3>
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-    </div>
-    <fieldset>
-      <p>Leave these fields blank if you don't want to change your password.</p>
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-      </div>
-    </fieldset>
-    <fieldset>
-      <p>You must enter your current password to make changes.</p>
-      <div class="form-group">
-        <%= f.label :current_password %>
-        <%= f.password_field :current_password, class: 'form-control' %>
-      </div>
-    </fieldset>
-    <%= f.submit 'Update', :class => 'button right' %>
+<div class="update-user-form register-form">
+  <h3>更新用户信息</h3>
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :role => 'form'}) do |f| %>
+      <%= f.input :name, label: '用户名', hint: '4-20个小写英文字母、数字或下划线', autofocus: true %>
+      <%= f.input :nick, label: '昵称', hint: '20个以内任意字符，用户将标识为：昵称(@用户名)' %>
+      <%= f.input :email, label: '邮件地址', hint: devise_mapping.confirmable? && resource.pending_reconfirmation? ? "正在等待验证的邮件地址：#{resource.unconfirmed_email}" : '' %>
+
+      <fieldset>
+        <p>当前头像：</p>
+        <img src="<%= resource.get_avatar %>" class="img-rounded avatar">
+        <div>用这里的邮件地址到 <%= link_to '这里注册或登录', 'http://en.gravatar.com', target: '_blank' %> 修改头像</div>
+      </fieldset>
+      <fieldset>
+        <p>如果不想改变密码就在这里留空</p>
+        <%= f.input :password, label: '密码', hint: '至少8个字符', autocomplete: 'off' %>
+        <%= f.input :password_confirmation, label: '密码确认', hint: '重复输入一次密码' %>
+      </fieldset>
+      <fieldset>
+        <p>更新用户信息需要输入当前密码</p>
+        <%= f.input :current_password, label: '当前密码', autocomplete: 'off' %>
+      </fieldset>
+      <%= f.submit '更新', :class => 'button right' %>
   <% end %>
-</div>
-<div class="authform">
-<h3>Cancel Account</h3>
-<p>Unhappy? We'll be sad to see you go.</p>
-<%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right' %>
 </div>

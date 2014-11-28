@@ -46,8 +46,7 @@ class User
   enum :role, Roles, default: :user
 
   ## User Info
-  field :nick, type: String, default: ""  # a user will be displayed as 'nick(@name)'
-  field :gender, type: Integer
+  field :nick, type: String  # a user will be displayed as 'nick(@name)'
 
   validates_presence_of :name, message: "请输入用户名"
   validates_uniqueness_of :name, message: "该用户名已存在"
@@ -59,18 +58,12 @@ class User
   validates_presence_of :email, message: "请输入邮件地址"
   validates_format_of :email, with: /([a-z0-9_\.-]{1,20})@([\da-z\.-]+)\.([a-z\.]{2,6})/, message: "请输入正确的邮件地址"
 
-  validates_presence_of :gender, message: "请选择性别"
-
-  validates_presence_of :password, message: "密码不能为空"
-
-  validates_presence_of :password_confirmation, message: "密码确认不能为空"
-
   has_many :board_applications, inverse_of: :applier
   has_and_belongs_to_many :managing_boards, class_name: "Board", inverse_of: :moderators
   has_many :posts, inverse_of: :author
   has_many :blocked_users
 
   def get_avatar(size=70)
-    'http://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(self.email) + '?r=G&s=' + size.to_s
+    'http://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(self.email) + '?s=' + size.to_s
   end
 end

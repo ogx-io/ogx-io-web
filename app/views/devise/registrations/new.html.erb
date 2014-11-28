@@ -1,9 +1,8 @@
-<div class="authform">
+<div class="register-form">
   <h3>注册新用户</h3>
   <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: {role: 'form'} do |f| %>
-      <%= f.input :name, label: '用户名', hint: '4-20个小写英文字母、数字或下划线' %>
+      <%= f.input :name, label: '用户名', hint: '4-20个小写英文字母、数字或下划线', autofocus: true %>
       <%= f.input :nick, label: '昵称', hint: '20个以内任意字符，用户将标识为：昵称(@用户名)' %>
-      <%= f.input :gender, label: '性别', as: :radio_buttons, collection: [['男', 1], ['女', 2]] %>
       <%= f.input :email, label: '邮件地址', hint: '格式：user@domain.com' %>
       <%= f.input :password, label: '密码', hint: '至少8个字符' %>
       <%= f.input :password_confirmation, label: '密码确认', hint: '重复输入一次密码' %>
