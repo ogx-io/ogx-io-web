@@ -6,7 +6,9 @@
       <%= f.input :email, label: '邮件地址', hint: devise_mapping.confirmable? && resource.pending_reconfirmation? ? "正在等待验证的邮件地址：#{resource.unconfirmed_email}" : '' %>
 
       <fieldset>
-        <div><div class="pull-left">当前头像：</div> <img src="<%= resource.get_avatar %>" class="img-rounded avatar">
+        <div>
+          <div class="pull-left">当前头像：</div>
+          <%= avatar(resource) %>
         </div>
         <div>用邮件地址 <%= resource.email %> 到 <%= link_to '这里注册或登录', 'http://en.gravatar.com', target: '_blank' %> 修改头像</div>
       </fieldset>
