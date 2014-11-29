@@ -13,7 +13,7 @@
     <%= render partial: 'boards/board_admin_nav', locals: {index: 3} %>
     <%= render 'board_blocked_users_paginate_bar' %>
     <%= form_tag block_user_board_path(@board), class: 'ml10' do -%>
-    用户ID：<input type="text" name="user_id"/>
+    用户名：<input type="text" name="username"/>
         <%= submit_tag '封禁' %>
     <% end -%>
     <table class="table table-hover">

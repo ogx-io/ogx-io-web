@@ -14,7 +14,7 @@ class BoardsController < ApplicationController
 
   def blocked_users
     authorize @board
-    @all_users = @board.blocked_users
+    @all_users = @board.blocked_users.desc(:created_at)
     @users = @all_users.page(params[:page]).per(25)
   end
 
@@ -78,9 +78,10 @@ class BoardsController < ApplicationController
   end
 
   def block_user
-    user_id = params[:user_id].to_i
-    if User.where(_id: user_id).exists?
-      blocked_user = BlockedUser.create(user_id: user_id, operator_id: current_user.id)
+    username = params[:username].strip
+    if User.where(name: username).exists?
+      user = User.find_by(name: username)
+      blocked_user = BlockedUser.create(user_id: user.id, operator_id: current_user.id)
       @board.blocked_users << blocked_user
     end
 
