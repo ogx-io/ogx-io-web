@@ -26,8 +26,8 @@
       <tbody>
       <% @users.each do |blocked_user| %>
           <tr>
-            <td><%= link_to blocked_user.user.name, blocked_user.user %></td>
-            <td class="text-center"><%= link_to blocked_user.operator.name, blocked_user.operator %></td>
+            <td><%= user_link blocked_user.user %></td>
+            <td class="text-center"><%= user_link blocked_user.operator %></td>
             <td class="text-center"><%= blocked_user.created_at.strftime("%F") %></td>
             <td class="text-center">
               <%= link_to '解封', blocked_user_path(blocked_user), method: :delete %>

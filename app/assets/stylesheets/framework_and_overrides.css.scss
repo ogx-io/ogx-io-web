@@ -63,6 +63,11 @@ main {
   margin-top: 66px; // accommodate the navbar
 }
 
+.flash-msg {
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
 section {
   @extend .row;
   margin-top: 20px;
@@ -179,4 +184,8 @@ fieldset {
     margin-left: 0;
     margin-bottom: 10px;
   }
+}
+
+.avatar {
+  @extend .img-rounded
 }

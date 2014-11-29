@@ -47,6 +47,6 @@ Rails.application.routes.draw do
   resources :board_applications, concerns: :approvable
 
   root to: 'boards#index'
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions' }
   resources :users
 end

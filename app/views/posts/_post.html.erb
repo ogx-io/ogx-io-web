@@ -1,8 +1,8 @@
 <div id="post-<%= post.id %>" name="post-<%= post.id %>" class="post-item panel panel-default">
   <div class="panel-body">
     <div class="avatar pull-left">
-      <img src="<%= post.author.get_avatar(70) %>" class="img-rounded">
-      <p class="text-center"><%= link_to post.author.name, post.author %></p>
+      <%= avatar(post.author) %>
+      <p class="text-center"><%= user_link post.author %></p>
     </div>
     <div class="post-detail">
       <div class="floor pull-right">#<%= post.id %></div>

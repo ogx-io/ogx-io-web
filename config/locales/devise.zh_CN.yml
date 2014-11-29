@@ -17,7 +17,7 @@ zh_CN:
       not_found_in_database: "邮箱或密码错误。"
       timeout: "您已登录超时，请重新登录。"
       unauthenticated: "继续操作前请注册或者登录。"
-      unconfirmed: "继续操作前请先确认您的帐号。"
+      unconfirmed: "您的帐号还没有得到确认。请检查邮箱（包括垃圾邮箱），查收带有确认链接的邮件，并点击该链接激活您的账号。"
     mailer:
       confirmation_instructions:
         subject: "确认信息"

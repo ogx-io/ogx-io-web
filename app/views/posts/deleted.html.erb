@@ -26,7 +26,7 @@
               <%= link_to post.title, post_path(post) %><br/>
               <%= truncate post.body, length: 40, omission: '...' %>
             </td>
-            <td class="text-center"><%= link_to post.author.name, post.author %></td>
+            <td class="text-center"><%= user_link post.author %></td>
             <td class="text-center"><%= post.created_at.strftime("%F") %></td>
             <td class="text-center">
               <%= link_to '恢复', resume_post_path(post), method: :patch %>
