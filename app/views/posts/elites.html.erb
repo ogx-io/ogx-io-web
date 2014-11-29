@@ -26,7 +26,7 @@
                 <%= link_to post.title, post_path(post, parent: 'elites') %><br/>
                 <%= truncate post.body, length: 43, omission: '...' %>
               </td>
-              <td class="text-center" align="center" valign="middle"><%= link_to post.author.name, post.author %></td>
+              <td class="text-center" align="center" valign="middle"><%= user_link post.author %></td>
               <td class="text-center" align="center" valign="middle"><%= post.created_at.strftime("%F") %></td>
             </tr>
           <% end %>
