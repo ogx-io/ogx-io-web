@@ -8,7 +8,7 @@
       <fieldset>
         <div><div class="pull-left">当前头像：</div> <img src="<%= resource.get_avatar %>" class="img-rounded avatar">
         </div>
-        <div>用这里的邮件地址到 <%= link_to '这里注册或登录', 'http://en.gravatar.com', target: '_blank' %> 修改头像</div>
+        <div>用邮件地址 <%= resource.email %> 到 <%= link_to '这里注册或登录', 'http://en.gravatar.com', target: '_blank' %> 修改头像</div>
       </fieldset>
       <fieldset>
         <p>如果不想改变密码就在这里留空</p>
