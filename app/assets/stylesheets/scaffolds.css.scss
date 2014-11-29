@@ -18,8 +18,9 @@ pre {
   font-size: 11px;
 }
 
-h2, h3 {
+h2, h3, h4 {
   color: #333;
+  font-weight: bold;
 }
 
 div {
@@ -136,12 +137,17 @@ div {
     h4 {
       font-size: 16px;
       margin-top: 0;
-      color: #333;
+    }
+    .post-author {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 5px;
     }
     .post-content {
       font-size: 14px;
       line-height: 25px;
       min-height: 28px;
+//      color: #333;
     }
     .post-footer {
       margin-top: 15px;

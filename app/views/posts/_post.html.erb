@@ -2,7 +2,6 @@
   <div class="panel-body">
     <div class="avatar pull-left">
       <%= avatar(post.author) %>
-      <p class="text-center"><%= user_link post.author %></p>
     </div>
     <div class="post-detail">
       <div class="floor pull-right">#<%= post.id %></div>
@@ -13,11 +12,11 @@
           <i class="deleted-mark">已删除</i>
         <% end %>
       </h4>
+      <div class="post-author"><%= full_user_link post.author %> 发表于 <%= full_datetime post.created_at %></div>
       <div class="post-content">
         <%= post.body %>
       </div>
       <div class="post-footer clearfix">
-        <div class="post-time pull-left">发表于 <%= post.created_at.strftime("%F %T") %></div>
         <div class="pull-right">
           <ul class="list-inline">
             <% if policy(post).toggle? %>

@@ -1,23 +1,23 @@
 class PostPolicy < ApplicationPolicy
 
   def destroy?
-    record.board.is_moderator?(user) || record.author == user
+    user && (record.board.is_moderator?(user) || record.author == user)
   end
 
   def resume?
-    record.board.is_moderator?(user) && user
+    user && record.board.is_moderator?(user)
   end
 
   def create?
-    !record.board.is_blocked?(user) && user
+    user && !record.board.is_blocked?(user)
   end
 
   def update?
-    create? && user
+    create?
   end
 
   def toggle?
-    resume? && user
+    resume?
   end
 
   class Scope < Scope
