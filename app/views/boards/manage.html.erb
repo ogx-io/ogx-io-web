@@ -29,7 +29,7 @@
         <% end %>
       </td>
       <td><%= board.status %></td>
-      <td><%= board.updated_at.strftime('%F') %></td>
+      <td><%= time_digest board.updated_at %></td>
       <td>
         <%= link_to '编辑', edit_board_path(board) %>
         <% if board.normal? %>

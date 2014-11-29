@@ -30,6 +30,9 @@ module ApplicationHelper
   end
 
   def time_digest(time)
-
+    now = Time.now
+    return time.strftime("%H:%M:%S") if now.day == time.day
+    return time.strftime("%m-%d %H:%M") if now.year == time.year
+    time.strftime("%F")
   end
 end

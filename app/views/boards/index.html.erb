@@ -9,10 +9,10 @@
       <thead>
       <th>板块</th>
       <th class="text-center" style="width: 100px;">路径</th>
-      <th class="text-center" style="width: 150px;">版主</th>
-      <th class="text-center" style="width: 60px;">主题数</th>
-      <th class="text-center" style="width: 60px;">帖子数</th>
-      <th class="text-center" style="width: 100px;">创建时间</th>
+      <th class="text-center" style="width: 130px;">版主</th>
+      <th class="text-center" style="width: 70px;">主题数</th>
+      <th class="text-center" style="width: 70px;">帖子数</th>
+      <th class="text-center" style="width: 110px;">创建时间</th>
       </thead>
       <tbody>
       <% @boards.each do |board| %>
@@ -31,7 +31,7 @@
             </td>
             <td class="text-center"><%= board.topics.normal.count %></td>
             <td class="text-center"><%= board.posts.normal.count %></td>
-            <td class="text-center"><%= board.created_at.strftime("%F") %></td>
+            <td class="text-center"><%= time_digest board.created_at %></td>
           </tr>
       <% end %>
       </tbody>
