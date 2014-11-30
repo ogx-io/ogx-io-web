@@ -12,7 +12,7 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-9">
+  <div class="col-sm-10">
     <% if !@post.is_deleted? || @board.is_moderator?(current_user) %>
       <nav class="topic-bar clearfix">
         本帖所在主题：<%= link_to @post.topic.title, @post.topic %>
