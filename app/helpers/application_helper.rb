@@ -2,7 +2,8 @@ module ApplicationHelper
 
   def user_link(user)
     if user
-      return link_to(user.nick, user, class: 'user-link').html_safe
+      return link_to(user.nick, user, class: 'user-link', title: "@#{user.name}").html_safe if user.nick
+      return link_to(user.name, user, class: 'user-link', title: "@#{user.name}").html_safe
     else
       '<span class="user-link">已注销</span>'.html_safe
     end
