@@ -47,6 +47,8 @@ class User
 
   ## User Info
   field :nick, type: String  # a user will be displayed as 'nick(@name)'
+  field :intro, type: String # a short introduction of a user
+  field :city, type: String # the city which the user is living
 
   validates_presence_of :name, message: "请输入用户名"
   validates_uniqueness_of :name, message: "该用户名已存在"
@@ -57,6 +59,10 @@ class User
 
   validates_presence_of :email, message: "请输入邮件地址"
   validates_format_of :email, with: /([a-z0-9_\.-]{1,20})@([\da-z\.-]+)\.([a-z\.]{2,6})/, message: "请输入正确的邮件地址"
+
+  validates_length_of :intro, maximum: 50, message: '个人简介太长了'
+
+  validates_length_of :city, maximum: 20, message: '输入的城市名称太长了'
 
   has_many :board_applications, inverse_of: :applier
   has_and_belongs_to_many :managing_boards, class_name: "Board", inverse_of: :moderators
