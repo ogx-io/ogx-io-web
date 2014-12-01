@@ -15,16 +15,16 @@
       <th>板面</th>
       <th class="text-center" style="width: 100px;">路径</th>
       <th class="text-center" style="width: 130px;">版主</th>
-      <th class="text-center" style="width: 70px;">主题数</th>
-      <th class="text-center" style="width: 70px;">帖子数</th>
+      <th class="text-center" style="width: 50px;">主题</th>
+      <th class="text-center" style="width: 50px;">帖子</th>
       <th class="text-center" style="width: 110px;">创建时间</th>
       </thead>
       <tbody>
       <% @boards.each do |board| %>
           <tr>
-            <td title="<%= board.intro %>">
-              <span style="font-size: 16px;"><%= link_to board.name, board_topics_path(board) %></span><br/>
-              <%= truncate board.intro, length: 36, omission: '...' %>
+            <td class="board-title" title="<%= board.intro %>">
+              <div><%= link_to board.name, board_topics_path(board) %></div>
+              <div><%= truncate board.intro, length: 100, omission: '...' %></div>
             </td>
             <td class="text-center fs13"><%= link_to board.path, board_topics_path(board) %></td>
             <td class="text-center">
