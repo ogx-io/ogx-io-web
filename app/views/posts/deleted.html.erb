@@ -23,8 +23,8 @@
       <% @posts.each do |post| %>
           <tr>
             <td class="post-title">
-              <%= link_to post.title, post_path(post) %><br/>
-              <%= truncate post.body, length: 40, omission: '...' %>
+              <div><%= link_to post.title, post_path(post, parent: 'elites') %></div>
+              <div><%= truncate post.body, length: 100, omission: '...' %></div>
             </td>
             <td class="text-center"><%= user_link post.author %></td>
             <td class="text-center"><%= time_digest post.created_at %></td>

@@ -15,7 +15,7 @@
     <%= render 'posts_paginate_bar' %>
     <table class="table table-hover">
       <thead>
-        <th>文章</th>
+        <th style="width: 588px;">文章</th>
         <th class="text-center" style="width: 150px">作者</th>
         <th class="text-center" style="width: 110px">发表时间</th>
       </thead>
@@ -23,8 +23,8 @@
         <% @posts.each do |post| %>
         <tr>
           <td class="post-title">
-            <%= link_to post.title, post_path(post) %> <% if post.elite == 1 %><span class="elite-mark">精</span><% end %><br/>
-            <%= truncate post.body, length: 43, omission: '...' %>
+            <div><%= link_to post.title, post_path(post) %> <% if post.elite == 1 %><span class="elite-mark">精</span><% end %></div>
+            <div><%= truncate post.body, length: 100, omission: '...' %></div>
           </td>
           <td class="text-center" align="center" valign="middle"><%= user_link post.author %></td>
           <td class="text-center" align="center" valign="middle"><%= time_digest post.created_at %></td>

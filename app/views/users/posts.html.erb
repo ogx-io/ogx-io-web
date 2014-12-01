@@ -14,12 +14,13 @@
         <% @posts.each do |post| %>
             <tr>
               <td class="post-title">
-                <%= link_to post.title, post_path(post) %>
-                <% if post.elite == 1 && index != 3 %>
-                    <span class="elite-mark">精</span>
-                <% end %>
-                <br/>
-                <%= truncate post.body, length: 42, omission: '...' %>
+                <div>
+                  <%= link_to post.title, post_path(post) %>
+                  <% if post.elite == 1 && index != 3 %>
+                      <span class="elite-mark">精</span>
+                  <% end %>
+                </div>
+                <div><%= truncate post.body, length: 100, omission: '...' %></div>
               </td>
               <td class="text-center"><%= link_to post.board.name, board_topics_path(post.board) %></td>
               <td class="text-center"><%= time_digest post.created_at %></td>

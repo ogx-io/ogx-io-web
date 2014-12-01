@@ -98,6 +98,7 @@ div {
 .fs13 {
   font-size: 13px;
 }
+
 .fs14 {
   font-size: 13px;
 }
@@ -172,6 +173,7 @@ div {
     margin-bottom: 15px;
   }
 }
+
 .list-bar {
   margin-bottom: 10px;
   background-color: #EEE;
@@ -271,6 +273,17 @@ div {
   font-size: 14px;
 }
 
-.post-title a {
-  font-size: 14px;
+td.post-title {
+//  display: block;
+  div {
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 572px;
+//    width: 100%;
+  }
+  a {
+    font-size: 14px;
+  }
 }
