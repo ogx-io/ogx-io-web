@@ -1,5 +1,6 @@
 <div class="info col-sm-2">
   <%= avatar @user, 160 %>
-  <div class="title mb10"><%= @user.nick %><br/><span>@<%= @user.name %></span></div>
-  <div><span class="glyphicon glyphicon-time"></span> 加入于<%= @user.created_at.strftime("%Y年%-m月") %></div>
+  <div class="nick"><%= @user.nick %></div>
+  <div class="name">@<%= @user.name %></div>
+  <div class="mb20"><span class="glyphicon glyphicon-time"></span> 加入于<%= @user.created_at.strftime("%Y年%-m月") %></div>
 </div>

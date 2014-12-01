@@ -16,7 +16,7 @@
               <td>
                 <%= link_to post.title, post_path(post) %>
                 <% if post.elite == 1 && index != 3 %>
-                    <i class="elite-mark">精</i>
+                    <span class="elite-mark">精</span>
                 <% end %>
                 <br/>
                 <%= truncate post.body, length: 42, omission: '...' %>

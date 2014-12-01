@@ -10,7 +10,7 @@ module ApplicationHelper
 
   def full_user_link(user)
     if user
-      return (link_to(user.name, user) + "(@#{user.name})").html_safe
+      return (link_to(user.nick, user) + " @#{user.name}").html_safe
     else
       '已注销'.html_safe
     end

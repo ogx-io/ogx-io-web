@@ -3,7 +3,7 @@ body {
   color: #555;
   font-family: verdana, arial, helvetica, STHeiti, simsun, "WenQuanYi Micro Hei", sans-serif;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 22px;
 }
 
 p, ol, ul, td {
@@ -215,6 +215,7 @@ div {
 .elite-mark {
   color: red;
   font-size: 12px;
+  font-weight: bold;
 }
 
 .deleted-mark {
@@ -239,15 +240,16 @@ div {
   margin-top: 30px;
   .info {
     font-size: 13px;
-    .title {
+    .nick {
       margin-top: 15px;
       font-size: 20px;
       font-weight: bold;
-      span {
-        font-size: 13px;
-        color: #999;
-        font-weight: normal;
-      }
+    }
+    .name {
+      font-size: 13px;
+      color: #999;
+      font-weight: normal;
+      margin-bottom: 5px;
     }
   }
 }
