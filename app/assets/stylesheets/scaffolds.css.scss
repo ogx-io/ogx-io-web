@@ -8,8 +8,16 @@ body {
 
 p, ol, ul, td {
 //  font-family: verdana, arial, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 18px;
+}
+
+td a {
+  font-size: 14px;
+}
+
+td.fs13 a {
+  font-size: 13px;
 }
 
 pre {
@@ -223,6 +231,10 @@ div {
   font-size: 12px;
 }
 
+.board-intro {
+  font-size: 13px;
+}
+
 .board-content {
   padding-top: 10px;
 }
@@ -256,6 +268,7 @@ div {
 
 .head-main-nav {
   font-weight: bold;
+  font-size: 14px;
 }
 
 .head-user-nav {
@@ -265,4 +278,8 @@ div {
     padding-right: 5px;
     margin-right: 10px;
   }
+}
+
+.user-link {
+  font-size: 13px;
 }

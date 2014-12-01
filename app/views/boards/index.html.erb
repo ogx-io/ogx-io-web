@@ -21,7 +21,7 @@
               <span style="font-size: 16px;"><%= link_to board.name, board_topics_path(board) %></span><br/>
               <%= truncate board.intro, length: 36, omission: '...' %>
             </td>
-            <td class="text-center"><%= link_to board.path, board_topics_path(board) %></td>
+            <td class="text-center fs13"><%= link_to board.path, board_topics_path(board) %></td>
             <td class="text-center">
               <ul class="list-inline">
                 <% board.moderators.each do |user| %>

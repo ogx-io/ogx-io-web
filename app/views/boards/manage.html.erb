@@ -25,12 +25,12 @@
       <td><%= link_to board.path, board_topics_path(board) %></td>
       <td>
         <% board.moderators.each do |moderator| %>
-        <%= link_to moderator.name, moderator %>
+        <%= user_link moderator %>
         <% end %>
       </td>
       <td><%= board.status %></td>
       <td><%= time_digest board.updated_at %></td>
-      <td>
+      <td class="fs13">
         <%= link_to '编辑', edit_board_path(board) %>
         <% if board.normal? %>
           <%= link_to '封禁', board_path(board, 'board[status]' => 'blocked'), method: :patch %>
