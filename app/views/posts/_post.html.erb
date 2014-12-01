@@ -9,7 +9,7 @@
         <%= post.title %>
         <span class="elite-mark" style="<%= 'display: none' if post.elite == 0 %>">精华帖</span>
         <% if post.is_deleted? %>
-          <i class="deleted-mark">已删除</i>
+          <span class="deleted-mark">(已删除)</span>
         <% end %>
       </h4>
       <div class="post-author"><%= full_user_link post.author %> · <%= full_datetime post.created_at %></div>
