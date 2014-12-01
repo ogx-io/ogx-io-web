@@ -1,0 +1,26 @@
+<div class="user-profile">
+  <%= render 'profile_left' %>
+  <div class="content col-sm-9">
+    <%= render partial: 'profile_nav', locals: { index: 2 } %>
+    <div class="list-content">
+      <%= render 'topics_paginate_bar' %>
+      <table class="table table-hover">
+        <thead>
+        <th>主题</th>
+        <th class="text-center" style="width: 160px">所在版面</th>
+        <th class="text-center" style="width: 110px">创建时间</th>
+        </thead>
+        <tbody>
+        <% @topics.each do |topic| %>
+            <tr>
+              <td><%= link_to topic.title, topic_path(topic) %></td>
+              <td class="text-center"><%= link_to topic.board.name, board_topics_path(topic.board) %></td>
+              <td class="text-center"><%= time_digest topic.created_at %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= render 'topics_paginate_bar' %>
+    </div>
+  </div>
+</div>

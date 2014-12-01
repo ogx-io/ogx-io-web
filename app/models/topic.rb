@@ -12,6 +12,7 @@ class Topic
 
   has_many :posts
   belongs_to :board
+  belongs_to :user
 
   def title
     self.posts.first.title

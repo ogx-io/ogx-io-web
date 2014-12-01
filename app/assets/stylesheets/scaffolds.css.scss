@@ -1,13 +1,13 @@
 body {
   background-color: #fff;
   color: #555;
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: verdana, arial, helvetica, STHeiti, simsun, "WenQuanYi Micro Hei", sans-serif;
   font-size: 14px;
   line-height: 18px;
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+//  font-family: verdana, arial, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 14px;
   line-height: 18px;
 }
@@ -79,6 +79,14 @@ div {
 
 .mb20 {
   margin-bottom: 20px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt20 {
+  margin-top: 20px;
 }
 
 .p0 {
@@ -171,7 +179,7 @@ div {
     margin-bottom: 15px;
   }
 }
-.topic-bar {
+.list-bar {
   margin-bottom: 10px;
   background-color: #EEE;
   padding: 8px 10px;
@@ -184,6 +192,14 @@ div {
   .pagination {
     margin-right: 10px;
   }
+}
+
+.list-content {
+  padding-top: 10px;
+}
+
+.topic-bar {
+  @extend .list-bar
 }
 
 .topic-list {
@@ -210,11 +226,6 @@ div {
   padding-top: 10px;
 }
 
-.err-msg {
-  color: red;
-  font-size: 12px;
-}
-
 .register-user {
   .panel {
     width: 450px;
@@ -224,9 +235,19 @@ div {
   }
 }
 
-.center {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+.user-profile {
+  margin-top: 30px;
+  .info {
+    font-size: 13px;
+    .title {
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      span {
+        font-size: 13px;
+        color: #999;
+        font-weight: normal;
+      }
+    }
+  }
 }
-

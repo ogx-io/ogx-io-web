@@ -1,6 +1,7 @@
 <%# add navigation links to this file %>
 <% if user_signed_in? %>
-    <li><%= link_to current_user.name, edit_user_registration_path %></li>
+    <li><%= user_link current_user %></li>
+    <li><%= link_to '设置', edit_user_registration_path %></li>
     <li><%= link_to '退出', destroy_user_session_path, :method=>'delete' %></li>
 <% else %>
     <li><%= link_to '登录', new_user_session_path %></li>

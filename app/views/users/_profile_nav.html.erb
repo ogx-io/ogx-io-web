@@ -1,0 +1,5 @@
+<ul class="mb10 nav nav-tabs" role="tablist">
+  <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to '帖子', user_path(@user) %></li>
+  <li role="presentation" class="<%= "active" if index == 2 %>"><%= link_to '主题', topics_user_path(@user) %></li>
+  <li role="presentation" class="<%= "active" if index == 3 %>"><%= link_to '精华帖', elites_user_path(@user) %></li>
+</ul>

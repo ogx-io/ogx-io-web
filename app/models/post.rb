@@ -23,7 +23,7 @@ class Post
 
   def set_topic_and_floor
     if self.topic.nil?
-      topic = self.topic = Topic.create(board_id: self.board_id)
+      topic = self.topic = Topic.create(board_id: self.board_id, user_id: self.author_id)
     else
       topic = Topic.new_floor(self.topic_id)
     end

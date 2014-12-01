@@ -25,7 +25,7 @@
             <td class="text-center">
               <ul class="list-inline">
                 <% board.moderators.each do |user| %>
-                    <li><%= link_to user.name, user %></li>
+                    <li><%= user_link user %></li>
                 <% end %>
               </ul>
             </td>

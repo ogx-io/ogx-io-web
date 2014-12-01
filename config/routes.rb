@@ -48,5 +48,10 @@ Rails.application.routes.draw do
 
   root to: 'boards#index'
   devise_for :users, controllers: { sessions: 'users/sessions' }
-  resources :users
+  resources :users do
+    member do
+      get :topics
+      get :elites
+    end
+  end
 end

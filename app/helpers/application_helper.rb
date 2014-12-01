@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def user_link(user)
     if user
-      return link_to(user.name, user).html_safe
+      return link_to(user.nick, user).html_safe
     else
       '已注销'.html_safe
     end
@@ -22,7 +22,7 @@ module ApplicationHelper
     else
       url = "http://www.gravatar.com/avatar/?s=#{size}"
     end
-    image_tag(url, class: 'avatar')
+    image_tag(url, class: 'avatar', width: size, height: size)
   end
 
   def full_datetime(time)

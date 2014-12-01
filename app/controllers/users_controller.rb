@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:show, :topics, :elites]
   after_action :verify_authorized
 
   def index
@@ -10,6 +10,24 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
+    @all_posts = @user.posts.normal
+    @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
+    render 'posts', locals: { index: 1 }
+  end
+
+  def topics
+    @user = User.find(params[:id])
+    authorize @user
+    @all_topics = @user.topics.normal
+    @topics = @all_topics.desc(:created_at).page(params[:page]).per(25)
+  end
+
+  def elites
+    @user = User.find(params[:id])
+    authorize @user
+    @all_posts = @user.posts.normal.elites
+    @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
+    render 'posts', locals: { index: 3 }
   end
 
   def update

@@ -11,7 +11,15 @@ class UserPolicy
   end
 
   def show?
-    @current_user.admin? or @current_user == @user
+    true
+  end
+
+  def topics?
+    true
+  end
+
+  def elites?
+    true
   end
 
   def update?

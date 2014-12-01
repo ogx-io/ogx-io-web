@@ -190,3 +190,14 @@ fieldset {
 .avatar {
   @extend .img-rounded
 }
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.err-msg {
+  color: red;
+  font-size: 12px;
+}
