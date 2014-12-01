@@ -13,7 +13,7 @@
         <tbody>
         <% @topics.each do |topic| %>
             <tr>
-              <td><%= link_to topic.title, topic_path(topic) %></td>
+              <td class="topic-title"><%= link_to topic.title, topic_path(topic) %></td>
               <td class="text-center"><%= link_to topic.board.name, board_topics_path(topic.board) %></td>
               <td class="text-center"><%= time_digest topic.created_at %></td>
             </tr>

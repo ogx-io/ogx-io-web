@@ -1,6 +1,6 @@
 <nav class="topic-bar clearfix">
-  <%= paginate @posts, left: 1, right: 1 %>
   帖子数：<%= @all_posts.count %>
+  <%= paginate @posts, left: 1, right: 1 %>
   <div class="post-links pull-right">
     <%= link_to '新建主题', new_board_post_path(@board) %>
   </div>

@@ -22,7 +22,7 @@
       <tbody>
       <% @posts.each do |post| %>
           <tr>
-            <td>
+            <td class="post-title">
               <%= link_to post.title, post_path(post) %><br/>
               <%= truncate post.body, length: 40, omission: '...' %>
             </td>

@@ -22,7 +22,7 @@
       <tbody>
         <% @posts.each do |post| %>
         <tr>
-          <td>
+          <td class="post-title">
             <%= link_to post.title, post_path(post) %> <% if post.elite == 1 %><span class="elite-mark">精</span><% end %><br/>
             <%= truncate post.body, length: 43, omission: '...' %>
           </td>

@@ -2,22 +2,12 @@ body {
   background-color: #fff;
   color: #555;
   font-family: verdana, arial, helvetica, STHeiti, simsun, "WenQuanYi Micro Hei", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 22px;
 }
 
 p, ol, ul, td {
-//  font-family: verdana, arial, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-  font-size: 13px;
   line-height: 18px;
-}
-
-td a {
-  font-size: 14px;
-}
-
-td.fs13 a {
-  font-size: 13px;
 }
 
 pre {
@@ -154,7 +144,6 @@ div {
       margin-top: 0;
     }
     .post-author {
-      font-size: 13px;
       color: #999;
       margin-bottom: 5px;
     }
@@ -166,10 +155,6 @@ div {
     .post-footer {
       margin-top: 7px;
       color: #BBB;
-      font-size: 13px;
-      a {
-        font-size: 13px;
-      }
       ul {
         margin-bottom: 0;
         li {
@@ -199,6 +184,10 @@ div {
   }
   .pagination {
     margin-right: 10px;
+    margin-left: 10px;
+    span {
+      margin-right: 2px;
+    }
   }
 }
 
@@ -231,10 +220,6 @@ div {
   font-size: 12px;
 }
 
-.board-intro {
-  font-size: 13px;
-}
-
 .board-content {
   padding-top: 10px;
 }
@@ -251,14 +236,12 @@ div {
 .user-profile {
   margin-top: 30px;
   .info {
-    font-size: 13px;
     .nick {
       margin-top: 15px;
       font-size: 20px;
       font-weight: bold;
     }
     .name {
-      font-size: 13px;
       color: #999;
       font-weight: normal;
       margin-bottom: 5px;
@@ -282,4 +265,12 @@ div {
 
 .user-link {
   font-size: 13px;
+}
+
+.topic-title a {
+  font-size: 14px;
+}
+
+.post-title a {
+  font-size: 14px;
 }
