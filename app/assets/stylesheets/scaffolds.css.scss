@@ -280,19 +280,13 @@ div {
   font-size: 13px;
 }
 
-.topic-title a {
-  font-size: 14px;
-}
-
 .post-title {
-//  display: block;
   div {
     margin: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     max-width: 572px;
-//    width: 100%;
   }
   a {
     font-size: 14px;
@@ -306,5 +300,15 @@ div {
   }
   a {
     font-size: 16px;
+  }
+}
+
+.topic-title {
+  @extend .post-title;
+  div {
+    max-width: 500px;
+  }
+  a {
+    font-size: 14px;
   }
 }

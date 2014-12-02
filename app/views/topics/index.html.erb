@@ -32,7 +32,7 @@
               <% end %>
             </td>
             <td class="topic-title">
-              <%= link_to topic.title, topic_path(topic) %>
+              <div><%= link_to topic.title, topic_path(topic), title: topic.title %></div>
             </td>
             <td class="text-center"><%= user_link topic.posts.first.author %></td>
             <% count = topic.posts.first.is_deleted? ? topic.posts.normal.count : topic.posts.normal.count - 1 %>
