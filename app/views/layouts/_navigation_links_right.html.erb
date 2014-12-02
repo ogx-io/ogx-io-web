@@ -1,8 +1,9 @@
 <%# add navigation links to this file %>
 <% if user_signed_in? %>
     <li><%= user_link current_user %></li>
-    <li><%= link_to edit_user_registration_path, title: '设置' do %><span class="glyphicon glyphicon-cog"></span><% end %></li>
-    <li><%= link_to destroy_user_session_path, :method=>'delete', title: '退出' do %><span class="glyphicon glyphicon-log-out"></span><% end %></li>
+    <li><%= link_to '设置', edit_user_registration_path %></li>
+    <li><%= link_to '退出', destroy_user_session_path, :method=>'delete' %></li>
 <% else %>
-    <li><%= link_to new_user_session_path, title: '登录' do %><span class="glyphicon glyphicon-log-in"></span><% end %></li>
+    <li><%= link_to '登录', new_user_session_path %></li>
+    <li><%= link_to '注册', new_user_registration_path %></li>
 <% end %>
