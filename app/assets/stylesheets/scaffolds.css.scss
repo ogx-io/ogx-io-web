@@ -309,10 +309,6 @@ div {
 }
 
 .topic-title {
-  @extend .post-title;
-  div {
-    max-width: 500px;
-  }
   a {
     font-size: 14px;
   }
