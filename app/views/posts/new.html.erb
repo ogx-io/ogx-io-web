@@ -10,9 +10,9 @@
   <div class="col-sm-12">
     <div class="clearfix mb10">
       <% if @parent %>
-        <h4 class="no-margin mb10 pull-left">回复 <%= link_to @parent.title, @parent %></h4>
+          <h4 class="no-margin mb10 pull-left">回复 <%= link_to @parent.title, @parent %></h4>
       <% else %>
-        <h4 class="no-margin mb10 pull-left">新建主题</h4>
+          <h4 class="no-margin mb10 pull-left">新建主题</h4>
       <% end %>
     </div>
   </div>
@@ -24,3 +24,4 @@
   </div>
 </div>
 
+<%= render 'common/touclick' %>

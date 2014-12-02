@@ -8,9 +8,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    if validates_from_touclick
+      super
+    else
+      flash[:error] = "您的验证码可能是不对的。"
+      redirect_to :back
+    end
+  end
 
   # GET /resource/edit
   # def edit

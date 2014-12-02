@@ -13,7 +13,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def update?
-    create?
+    false
   end
 
   def toggle?

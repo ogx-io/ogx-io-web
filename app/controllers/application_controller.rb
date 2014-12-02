@@ -10,6 +10,28 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  def validates_from_touclick
+    check_address = params['check_address']
+    check_key = params['check_key']
+    check_address_array = check_address.split(',')
+
+    host = check_address_array[0].split('.')[0]
+    return false if (/^[a-z0-9]+$/.match(host)).nil?
+
+    path = check_address_array[1].split('.')[0]
+    return false if (/^[a-z0-9]+$/.match(path)).nil?
+
+    str_url = "http://#{host}.touclick.com/#{path}.touclick?i=#{check_key}&p=#{request.remote_ip}&un=0&ud=0&b=#{Rails.application.secrets.touclick_pub_key}&z=#{Rails.application.secrets.touclick_secret_key}"
+
+    require 'net/http'
+    url = URI.parse(str_url)
+    req = Net::HTTP::Get.new(url.to_s)
+    res = Net::HTTP.start(url.host, url.port) {|http|
+      http.request(req)
+    }
+    res.body == '<<[yes]>>'
+  end
+
   private
 
   def user_not_authorized(exception)

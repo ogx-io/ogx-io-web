@@ -41,6 +41,11 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    if not validates_from_touclick
+      flash[:error] = "您的验证码可能是不对的。"
+      redirect_to :back
+      return
+    end
     @post = Post.new(post_params)
     @post.board = @board
     authorize @post
