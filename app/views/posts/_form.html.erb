@@ -1,20 +1,6 @@
-<%= form_for(@board ? [@board, @post] : @post) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<%= simple_form_for(@board ? [@board, @post] : @post) do |f| %>
 
-      <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-    <div class="form-group">
-      <%= f.label '标题' %>
-      <%= f.text_field :title, class: 'form-control', value: @parent ? 'Re: ' + @parent.title : '' %>
-    </div>
+    <%= f.input :title, label: '标题', hint: '40个以内任意字符', required: false, input_html: { value: @parent ? 'Re: ' + @parent.title : '' }, autofocus: true %>
     <div class="form-group">
       <%= f.label '内容' %>
       <%= f.text_area :body, class: 'form-control', rows: 20 %>

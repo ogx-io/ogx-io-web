@@ -10,6 +10,9 @@ class Post
   field :e, as: :elite, type: Integer, default: 0
   field :d, as: :deleted, type: Integer, default: 0 # 0: normal, 1:deleted
 
+  validates_presence_of :title, message: "必须要有标题"
+  validates_length_of :title, maximum: 40, message: "标题太长了"
+
   scope :normal, -> { where(deleted: 0) }
   scope :deleted, -> { where(deleted: 1) }
   scope :elites, -> { where(elite: 1) }
