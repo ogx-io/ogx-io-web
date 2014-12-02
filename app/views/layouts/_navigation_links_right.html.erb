@@ -1,6 +1,6 @@
 <%# add navigation links to this file %>
 <% if user_signed_in? %>
-    <li><%= link_to current_user, title: '我的主页' do %><span class="glyphicon glyphicon-user"></span><% end %></li>
+    <li><%= user_link current_user %></li>
     <li><%= link_to edit_user_registration_path, title: '设置' do %><span class="glyphicon glyphicon-cog"></span><% end %></li>
     <li><%= link_to destroy_user_session_path, :method=>'delete', title: '退出' do %><span class="glyphicon glyphicon-log-out"></span><% end %></li>
 <% else %>
