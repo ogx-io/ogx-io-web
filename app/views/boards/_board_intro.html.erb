@@ -3,6 +3,6 @@
     版主：<ul class="list-inline" style="display: inline-block"><% @board.moderators.each do |user| %><li><%= user_link user %></li><% end %></ul>
   </div>
   <div class="mb20">
-    简介：<%= @board.intro %>
+    <%= @board.intro %>
   </div>
 </div>
