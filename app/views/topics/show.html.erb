@@ -1,6 +1,5 @@
-<% content_for :title do %>
-    <%= @topic.title %> - <%= @board.name %>
-<% end %>
+<% content_for :title do %><%= @topic.title %> - <%= @board.name %><% end %>
+<% content_for :description do %><%= (truncate @first.body, length: 200, omission: '...').strip.gsub(/\s+/,'') %><% end %>
 
 <div class="row">
   <ol class="breadcrumb pull-left">

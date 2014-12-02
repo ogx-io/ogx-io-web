@@ -7,6 +7,5 @@
   <% end %>
 </ul>
 
-<% content_for :title do %>
-    <%= @board.name %> - <%= ['', '主题', '帖子', '精华区', '版主专用'][index] %>
-<% end %>
+<% content_for :title do %><%= @board.name %> - <%= ['', '主题', '帖子', '精华区', '版主专用'][index] %><% end %>
+<% content_for :description do %><%= @board.intro %><% end %>
