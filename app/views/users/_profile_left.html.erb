@@ -2,9 +2,9 @@
   <%= avatar @user, 160 %>
   <div class="nick"><%= @user.nick %></div>
   <div class="name">@<%= @user.name %></div>
-  <% if !@user.intro.empty? %><div class="intro"><%= @user.intro %></div><% end %>
+  <% if !@user.intro.blank? %><div class="intro"><%= @user.intro %></div><% end %>
   <div class="others">
-    <% if !@user.city.empty? %><p><span class="glyphicon glyphicon-map-marker"></span> <%= @user.city %></p><% end %>
+    <% if !@user.city.blank? %><p><span class="glyphicon glyphicon-map-marker"></span> <%= @user.city %></p><% end %>
     <p><span class="glyphicon glyphicon-time"></span> 加入于<%= @user.created_at.strftime("%Y年%-m月") %></p>
   </div>
 </div>
