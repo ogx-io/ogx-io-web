@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   resources :board_applications, concerns: :approvable
 
   root to: 'boards#index'
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   resources :users do
     member do
       get :topics
