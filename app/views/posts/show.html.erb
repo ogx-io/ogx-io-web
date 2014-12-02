@@ -1,3 +1,7 @@
+<% content_for :title do %>
+    <%= @post.title %> - <%= @post.author.nick %> - <%= @board.name %>
+<% end %>
+
 <div class="row">
   <ol class="breadcrumb pull-left">
     <li><%= link_to 'boards', boards_path %></li>

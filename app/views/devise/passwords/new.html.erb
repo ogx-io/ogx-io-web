@@ -1,3 +1,7 @@
+<% content_for :title do %>
+    忘记密码
+<% end %>
+
 <div class="authform">
   <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f| %>
     <h3>忘记密码了？</h3>
