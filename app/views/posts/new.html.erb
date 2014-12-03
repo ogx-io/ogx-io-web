@@ -7,17 +7,15 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
-    <div class="clearfix mb10">
-      <% if @parent %>
-          <h4 class="no-margin mb10 pull-left">回复 <%= link_to @parent.title, @parent %></h4>
-      <% else %>
-          <h4 class="no-margin mb10 pull-left">新建主题</h4>
-      <% end %>
-    </div>
-  </div>
   <div class="col-sm-2"></div>
-  <div class="col-sm-8">
+  <div class="new-post col-sm-8">
+    <h4>
+      <% if @parent %>
+          回复 <%= link_to @parent.title, @parent %>
+      <% else %>
+          新建主题
+      <% end %>
+    </h4>
     <%= render 'form' %>
   </div>
   <div class="col-sm-2"></div>
