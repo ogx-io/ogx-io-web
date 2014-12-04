@@ -91,7 +91,8 @@ class BoardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_board
-      @board = Board.find(params[:id])
+      @board = Board.find(params[:id]) if params[:id]
+      @board = Board.find_by(path: params[:path]) if params[:path]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

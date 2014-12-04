@@ -21,8 +21,8 @@
   <% @boards.each do |board| %>
     <tr>
       <td><%= board.id %></td>
-      <td><%= link_to board.name, board_topics_path(board) %></td>
-      <td><%= link_to board.path, board_topics_path(board) %></td>
+      <td><%= link_to board.name, show_board_path(board.path) %></td>
+      <td><%= link_to board.path, show_board_path(board.path) %></td>
       <td>
         <% board.moderators.each do |moderator| %>
         <%= user_link moderator %>

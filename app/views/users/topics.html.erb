@@ -14,9 +14,9 @@
         <% @topics.each do |topic| %>
             <tr>
               <td class="topic-title">
-                <div><%= link_to topic.title, topic_path(topic), title: topic.title %></div>
+                <div><%= link_to topic.title, show_topic_path(topic.sid), title: topic.title %></div>
               </td>
-              <td class="text-center"><%= link_to topic.board.name, board_topics_path(topic.board) %></td>
+              <td class="text-center"><%= link_to topic.board.name, show_board_path(topic.board.path) %></td>
               <td class="text-center"><%= time_digest topic.created_at %></td>
             </tr>
         <% end %>

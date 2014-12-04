@@ -23,7 +23,7 @@
       <% @posts.each do |post| %>
           <tr>
             <td class="post-title">
-              <div><%= link_to post.title, post_path(post, parent: 'elites') %></div>
+              <div><%= link_to post.title, show_post_path(post.sid) %></div>
               <div><%= truncate post.body, length: 100, omission: '...' %></div>
             </td>
             <td class="text-center"><%= user_link post.author %></td>

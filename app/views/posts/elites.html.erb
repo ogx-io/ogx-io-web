@@ -1,7 +1,7 @@
 <div class="row">
   <ol class="breadcrumb pull-left">
     <li><%= link_to 'boards', boards_path %></li>
-    <li><%= link_to @board.path, board_topics_path(@board) %></li>
+    <li><%= link_to @board.path, show_board_path(@board.path) %></li>
     <li>elites</li>
   </ol>
 </div>
@@ -23,7 +23,7 @@
           <% @posts.each do |post| %>
             <tr>
               <td class="post-title">
-                <div><%= link_to post.title, post_path(post, parent: 'elites') %></div>
+                <div><%= link_to post.title, show_post_path(post.sid) %></div>
                 <div><%= truncate post.body, length: 100, omission: '...' %></div>
               </td>
               <td class="text-center" align="center" valign="middle"><%= user_link post.author %></td>

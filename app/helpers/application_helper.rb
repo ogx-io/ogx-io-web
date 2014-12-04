@@ -1,9 +1,14 @@
 module ApplicationHelper
 
+  class ::NilClass
+    def method_missing(name)
+      nil
+    end
+  end
+
   def user_link(user)
     if user
-      return link_to(user.nick, user, class: 'user-link', title: "@#{user.name}").html_safe if user.nick
-      return link_to(user.name, user, class: 'user-link', title: "@#{user.name}").html_safe
+      link_to(user.nick ? user.nick : user.name, show_user_path(user.name), class: 'user-link', title: "@#{user.name}").html_safe
     else
       '<span class="user-link">已注销</span>'.html_safe
     end
@@ -11,7 +16,7 @@ module ApplicationHelper
 
   def full_user_link(user)
     if user
-      return (link_to(user.nick, user) + " @#{user.name}").html_safe
+      (link_to(user.nick ? user.nick : user.name, show_user_path(user.name)) + " @#{user.name}").html_safe
     else
       '已注销'.html_safe
     end

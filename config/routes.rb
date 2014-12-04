@@ -43,4 +43,12 @@ Rails.application.routes.draw do
       get :elites
     end
   end
+
+  get '/:path', to: 'topics#index', as: :show_board
+  get '/:path/posts', to: 'posts#index', as: :list_board_posts
+  get '/:path/elites', to: 'posts#elites', as: :list_board_elites
+  get '/u/:name', to: 'users#show', as: :show_user
+  get '/t/:sid', to: 'topics#show', as: :show_topic
+  get '/p/:sid', to: 'posts#show', as: :show_post
+
 end

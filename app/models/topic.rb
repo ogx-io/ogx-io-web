@@ -2,6 +2,8 @@ class Topic
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  include Sidable
+
   field :f, as: :last_floor, type: Integer, default: 0
   field :t, as: :top, type: Integer, default: 0 # 0: normal, 1: always on top
   field :r_at, as: :replied_at, type: Time

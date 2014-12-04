@@ -4,8 +4,8 @@
 <div class="row">
   <ol class="breadcrumb pull-left">
     <li><%= link_to 'boards', boards_path %></li>
-    <li><%= link_to @board.path, board_topics_path(@board) %></li>
-    <li><%= link_to 'topics', board_topics_path(@board) %></li>
+    <li><%= link_to @board.path, show_board_path(@board.path) %></li>
+    <li><%= link_to 'topics', show_board_path(@board.path) %></li>
     <li><%= @topic.title %></li>
   </ol>
 </div>

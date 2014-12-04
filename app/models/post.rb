@@ -3,6 +3,8 @@ class Post
   include Mongoid::Timestamps
   include Mongoid::Enum
 
+  include Sidable
+
   field :t, as: :title, type: String
   field :b, as: :body, type: String
   field :p, as: :parent, type: Integer

@@ -115,11 +115,13 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.find(params[:id]) if params[:id]
+      @post = Post.find_by_sid(params[:sid]) if params[:sid]
     end
 
     def set_board
-      @board = Board.find(params[:board_id])
+      @board = Board.find(params[:board_id]) if params[:board_id]
+      @board = Board.find_by(path: params[:path]) if params[:path]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

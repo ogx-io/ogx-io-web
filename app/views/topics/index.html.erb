@@ -1,7 +1,7 @@
 <div class="row">
   <ol class="breadcrumb pull-left">
     <li><%= link_to 'boards', boards_path %></li>
-    <li><%= link_to @board.path, board_topics_path(@board) %></li>
+    <li><%= link_to @board.path, show_board_path(@board.path) %></li>
     <li>topics</li>
   </ol>
 </div>
@@ -32,7 +32,7 @@
               <% end %>
             </td>
             <td class="topic-title">
-              <div><%= link_to topic.title, topic_path(topic), title: topic.title %></div>
+              <div><%= link_to topic.title, show_topic_path(topic.sid), title: topic.title %></div>
             </td>
             <td class="text-center"><%= user_link topic.posts.first.author %></td>
             <% count = topic.posts.first.is_deleted? ? topic.posts.normal.count : topic.posts.normal.count - 1 %>

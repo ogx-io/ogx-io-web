@@ -79,11 +79,13 @@ class TopicsController < ApplicationController
 
   private
   def set_topic
-    @topic = Topic.find(params[:id])
+    @topic = Topic.find(params[:id]) if params[:id]
+    @topic = Topic.find_by_sid(params[:sid]) if params[:sid]
   end
 
   def set_board
-    @board = Board.find(params[:board_id])
+    @board = Board.find(params[:board_id]) if params[:board_id]
+    @board = Board.find_by(path: params[:path]) if params[:path]
   end
 
   def topic_params

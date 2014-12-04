@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) if params[:id]
+    @user = User.find_by(name: params[:name]) if params[:name]
     authorize @user
     @all_posts = @user.posts.normal
     @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
