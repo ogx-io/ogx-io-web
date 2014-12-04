@@ -73,4 +73,8 @@ class User
   def get_avatar(size=70)
     'http://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(self.email) + '?s=' + size.to_s
   end
+
+  def get_nick
+    self.nick ? self.nick : self.name
+  end
 end

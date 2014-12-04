@@ -1,6 +1,6 @@
 <div class="info col-sm-2">
   <%= avatar @user, 160 %>
-  <div class="nick"><%= @user.nick %></div>
+  <div class="nick"><%= @user.get_nick %></div>
   <div class="name">@<%= @user.name %></div>
   <% if !@user.intro.blank? %><div class="intro"><%= @user.intro %></div><% end %>
   <div class="others">

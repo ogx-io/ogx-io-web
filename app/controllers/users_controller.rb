@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :topics, :elites]
+  before_action :set_user, only: [:show, :topics, :elites]
   after_action :verify_authorized
 
   def index
@@ -8,8 +9,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id]) if params[:id]
-    @user = User.find_by(name: params[:name]) if params[:name]
     authorize @user
     @all_posts = @user.posts.normal
     @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
@@ -17,14 +16,12 @@ class UsersController < ApplicationController
   end
 
   def topics
-    @user = User.find(params[:id])
     authorize @user
     @all_topics = @user.topics.normal
     @topics = @all_topics.desc(:created_at).page(params[:page]).per(25)
   end
 
   def elites
-    @user = User.find(params[:id])
     authorize @user
     @all_posts = @user.posts.normal.elites
     @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
@@ -52,6 +49,11 @@ class UsersController < ApplicationController
 
   def secure_params
     params.require(:user).permit(:role)
+  end
+
+  def set_user
+    @user = User.find(params[:id]) if params[:id]
+    @user = User.find_by(name: params[:name]) if params[:name]
   end
 
 end
