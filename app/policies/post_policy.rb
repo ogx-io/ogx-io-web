@@ -13,7 +13,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def update?
-    false
+    user == record.author
   end
 
   def toggle?

@@ -17,6 +17,8 @@ gem 'devise'
 gem 'pundit'
 gem 'kaminari'
 gem 'simple_form'
+gem 'redcarpet'
+gem 'coderay'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

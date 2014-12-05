@@ -152,6 +152,12 @@ div {
       font-size: 14px;
       line-height: 25px;
       min-height: 28px;
+      p, ol, ul {
+        line-height: 25px;
+      }
+      p {
+        margin-bottom: 15px;
+      }
     }
     .post-footer {
       margin-top: 7px;

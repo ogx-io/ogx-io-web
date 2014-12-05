@@ -1,7 +1,9 @@
 <div id="floor-<%= post.floor %>" name="floor-<%= post.floor %>" class="post-item panel panel-default">
   <div class="panel-body">
     <div class="avatar pull-left">
+      <%= link_to show_user_path(post.author.name) do %>
       <%= avatar(post.author) %>
+      <% end %>
     </div>
     <div class="post-detail">
       <div class="floor pull-right">#<%= post.floor %></div>
@@ -13,7 +15,7 @@
         <% end %>
       </h4>
       <div class="post-author"><%= full_user_link post.author %> · <%= full_datetime post.created_at %></div>
-      <div class="post-content"><%= post.body.gsub("\r", '<br/>').html_safe %></div>
+      <div class="post-content"><%= markdown post.body %></div>
       <div class="post-footer clearfix">
         <div class="pull-right">
           <ul class="list-inline">
@@ -30,6 +32,11 @@
             <li>
               <%= link_to '删除', post_path(post), method: :delete, remote: true, class: 'delete-post' %>
             </li>
+            <% end %>
+            <% if policy(post).update? %>
+                <li>
+                  <%= link_to '修改', edit_post_path(post)%>
+                </li>
             <% end %>
             <li>
               <%= link_to '回复', new_board_post_path(board, parent: post.id) %>
