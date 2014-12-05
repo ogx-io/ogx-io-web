@@ -1,10 +1,10 @@
-<div id="post-<%= post.id %>" name="post-<%= post.id %>" class="post-item panel panel-default">
+<div id="floor-<%= post.floor %>" name="floor-<%= post.floor %>" class="post-item panel panel-default">
   <div class="panel-body">
     <div class="avatar pull-left">
       <%= avatar(post.author) %>
     </div>
     <div class="post-detail">
-      <div class="floor pull-right">#<%= post.sid %></div>
+      <div class="floor pull-right">#<%= post.floor %></div>
       <h4>
         <%= post.title %>
         <span class="elite-mark" style="<%= 'display: none' if post.elite == 0 %>">精华帖</span>
