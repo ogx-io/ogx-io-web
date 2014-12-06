@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+#ruby '~> 2.1.0'
 gem 'rails', '4.1.8'
 gem "mongoid", "~> 4.0.0"
 gem 'mongoid_auto_increment_id', '0.6.5'
