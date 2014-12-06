@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails', '4.1.8'
+gem "therubyracer"
 gem "mongoid", "~> 4.0.0"
 gem 'mongoid_auto_increment_id', '0.6.5'
 gem "mongoid-enum"
