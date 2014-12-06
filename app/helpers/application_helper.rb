@@ -28,7 +28,9 @@ module ApplicationHelper
     else
       url = "http://www.gravatar.com/avatar/?s=#{size}"
     end
-    image_tag(url, class: 'avatar', width: size, height: size)
+    content_tag :div, class: 'avatar', style: "background:url('/ogx_#{size}.png');width: #{size}px;height: #{size}px;" do
+      image_tag(url, alt: '', title: user.nick ? user.nick : user.name)
+    end
   end
 
   def full_datetime(time)
@@ -49,15 +51,15 @@ module ApplicationHelper
         :fenced_code_blocks => true,
         :no_intra_emphasis => true,
         :hard_wrap => true,
-        :strikethrough =>true
+        :strikethrough => true
     }
-    markdown = Redcarpet::Markdown.new(HTMLwithCodeRay,options)
+    markdown = Redcarpet::Markdown.new(HTMLwithCodeRay, options)
     markdown.render(h(text)).html_safe
   end
 
   class HTMLwithCodeRay < Redcarpet::Render::HTML
     def block_code(code, language)
-      CodeRay.scan(code, language).div(:tab_width=>2)
+      CodeRay.scan(code, language).div(:tab_width => 2)
     end
   end
 

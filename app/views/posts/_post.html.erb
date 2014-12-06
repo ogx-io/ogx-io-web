@@ -1,8 +1,12 @@
 <div id="floor-<%= post.floor %>" name="floor-<%= post.floor %>" class="post-item panel panel-default">
   <div class="panel-body">
     <div class="avatar pull-left">
-      <%= link_to show_user_path(post.author.name) do %>
-      <%= avatar(post.author) %>
+      <% if post.author %>
+          <%= link_to show_user_path(post.author.name) do %>
+              <%= avatar(post.author) %>
+          <% end %>
+      <% else %>
+          <%= avatar(post.author) %>
       <% end %>
     </div>
     <div class="post-detail">
@@ -11,31 +15,32 @@
         <%= post.title %>
         <span class="elite-mark" style="<%= 'display: none' if post.elite == 0 %>">精华帖</span>
         <% if post.is_deleted? %>
-          <span class="deleted-mark">(已删除)</span>
+            <span class="deleted-mark">(已删除)</span>
         <% end %>
       </h4>
+
       <div class="post-author"><%= full_user_link post.author %> · <%= full_datetime post.created_at %></div>
       <div class="post-content"><%= markdown post.body %></div>
       <div class="post-footer clearfix">
         <div class="pull-right">
           <ul class="list-inline">
             <% if policy(post).toggle? %>
-            <li>
-              <% if post.elite == 1 %>
-                <%= link_to '取消精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
-              <% else %>
-                <%= link_to '设为精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
-              <% end %>
-            </li>
+                <li>
+                  <% if post.elite == 1 %>
+                      <%= link_to '取消精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
+                  <% else %>
+                      <%= link_to '设为精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
+                  <% end %>
+                </li>
             <% end %>
             <% if policy(post).destroy? %>
-            <li>
-              <%= link_to '删除', post_path(post), method: :delete, remote: true, class: 'delete-post' %>
-            </li>
+                <li>
+                  <%= link_to '删除', post_path(post), method: :delete, remote: true, class: 'delete-post' %>
+                </li>
             <% end %>
             <% if policy(post).update? %>
                 <li>
-                  <%= link_to '修改', edit_post_path(post)%>
+                  <%= link_to '修改', edit_post_path(post) %>
                 </li>
             <% end %>
             <li>

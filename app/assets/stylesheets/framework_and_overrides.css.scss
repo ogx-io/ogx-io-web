@@ -188,7 +188,9 @@ fieldset {
 }
 
 .avatar {
-  @extend .img-rounded
+  img {
+    @extend .img-rounded
+  }
 }
 
 .center {
