@@ -49,12 +49,6 @@ img {
   @extend .btn-lg;
 }
 
-// apply styles to HTML elements
-
-body {
-  background-image: url(seamless_paper_texture.png);
-}
-
 // to make views framework-neutral
 main {
   @extend .container;
