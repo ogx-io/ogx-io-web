@@ -28,7 +28,7 @@ module ApplicationHelper
     else
       url = "http://www.gravatar.com/avatar/?s=#{size}"
     end
-    content_tag :div, class: 'avatar', style: "background:url('/ogx_#{size}.png');width: #{size}px;height: #{size}px;" do
+    content_tag :div, class: 'avatar', style: "max-width: #{size}px;max-height: #{size}px;" do
       image_tag(url, alt: '', title: user.nick ? user.nick : user.name)
     end
   end
