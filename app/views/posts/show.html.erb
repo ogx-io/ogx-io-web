@@ -1,5 +1,6 @@
-<% content_for :title do %><%= @post.title %> - <%= @post.author.nick %> - <%= @board.name %><% end %>
+<% content_for :title do %><%= @post.title %> - <%= @post.author.nick %> @<%= @post.author.name %> - <%= @board.name %><% end %>
 <% content_for :description do %><%= (truncate h(@post.body), length: 200, omission: '...').strip.gsub(/\s+/,'') %><% end %>
+<% content_for :author do %><%= @post.author.nick %> @<%= @post.author.name %><% end %>
 
 <div class="row">
   <ol class="breadcrumb pull-left">
