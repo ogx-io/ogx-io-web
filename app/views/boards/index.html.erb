@@ -18,24 +18,22 @@
       <th class="text-center" style="width: 150px;">版主</th>
       </thead>
       <tbody>
-      <% if @boards %>
-          <% @boards.each do |board| %>
-              <tr>
-                <td class="board-title" title="<%= board.intro %>">
-                  <div><%= link_to board.name, show_board_path(board.path) %></div>
-                  <div><%= truncate board.intro, length: 100, omission: '...' %></div>
-                </td>
-                <td class="text-center"><%= board.topics.normal.count %></td>
-                <td class="text-center"><%= board.posts.normal.count %></td>
-                <td class="text-center">
-                  <ul class="list-inline">
-                    <% board.moderators.each do |user| %>
-                        <li><%= user_link user %></li>
-                    <% end %>
-                  </ul>
-                </td>
-              </tr>
-          <% end %>
+      <% @boards.each do |board| %>
+          <tr>
+            <td class="board-title" title="<%= board.intro %>">
+              <div><%= link_to board.name, show_board_path(board.path) %></div>
+              <div><%= truncate board.intro, length: 100, omission: '...' %></div>
+            </td>
+            <td class="text-center"><%= board.topics.normal.count %></td>
+            <td class="text-center"><%= board.posts.normal.count %></td>
+            <td class="text-center">
+              <ul class="list-inline">
+                <% board.moderators.each do |user| %>
+                    <li><%= user_link user %></li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
       <% end %>
       </tbody>
     </table>
