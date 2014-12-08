@@ -64,7 +64,11 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post }
+        if !@post.parent && params[:lock] == 'true'
+          @post.topic.lock = 1
+          @post.topic.save
+        end
+        format.html { redirect_to show_post_topic_path(@post.topic, for_post: @post.id) + '#floor-' + @post.floor.to_s }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
