@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
       member do
         patch :resume
+        patch :toggle_lock
         get :show_post
       end
     end

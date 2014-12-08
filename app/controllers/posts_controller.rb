@@ -31,7 +31,12 @@ class PostsController < ApplicationController
     @post = Post.new
     @post.board = @board
     authorize @post
-    @parent = Post.find(params[:parent]) if params[:parent]
+    if params[:parent]
+      @parent = Post.find(params[:parent])
+      if !can_reply?(@parent.topic)
+        redirect_to :back
+      end
+    end
   end
 
   # GET /posts/1/edit
@@ -50,6 +55,12 @@ class PostsController < ApplicationController
     @post.board = @board
     authorize @post
     @post.author = current_user
+    if @post.parent
+      @parent = Post.find(@post.parent)
+      if !can_reply?(@parent.topic)
+        redirect_to :back
+      end
+    end
 
     respond_to do |format|
       if @post.save
@@ -113,19 +124,29 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id]) if params[:id]
-      @post = Post.find_by_sid(params[:sid]) if params[:sid]
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id]) if params[:id]
+    @post = Post.find_by_sid(params[:sid]) if params[:sid]
+  end
 
-    def set_board
-      @board = Board.find(params[:board_id]) if params[:board_id]
-      @board = Board.find_by(path: params[:path]) if params[:path]
-    end
+  def set_board
+    @board = Board.find(params[:board_id]) if params[:board_id]
+    @board = Board.find_by(path: params[:path]) if params[:path]
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params[:post].permit(:title, :body, :parent, :topic_id, :elite)
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params[:post].permit(:title, :body, :parent, :topic_id, :elite)
+  end
+
+  def can_reply?(topic)
+    if topic.lock != 0
+      if topic.lock == 2 || topic.user != current_user
+        flash[:error] = "所在主题已经被加锁，您不能回复了。"
+        return false
+      end
     end
+    true
+  end
 end

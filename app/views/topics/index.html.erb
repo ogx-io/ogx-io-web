@@ -17,7 +17,7 @@
       <thead>
         <th class="topic-mark" style="width: 20px"></th>
         <th>主题</th>
-        <th class="text-center" style="width: 120px">发起人</th>
+        <th class="text-center" style="width: 120px">创建者</th>
         <th class="text-center" style="width: 80px">回应</th>
         <th class="text-center" style="width: 110px">最后回复</th>
       </thead>
@@ -26,13 +26,16 @@
           <tr>
             <td class="topic-mark">
               <% if topic.top == 1 %>
-                <i class="glyphicon glyphicon-circle-arrow-up" style="color: red"></i>
+                <span class="glyphicon glyphicon-circle-arrow-up" style="color: red"></span>
               <% else %>
-                <i class="glyphicon glyphicon-circle-arrow-right" style="color: green"></i>
+                <span class="glyphicon glyphicon-circle-arrow-right" style="color: green"></span>
               <% end %>
             </td>
             <td class="topic-title">
-              <div><%= link_to topic.title, show_topic_path(topic.sid), title: topic.title %></div>
+              <div>
+                <%= link_to topic.title, show_topic_path(topic.sid), title: topic.title %>
+                <%= render partial: 'topic_lock', locals: {topic: topic} %>
+              </div>
             </td>
             <td class="text-center"><%= user_link topic.posts.first.author %></td>
             <% count = topic.posts.first.is_deleted? ? topic.posts.normal.count : topic.posts.normal.count - 1 %>

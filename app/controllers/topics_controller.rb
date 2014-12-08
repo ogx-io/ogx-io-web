@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :show_post, :edit, :update, :destroy, :resume]
+  before_action :set_topic, only: [:show, :show_post, :edit, :update, :destroy, :resume, :toggle_lock]
   before_action :set_board, only: [:index, :edit, :update, :deleted]
 
   respond_to :html, :xml, :json
@@ -63,6 +63,18 @@ class TopicsController < ApplicationController
     @topic.update(updated_at: @topic.replied_at) if p['top'] == '0'
     redirect_to :back
     # respond_with(@topic)
+  end
+
+  def toggle_lock
+    authorize @topic
+    if @topic.lock.to_i == 0
+      @topic.lock = 1 if current_user == @topic.user
+      @topic.lock = 2 if @topic.board.is_moderator?(current_user)
+    else
+      @topic.lock = 0
+    end
+    @topic.save
+    redirect_to :back
   end
 
   def resume

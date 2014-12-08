@@ -26,7 +26,7 @@
       <tbody>
       <% @users.each do |blocked_user| %>
           <tr>
-            <td><%= user_link blocked_user.user %></td>
+            <td><%= user_link blocked_user.user %> @<%= blocked_user.user.name %></td>
             <td class="text-center"><%= user_link blocked_user.operator %></td>
             <td class="text-center"><%= time_digest blocked_user.created_at %></td>
             <td class="text-center">

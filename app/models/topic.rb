@@ -8,6 +8,7 @@ class Topic
   field :t, as: :top, type: Integer, default: 0 # 0: normal, 1: always on top
   field :r_at, as: :replied_at, type: Time
   field :d, as: :deleted, type: Integer, default: 0 # 0:normal, 1: deleted
+  field :l, as: :lock, type: Integer, default: 0 # 0: unlocked, 1: locked by user, 2: locked by moderator
 
   scope :normal, -> { where(deleted: 0) }
   scope :deleted, -> { where(deleted: 1) }
@@ -22,6 +23,14 @@ class Topic
 
   def is_deleted?
     self.deleted == 1
+  end
+
+  def is_locked?
+    self.lock != 0
+  end
+
+  def is_creator?(user)
+    user == self.user
   end
 
   def self.new_floor(topic_id)
