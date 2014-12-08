@@ -9,7 +9,7 @@
       <%= f.input :nick, label: '昵称', hint: '20个以内任意字符，用户将标识为：昵称(@用户名)' %>
       <%= f.input :email, label: '邮件地址', hint: devise_mapping.confirmable? && resource.pending_reconfirmation? ? "正在等待验证的邮件地址：#{resource.unconfirmed_email}" : '' %>
       <%= f.input :city, label: '所在城市', hint: '20个以内任意字符' %>
-      <%= f.input :intro, label: '个人简介', hint: '50个以内任意字符' %>
+      <%= f.input :intro, label: '个人签名', hint: '50个以内任意字符' %>
 
       <fieldset>
         <div>
