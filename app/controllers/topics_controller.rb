@@ -68,8 +68,8 @@ class TopicsController < ApplicationController
   def toggle_lock
     authorize @topic
     if @topic.lock.to_i == 0
-      @topic.lock = 1 if current_user == @topic.user
       @topic.lock = 2 if @topic.board.is_moderator?(current_user)
+      @topic.lock = 1 if current_user == @topic.user
     else
       @topic.lock = 0
     end
