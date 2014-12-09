@@ -22,6 +22,6 @@
         <% end %>
     <% end %>
     <%= link_to '新主题', new_board_post_path(@board) %>
-    <%= link_to '回复', new_board_post_path(@board, parent: @first.id) %>
+    <%= link_to '回复', new_board_post_path(@board, parent_id: @first.id) %>
   </div>
 </nav>

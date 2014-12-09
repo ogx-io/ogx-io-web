@@ -31,8 +31,8 @@ class PostsController < ApplicationController
     @post = Post.new
     @post.board = @board
     authorize @post
-    if params[:parent]
-      @parent = Post.find(params[:parent])
+    if params[:parent_id]
+      @parent = Post.find(params[:parent_id])
       if !can_reply?(@parent.topic)
         redirect_to :back
       end
@@ -55,8 +55,8 @@ class PostsController < ApplicationController
     @post.board = @board
     authorize @post
     @post.author = current_user
-    if @post.parent
-      @parent = Post.find(@post.parent)
+    if @post.parent_id
+      @parent = Post.find(@post.parent_id)
       if !can_reply?(@parent.topic)
         redirect_to :back
       end
@@ -64,7 +64,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        if !@post.parent && params[:lock] == 'true'
+        if !@post.parent_id && params[:lock] == 'true'
           @post.topic.lock = 1
           @post.topic.save
         end
@@ -141,7 +141,7 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params[:post].permit(:title, :body, :parent, :topic_id, :elite)
+    params[:post].permit(:title, :body, :parent_id, :topic_id, :elite)
   end
 
   def can_reply?(topic)

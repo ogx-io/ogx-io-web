@@ -7,7 +7,7 @@ class Post
 
   field :t, as: :title, type: String
   field :b, as: :body, type: String
-  field :p, as: :parent, type: Integer
+  field :p, as: :parent_id, type: Integer
   field :f, as: :floor, type: Integer
   field :e, as: :elite, type: Integer, default: 0
   field :d, as: :deleted, type: Integer, default: 0 # 0: normal, 1:deleted
