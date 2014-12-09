@@ -7,14 +7,16 @@
       <p class="help-block" style="color: red">* 内容须采用 Markdown 语法书写
         <a href="http://wowubuntu.com/markdown/" target="_blank">语法说明</a></p>
     </div>
-    <% if @parent %>
-        <%= f.hidden_field :parent_id, value: @parent.id %>
-        <%= f.hidden_field :topic_id, value: @parent.topic.id %>
-    <% else %>
-        <div class="form-group">
-          <label>附加功能：</label>
-          <%= check_box_tag :lock, 'true' %> 主题加锁
-        </div>
+    <% if @post.new_record? %>
+        <% if @parent %>
+            <%= f.hidden_field :parent_id, value: @parent.id %>
+            <%= f.hidden_field :topic_id, value: @parent.topic.id %>
+        <% else %>
+            <div class="form-group">
+              <label>附加功能：</label>
+              <%= check_box_tag :lock, 'true' %> 主题加锁
+            </div>
+        <% end %>
     <% end %>
 
     <div class="actions center mt20 clearfix">
