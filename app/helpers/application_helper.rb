@@ -54,13 +54,18 @@ module ApplicationHelper
         :strikethrough => true
     }
     markdown = Redcarpet::Markdown.new(HTMLwithCodeRay, options)
-    markdown.render(h(text)).html_safe
+    markdown.render(text).html_safe
   end
 
   class HTMLwithCodeRay < Redcarpet::Render::HTML
     def block_code(code, language)
+      language ||= 'text'
       CodeRay.scan(code, language).div(:tab_width => 2)
     end
+  end
+
+  def sanitize_post(body)
+    sanitize body, :tags => %w(div p br img h1 h2 h3 h4 blockquote pre code b i strong em strike del u a ul ol li span), :attributes => %w(href src class title alt target rel style)
   end
 
 end
