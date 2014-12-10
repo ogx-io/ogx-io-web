@@ -20,7 +20,7 @@
       </h4>
 
       <div class="post-author"><%= full_user_link post.author %> · <%= full_datetime post.created_at %></div>
-      <div class="post-content"><%= markdown post.body %></div>
+      <div class="post-content"><%= markdown post.body if post.body %></div>
       <div class="post-footer clearfix">
         <div class="pull-right">
           <ul class="list-inline">
