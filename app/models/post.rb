@@ -23,6 +23,8 @@ class Post
   belongs_to :author, class_name: "User", inverse_of: :posts
   belongs_to :topic
 
+  has_many :comments, as: :commentable
+
   before_create :set_topic_and_floor
   after_create :update_topic
 

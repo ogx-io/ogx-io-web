@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments
+
   resources :blocked_users
 
   resources :boards do
