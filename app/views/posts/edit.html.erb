@@ -1,20 +1,16 @@
-<div class="row">
-  <ol class="breadcrumb pull-left">
-    <li><%= link_to 'boards', boards_path %></li>
-    <li><%= link_to @post.board.path, show_board_path(@post.board.path) %></li>
-    <li>修改文章</li>
-  </ol>
-</div>
-
-<div class="row">
-  <div class="col-sm-2"></div>
-  <div class="new-post col-sm-8">
-    <h4>
-      修改 <%= link_to @post.title, @post %>
-    </h4>
-    <%= render 'form' %>
+<div class="new-post col-sm-8 right-side-layout">
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li><%= link_to 'boards', boards_path %></li>
+      <li><%= link_to @post.board.path, show_board_path(@post.board.path) %></li>
+      <li>修改文章</li>
+    </ol>
   </div>
-  <div class="col-sm-2"></div>
+
+  <h4>
+    修改 <%= link_to @post.title, @post %>
+  </h4>
+  <%= render 'form' %>
 </div>
 
 <%= render 'common/touclick' %>

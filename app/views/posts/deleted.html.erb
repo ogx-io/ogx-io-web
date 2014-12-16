@@ -1,44 +1,38 @@
-<div class="row">
-  <ol class="breadcrumb pull-left">
-    <li><%= link_to 'boards', boards_path %></li>
-    <li><%= @board.path %></li>
-  </ol>
-</div>
+<div class="col-sm-9 right-side-layout">
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li><%= link_to 'boards', boards_path %></li>
+      <li><%= @board.path %></li>
+    </ol>
+  </div>
 
-<div class="row">
   <%= render 'boards/board_head' %>
-  <div class="col-sm-9">
-    <%= render 'boards/board_intro' %>
-    <%= render partial: 'boards/board_nav', locals: {index: 4} %>
-    <%= render partial: 'boards/board_admin_nav', locals: {index: 1} %>
-    <%= render 'posts_paginate_bar' %>
-    <table class="table table-hover">
-      <thead>
-      <th>文章</th>
-      <th class="text-center" style="width: 150px">作者</th>
-      <th class="text-center" style="width: 110px">更新时间</th>
-      <th class="text-center" style="width: 60px">操作</th>
-      </thead>
-      <tbody>
-      <% @posts.each do |post| %>
-          <tr>
-            <td class="post-title">
-              <div><%= link_to post.title, show_post_path(post.sid) %></div>
-              <div><%= truncate post.body, length: 100, omission: '...' %></div>
-            </td>
-            <td class="text-center"><%= user_link post.author %></td>
-            <td class="text-center"><%= time_digest post.created_at %></td>
-            <td class="text-center">
-              <%= link_to '恢复', resume_post_path(post), method: :patch %>
-            </td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <%= render 'posts_paginate_bar' %>
-  </div>
-  <div class="col-sm-3">
-
-  </div>
+  <%= render 'boards/board_intro' %>
+  <%= render partial: 'boards/board_nav', locals: {index: 4} %>
+  <%= render partial: 'boards/board_admin_nav', locals: {index: 1} %>
+  <%= render 'posts_paginate_bar' %>
+  <table class="table table-hover">
+    <thead>
+    <th>文章</th>
+    <th class="text-center" style="width: 150px">作者</th>
+    <th class="text-center" style="width: 110px">更新时间</th>
+    <th class="text-center" style="width: 60px">操作</th>
+    </thead>
+    <tbody>
+    <% @posts.each do |post| %>
+        <tr>
+          <td class="post-title">
+            <div><%= link_to post.title, show_post_path(post.sid) %></div>
+            <div><%= truncate post.body, length: 100, omission: '...' %></div>
+          </td>
+          <td class="text-center"><%= user_link post.author %></td>
+          <td class="text-center"><%= time_digest post.created_at %></td>
+          <td class="text-center">
+            <%= link_to '恢复', resume_post_path(post), method: :patch %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= render 'posts_paginate_bar' %>
 </div>
-

@@ -1,34 +1,32 @@
-<div class="row">
-  <ol class="breadcrumb pull-left">
-    <li><%= link_to 'boards', boards_path %></li>
-    <li><%= link_to @board.path, show_board_path(@board.path) %></li>
-    <li>topics</li>
-  </ol>
-</div>
-
-<div class="row">
+<div class="col-sm-9 right-side-layout">
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li><%= link_to 'boards', boards_path %></li>
+      <li><%= link_to @board.path, show_board_path(@board.path) %></li>
+      <li>topics</li>
+    </ol>
+  </div>
   <%= render 'boards/board_head' %>
-  <div class="col-sm-9">
-    <%= render 'boards/board_intro' %>
-    <%= render partial: 'boards/board_nav', locals: {index: 1} %>
-    <div class="board-content">
+  <%= render 'boards/board_intro' %>
+  <%= render partial: 'boards/board_nav', locals: {index: 1} %>
+  <div class="board-content">
     <%= render 'topics_paginate_bar' %>
     <table class="topic-list table table-hover">
       <thead>
-        <th class="topic-mark" style="width: 20px"></th>
-        <th>主题</th>
-        <th class="text-center" style="width: 120px">创建者</th>
-        <th class="text-center" style="width: 80px">回应</th>
-        <th class="text-center" style="width: 110px">最后回复</th>
+      <th class="topic-mark" style="width: 20px"></th>
+      <th>主题</th>
+      <th class="text-center" style="width: 120px">创建者</th>
+      <th class="text-center" style="width: 80px">回应</th>
+      <th class="text-center" style="width: 110px">最后回复</th>
       </thead>
       <tbody>
-        <% @topics.each do |topic| %>
+      <% @topics.each do |topic| %>
           <tr>
             <td class="topic-mark">
               <% if topic.top == 1 %>
-                <span class="glyphicon glyphicon-circle-arrow-up" style="color: red"></span>
+                  <span class="glyphicon glyphicon-circle-arrow-up" style="color: red"></span>
               <% else %>
-                <span class="glyphicon glyphicon-circle-arrow-right" style="color: green"></span>
+                  <span class="glyphicon glyphicon-circle-arrow-right" style="color: green"></span>
               <% end %>
             </td>
             <td class="topic-title">
@@ -42,14 +40,10 @@
             <td class="text-center fs13"><%= count > 0 ? count : '' %></td>
             <td class="text-center fs13"><%= time_digest topic.replied_at %></td>
           </tr>
-        <% end %>
+      <% end %>
       </tbody>
     </table>
     <%= render 'topics_paginate_bar' %>
-    </div>
-  </div>
-  <div class="col-sm-2">
-
   </div>
 </div>
 
