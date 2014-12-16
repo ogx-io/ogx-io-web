@@ -1,28 +1,28 @@
-<div class="user-profile">
-  <%= render 'profile_left' %>
-  <div class="content col-sm-9">
-    <%= render partial: 'profile_nav', locals: { index: 2 } %>
-    <div class="list-content">
-      <%= render 'topics_paginate_bar' %>
-      <table class="table table-hover">
-        <thead>
-        <th>主题</th>
-        <th class="text-center" style="width: 160px">所在版面</th>
-        <th class="text-center" style="width: 110px">创建时间</th>
-        </thead>
-        <tbody>
-        <% @topics.each do |topic| %>
-            <tr>
-              <td class="topic-title">
-                <div><%= link_to topic.title, show_topic_path(topic.sid), title: topic.title %></div>
-              </td>
-              <td class="text-center"><%= link_to topic.board.name, show_board_path(topic.board.path) %></td>
-              <td class="text-center"><%= time_digest topic.created_at %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
-      <%= render 'topics_paginate_bar' %>
-    </div>
+<% content_for :left_side do %>
+    <%= render 'profile_left' %>
+<% end %>
+<div class="col-sm-9 right-side-layout">
+  <%= render partial: 'profile_nav', locals: {index: 2} %>
+  <div class="list-content">
+    <%= render 'topics_paginate_bar' %>
+    <table class="table table-hover">
+      <thead>
+      <th>主题</th>
+      <th class="text-center" style="width: 160px">所在版面</th>
+      <th class="text-center" style="width: 110px">创建时间</th>
+      </thead>
+      <tbody>
+      <% @topics.each do |topic| %>
+          <tr>
+            <td class="topic-title">
+              <div><%= link_to topic.title, show_topic_path(topic.sid), title: topic.title %></div>
+            </td>
+            <td class="text-center"><%= link_to topic.board.name, show_board_path(topic.board.path) %></td>
+            <td class="text-center"><%= time_digest topic.created_at %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= render 'topics_paginate_bar' %>
   </div>
 </div>

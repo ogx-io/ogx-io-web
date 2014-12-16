@@ -2,6 +2,10 @@
     用户登录
 <% end %>
 
+<% content_for :left_side do %>
+    &nbsp;
+<% end %>
+
 <div class="authform">
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
     <h3>用户登录</h3>

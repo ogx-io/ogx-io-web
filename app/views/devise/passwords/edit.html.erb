@@ -2,6 +2,10 @@
     重设密码
 <% end %>
 
+<% content_for :left_side do %>
+    &nbsp;
+<% end %>
+
 <div class="authform">
   <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :put}) do |f| %>
       <h3>重设密码</h3>

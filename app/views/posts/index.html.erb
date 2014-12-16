@@ -1,42 +1,37 @@
-<div class="row">
-  <ol class="breadcrumb pull-left">
-    <li><%= link_to 'boards', boards_path %></li>
-    <li><%= link_to @board.path, show_board_path(@board.path) %></li>
-    <li>posts</li>
-  </ol>
-</div>
+<div class="col-sm-9 right-side-layout">
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li><%= link_to 'boards', boards_path %></li>
+      <li><%= link_to @board.path, show_board_path(@board.path) %></li>
+      <li>posts</li>
+    </ol>
+  </div>
 
-<div class="row">
   <%= render 'boards/board_head' %>
-  <div class="col-sm-9">
-    <%= render 'boards/board_intro' %>
-    <%= render partial: 'boards/board_nav', locals: {index: 2} %>
-    <div class="board-content">
+  <%= render 'boards/board_intro' %>
+  <%= render partial: 'boards/board_nav', locals: {index: 2} %>
+  <div class="board-content">
     <%= render 'posts_paginate_bar' %>
     <table class="table table-hover">
       <thead>
-        <th style="width: 588px;">文章</th>
-        <th class="text-center" style="width: 150px">作者</th>
-        <th class="text-center" style="width: 110px">发表时间</th>
+      <th style="width: 588px;">文章</th>
+      <th class="text-center" style="width: 150px">作者</th>
+      <th class="text-center" style="width: 110px">发表时间</th>
       </thead>
       <tbody>
-        <% @posts.each do |post| %>
-        <tr>
-          <td class="post-title">
-            <div><%= link_to post.title, show_post_path(post.sid) %> <% if post.elite == 1 %><span class="elite-mark">精</span><% end %></div>
-            <div><%= truncate post.body, length: 100, omission: '...' %></div>
-          </td>
-          <td class="text-center" align="center" valign="middle"><%= user_link post.author %></td>
-          <td class="text-center" align="center" valign="middle"><%= time_digest post.created_at %></td>
-        </tr>
-        <% end %>
+      <% @posts.each do |post| %>
+          <tr>
+            <td class="post-title">
+              <div><%= link_to post.title, show_post_path(post.sid) %> <% if post.elite == 1 %><span class="elite-mark">精</span><% end %></div>
+              <div><%= truncate post.body, length: 100, omission: '...' %></div>
+            </td>
+            <td class="text-center" align="center" valign="middle"><%= user_link post.author %></td>
+            <td class="text-center" align="center" valign="middle"><%= time_digest post.created_at %></td>
+          </tr>
+      <% end %>
       </tbody>
     </table>
     <%= render 'posts_paginate_bar' %>
-    </div>
-  </div>
-  <div class="col-sm-3">
-
   </div>
 </div>
 
