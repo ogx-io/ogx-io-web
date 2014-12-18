@@ -26,8 +26,8 @@ module ApplicationHelper
     if user
       url = user.get_avatar(size)
     else
-      url = "http://www.gravatar.com/avatar/?s=#{size}"
-    end
+      url = "http://www.gravatar.com/avatar/?s=#{size}&d=retro"
+  end
     content_tag :div, class: 'avatar', style: "max-width: #{size}px;max-height: #{size}px;" do
       image_tag(url, alt: '', title: user.nick ? user.nick : user.name)
     end
