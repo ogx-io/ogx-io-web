@@ -1,4 +1,4 @@
-<div class="col-sm-2 left-side-layout">
+<div class="col-sm-2 left-side-layout hidden-xs">
   <% if content_for?(:left_side) %>
   <%= yield :left_side %>
   <% else %>
@@ -14,7 +14,7 @@
         </div>
       </div>
       <ul class="board-list">
-        <li>所有版面</li>
+        <li class="title">所有版面</li>
         <% Board.all.asc(:name).each do |board| %>
             <li><%= link_to board.name, show_board_path(board.path) %></li>
         <% end %>
