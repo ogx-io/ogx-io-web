@@ -23,7 +23,7 @@
           <tr>
             <td class="post-title">
               <div><%= link_to post.title, show_post_path(post.sid) %> <% if post.elite == 1 %><span class="elite-mark">精</span><% end %></div>
-              <div><%= truncate post.body, length: 100, omission: '...' %></div>
+              <div class="digest"><%= truncate post.body, length: 100, omission: '...' %></div>
             </td>
             <td class="text-center" align="center" valign="middle"><%= user_link post.author %></td>
             <td class="text-center" align="center" valign="middle"><%= time_digest post.created_at %></td>

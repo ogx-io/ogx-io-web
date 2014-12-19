@@ -136,14 +136,30 @@ div {
 .post-item {
     margin-top: 15px;
     margin-bottom: 15px;
+    .panel-body {
+        padding: 0;
+    }
+    .avatar {
+        margin: 15px;
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
     .post-detail {
-        margin-left: 85px;
+        @media (min-width: 768px) {
+            margin-left: 100px;
+            padding: 15px;
+            border-left: dotted #DDD 1px;
+        }
+        @media (max-width: 768px) {
+            padding: 10px;
+        }
         .floor {
             color: #999;
         }
         h4 {
-            font-size: 16px;
             margin-top: 0;
+            margin-bottom: 5px;
             color: #333;
         }
         .post-author {
@@ -180,11 +196,10 @@ div {
         margin-bottom: 20px;
         font-size: 16px;
     }
-    .post-item {
+    .latest-post-item {
         .post-content {
             margin-left: 60px;
             h4 {
-                font-size: 16px;
                 margin-bottom: 7px;
                 a {
                     color: #333;
@@ -314,12 +329,24 @@ div {
 
 .post-title {
     color: #999;
-    div {
-        margin: 0;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        max-width: 572px;
+    @media (min-width: 992px) {
+        div {
+            margin: 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            @media (min-width: 992px) {
+                max-width: 422px;
+            }
+            @media (min-width: 1200px) {
+                max-width: 572px;
+            }
+        }
+    }
+    .digest {
+        @media (max-width: 992px) {
+            display: none;
+        }
     }
     a {
         font-size: 14px;
@@ -328,9 +355,6 @@ div {
 
 .board-title {
     @extend .post-title;
-    div {
-        max-width: 580px;
-    }
     a {
         font-size: 16px;
     }
@@ -395,5 +419,10 @@ div {
 
 .right-side-layout {
     margin-top: 15px;
-    border-left: dotted #EEE 1px;
+    @media (min-width: 768px) {
+        border-left: dotted #EEE 1px;
+    }
+    @media (max-width: 768px) {
+        padding: 0;
+    }
 }

@@ -17,14 +17,16 @@ img {
 
 .breadcrumb {
   background-color: #EEE;
-  margin-top: 0;
-  margin-left: 15px;
-  margin-bottom: 15px;
-  padding: 5px 10px 8px 10px;
+  margin: 0 15px 15px 15px;
+  padding: 5px 10px;
 }
 
 .pagination {
   margin: 0;
+}
+
+h1 {
+  font-size: 28px;
 }
 
 h2 {
@@ -36,7 +38,7 @@ h3 {
 }
 
 h4 {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 // THESE ARE EXAMPLES YOU CAN MODIFY

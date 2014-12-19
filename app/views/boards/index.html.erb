@@ -18,7 +18,7 @@
         <tr>
           <td class="board-title" title="<%= board.intro %>">
             <div><%= link_to board.name, show_board_path(board.path) %></div>
-            <div><%= truncate board.intro, length: 100, omission: '...' %></div>
+            <div class="digest"><%= truncate board.intro, length: 100, omission: '...' %></div>
           </td>
           <td class="text-center"><%= board.topics.normal.count %></td>
           <td class="text-center"><%= board.posts.normal.count %></td>
