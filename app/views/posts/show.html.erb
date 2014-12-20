@@ -15,9 +15,8 @@
   <% if !@post.is_deleted? || @board.is_moderator?(current_user) %>
       <nav class="topic-bar clearfix">
         本帖所在主题：<%= link_to @post.topic.title, @post.topic %>
-        <div class="post-links pull-right">
-          <%= link_to '在主题内查看', show_post_topic_path(@post.topic, for_post: @post.id) + '#floor-' + @post.floor.to_s %>
-        </div>
+        -
+        <%= link_to '在主题内查看', show_post_topic_path(@post.topic, for_post: @post.id) + '#floor-' + @post.floor.to_s %>
       </nav>
       <%= render partial: 'post', locals: {post: @post, board: @board} %>
   <% else %>
