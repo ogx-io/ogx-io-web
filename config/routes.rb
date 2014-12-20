@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'boards#index'
+  root to: 'visitors#index'
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   resources :users do
     member do

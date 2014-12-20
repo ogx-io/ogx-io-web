@@ -1,34 +1,34 @@
-<div class="user-profile">
-  <%= render 'profile_left' %>
-  <div class="content col-sm-9">
-    <%= render partial: 'profile_nav', locals: {index: index} %>
-    <div class="list-content">
-      <%= render 'posts_paginate_bar' %>
-      <table class="table table-hover">
-        <thead>
-        <th>文章</th>
-        <th class="text-center" style="width: 160px">所在版面</th>
-        <th class="text-center" style="width: 110px">发表时间</th>
-        </thead>
-        <tbody>
-        <% @posts.each do |post| %>
-            <tr>
-              <td class="post-title">
-                <div>
-                  <%= link_to post.title, show_post_path(post.sid) %>
-                  <% if post.elite == 1 && index != 3 %>
-                      <span class="elite-mark">精</span>
-                  <% end %>
-                </div>
-                <div><%= truncate post.body, length: 100, omission: '...' %></div>
-              </td>
-              <td class="text-center"><%= link_to post.board.name, show_board_path(post.board.path) %></td>
-              <td class="text-center"><%= time_digest post.created_at %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
-      <%= render 'posts_paginate_bar' %>
-    </div>
+<% content_for :left_side do %>
+    <%= render 'profile_left' %>
+<% end %>
+<div class="col-sm-9 right-side-layout">
+  <%= render partial: 'profile_nav', locals: {index: index} %>
+  <div class="list-content">
+    <%= render 'posts_paginate_bar' %>
+    <table class="table table-hover">
+      <thead>
+      <th>文章</th>
+      <th class="text-center" style="width: 160px">所在版面</th>
+      <th class="text-center" style="width: 110px">发表时间</th>
+      </thead>
+      <tbody>
+      <% @posts.each do |post| %>
+          <tr>
+            <td class="post-title">
+              <div>
+                <%= link_to post.title, show_post_path(post.sid) %>
+                <% if post.elite == 1 && index != 3 %>
+                    <span class="elite-mark">精</span>
+                <% end %>
+              </div>
+              <div class="digest"><%= truncate post.body, length: 100, omission: '...' %></div>
+            </td>
+            <td class="text-center"><%= link_to post.board.name, show_board_path(post.board.path) %></td>
+            <td class="text-center"><%= time_digest post.created_at %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= render 'posts_paginate_bar' %>
   </div>
 </div>

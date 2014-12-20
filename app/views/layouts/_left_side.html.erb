@@ -1,0 +1,23 @@
+<div class="col-sm-2 left-side-layout hidden-xs">
+  <% if content_for?(:left_side) %>
+  <%= yield :left_side %>
+  <% else %>
+      <div class="login-tips panel panel-default">
+        <div class="panel-body">
+          <% if user_signed_in? %>
+              <div class="nick"><%= link_to current_user.nick, show_user_path(current_user.name) %></div>
+              <div class="name">@<%= current_user.name %></div>
+          <% else %>
+              您是匿名浏览用户，需要 <%= link_to '登录', new_user_session_path %> 或 <%= link_to '注册', new_user_registration_path %>
+              之后才能发文
+          <% end %>
+        </div>
+      </div>
+      <ul class="board-list">
+        <li class="title">所有版面</li>
+        <% Board.all.asc(:name).each do |board| %>
+            <li><%= link_to board.name, show_board_path(board.path) %></li>
+        <% end %>
+      </ul>
+  <% end %>
+</div>

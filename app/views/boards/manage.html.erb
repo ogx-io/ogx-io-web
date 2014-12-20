@@ -1,14 +1,15 @@
-<div class="row">
-  <ol class="breadcrumb pull-left">
-    <li><%= link_to 'boards', boards_path %></li>
-    <li>版面管理</li>
-  </ol>
-</div>
+<div class="col-sm-10 right-side-layout">
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li><%= link_to 'boards', boards_path %></li>
+      <li>版面管理</li>
+    </ol>
+  </div>
 
-<h3>版面管理</h3>
-<%= render 'boards_paginate_bar' %>
-<table class="table table-hover">
-  <thead>
+  <h3>版面管理</h3>
+  <%= render 'boards_paginate_bar' %>
+  <table class="table table-hover">
+    <thead>
     <th>id</th>
     <th>版面名称</th>
     <th>版面路径</th>
@@ -16,31 +17,32 @@
     <th>状态</th>
     <th>更新时间</th>
     <th>操作</th>
-  </thead>
-  <tbody>
-  <% @boards.each do |board| %>
-    <tr>
-      <td><%= board.id %></td>
-      <td><%= link_to board.name, show_board_path(board.path) %></td>
-      <td><%= link_to board.path, show_board_path(board.path) %></td>
-      <td>
-        <% board.moderators.each do |moderator| %>
-        <%= user_link moderator %>
-        <% end %>
-      </td>
-      <td><%= board.status %></td>
-      <td><%= time_digest board.updated_at %></td>
-      <td class="fs13">
-        <%= link_to '编辑', edit_board_path(board) %>
-        <% if board.normal? %>
-          <%= link_to '封禁', board_path(board, 'board[status]' => 'blocked'), method: :patch %>
-          <%= link_to '删除', board_path(board, 'board[status]' => 'deleted'), method: :patch %>
-        <% else %>
-          <%= link_to '恢复', board_path(board, 'board[status]' => 'normal'), method: :patch %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= render 'boards_paginate_bar' %>
+    </thead>
+    <tbody>
+    <% @boards.each do |board| %>
+        <tr>
+          <td><%= board.id %></td>
+          <td><%= link_to board.name, show_board_path(board.path) %></td>
+          <td><%= link_to board.path, show_board_path(board.path) %></td>
+          <td>
+            <% board.moderators.each do |moderator| %>
+                <%= user_link moderator %>
+            <% end %>
+          </td>
+          <td><%= board.status %></td>
+          <td><%= time_digest board.updated_at %></td>
+          <td class="fs13">
+            <%= link_to '编辑', edit_board_path(board) %>
+            <% if board.normal? %>
+                <%= link_to '封禁', board_path(board, 'board[status]' => 'blocked'), method: :patch %>
+                <%= link_to '删除', board_path(board, 'board[status]' => 'deleted'), method: :patch %>
+            <% else %>
+                <%= link_to '恢复', board_path(board, 'board[status]' => 'normal'), method: :patch %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= render 'boards_paginate_bar' %>
+</div>

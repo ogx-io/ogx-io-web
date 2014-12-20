@@ -2,6 +2,10 @@
     注册新用户
 <% end %>
 
+<% content_for :left_side do %>
+    &nbsp;
+<% end %>
+
 <div class="register-form">
   <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: {role: 'form'} do |f| %>
       <h3>注册新用户</h3>

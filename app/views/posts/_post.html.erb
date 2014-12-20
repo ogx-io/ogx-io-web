@@ -1,13 +1,7 @@
 <div id="floor-<%= post.floor %>" name="floor-<%= post.floor %>" class="post-item panel panel-default">
   <div class="panel-body">
-    <div class="avatar pull-left">
-      <% if post.author %>
-          <%= link_to show_user_path(post.author.name) do %>
-              <%= avatar(post.author) %>
-          <% end %>
-      <% else %>
-          <%= avatar(post.author) %>
-      <% end %>
+    <div class="pull-left">
+      <%= avatar(post.author) %>
     </div>
     <div class="post-detail">
       <div class="floor pull-right">#<%= post.floor %></div>
@@ -18,7 +12,6 @@
             <span class="deleted-mark">(已删除)</span>
         <% end %>
       </h4>
-
       <div class="post-author"><%= full_user_link post.author %> · <%= full_datetime post.created_at %></div>
       <div class="post-content"><%= sanitize_post markdown(post.body) %></div>
       <div class="post-footer clearfix">

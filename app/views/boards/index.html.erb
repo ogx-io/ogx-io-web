@@ -1,43 +1,37 @@
-<div class="row">
-  <ol class="breadcrumb pull-left">
-    <li>boards</li>
-  </ol>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="clearfix">
-      <h2 class="no-margin mb10 pull-left">版面列表</h2>
-    </div>
+<div class="col-sm-9 right-side-layout">
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li>boards</li>
+    </ol>
   </div>
-  <div class="col-sm-9">
-    <table class="table table-hover">
-      <thead>
-      <th>板面</th>
-      <th class="text-center" style="width: 50px;">主题</th>
-      <th class="text-center" style="width: 50px;">帖子</th>
-      <th class="text-center" style="width: 150px;">版主</th>
-      </thead>
-      <tbody>
-      <% @boards.each do |board| %>
-          <tr>
-            <td class="board-title" title="<%= board.intro %>">
-              <div><%= link_to board.name, show_board_path(board.path) %></div>
-              <div><%= truncate board.intro, length: 100, omission: '...' %></div>
-            </td>
-            <td class="text-center"><%= board.topics.normal.count %></td>
-            <td class="text-center"><%= board.posts.normal.count %></td>
-            <td class="text-center">
-              <ul class="list-inline">
-                <% board.moderators.each do |user| %>
-                    <li><%= user_link user %></li>
-                <% end %>
-              </ul>
-            </td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+
+  <h2 class="no-margin mb10 pull-left">版面列表</h2>
+  <table class="table table-hover">
+    <thead>
+    <th>板面</th>
+    <th class="text-center" style="width: 50px;">主题</th>
+    <th class="text-center" style="width: 50px;">帖子</th>
+    <th class="text-center" style="width: 150px;">版主</th>
+    </thead>
+    <tbody>
+    <% @boards.each do |board| %>
+        <tr>
+          <td class="board-title" title="<%= board.intro %>">
+            <div><%= link_to board.name, show_board_path(board.path) %></div>
+            <div class="digest"><%= truncate board.intro, length: 100, omission: '...' %></div>
+          </td>
+          <td class="text-center"><%= board.topics.normal.count %></td>
+          <td class="text-center"><%= board.posts.normal.count %></td>
+          <td class="text-center">
+            <ul class="list-inline">
+              <% board.moderators.each do |user| %>
+                  <li><%= user_link user %></li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>
-<br>
 

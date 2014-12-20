@@ -22,14 +22,26 @@ module ApplicationHelper
     end
   end
 
-  def avatar(user, size = 70)
+  def avatar(user, size = 70, with_link = true)
     if user
       url = user.get_avatar(size)
+
+      if with_link
+        link_to show_user_path(user.name) do
+          content_tag :div, class: 'avatar', style: "max-width: #{size}px;max-height: #{size}px;" do
+            image_tag(url, alt: '', title: user.nick ? user.nick : user.name)
+          end
+        end
+      else
+        content_tag :div, class: 'avatar', style: "max-width: #{size}px;max-height: #{size}px;" do
+          image_tag(url, alt: '', title: user.nick ? user.nick : user.name)
+        end
+      end
     else
-      url = "http://www.gravatar.com/avatar/?s=#{size}"
-    end
-    content_tag :div, class: 'avatar', style: "max-width: #{size}px;max-height: #{size}px;" do
-      image_tag(url, alt: '', title: user.nick ? user.nick : user.name)
+      url = "http://www.gravatar.com/avatar/?s=#{size}&d=retro"
+      content_tag :div, class: 'avatar', style: "max-width: #{size}px;max-height: #{size}px;" do
+        image_tag(url, alt: '', title: user.nick ? user.nick : user.name)
+      end
     end
   end
 
