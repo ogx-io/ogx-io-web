@@ -2,7 +2,7 @@
 # by Kenrick-Zhou (https://github.com/Kenrick-Zhou)
 # https://gist.github.com/Kenrick-Zhou/7909822
 
-zh_CN:
+'zh-CN':
   devise:
     confirmations:
       confirmed: "您的帐号已经确认。您现在已经可以登录。"
