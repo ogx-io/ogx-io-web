@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/cuterxy/social-share-button.git
+  revision: 23fc2e6735280280a6648d88b23f5927f9418b33
+  specs:
+    social-share-button (0.1.9)
+      coffee-rails
+      sass-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -205,7 +213,6 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    social-share-button (0.1.5)
     spring (1.2.0)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -267,7 +274,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   selenium-webdriver
   simple_form
-  social-share-button (= 0.1.5)
+  social-share-button!
   spring
   therubyracer
   turbolinks
