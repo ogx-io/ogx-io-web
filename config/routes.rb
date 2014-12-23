@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   resources :blocked_users
 
+  resources :posts do
+    resources :comments, shallow: true
+  end
+
   resources :boards do
     collection do
       get :manage

@@ -1,3 +1,19 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post-comments {
+  @media (min-width: 768px) {
+    margin-left: 96px;
+  }
+  margin-top: 20px;
+  .title {
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: solid #DDD 2px;
+    margin-bottom: 20px;
+  }
+  .comment-container {
+    max-width: 650px;
+  }
+}

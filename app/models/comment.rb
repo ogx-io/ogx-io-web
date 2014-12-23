@@ -2,7 +2,7 @@ class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :c, as: :content, type: String
+  field :c, as: :body, type: String
   field :p, as: :parent_id, type: Integer
   field :t, as: :thread, type: String # format: "1.1.1". It is used for sorting: asc(:thread, :created_at)
   field :d, as: :deleted, type: Integer, default: 0 # 0: not deleted, 1: deleted by user, 2: deleted by moderator
@@ -17,7 +17,7 @@ class Comment
   def set_thread
     @max_depth ||= 3
     thread = '1'
-    if self.parent_id
+    if self.parent_id != 0
       parent = Comment.find(parent_id)
       parent_depth = parent.thread.split('.').length
       if parent_depth < @max_depth

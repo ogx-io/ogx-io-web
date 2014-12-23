@@ -1,3 +1,64 @@
 // Place all the styles related to the Comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comments {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    li {
+      margin-bottom: 10px;
+      .details {
+        margin-left: 50px;
+        .author-time {
+          margin-bottom: 5px;
+          color: #BBB;
+          font-size: 12px;
+        }
+        .content {
+          font-size: 14px;
+          margin-bottom: 5px;
+        }
+        .actions {
+          a {
+            color: #BBB;
+            font-size: 12px;
+          }
+          margin-bottom: 5px;
+        }
+      }
+      .comment-form {
+        margin-bottom: 15px;
+        .avatar{
+          float: left;
+        }
+        .form-group {
+          margin-left: 50px;
+          .form-inputs {
+            textarea {
+              height: 60px;
+              // height: 40px;
+            }
+          }
+          .footer {
+            margin-top: 7px;
+            // display: none;
+            .help-block {
+              float: left;
+              margin-top: 2px;
+            }
+            .form-actions {
+              float: right;
+              // display: none;
+              input {
+                font-size: 12px;
+                padding: 2px 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

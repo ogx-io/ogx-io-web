@@ -18,8 +18,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
+    @comment.commentable_id = @comment.commentable_id.to_i
+    @comment.user = current_user
     @comment.save
-    respond_with(@comment)
+    # respond_with(@comment)
+    redirect_to :back
   end
 
   def update
@@ -39,7 +42,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params[:comment]
+    params[:comment].permit(:body, :parent_id, :commentable_type, :commentable_id)
   end
 
   def set_commentable

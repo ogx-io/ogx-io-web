@@ -1,10 +1,27 @@
-<%= simple_form_for(@comment) do |f| %>
-  <%= f.error_notification %>
+<div class="comment-form clearfix">
+  <%= simple_form_for(comment) do |f| %>
 
-  <div class="form-inputs">
+  <div class="avatar">
+    <%= avatar current_user, 40 %>
   </div>
+  <div class="form-group">
+    <div class="form-inputs">
+      <%= f.text_area :body, class: 'form-control', placeholder: "添加评论" %>
+      <input type="hidden" name="comment[parent_id]" value="<%= parent_id %>">
+      <input type="hidden" name="comment[commentable_type]" value="<%= commentable.class.to_s %>">
+      <input type="hidden" name="comment[commentable_id]" value="<%= commentable.id %>">
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+    <div class="footer">
+      <div class="help-block" style="color: red">
+        * 内容须采用 Markdown 语法书写
+        <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown" target="_blank">语法说明和练习</a>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit '发表', class: 'btn btn-primary' %>
+      </div>
+    </div>
   </div>
-<% end %>
+  <% end %>
+</div>

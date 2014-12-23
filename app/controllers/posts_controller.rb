@@ -24,6 +24,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @board = @post.board
+    @comment = Comment.new
   end
 
   # GET /posts/new
