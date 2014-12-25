@@ -1,6 +1,9 @@
-<% content_for :title do %><%= @post.title %> - <%= @post.author.nick %> @<%= @post.author.name %> - <%= @board.name %><% end %>
-<% content_for :description do %><%= (truncate h(@post.body), length: 200, omission: '...').strip.gsub(/\s+/,'') %><% end %>
-<% content_for :author do %><%= @post.author.nick %> @<%= @post.author.name %><% end %>
+<% content_for :title do %><%= @post.title %> - <%= @post.author.nick %> @<%= @post.author.name %> - <%= @board.name %>
+<% end %>
+<% content_for :description do %><%= (truncate h(@post.body), length: 200, omission: '...').strip.gsub(/\s+/, '') %>
+<% end %>
+<% content_for :author do %><%= @post.author.nick %> @<%= @post.author.name %>
+<% end %>
 
 <div class="col-sm-10 right-side-layout">
   <div class="row">
@@ -14,22 +17,24 @@
 
   <div class="show-post">
     <% if !@post.is_deleted? || @board.is_moderator?(current_user) %>
-    <nav class="topic-bar clearfix">
-      本帖所在主题：<%= link_to @post.topic.title, @post.topic %>
-      -
-      <%= link_to '在主题内查看', show_post_topic_path(@post.topic, for_post: @post.id) + '#floor-' + @post.floor.to_s %>
-    </nav>
-    <%= render partial: 'post', locals: {post: @post, board: @board} %>
+        <nav class="topic-bar clearfix">
+          本帖所在主题：<%= link_to @post.topic.title, @post.topic %>
+          -
+          <%= link_to '在主题内查看', show_post_topic_path(@post.topic, for_post: @post.id) + '#floor-' + @post.floor.to_s %>
+        </nav>
+        <%= render partial: 'post', locals: {post: @post, board: @board} %>
     <% else %>
-    对不起，此贴已被删除。
+        对不起，此贴已被删除。
     <% end %>
-    <div class="post-comments">
-      <div class="title">
-        评论
-      </div>
-      <div class="comment-container">
-        <%= render partial: 'comments/comment_panel', locals: {commentable: @post} %>
-      </div>
-    </div>
+    <% if policy(@post).comment? || @post.comments.normal.count > 0 %>
+        <div id="post-comments" class="post-comments">
+          <div class="title">
+            评论
+          </div>
+          <div class="comment-container">
+            <%= render partial: 'comments/comment_panel', locals: {commentable: @post} %>
+          </div>
+        </div>
+    <% end %>
   </div>
 </div>

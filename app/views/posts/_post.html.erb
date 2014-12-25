@@ -40,6 +40,9 @@
                 </li>
             <% end %>
             <li>
+              <%= link_to post.comments.normal.count> 0 ? "评论(#{post.comments.normal.count})" : "评论", show_post_path(post.sid) + '#post-comments' %>
+            </li>
+            <li>
               <%= link_to '回复', new_board_post_path(board, parent_id: post.id) %>
             </li>
           </ul>
