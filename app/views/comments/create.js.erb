@@ -1,0 +1,2 @@
+<%= render partial: '/comments/add_comment.js', locals: {comment: @comment} %>
+$('ul#comment-<%= @comment.parent_id %>').parent().children('.comment-form').first().find('#comment_body').val('');

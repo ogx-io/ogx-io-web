@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :set_commentable, only: [:index, :create]
 
-  respond_to :json
+  layout false
 
   def index
     @comments = @commentable.comments
@@ -16,13 +16,23 @@ class CommentsController < ApplicationController
   def edit
   end
 
+  def new
+    @comment = Comment.new
+    @comment.commentable_type = params[:commentable_type]
+    @comment.commentable_id = params[:commentable_id]
+    @comment.parent_id = params[:parent_id]
+  end
+
   def create
     @comment = Comment.new(comment_params)
     @comment.commentable_id = @comment.commentable_id.to_i
     @comment.user = current_user
     @comment.save
-    # respond_with(@comment)
-    redirect_to :back
+
+    respond_to do |format|
+      format.html { redirent_to @comment }
+      format.js
+    end
   end
 
   def update

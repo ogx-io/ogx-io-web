@@ -25,6 +25,8 @@ class PostsController < ApplicationController
   def show
     @board = @post.board
     @comment = Comment.new
+    @comment.parent_id = 0
+    @comment.commentable = @post
   end
 
   # GET /posts/new

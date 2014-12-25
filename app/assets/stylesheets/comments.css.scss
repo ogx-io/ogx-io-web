@@ -2,13 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.comments {
+.comment-panel {
+  $max_width: 550px;
   ul {
     padding: 0;
     margin: 0;
     list-style-type: none;
     li {
-      margin-bottom: 10px;
+      margin-bottom: 0px;
       .details {
         margin-left: 50px;
         .author-time {
@@ -17,6 +18,7 @@
           font-size: 12px;
         }
         .content {
+          max-width: $max_width;
           font-size: 14px;
           margin-bottom: 5px;
         }
@@ -25,37 +27,37 @@
             color: #BBB;
             font-size: 12px;
           }
-          margin-bottom: 5px;
+          margin-bottom: 15px;
         }
       }
-      .comment-form {
-        margin-bottom: 15px;
-        .avatar{
-          float: left;
+    }
+  }
+  .comment-form {
+    margin-bottom: 5px;
+    .avatar{
+      float: left;
+    }
+    .form-group {
+      max-width: $max_width;
+      margin-left: 50px;
+      .form-inputs {
+        textarea {
+          height: 60px;
+          //              height: 40px;
         }
-        .form-group {
-          margin-left: 50px;
-          .form-inputs {
-            textarea {
-              height: 60px;
-              // height: 40px;
-            }
-          }
-          .footer {
-            margin-top: 7px;
-            // display: none;
-            .help-block {
-              float: left;
-              margin-top: 2px;
-            }
-            .form-actions {
-              float: right;
-              // display: none;
-              input {
-                font-size: 12px;
-                padding: 2px 8px;
-              }
-            }
+      }
+      .footer {
+        margin-top: 7px;
+        //            display: none;
+        .help-block {
+          float: left;
+          margin-top: 2px;
+        }
+        .form-actions {
+          float: right;
+          input {
+            font-size: 12px;
+            padding: 2px 8px;
           }
         }
       }

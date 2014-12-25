@@ -1,0 +1,11 @@
+<div class="comment-panel comment-for-<%= commentable.class.to_s %>-<%= commentable.id %>" data-commentable-type="<%= commentable.class.to_s %>" data-commentable-id="<%= commentable.id %>">
+  <%= render partial: '/comments/form', locals: {comment: @comment} %>
+  <ul id="comment-0" class="comment-list">
+  </ul>
+</div>
+<script type="text/javascript">
+    <% commentable.comments.desc(:thread).each do |comment| %>
+    t = "<%= comment.thread %>"
+    <%= render partial: '/comments/add_comment.js', locals: {comment: comment} %>
+    <% end %>
+</script>
