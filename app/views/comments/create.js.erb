@@ -1,2 +1,2 @@
-<%= render partial: '/comments/add_comment.js', locals: {comment: @comment} %>
+$('.comment-for-<%= @comment.commentable_type %>-<%= @comment.commentable_id %>').find('ul#comment-<%= @comment.parent_id %>').prepend("<%= j render @comment %>");
 $('ul#comment-<%= @comment.parent_id %>').parent().children('.comment-form').first().find('#comment_body').val('');
