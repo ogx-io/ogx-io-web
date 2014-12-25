@@ -7,6 +7,8 @@ class Comment
   field :t, as: :thread, type: String # format: "1.1.1/". It is used for sorting: desc(:thread, :created_at)
   field :d, as: :deleted, type: Integer, default: 0 # 0: not deleted, 1: deleted by user, 2: deleted by moderator
 
+  scope :normal, -> { where(deleted: 0) }
+
   belongs_to :commentable, polymorphic: true
   belongs_to :user
 

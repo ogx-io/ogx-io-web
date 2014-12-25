@@ -4,7 +4,7 @@
   </ul>
 </div>
 <script type="text/javascript">
-    <% commentable.comments.desc(:thread, :created_at).each do |comment| %>
+    <% commentable.comments.normal.desc(:thread, :created_at).each do |comment| %>
     $('.comment-for-<%= comment.commentable_type %>-<%= comment.commentable_id %>').find('ul#comment-<%= comment.parent_id %>').append("<%= j render comment %>");
     <% end %>
 </script>
