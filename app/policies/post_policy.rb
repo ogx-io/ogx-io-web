@@ -20,6 +20,10 @@ class PostPolicy < ApplicationPolicy
     resume?
   end
 
+  def comment?
+    user && !record.board.is_blocked?(user)
+  end
+
   class Scope < Scope
     def resolve
       scope

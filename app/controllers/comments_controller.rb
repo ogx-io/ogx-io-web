@@ -13,22 +13,28 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.commentable_id = @comment.commentable_id.to_i
-    @comment.user = current_user
-    @comment.save
 
+    begin
+      authorize @comment.commentable, :comment?
+      @stage = 1
+      @comment.user = current_user
+      @stage = 2 if @comment.save
+    rescue
+      @stage = -1
+    end
     respond_to do |format|
       format.js
     end
   end
 
   def destroy
+    authorize @comment
     if @comment.user == current_user
       @comment.deleted = 1
     else
       @comment.deleted = 2
     end
     @comment.save
-
     respond_to do |format|
       format.js
     end

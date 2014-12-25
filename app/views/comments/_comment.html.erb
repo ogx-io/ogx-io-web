@@ -13,7 +13,9 @@
     </div>
     <div class="actions">
       <a class="reply-comment" href="javascript:;">回复</a>
-      <%= link_to '删除', comment, method: :delete, remote: true %>
+      <% if policy(comment).destroy? %>
+          <%= link_to '删除', comment, method: :delete, remote: true %>
+      <% end %>
     </div>
     <ul id="comment-<%= comment.id %>" class="child-list">
     </ul>

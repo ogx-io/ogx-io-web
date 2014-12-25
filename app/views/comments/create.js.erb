@@ -1,2 +1,6 @@
+<% if @stage > 0 %>
 $('.comment-for-<%= @comment.commentable_type %>-<%= @comment.commentable_id %>').find('ul#comment-<%= @comment.parent_id %>').prepend("<%= j render @comment %>");
 $('ul#comment-<%= @comment.parent_id %>').parent().children('.comment-form').first().find('#comment_body').val('');
+<% else %>
+alert('对不起，您没有发表评论的权限')
+<% end %>
