@@ -12,7 +12,11 @@
       <%= comment.body %>
     </div>
     <div class="actions">
-      <a class="reply-comment" href="javascript:;">回复</a>
+      <% if policy(@comment.commentable).comment? %>
+          <a class="reply-comment" href="javascript:;">回复</a>
+      <% else %>
+          <a class="fake-reply-comment" href="javascript:alert('对不起，您没有发表回复的权限');">回复</a>
+      <% end %>
       <% if policy(comment).destroy? %>
           <%= link_to '删除', comment, method: :delete, remote: true %>
       <% end %>
