@@ -1,5 +1,10 @@
 <div class="col-sm-9 latest-posts right-side-layout">
-  <div class="title">最新帖子</div>
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li>最新帖子</li>
+    </ol>
+  </div>
+
   <% @posts.each do |post| %>
       <div class="latest-post-item">
         <div class="author-avatar pull-left">
