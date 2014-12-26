@@ -1,6 +1,13 @@
-<% if @stage > 0 %>
+<% if @stage == 2 %>
 $('.comment-for-<%= @comment.commentable_type %>-<%= @comment.commentable_id %>').find('ul#comment-<%= @comment.parent_id %>').prepend("<%= j render @comment %>");
 $('ul#comment-<%= @comment.parent_id %>').parent().children('.content-wrapper').find('#comment_body').val('');
-<% else %>
+<% end %>
+<% if @stage == 1 %>
+alert('评论无法保存')
+<% end %>
+<% if @stage == -1 %>
 alert('对不起，您没有发表评论的权限')
+<% end %>
+<% if @stage == -2 %>
+alert('验证码不对')
 <% end %>

@@ -4,6 +4,7 @@
     var is_checked = false; //表示是否验证成功
     tou_submit = function () {
         if (is_checked === true) {
+            is_checked = false;
             return true;
         }
         else {
@@ -35,7 +36,7 @@
                     this_form.appendChild(hidden_input_address);
 
                     //再次执行 tou_submit 函数
-                    this_form.submit();
+                    $(this_form).find('input[type="submit"]').click();
                 },
 
                 onError: function (args) {
@@ -47,7 +48,7 @@
             return false;
         }
     };
-    $("form").submit(function () {
+    $("body").delegate("form.touclick", "submit", function () {
         return tou_submit.call(this);
     });
 </script>
