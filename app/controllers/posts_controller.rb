@@ -65,6 +65,10 @@ class PostsController < ApplicationController
       end
     end
 
+    @post.user_ip = request.remote_ip
+    @post.user_agent = request.user_agent
+    @post.referer = request.referer
+
     respond_to do |format|
       if @post.save
         if !@post.parent_id && params[:lock] == 'true'

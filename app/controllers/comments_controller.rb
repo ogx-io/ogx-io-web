@@ -18,6 +18,11 @@ class CommentsController < ApplicationController
       authorize @comment.commentable, :comment?
       @stage = 1
       @comment.user = current_user
+
+      @comment.user_ip = request.remote_ip
+      @comment.user_agent = request.user_agent
+      @comment.referer = request.referer
+
       @stage = 2 if @comment.save
     rescue
       @stage = -1

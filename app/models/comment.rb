@@ -8,6 +8,10 @@ class Comment
   field :d, as: :deleted, type: Integer, default: 0 # 0: not deleted, 1: deleted by user, 2: deleted by moderator, 3: deleted and hidden by moderator
   field :comment_count, type: Integer, default: 0
 
+  field :ip, as: :user_ip, type: String
+  field :ua, as: :user_agent, type: String
+  field :rf, as: :referer, type: String
+
   scope :normal, -> { where(deleted: {'$lt' => 3}) }
 
   belongs_to :commentable, polymorphic: true
