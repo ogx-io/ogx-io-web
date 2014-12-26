@@ -8,7 +8,7 @@
         }
         else {
             window.TouClick.Start({
-                website_key: '2f05a587-b2a4-4019-a7df-59d722f632f9',
+                website_key: '<%= Rails.application.secrets.touclick_pub_key %>',
                 position_code: 0,//位置标记(范围：10<position_code<100 ,如不在此范围内,则为0)
                 args: {'this_form': this},
                 //事件onInit、onLoading、onLoaded、onSuccess、onFail、onError 的共有第一参数
