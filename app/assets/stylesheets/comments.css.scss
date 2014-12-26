@@ -14,17 +14,20 @@
         margin-left: 50px;
         .author-time {
           margin-bottom: 5px;
-          color: #BBB;
+          color: #CCC;
           font-size: 12px;
         }
         .content {
           max-width: $max_width;
           font-size: 14px;
           margin-bottom: 5px;
+          span.deleted {
+            color: #999;
+          }
         }
         .actions {
           a {
-            color: #BBB;
+            color: #CCC;
             font-size: 12px;
           }
           margin-bottom: 15px;

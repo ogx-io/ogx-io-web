@@ -1,0 +1,27 @@
+<div class="content">
+  <% if comment.deleted == 0 %>
+      <%= comment.body %>
+  <% end %>
+  <% if comment.deleted == 1 %>
+      <span class="deleted">该评论已被作者删除</span>
+  <% end %>
+  <% if comment.deleted == 2 %>
+      <span class="deleted">该评论已被版主删除</span>
+  <% end %>
+</div>
+<div class="actions">
+  <% if policy(@comment.commentable).comment? %>
+      <a class="reply-comment" href="javascript:;">回复</a>
+  <% else %>
+      <a class="fake-reply-comment" href="javascript:alert('对不起，您没有发表回复的权限');">回复</a>
+  <% end %>
+  <% if policy(comment).resume? && comment.deleted > 0 %>
+      <%= link_to '恢复', resume_comment_path(comment), method: :patch, remote: true %>
+  <% end %>
+  <% if policy(comment).destroy? && comment.deleted == 0 %>
+      <%= link_to '删除', comment, method: :delete, remote: true %>
+  <% end %>
+  <% if policy(comment).delete_all? %>
+      <%= link_to '删除节点', delete_all_comment_path(comment), method: :delete, remote: true %>
+  <% end %>
+</div>

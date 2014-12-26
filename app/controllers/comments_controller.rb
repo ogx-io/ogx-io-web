@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:destroy]
+  before_action :set_comment, only: [:destroy, :delete_all, :resume]
 
   layout false
 
@@ -27,6 +27,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def resume
+    authorize @comment
+    @comment.deleted = 0
+    @comment.save
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def destroy
     authorize @comment
     if @comment.user == current_user
@@ -35,6 +44,18 @@ class CommentsController < ApplicationController
       @comment.deleted = 2
     end
     @comment.save
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def delete_all
+    authorize @comment
+    thread_array = @comment.thread.split('/')[0].split('.')
+    thread_array[thread_array.length - 1] = thread_array[thread_array.length - 1].to_i - 1
+    next_thread = thread_array.join('.') + '/'
+
+    Comment.where(commentable_type: @comment.commentable_type, commentable_id: @comment.commentable_id, t: {'$lte' => @comment.thread, '$gt' => next_thread}).update_all(deleted: 3)
     respond_to do |format|
       format.js
     end

@@ -12,6 +12,8 @@ class Post
   field :e, as: :elite, type: Integer, default: 0
   field :d, as: :deleted, type: Integer, default: 0 # 0: normal, 1:deleted
 
+  field :comment_count, type: Integer, default: 0
+
   validates_presence_of :title, message: "必须要有标题"
   validates_length_of :title, maximum: 40, message: "标题太长了"
 
