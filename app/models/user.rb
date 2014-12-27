@@ -70,7 +70,7 @@ class User
   has_many :blocked_users
 
   def get_avatar(size=70)
-    "#{Rails.application.secrets.host}/avatar/" + Digest::MD5.hexdigest(self.email) + '?s=' + size.to_s + '&d=retro'
+    "#{Rails.application.secrets.avatar_host}/avatar/" + Digest::MD5.hexdigest(self.email) + '?s=' + size.to_s + '&d=retro'
   end
 
   def get_nick
