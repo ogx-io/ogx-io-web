@@ -17,8 +17,8 @@ class Comment
   belongs_to :commentable, polymorphic: true
   belongs_to :user
 
-  validates_presence_of :body, message: "内容不能为空"
-  validates_length_of :body, maximum: 200, message: "内容不能超过200个字"
+  validates_presence_of :body, message: "评论内容不能为空"
+  validates_length_of :body, maximum: 200, message: "评论内容不能超过200个字"
 
   attr_accessor :max_depth # remember setting the maximum depth before saving. default is 999
 

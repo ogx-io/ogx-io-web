@@ -3,8 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
-  $('.comment-panel').delegate 'a.reply-comment', 'click', ->
+  $('body').delegate '.comment-panel a.reply-comment', 'click', ->
     $(this).parent().next().toggleClass('hide')
+
+  $('body').delegate '.comment-form-body', 'keyup change input', ->
+    $(this).parent().next().find(".tips .left-number").text(200 - $(this).val().length)
+  $('.comment-form').find(".comment-form-body").trigger("keyup")
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

@@ -11,4 +11,5 @@
     <% commentable.comments.normal.desc(:thread).each do |comment| %>
     $('.comment-for-<%= comment.commentable_type %>-<%= comment.commentable_id %>').find('ul#comment-<%= comment.parent_id %>').append("<%= j render comment %>");
     <% end %>
+    $("textarea").autosize({append: false}).trigger("change");
 </script>

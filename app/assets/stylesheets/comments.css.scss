@@ -36,7 +36,7 @@
     }
   }
   .comment-form {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     .avatar{
       float: left;
     }
@@ -45,16 +45,18 @@
       margin-left: 50px;
       .form-inputs {
         textarea {
-          height: 60px;
+          height: 74px;
           //              height: 40px;
         }
       }
       .footer {
         margin-top: 5px;
         //            display: none;
-        .help-block {
+        .tips {
           float: left;
-          margin-top: 2px;
+          font-size: 13px;
+          font-weight: bold;
+          color: #999;
         }
         .form-actions {
           float: right;
