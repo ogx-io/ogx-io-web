@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :comments
+  end
+
+  namespace :admin do
+    resources :resources do
+      collection do
+        get :user
+        get :post
+        get :comment
+      end
+    end
+  end
+
   resources :comments do
     member do
       patch :resume

@@ -1,0 +1,4 @@
+<nav class="list-bar clearfix">
+  评论数：<%= @all_comments.count %>
+  <%= paginate @comments, left: 1, right: 1 %>
+</nav>

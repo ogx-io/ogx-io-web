@@ -1,0 +1,36 @@
+<div class="comments-mng">
+  <%= render 'comments_paginate_bar' %>
+  <table class="table table-hover">
+    <thead>
+    <th>id</th>
+    <th>内容</th>
+    <th>评论类型</th>
+    <th>评论对象</th>
+    <th>thread</th>
+    <th>parent_id</th>
+    <th>作者</th>
+    <th>评论时间</th>
+    <th>ip</th>
+    <th>状态</th>
+    <th>操作</th>
+    </thead>
+    <tbody>
+    <% @comments.each do |comment| %>
+        <tr>
+          <td><%= comment.id %></td>
+          <td><%= comment.body %></td>
+          <td><%= comment.commentable_type %></td>
+          <td><%= link_to comment.commentable_id, comment.commentable %></td>
+          <td><%= comment.thread %></td>
+          <td><%= comment.parent_id %></td>
+          <td><%= full_user_link comment.user %></td>
+          <td><%= time_digest comment.created_at %></td>
+          <td><%= comment.ip %></td>
+          <td><%= comment.deleted %></td>
+          <td></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= render 'comments_paginate_bar' %>
+</div>
