@@ -133,117 +133,6 @@ div {
     }
 }
 
-.post-item {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    .panel-body {
-        padding: 0;
-    }
-    $post-item-padding: 13px;
-    .avatar {
-        margin: $post-item-padding;
-        @media (max-width: 768px) {
-            display: none;
-        }
-    }
-    .post-detail {
-        @media (min-width: 768px) {
-            margin-left: 70px + $post-item-padding * 2;
-            padding: $post-item-padding;
-            border-left: dotted #DDD 1px;
-        }
-        @media (max-width: 768px) {
-            padding: $post-item-padding * 0.8;
-        }
-        .floor {
-            color: #999;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: -3px;
-            margin-right: -1px;
-        }
-        h4 {
-            margin-top: 0;
-            margin-bottom: 5px;
-            a {
-                color: #333;
-            }
-        }
-        .post-author {
-            color: #999;
-            margin-bottom: 5px;
-        }
-        .post-content {
-            font-size: 14px;
-            line-height: 25px;
-            min-height: 28px;
-            p, ol, ul {
-                line-height: 25px;
-            }
-            p {
-                margin-bottom: 12px;
-            }
-        }
-        .post-footer {
-            margin-top: 7px;
-            margin-bottom: -3px;
-            color: #BBB;
-            ul {
-                margin-bottom: 0;
-                li {
-                    padding-right: 5px;
-                    padding-left: 5px;
-                }
-            }
-            padding: 5px $post-item-padding;
-            margin-left: -$post-item-padding;
-            margin-right: -$post-item-padding;
-            @media (max-width: 768px) {
-                padding: 5px $post-item-padding * 0.8;
-                margin-left: -$post-item-padding * 0.8;
-                margin-right: -$post-item-padding * 0.8;
-            }
-            background-color: #EEE;
-            .social-share-button {
-                line-height: 0;
-                margin-top: 1px;
-            }
-        }
-    }
-}
-
-.latest-posts {
-    .latest-post-item {
-        .post-content {
-            margin-left: 60px;
-            h4 {
-                margin-top: 0;
-                margin-bottom: 7px;
-                a {
-                    color: #333;
-                }
-            }
-            .post-body {
-                margin-bottom: 2px;
-            }
-            .post-info {
-                color: #999;
-                font-size: 12px;
-            }
-        }
-        border-bottom: dashed #CCC 1px;
-        padding-bottom: 10px;
-        margin-bottom: 15px;
-    }
-}
-
-.topic-head {
-    h3 {
-        margin-top: 0;
-        margin-bottom: 15px;
-    }
-}
-
 .list-bar {
     margin-bottom: 5px;
     background-color: #EEE;
@@ -271,16 +160,6 @@ div {
     @extend .list-bar
 }
 
-.topic-list {
-    tbody > tr > td {
-        border-top: 0px;
-        border-bottom: 1px solid #DDD;
-    }
-    .topic-mark {
-        padding-right: 0;
-    }
-}
-
 .elite-mark {
     color: red;
     font-size: 12px;
@@ -290,43 +169,6 @@ div {
 .deleted-mark {
     color: gray;
     font-size: 12px;
-}
-
-.board-content {
-    padding-top: 10px;
-}
-
-.register-user {
-    .panel {
-        width: 450px;
-        margin-top: 60px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-.user-profile {
-    .nick {
-        margin-top: 10px;
-        font-size: 20px;
-        font-weight: bold;
-    }
-    .name {
-        color: #999;
-        font-weight: normal;
-        margin-bottom: 10px;
-    }
-    .intro {
-        margin-bottom: 15px;
-    }
-    .others {
-        .glyphicon {
-            color: #CCC;
-        }
-        p {
-            margin-bottom: 5px;
-        }
-    }
 }
 
 .head-main-nav {
@@ -339,68 +181,6 @@ div {
         padding-left: 0;
         padding-right: 0;
         margin-right: 15px;
-    }
-}
-
-.user-link {
-    font-size: 13px;
-}
-
-.post-title {
-    color: #999;
-    @media (min-width: 992px) {
-        div {
-            margin: 0;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            @media (min-width: 992px) {
-                max-width: 422px;
-            }
-            @media (min-width: 1200px) {
-                max-width: 572px;
-            }
-        }
-    }
-    .digest {
-        @media (max-width: 992px) {
-            display: none;
-        }
-    }
-    a {
-        font-size: 14px;
-    }
-}
-
-.board-title {
-    @extend .post-title;
-    a {
-        font-size: 16px;
-    }
-}
-
-.board-head {
-    margin-bottom: 10px;
-}
-
-.board-intro {
-    ul {
-        margin-bottom: 5px;
-    }
-    .intro-content {
-        margin-bottom: 15px;
-    }
-}
-
-.topic-title {
-    a {
-        font-size: 14px;
-    }
-}
-
-.new-post {
-    h4 {
-        margin-bottom: 20px;
     }
 }
 

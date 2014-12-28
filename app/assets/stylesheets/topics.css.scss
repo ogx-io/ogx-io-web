@@ -2,6 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.topic-list {
+  tbody > tr > td {
+    border-top: 0px;
+    border-bottom: 1px solid #DDD;
+  }
+  .topic-mark {
+    padding-right: 0;
+  }
+}
+
+.topic-title {
+  a {
+    font-size: 14px;
+  }
+}
+
+.topic-head {
+  h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+}
+
 .user-lock {
   font-size: 13px;
   font-weight: normal;

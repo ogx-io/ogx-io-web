@@ -1,3 +1,27 @@
 // Place all the styles related to the Boards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.board-title {
+  @extend .post-title;
+  a {
+    font-size: 16px;
+  }
+}
+
+.board-head {
+  margin-bottom: 10px;
+}
+
+.board-intro {
+  ul {
+    margin-bottom: 5px;
+  }
+  .intro-content {
+    margin-bottom: 15px;
+  }
+}
+
+.board-content {
+  padding-top: 10px;
+}

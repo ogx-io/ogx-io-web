@@ -1,0 +1,36 @@
+.user-link {
+  font-size: 13px;
+}
+
+.register-user {
+  .panel {
+    width: 450px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.user-profile {
+  .nick {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .name {
+    color: #999;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+  .intro {
+    margin-bottom: 15px;
+  }
+  .others {
+    .glyphicon {
+      color: #CCC;
+    }
+    p {
+      margin-bottom: 5px;
+    }
+  }
+}
