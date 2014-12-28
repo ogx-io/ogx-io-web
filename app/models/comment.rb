@@ -39,4 +39,11 @@ class Comment
       self.thread = "#{parent.comment_count}/"
     end
   end
+
+  def self.new_from_parent(parent)
+    comment = self.new
+    comment.commentable = parent.commentable
+    comment.parent_id = parent.id
+    comment
+  end
 end

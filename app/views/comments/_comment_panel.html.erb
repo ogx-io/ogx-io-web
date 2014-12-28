@@ -1,7 +1,7 @@
 <div class="comment-panel comment-for-<%= commentable.class.to_s %>-<%= commentable.id %>" data-commentable-type="<%= commentable.class.to_s %>" data-commentable-id="<%= commentable.id %>">
   <div class="content-wrapper">
     <% if policy(@comment.commentable).comment? %>
-        <%= render partial: '/comments/form', locals: {comment: @comment} %>
+        <%= render partial: '/comments/form', locals: {comment: @comment, hidden: false} %>
     <% end %>
   </div>
   <ul id="comment-0" class="comment-list">
