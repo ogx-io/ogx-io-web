@@ -1,5 +1,5 @@
 <div class="comment-form clearfix <%= "hide" if hidden %>">
-  <%= simple_form_for comment, remote: true, html: {class: "touclick"} do |f| %>
+  <%= simple_form_for comment, remote: true do |f| %>
 
       <div class="avatar">
         <%= avatar current_user, 40 %>

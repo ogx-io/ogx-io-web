@@ -1,4 +1,4 @@
-<%= simple_form_for(@board ? [@board, @post] : @post, html: {class: "touclick"}) do |f| %>
+<%= simple_form_for(@board ? [@board, @post] : @post) do |f| %>
 
     <%= f.input :title, label: '标题', hint: '40个以内任意字符', required: false, input_html: {value: @parent ? 'Re: ' + @parent.title : @post.title}, autofocus: true %>
     <div class="form-group">

@@ -7,7 +7,7 @@
 <% end %>
 
 <div class="register-form">
-  <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: {role: 'form', class: 'touclick'} do |f| %>
+  <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: {role: 'form'} do |f| %>
       <h3>注册新用户</h3>
       <%= f.input :name, label: '用户名', hint: '4-20个小写英文字母、数字或下划线', autofocus: true, required: false %>
       <%= f.input :nick, label: '昵称', hint: '20个以内任意字符，用户的完整标识将为：昵称(@用户名)', required: false %>
@@ -17,5 +17,3 @@
       <%= f.button :submit, '注册', class: 'button right' %>
   <% end %>
 </div>
-
-<%= render 'common/touclick' %>

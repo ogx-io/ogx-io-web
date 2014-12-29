@@ -11,14 +11,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    if not validates_from_touclick
-      @stage = -2
-      respond_to do |format|
-        format.js
-      end
-      return
-    end
-
     @comment = Comment.new(comment_params)
     @comment.commentable_id = @comment.commentable_id.to_i
     if @comment.commentable_type == "Post"
