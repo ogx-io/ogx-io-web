@@ -15,21 +15,7 @@
     <th>操作</th>
     </thead>
     <tbody>
-    <% @comments.each do |comment| %>
-        <tr>
-          <td><%= comment.id %></td>
-          <td><%= comment.body %></td>
-          <td><%= comment.commentable_type %></td>
-          <td><%= link_to comment.commentable_id, comment.commentable %></td>
-          <td><%= comment.thread %></td>
-          <td><%= comment.parent_id %></td>
-          <td><%= full_user_link comment.user %></td>
-          <td><%= time_digest comment.created_at %></td>
-          <td><%= comment.ip %></td>
-          <td><%= comment.deleted %></td>
-          <td></td>
-        </tr>
-    <% end %>
+    <%= render @comments %>
     </tbody>
   </table>
   <%= render 'comments_paginate_bar' %>

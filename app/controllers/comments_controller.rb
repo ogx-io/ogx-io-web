@@ -42,8 +42,7 @@ class CommentsController < ApplicationController
 
   def resume
     authorize @comment
-    @comment.deleted = 0
-    @comment.save
+    @comment.resume_by(current_user)
     respond_to do |format|
       format.js
     end
@@ -51,12 +50,7 @@ class CommentsController < ApplicationController
 
   def destroy
     authorize @comment
-    if @comment.user == current_user
-      @comment.deleted = 1
-    else
-      @comment.deleted = 2
-    end
-    @comment.save
+    @comment.delete_by(current_user)
     respond_to do |format|
       format.js
     end
@@ -64,11 +58,7 @@ class CommentsController < ApplicationController
 
   def delete_all
     authorize @comment
-    thread_array = @comment.thread.split('/')[0].split('.')
-    thread_array[thread_array.length - 1] = thread_array[thread_array.length - 1].to_i - 1
-    next_thread = thread_array.join('.') + '/'
-
-    Comment.where(commentable_type: @comment.commentable_type, commentable_id: @comment.commentable_id, t: {'$lte' => @comment.thread, '$gt' => next_thread}).update_all(deleted: 3)
+    @comment.delete_all
     respond_to do |format|
       format.js
     end

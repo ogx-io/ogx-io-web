@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    resources :comments
+    resources :comments do
+      member do
+        patch :resume
+        delete :delete_all
+      end
+    end
   end
 
   namespace :admin do

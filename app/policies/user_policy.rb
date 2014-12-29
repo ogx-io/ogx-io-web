@@ -6,6 +6,10 @@ class UserPolicy
     @user = model
   end
 
+  def manage?
+    @current_user.admin?
+  end
+
   def index?
     @current_user.admin?
   end
