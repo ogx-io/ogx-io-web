@@ -2,6 +2,7 @@
 <% if user_signed_in? %>
     <li><%= user_link current_user %></li>
     <% if current_user.admin? %>
+        <li><%= link_to '管理后台', admin_comments_path %></li>
         <li><%= link_to '版面管理', manage_boards_path %></li>
         <li><%= link_to '用户管理', users_path %></li>
     <% end %>

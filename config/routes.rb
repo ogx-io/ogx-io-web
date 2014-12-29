@@ -9,16 +9,6 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :admin do
-    resources :resources do
-      collection do
-        get :user
-        get :post
-        get :common
-      end
-    end
-  end
-
   resources :comments do
     member do
       patch :resume
