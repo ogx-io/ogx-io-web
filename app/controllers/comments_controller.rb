@@ -66,7 +66,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params[:common].permit(:body, :parent_id, :commentable_type, :commentable_id)
+    params[:comment].permit(:body, :parent_id, :commentable_type, :commentable_id)
   end
 
 end
