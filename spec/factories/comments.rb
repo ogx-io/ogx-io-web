@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :comment do
+  factory :common do
     
   end
 

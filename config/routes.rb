@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       collection do
         get :user
         get :post
-        get :comment
+        get :common
       end
     end
   end
