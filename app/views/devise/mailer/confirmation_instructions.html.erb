@@ -1,9 +1,9 @@
 <p>您好，<%= @resource.name %>！</p>
 
-<p>您可以通过访问以下链接来确认您在OGX.io论坛新注册的账号：</p>
+<p>您可以通过访问以下链接来确认您在OGX社区新注册的账号：</p>
 
 <p><%= confirmation_url(@resource, confirmation_token: @token) %></p>
 
 <p><%= link_to '确认我的账号', confirmation_url(@resource, confirmation_token: @token) %></p>
 
-<p>--来自OGX.io论坛</p>
+<p>--来自OGX社区</p>
