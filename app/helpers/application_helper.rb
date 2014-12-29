@@ -58,7 +58,7 @@ module ApplicationHelper
 
   def markdown(text)
     options = {
-        :autolink => true,
+        :autolink => false,
         :space_after_headers => true,
         :fenced_code_blocks => true,
         :no_intra_emphasis => true,
