@@ -21,6 +21,9 @@ class CommentsController < ApplicationController
 
     @comment = Comment.new(comment_params)
     @comment.commentable_id = @comment.commentable_id.to_i
+    if @comment.commentable_type == "Post"
+      @comment.board = @comment.commentable.board
+    end
 
     begin
       authorize @comment.commentable, :comment?

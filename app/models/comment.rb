@@ -18,6 +18,7 @@ class Comment
   belongs_to :user
   belongs_to :deleter, class_name: "User"
   belongs_to :resumer, class_name: "User"
+  belongs_to :board
 
   validates_presence_of :body, message: "评论内容不能为空"
   validates_length_of :body, maximum: 200, message: "评论内容不能超过200个字"
