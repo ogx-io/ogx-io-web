@@ -34,7 +34,7 @@ class Post
   has_many :comments, as: :commentable
 
   before_create :set_topic_and_floor
-  after_create :update_topic
+  after_create :update_topic, :update_author
 
   def set_topic_and_floor
     if self.topic.nil?
@@ -47,6 +47,10 @@ class Post
 
   def update_topic
     self.topic.update(replied_at: self.created_at)
+  end
+
+  def update_author
+    self.author.update(last_post_at: Time.now)
   end
 
   def deleted?

@@ -50,6 +50,9 @@ class User
   field :intro, type: String # a short introduction of a user
   field :city, type: String # the city which the user is living
 
+  field :last_comment_at, type: Time
+  field :last_post_at, type: Time
+
   validates_presence_of :name, message: "请输入用户名"
   validates_uniqueness_of :name, message: "该用户名已存在"
   validates_format_of :name, with: /[a-z0-9_]{4,20}/, message: "格式不对"
@@ -76,4 +79,21 @@ class User
   def get_nick
     self.nick ? self.nick : self.name
   end
+
+  def can_post?
+    if self.last_post_at
+      Time.now - self.last_post_at > 1.minute
+    else
+      true
+    end
+  end
+
+  def can_comment?
+    if self.last_comment_at
+      Time.now - self.last_comment_at > 1.minute
+    else
+      true
+    end
+  end
+
 end

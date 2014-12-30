@@ -26,6 +26,7 @@ class Comment
   attr_accessor :max_depth # remember setting the maximum depth before saving. default is 999
 
   before_create :set_thread
+  after_create :update_user
 
   def set_thread
     @max_depth ||= 999
@@ -41,6 +42,10 @@ class Comment
       parent = self.commentable_type.constantize.where(_id: self.commentable_id).find_and_modify({"$inc" => { comment_count: 1 }}, new: true)
       self.thread = "#{parent.comment_count}/"
     end
+  end
+
+  def update_user
+    self.user.update(last_comment_at: Time.now)
   end
 
   def deleted?

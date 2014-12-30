@@ -9,7 +9,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def create?
-    user && !record.board.is_blocked?(user)
+    user && user.can_post? && !record.board.is_blocked?(user)
   end
 
   def update?
@@ -21,7 +21,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def comment?
-    user && !record.board.is_blocked?(user)
+    user && user.can_comment? && !record.board.is_blocked?(user)
   end
 
   class Scope < Scope

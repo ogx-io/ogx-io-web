@@ -8,6 +8,3 @@ alert('<%= @comment.errors[:body][0] %>')
 <% if @stage == -1 %>
 alert('对不起，您没有发表评论的权限')
 <% end %>
-<% if @stage == -2 %>
-alert('验证码不对')
-<% end %>
