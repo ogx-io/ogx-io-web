@@ -1,9 +1,8 @@
 body {
-    background: url(<%= asset_data_uri 'seamless_paper_texture.png' %>);
-    color: #555;
-    font-family: verdana, arial, helvetica, STHeiti, simsun, "WenQuanYi Micro Hei", sans-serif;
-    font-size: 13px;
-    line-height: 22px;
+  color: #555;
+  font-family: verdana, arial, helvetica, STHeiti, simsun, "WenQuanYi Micro Hei", sans-serif;
+  font-size: 13px;
+  line-height: 22px;
 }
 
 p, ol, ul, td {

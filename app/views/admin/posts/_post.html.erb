@@ -1,0 +1,18 @@
+<tr id="post-<%= post.id %>">
+  <td><%= post.id %></td>
+  <td><%= link_to post.title, post %><br><%= truncate post.body, length: 60 %></td>
+  <td><%= link_to post.board.name, show_board_path(post.board.path) if post.board %></td>
+  <td><%= post.parent_id %></td>
+  <td><%= user_link post.author %></td>
+  <td><%= time_digest post.created_at %></td>
+  <td><%= post.ip %></td>
+  <td><%= post.deleted %></td>
+  <td>
+    <% if post.deleted? && policy(post).resume? %>
+        <%= link_to "恢复", resume_admin_post_path(post), method: :patch, remote: true %>
+    <% end %>
+    <% if !post.deleted? && policy(post).destroy? %>
+        <%= link_to "删除", admin_post_path(post), method: :delete, remote: true %>
+    <% end %>
+  </td>
+</tr>

@@ -2,7 +2,7 @@
   <td><%= comment.id %></td>
   <td><%= comment.body %></td>
   <td><%= link_to comment.board.name, show_board_path(comment.board.path) if comment.board %></td>
-  <td><%= link_to truncate(comment.commentable.title, length: 15) , comment.commentable, title: comment.commentable.title %></td>
+  <td><%= link_to truncate(comment.commentable.title, length: 15), comment.commentable, title: comment.commentable.title %></td>
   <td><%= comment.thread %></td>
   <td><%= comment.parent_id %></td>
   <td><%= user_link comment.user %></td>
@@ -10,11 +10,14 @@
   <td><%= comment.ip %></td>
   <td><%= comment.deleted %></td>
   <td>
-    <% if comment.deleted? and (comment.deleter != comment.user || current_user == comment.deleter) %>
+    <% if comment.deleted? and policy(comment).resume? %>
         <%= link_to "恢复", resume_admin_comment_path(comment), method: :patch, remote: true %>
-    <% else %>
+    <% end %>
+    <% if !comment.deleted? and policy(comment).destroy? %>
         <%= link_to "删除", admin_comment_path(comment), method: :delete, remote: true %>
     <% end %>
-    <%= link_to "删除节点", delete_all_admin_comment_path(comment), method: :delete, remote: true %>
+    <% if policy(comment).delete_all? %>
+        <%= link_to "删除节点", delete_all_admin_comment_path(comment), method: :delete, remote: true %>
+    <% end %>
   </td>
 </tr>

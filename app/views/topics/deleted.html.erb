@@ -26,7 +26,7 @@
               <div><%= link_to topic.title, show_topic_path(topic.sid), title: topic.title %></div>
             </td>
             <td class="text-center"><%= user_link topic.posts.first.author %></td>
-            <% count = topic.posts.first.is_deleted? ? topic.posts.normal.count : topic.posts.normal.count - 1 %>
+            <% count = topic.posts.first.deleted? ? topic.posts.normal.count : topic.posts.normal.count - 1 %>
             <td class="text-center"><%= count > 0 ? count : '' %></td>
             <td class="text-right"><%= time_digest topic.replied_at %></td>
             <td class="text-right"><%= link_to '恢复', resume_topic_path(topic), method: :patch %></td>

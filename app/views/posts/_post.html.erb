@@ -8,7 +8,7 @@
       <h4>
         <%= link_to h(post.title), show_post_path(post.sid) %>
         <span class="elite-mark" style="<%= 'display: none' if post.elite == 0 %>">精华帖</span>
-        <% if post.is_deleted? %>
+        <% if post.deleted? %>
             <span class="deleted-mark">(已删除)</span>
         <% end %>
       </h4>

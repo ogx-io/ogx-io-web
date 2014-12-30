@@ -37,6 +37,7 @@ class PostsController < ApplicationController
     if params[:parent_id]
       @parent = Post.find(params[:parent_id])
       if !can_reply?(@parent.topic)
+        flash[:error] = "所在主题已经被加锁，您不能回复了。"
         redirect_to :back
       end
     end
@@ -56,6 +57,7 @@ class PostsController < ApplicationController
     if @post.parent_id
       @parent = Post.find(@post.parent_id)
       if !can_reply?(@parent.topic)
+        flash[:error] = "所在主题已经被加锁，您不能回复了。"
         redirect_to :back
       end
     end
@@ -112,7 +114,7 @@ class PostsController < ApplicationController
 
   def resume
     authorize @post
-    @post.update(deleted: 0)
+    @post.resume_by(current_user)
     respond_to do |format|
       format.html { redirect_to :back }
     end
@@ -122,7 +124,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     authorize @post
-    @post.delete_myself
+    @post.delete_by(current_user)
     respond_to do |format|
       # format.html { redirect_to board_posts_path(@post.board), notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
@@ -149,7 +151,6 @@ class PostsController < ApplicationController
   def can_reply?(topic)
     if topic.lock != 0
       if topic.lock == 2 || topic.user != current_user
-        flash[:error] = "所在主题已经被加锁，您不能回复了。"
         return false
       end
     end

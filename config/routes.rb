@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+    resources :posts do
+      member do
+        patch :resume
+      end
+    end
+  end
+
+  namespace :admin do
     resources :comments do
       member do
         patch :resume

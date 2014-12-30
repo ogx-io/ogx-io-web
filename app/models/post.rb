@@ -10,7 +10,7 @@ class Post
   field :p, as: :parent_id, type: Integer
   field :f, as: :floor, type: Integer
   field :e, as: :elite, type: Integer, default: 0
-  field :d, as: :deleted, type: Integer, default: 0 # 0: normal, 1:deleted
+  field :d, as: :deleted, type: Integer, default: 0 # 0: normal, 1:deleted by user, 2: deleted by admin
 
   field :comment_count, type: Integer, default: 0
 
@@ -28,6 +28,8 @@ class Post
   belongs_to :board
   belongs_to :author, class_name: "User", inverse_of: :posts
   belongs_to :topic
+  belongs_to :deleter, class_name: "User"
+  belongs_to :resumer, class_name: "User"
 
   has_many :comments, as: :commentable
 
@@ -47,12 +49,25 @@ class Post
     self.topic.update(replied_at: self.created_at)
   end
 
-  def is_deleted?
-    self.deleted == 1
+  def deleted?
+    self.deleted > 0
   end
 
-  def delete_myself
-    self.update(deleted: 1)
+  def delete_by(user)
+    if self.author == user
+      self.deleted = 1
+    else
+      self.deleted = 2
+    end
+    self.deleter = user
+    self.save
     self.topic.update(deleted: 1) if self.topic.posts.normal.count == 0
   end
+
+  def resume_by(user)
+    self.deleted = 0
+    self.resumer = user
+    self.save
+  end
+
 end

@@ -1,0 +1,4 @@
+<nav class="list-bar clearfix">
+  帖子数：<%= @all_posts.count %>
+  <%= paginate @posts, left: 1, right: 1 %>
+</nav>
