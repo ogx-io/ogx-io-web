@@ -22,7 +22,7 @@ class Post
   validates_length_of :title, maximum: 40, message: "标题太长了"
 
   scope :normal, -> { where(deleted: 0) }
-  scope :deleted, -> { where(deleted: 1) }
+  scope :deleted, -> { where(deleted: {'$gt' => 0}) }
   scope :elites, -> { where(elite: 1) }
 
   belongs_to :board

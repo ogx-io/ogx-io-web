@@ -7,6 +7,7 @@ class Admin::PostsController < ApplicationController
   respond_to :html
 
   def index
+    authorize current_user, :manage?
     @all_posts = Post.all
     @posts = @all_posts.desc(:_id).page(params[:page]).per(20)
     respond_with(@admin_posts)
