@@ -8,14 +8,14 @@
         <% else %>
             <%= link_to '取消置顶', topic_path(@topic, 'topic[top]' => 0), method: :patch %>
         <% end %>
-        <% if @topic.is_deleted? %>
+        <% if @topic.deleted? %>
             <%= link_to '恢复', resume_topic_path(@topic), method: :patch %>
         <% else %>
             <%= link_to '删除', topic_path(@topic), method: :delete %>
         <% end %>
     <% end %>
     <% if policy(@topic).toggle_lock? %>
-        <% if @topic.is_locked? %>
+        <% if @topic.locked? %>
             <%= link_to '解锁', toggle_lock_topic_path(@topic), method: :patch %>
         <% else %>
             <%= link_to '加锁', toggle_lock_topic_path(@topic), method: :patch %>

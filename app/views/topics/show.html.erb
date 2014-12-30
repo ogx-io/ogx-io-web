@@ -16,7 +16,7 @@
         <h3 class="pull-left">
           <%= @first.title %>
           <%= render partial: 'topic_lock', locals: {topic: @topic} %>
-          <% if @topic.is_deleted? %>
+          <% if @topic.deleted? %>
               <span class="deleted-mark">(已删除)</span>
           <% end %>
         </h3>

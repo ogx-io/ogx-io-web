@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     if !current_user
       flash[:error] = '您需要先 <a href="/users/sign_in">登录</a> 才能执行此操作！新用户请先 <a href="/users/sign_up">注册</a> 再登录。'
     else
-      flash[:error] = '您没有此操作的权限！'
+      flash[:error] ||= '您没有此操作的权限！'
     end
 
     redirect_to(request.referrer || root_path)

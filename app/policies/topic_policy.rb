@@ -1,7 +1,7 @@
 class TopicPolicy < ApplicationPolicy
 
   def show?
-    !record.is_deleted? || record.board.is_moderator?(user)
+    !record.deleted? || record.board.is_moderator?(user)
   end
 
   def update?

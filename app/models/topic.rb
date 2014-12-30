@@ -21,11 +21,11 @@ class Topic
     self.posts.first.title
   end
 
-  def is_deleted?
+  def deleted?
     self.deleted == 1
   end
 
-  def is_locked?
+  def locked?
     self.lock != 0
   end
 
