@@ -4,7 +4,8 @@ class Comment
 
   field :b, as: :body, type: String
   field :p, as: :parent_id, type: Integer
-  field :t, as: :thread, type: String # format: "1.1.1/". It is used for sorting: desc(:thread)
+  field :t, as: :thread, type: String # format: "1.2.1/". It is used for sorting: desc(:thread)
+  field :t2, as: :thread2, type: String # format: "1.2.1". It is used for sorting: asc(:thread)
   field :d, as: :deleted, type: Integer, default: 0 # 0: not deleted, 1: deleted by user, 2: deleted by moderator, 3: deleted and hidden by moderator
   field :comment_count, type: Integer, default: 0
 
@@ -37,11 +38,12 @@ class Comment
         self.parent_id = parent.parent_id
       end
       parent = Comment.where(_id: self.parent_id).find_and_modify({"$inc" => { comment_count: 1 }}, new: true)
-      self.thread = parent.thread.split('/')[0] + ".#{parent.comment_count}/"
+      self.thread2 = parent.thread2 + ".#{parent.comment_count}"
     else
       parent = self.commentable_type.constantize.where(_id: self.commentable_id).find_and_modify({"$inc" => { comment_count: 1 }}, new: true)
-      self.thread = "#{parent.comment_count}/"
+      self.thread2 = "#{parent.comment_count}"
     end
+    self.thread = self.thread2 + '/'
   end
 
   def update_user
@@ -69,7 +71,7 @@ class Comment
   end
 
   def delete_all_by(user)
-    thread_array = self.thread.split('/')[0].split('.')
+    thread_array = self.thread2.split('.')
     thread_array[thread_array.length - 1] = thread_array[thread_array.length - 1].to_i - 1
     next_thread = thread_array.join('.') + '/'
 

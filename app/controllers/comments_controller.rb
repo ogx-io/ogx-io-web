@@ -53,7 +53,7 @@ class CommentsController < ApplicationController
 
   def delete_all
     authorize @comment
-    @comment.delete_all
+    @comment.delete_all_by(current_user)
     respond_to do |format|
       format.js
     end
