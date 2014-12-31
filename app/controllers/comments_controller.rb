@@ -44,7 +44,11 @@ class CommentsController < ApplicationController
     authorize @comment
     @comment.delete_by(current_user)
     respond_to do |format|
-      format.js
+      format.js do
+        if @comment.deleted == 3
+          render 'delete_all'
+        end
+      end
     end
   end
 

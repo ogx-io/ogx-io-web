@@ -13,7 +13,8 @@ class Comment
   field :ua, as: :user_agent, type: String
   field :rf, as: :referer, type: String
 
-  scope :normal, -> { where(deleted: {'$lt' => 3}) }
+  scope :normal, -> { where(deleted: 0) }
+  scope :pub, -> { where(deleted: {'$lt' => 3}) }
 
   belongs_to :commentable, polymorphic: true
   belongs_to :user
@@ -66,17 +67,22 @@ class Comment
     else
       self.deleted = 2
     end
+    if get_tree.normal.count <= 1
+      self.deleted = 3
+    end
     self.deleter = user
     self.save
   end
 
   def delete_all_by(user)
+    get_tree.update_all(deleted: 3, deleter_id: user.id)
+  end
+
+  def get_tree
     thread_array = self.thread2.split('.')
     thread_array[thread_array.length - 1] = thread_array[thread_array.length - 1].to_i - 1
     next_thread = thread_array.join('.') + '/'
-
-    Comment.where(commentable_type: self.commentable_type, commentable_id: self.commentable_id, t: {'$lte' => self.thread, '$gt' => next_thread}).update_all(deleted: 3, deleter_id: user.id)
-    self.deleted = 3
+    Comment.where(commentable_type: self.commentable_type, commentable_id: self.commentable_id, t: {'$lte' => self.thread, '$gt' => next_thread})
   end
 
   def self.new_from_parent(parent)

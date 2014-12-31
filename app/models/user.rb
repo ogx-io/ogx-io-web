@@ -90,7 +90,7 @@ class User
 
   def can_comment?
     if self.last_comment_at
-      Time.now - self.last_comment_at > 1.minute
+      Time.now - self.last_comment_at > 5.seconds
     else
       true
     end
