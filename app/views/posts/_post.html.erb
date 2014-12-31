@@ -16,7 +16,7 @@
       <div class="post-content"><%= sanitize_post markdown(post.body) %></div>
       <div class="post-footer clearfix">
         <div class="pull-left">
-          <%= social_share_button_tag h("给大家推荐一篇来自 #OGX社区# 的好文《#{post.title}》"), url: show_post_url(post.sid), via: 'ogxio', 'data-twitter-title' => h("给大家推荐一篇来自 #OGX社区 的好文《#{post.title}》") %>
+          <%= social_share_button_tag h("给大家推荐一篇来自 #OGX社区# 的好文《#{post.title}》"), url: show_post_url(post.sid), via: 'ogxio', 'data-twitter-title' => h("给大家推荐一篇来自 OGX社区 的好文《#{post.title}》") %>
         </div>
         <div class="pull-right">
           <ul class="list-inline">
