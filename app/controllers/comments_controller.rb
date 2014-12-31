@@ -13,23 +13,20 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.commentable_id = @comment.commentable_id.to_i
+
+    authorize @comment.commentable, :comment?
+
     if @comment.commentable_type == "Post"
       @comment.board = @comment.commentable.board
     end
 
-    begin
-      authorize @comment.commentable, :comment?
-      @stage = 1
-      @comment.user = current_user
+    @comment.user = current_user
+    @comment.user_ip = request.remote_ip
+    @comment.user_agent = request.user_agent
+    @comment.referer = request.referer
 
-      @comment.user_ip = request.remote_ip
-      @comment.user_agent = request.user_agent
-      @comment.referer = request.referer
+    @comment.save
 
-      @stage = 2 if @comment.save
-    rescue
-      @stage = -1
-    end
     respond_to do |format|
       format.js
     end

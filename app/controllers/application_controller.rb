@@ -13,13 +13,13 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized(exception)
-    if !current_user
-      flash[:error] = '您需要先 <a href="/users/sign_in">登录</a> 才能执行此操作！新用户请先 <a href="/users/sign_up">注册</a> 再登录。'
-    else
-      flash[:error] ||= '您没有此操作的权限！'
+    flash[:error] = exception.policy.err_msg || '您没有此操作的权限！'
+
+    respond_to do |format|
+      format.html { redirect_to(request.referrer || root_path) }
+      format.js { render js: "alert('#{flash[:error]}');" }
     end
 
-    redirect_to(request.referrer || root_path)
   end
 
 end

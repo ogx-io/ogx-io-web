@@ -1,6 +1,6 @@
 <%= simple_form_for(@board ? [@board, @post] : @post) do |f| %>
 
-    <%= f.input :title, label: '标题', hint: '40个以内任意字符', required: false, input_html: {value: @parent ? 'Re: ' + @parent.title : @post.title}, autofocus: true %>
+    <%= f.input :title, label: '标题', hint: '40个以内任意字符', required: false, input_html: {value: @post.parent ? 'Re: ' + @post.parent.title : @post.title}, autofocus: true %>
     <div class="form-group">
       <%= f.label '内容' %>
       <%= f.text_area :body, class: 'form-control', rows: 20 %>
@@ -8,9 +8,8 @@
         <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown" target="_blank">语法说明和练习</a></p>
     </div>
     <% if @post.new_record? %>
-        <% if @parent %>
-            <%= f.hidden_field :parent_id, value: @parent.id %>
-            <%= f.hidden_field :topic_id, value: @parent.topic.id %>
+        <% if @post.parent %>
+            <%= f.hidden_field :parent_id, value: @post.parent.id %>
         <% else %>
             <div class="form-group">
               <label>附加功能：</label>

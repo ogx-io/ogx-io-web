@@ -1,5 +1,6 @@
 class ApplicationPolicy
   attr_reader :user, :record
+  attr_accessor :err_msg
 
   def initialize(user, record)
     @user = user
@@ -48,6 +49,30 @@ class ApplicationPolicy
 
     def resolve
       scope
+    end
+  end
+
+  protected
+
+  def signed_in?
+    test_if_not(user, '您需要先 <a href="/users/sign_in">登录</a> 才能执行此操作！新用户请先 <a href="/users/sign_up">注册</a> 再登录。')
+  end
+
+  def test_if_not(cond, msg)
+    if !cond
+      @err_msg = msg
+      false
+    else
+      true
+    end
+  end
+
+  def test_if(cond, msg)
+    if cond
+      @err_msg = msg
+      false
+    else
+      true
     end
   end
 end

@@ -33,14 +33,9 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @post.board = @board
+    @post.parent_id = params[:parent_id]
+
     authorize @post
-    if params[:parent_id]
-      @parent = Post.find(params[:parent_id])
-      if !can_reply?(@parent.topic)
-        flash[:error] = "所在主题已经被加锁，您不能回复了。"
-        redirect_to :back
-      end
-    end
   end
 
   # GET /posts/1/edit
@@ -52,23 +47,18 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.board = @board
-    authorize @post
-    @post.author = current_user
-    if @post.parent_id
-      @parent = Post.find(@post.parent_id)
-      if !can_reply?(@parent.topic)
-        flash[:error] = "所在主题已经被加锁，您不能回复了。"
-        redirect_to :back
-      end
-    end
 
+    authorize @post
+
+    @post.topic = @post.parent.topic if @post.parent
+    @post.author = current_user
     @post.user_ip = request.remote_ip
     @post.user_agent = request.user_agent
     @post.referer = request.referer
 
     respond_to do |format|
       if @post.save
-        if !@post.parent_id && params[:lock] == 'true'
+        if !@post.parent && params[:lock] == 'true'
           @post.topic.lock = 1
           @post.topic.save
         end
@@ -145,15 +135,7 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params[:post].permit(:title, :body, :parent_id, :topic_id, :elite)
+    params[:post].permit(:title, :body, :parent_id, :elite)
   end
 
-  def can_reply?(topic)
-    if topic.lock != 0
-      if topic.lock == 2 || topic.user != current_user
-        return false
-      end
-    end
-    true
-  end
 end

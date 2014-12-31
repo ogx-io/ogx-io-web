@@ -5,7 +5,7 @@ class CommentPolicy < ApplicationPolicy
     if record.commentable_type == 'Post' && record.commentable.board.is_moderator?(user)
       is_supervisor = true
     end
-    user && (is_supervisor || record.user == user || user.admin?)
+    signed_in? && (is_supervisor || record.user == user || user.admin?)
   end
 
   def delete_all?
@@ -13,7 +13,7 @@ class CommentPolicy < ApplicationPolicy
     if record.commentable_type == 'Post' && record.commentable.board.is_moderator?(user)
       is_supervisor = true
     end
-    user && (is_supervisor || user.admin?)
+    signed_in? && (is_supervisor || user.admin?)
   end
 
   def resume?
@@ -21,7 +21,7 @@ class CommentPolicy < ApplicationPolicy
     if record.commentable_type == 'Post' && record.commentable.board.is_moderator?(user)
       is_supervisor = true
     end
-    user && ((is_supervisor && record.deleted == 2) || (user == record.user && record.deleted == 1) || (user.admin? && record.deleted == 3))
+    signed_in? && ((is_supervisor && record.deleted == 2) || (user == record.user && record.deleted == 1) || (user.admin? && record.deleted == 3))
   end
 
   class Scope < Scope

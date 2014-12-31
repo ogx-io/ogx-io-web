@@ -7,7 +7,6 @@ class Post
 
   field :t, as: :title, type: String
   field :b, as: :body, type: String
-  field :p, as: :parent_id, type: Integer
   field :f, as: :floor, type: Integer
   field :e, as: :elite, type: Integer, default: 0
   field :d, as: :deleted, type: Integer, default: 0 # 0: normal, 1:deleted by user, 2: deleted by admin
@@ -28,6 +27,7 @@ class Post
   belongs_to :board
   belongs_to :author, class_name: "User", inverse_of: :posts
   belongs_to :topic
+  belongs_to :parent, class_name: "Post"
   belongs_to :deleter, class_name: "User"
   belongs_to :resumer, class_name: "User"
 

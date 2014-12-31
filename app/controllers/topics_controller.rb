@@ -20,15 +20,9 @@ class TopicsController < ApplicationController
   def show
     @board = @topic.board
     @first = @topic.posts.first
+
     @all_posts = @topic.posts.normal
-    per_page = 10
-    if params[:for_post] && !params[:page]
-      page = @all_posts.where(_id: {'$lt' => params[:for_post].to_i}).count / per_page + 1
-    else
-      page = params[:page]
-    end
-    @all_posts = @topic.posts.normal
-    @posts = @all_posts.page(page).per(per_page)
+    @posts = @all_posts.asc(:_id).page(params[:page]).per(10)
     respond_with(@topic)
   end
 

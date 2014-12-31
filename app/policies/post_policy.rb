@@ -1,19 +1,22 @@
 class PostPolicy < ApplicationPolicy
 
   def destroy?
-    user && (record.board.is_moderator?(user) || record.author == user)
+    signed_in? && (record.board.is_moderator?(user) || record.author == user)
   end
 
   def resume?
-    user && record.board.is_moderator?(user)
+    signed_in? && record.board.is_moderator?(user)
   end
 
   def create?
-    user && user.can_post? && !record.board.is_blocked?(user)
+    signed_in? &&
+        test_if(record.parent && !record.parent.topic.can_reply_by(user), "所在主题已经被加锁，您不能回复了。") &&
+        test_if_not(user.can_post?, "您的发帖频率太高了，先休息一会儿吧。") &&
+        test_if(record.board.is_blocked?(user), "您已经被版主关进小黑屋，不能在本版发帖了。")
   end
 
   def update?
-    user == record.author
+    signed_in? && test_if_not(user == record.author, "您不是作者本人，不能修改帖子。")
   end
 
   def toggle?
@@ -21,7 +24,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def comment?
-    user && user.can_comment? && !record.board.is_blocked?(user)
+    signed_in? && test_if_not(user.can_comment?, "您的评论发得太快了，先休息一会儿吧。") && test_if(record.board.is_blocked?(user), "您已经被版主关进小黑屋，不能在本版发评论了。")
   end
 
   class Scope < Scope

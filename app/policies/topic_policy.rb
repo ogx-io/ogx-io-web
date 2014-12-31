@@ -5,7 +5,7 @@ class TopicPolicy < ApplicationPolicy
   end
 
   def update?
-    record.board.is_moderator?(user)
+    signed_in? && record.board.is_moderator?(user)
   end
 
   def toggle_lock?

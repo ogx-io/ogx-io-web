@@ -7,8 +7,8 @@
     </ol>
   </div>
   <h4>
-    <% if @parent %>
-        回复 <%= link_to @parent.title, @parent %>
+    <% if @post.parent %>
+        回复 <%= link_to @post.parent.title, @post.parent %>
     <% else %>
         新建主题
     <% end %>
