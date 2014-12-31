@@ -8,10 +8,16 @@ class PostPolicy < ApplicationPolicy
     signed_in? && record.board.is_moderator?(user)
   end
 
+  def new?
+    signed_in? &&
+        test_if(record.parent && !record.parent.topic.can_reply_by(user), "所在主题已经被加锁，您不能回复了。") &&
+        test_if(record.board.is_blocked?(user), "您已经被版主关进小黑屋，不能在本版发帖了。")
+  end
+
   def create?
     signed_in? &&
         test_if(record.parent && !record.parent.topic.can_reply_by(user), "所在主题已经被加锁，您不能回复了。") &&
-        test_if_not(user.can_post?, "您的发帖频率太高了，先休息一会儿吧。") &&
+        test_if_not(user.can_post?, "您的发帖速度太快了，先休息一会儿吧。") &&
         test_if(record.board.is_blocked?(user), "您已经被版主关进小黑屋，不能在本版发帖了。")
   end
 
@@ -24,7 +30,9 @@ class PostPolicy < ApplicationPolicy
   end
 
   def comment?
-    signed_in? && test_if_not(user.can_comment?, "您的评论发得太快了，先休息一会儿吧。") && test_if(record.board.is_blocked?(user), "您已经被版主关进小黑屋，不能在本版发评论了。")
+    signed_in? &&
+        test_if_not(user.can_comment?, "您的评论发得太快了，先休息一会儿吧。") &&
+        test_if(record.board.is_blocked?(user), "您已经被版主关进小黑屋，不能在本版发评论了。")
   end
 
   class Scope < Scope

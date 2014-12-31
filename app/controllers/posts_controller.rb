@@ -40,6 +40,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    authorize @post
   end
 
   # POST /posts
@@ -48,7 +49,15 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.board = @board
 
-    authorize @post
+    begin
+      authorize @post
+    rescue Pundit::NotAuthorizedError => exception
+      message = exception.policy.err_msg || '您没有此操作的权限！'
+      respond_to do |format|
+        format.html { flash.now[:error] = message; render :new }
+      end
+      return
+    end
 
     @post.topic = @post.parent.topic if @post.parent
     @post.author = current_user
