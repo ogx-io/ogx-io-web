@@ -10,6 +10,10 @@ class Admin::PostsController < ApplicationController
     authorize current_user, :manage?
     @all_posts = Post.all
 
+    if !current_user.admin?
+      @all_posts = @all_posts.in(board_id: current_user.managing_board_ids)
+    end
+
     if !params[:board_id].blank?
       @all_posts = @all_posts.where(board_id: params[:board_id].to_i)
     end

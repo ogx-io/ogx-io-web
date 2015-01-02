@@ -10,6 +10,10 @@ class Admin::CommentsController < ApplicationController
     authorize current_user, :manage?
     @all_comments = Comment.where(commentable_type: "Post")
 
+    if !current_user.admin?
+      @all_comments = @all_comments.in(board_id: current_user.managing_board_ids)
+    end
+
     if !params[:board_id].blank?
       @all_comments = @all_comments.where(board_id: params[:board_id].to_i)
     end

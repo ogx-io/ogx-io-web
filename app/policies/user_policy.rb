@@ -7,7 +7,7 @@ class UserPolicy
   end
 
   def manage?
-    @current_user.admin?
+    @current_user.admin? || @current_user.managing_boards.count > 0
   end
 
   def index?
