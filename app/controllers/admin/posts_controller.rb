@@ -9,6 +9,20 @@ class Admin::PostsController < ApplicationController
   def index
     authorize current_user, :manage?
     @all_posts = Post.all
+
+    if !params[:board_id].blank?
+      @all_posts = @all_posts.where(board_id: params[:board_id].to_i)
+    end
+
+    if !params[:status].blank?
+      case params[:status].to_i
+        when 1
+          @all_posts = @all_posts.normal
+        when 2
+          @all_posts = @all_posts.deleted
+      end
+    end
+
     @posts = @all_posts.desc(:_id).page(params[:page]).per(20)
     respond_with(@admin_posts)
   end

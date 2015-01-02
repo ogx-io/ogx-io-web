@@ -14,6 +14,7 @@ class Comment
   field :rf, as: :referer, type: String
 
   scope :normal, -> { where(deleted: 0) }
+  scope :deleted, -> { where(deleted: {'$gt' => 0}) }
   scope :pub, -> { where(deleted: {'$lt' => 3}) }
 
   belongs_to :commentable, polymorphic: true

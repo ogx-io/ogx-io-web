@@ -9,6 +9,20 @@ class Admin::CommentsController < ApplicationController
   def index
     authorize current_user, :manage?
     @all_comments = Comment.where(commentable_type: "Post")
+
+    if !params[:board_id].blank?
+      @all_comments = @all_comments.where(board_id: params[:board_id].to_i)
+    end
+
+    if !params[:status].blank?
+      case params[:status].to_i
+        when 1
+          @all_comments = @all_comments.normal
+        when 2
+          @all_comments = @all_comments.deleted
+      end
+    end
+
     @comments = @all_comments.desc(:_id).page(params[:page]).per(50)
     respond_with(@comments)
   end
