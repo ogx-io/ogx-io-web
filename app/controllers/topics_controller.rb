@@ -30,7 +30,7 @@ class TopicsController < ApplicationController
     post = Post.find(params[:for_post])
     if post
       page = @topic.posts.normal.where(_id: {'$lt' => post.id}).count / 10 + 1
-      redirect_to topic_path(post.topic, page: page)
+      redirect_to topic_path(post.topic, page: page) + "#floor-#{post.floor}"
     else
       redirect_to :back
     end
