@@ -102,12 +102,9 @@ class PostsController < ApplicationController
     pp.each do |k, v|
       pp[k] = p[k] = 1 - @post.send(k)
     end
+    @post.update(pp)
     respond_to do |format|
-      if @post.update(pp)
-        format.json { render json: p, status: :ok, location: @post }
-      else
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+      format.js { render 'refresh' }
     end
   end
 
@@ -115,7 +112,13 @@ class PostsController < ApplicationController
     authorize @post
     @post.resume_by(current_user)
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.js do
+        if params[:type] == 'user'
+          render 'users/refresh_post_item', locals: {post: @post}
+        else
+          render 'refresh'
+        end
+      end
     end
   end
 
@@ -126,7 +129,13 @@ class PostsController < ApplicationController
     @post.delete_by(current_user)
     respond_to do |format|
       # format.html { redirect_to board_posts_path(@post.board), notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js do
+        if params[:type] == 'user'
+          render 'users/refresh_post_item', locals: {post: @post}
+        else
+          render 'refresh'
+        end
+      end
     end
   end
 

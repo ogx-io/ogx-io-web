@@ -63,10 +63,12 @@ Rails.application.routes.draw do
 
   root to: 'visitors#index'
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+
   resources :users do
     member do
       get :topics
       get :elites
+      get :deleted_posts
     end
   end
 
@@ -77,6 +79,7 @@ Rails.application.routes.draw do
   get '/u/:name/topics', to: 'users#topics', as: :show_user_topics
   get '/u/:name/posts', to: 'users#show', as: :show_user_posts
   get '/u/:name/elites', to: 'users#elites', as: :show_user_elites
+  get '/u/:name/deleted_posts', to: 'users#deleted_posts', as: :show_user_deleted_posts
   get '/t/:sid', to: 'topics#show', as: :show_topic
   get '/p/:sid', to: 'posts#show', as: :show_post
 

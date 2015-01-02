@@ -29,9 +29,14 @@
                   <% end %>
                 </li>
             <% end %>
-            <% if policy(post).destroy? %>
+            <% if !post.deleted? && policy(post).destroy? %>
                 <li>
-                  <%= link_to '删除', post_path(post), method: :delete, remote: true, class: 'delete-post' %>
+                  <%= link_to '删除', post_path(post), method: :delete, remote: true %>
+                </li>
+            <% end %>
+            <% if post.deleted? && policy(post).resume? %>
+                <li>
+                  <%= link_to '恢复', resume_post_path(post), method: :patch, remote: true %>
                 </li>
             <% end %>
             <% if policy(post).update? %>
@@ -43,7 +48,7 @@
               <%= link_to post.comments.normal.count > 0 ? "评论(#{post.comments.normal.count})" : "评论", show_post_path(post.sid) + '#post-comments' %>
             </li>
             <li>
-              <%= link_to '回复', new_board_post_path(board, parent_id: post.id) %>
+              <%= link_to '回复', new_board_post_path(post.board, parent_id: post.id) %>
             </li>
           </ul>
         </div>

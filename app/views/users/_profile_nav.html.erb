@@ -2,6 +2,9 @@
   <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to '帖子', show_user_posts_path(@user.name) %></li>
   <li role="presentation" class="<%= "active" if index == 2 %>"><%= link_to '主题', show_user_topics_path(@user.name) %></li>
   <li role="presentation" class="<%= "active" if index == 3 %>"><%= link_to '精华帖', show_user_elites_path(@user.name) %></li>
+  <% if policy(@user).deleted_posts? %>
+      <li role="presentation" class="<%= "active" if index == 4 %>"><%= link_to '已删帖', show_user_deleted_posts_path(@user.name) %></li>
+  <% end %>
 </ul>
 
 <% content_for :title do %>

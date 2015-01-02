@@ -9,23 +9,16 @@
       <thead>
       <th>文章</th>
       <th class="text-center" style="width: 160px">所在版面</th>
-      <th class="text-center" style="width: 110px">发表时间</th>
+      <% if index == 4 %>
+          <th class="text-center" style="width: 110px">更新时间</th>
+          <th style="width: 100px">操作</th>
+      <% else %>
+          <th class="text-center" style="width: 110px">发表时间</th>
+      <% end %>
       </thead>
       <tbody>
       <% @posts.each do |post| %>
-          <tr>
-            <td class="post-title">
-              <div>
-                <%= link_to post.title, show_post_path(post.sid) %>
-                <% if post.elite == 1 && index != 3 %>
-                    <span class="elite-mark">精</span>
-                <% end %>
-              </div>
-              <div class="digest"><%= truncate post.body, length: 100, omission: '...' %></div>
-            </td>
-            <td class="text-center"><%= link_to post.board.name, show_board_path(post.board.path) %></td>
-            <td class="text-center"><%= time_digest post.created_at %></td>
-          </tr>
+        <%= render partial: 'post', locals: {post: post, index: index} %>
       <% end %>
       </tbody>
     </table>

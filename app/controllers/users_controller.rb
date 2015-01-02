@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :topics, :elites]
-  before_action :set_user, only: [:show, :topics, :elites]
+  before_action :set_user, only: [:show, :topics, :elites, :deleted_posts]
   after_action :verify_authorized
 
   def index
@@ -26,6 +26,14 @@ class UsersController < ApplicationController
     @all_posts = @user.posts.normal.elites
     @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
     render 'posts', locals: { index: 3 }
+  end
+
+  def deleted_posts
+    authorize @user
+    @all_posts = @user.posts.deleted_by_myself
+    @posts = @all_posts.desc(:updated_at).page(params[:page]).per(10)
+    @refresh = true
+    render 'posts', locals: { index: 4 }
   end
 
   def update

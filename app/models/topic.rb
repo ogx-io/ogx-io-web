@@ -16,9 +16,23 @@ class Topic
   has_many :posts
   belongs_to :board
   belongs_to :user
+  belongs_to :deleter, class_name: "User"
+  belongs_to :resumer, class_name: "User"
 
   def title
     self.posts.first.title
+  end
+
+  def resume_by(user)
+    self.deleted = 0
+    self.resumer = user
+    self.save
+  end
+
+  def delete_by(user)
+    self.deleted = 1
+    self.deleter = user
+    self.save
   end
 
   def deleted?

@@ -22,6 +22,7 @@ class Post
 
   scope :normal, -> { where(deleted: 0) }
   scope :deleted, -> { where(deleted: {'$gt' => 0}) }
+  scope :deleted_by_myself, -> { where(deleted: 1) }
   scope :elites, -> { where(elite: 1) }
 
   belongs_to :board
@@ -65,13 +66,18 @@ class Post
     end
     self.deleter = user
     self.save
-    self.topic.update(deleted: 1) if self.topic.posts.normal.count == 0
+    if self.topic.posts.normal.count == 0
+      self.topic.delete_by(user)
+    end
   end
 
   def resume_by(user)
     self.deleted = 0
     self.resumer = user
     self.save
+    if self.topic.deleted?
+      self.topic.resume_by(user)
+    end
   end
 
 end
