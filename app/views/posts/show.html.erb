@@ -20,7 +20,7 @@
         <nav class="topic-bar clearfix">
           本帖所在主题：<%= link_to @post.topic.title, @post.topic %>
           -
-          <%= link_to '在主题内查看', show_post_topic_path(@post.topic, for_post: @post.id) + '#floor-' + @post.floor.to_s %>
+          <%= link_to '在主题内查看', show_post_topic_path(@post.topic, for_post: @post.id) %>
         </nav>
         <%= render partial: 'post', locals: {post: @post, board: @board} %>
     <% else %>
