@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+    resources :blocked_users
+  end
+
+  namespace :admin do
     resources :posts do
       member do
         patch :resume

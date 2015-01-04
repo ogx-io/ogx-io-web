@@ -1,0 +1,9 @@
+<tr id="blocked-user-<%= blocked_user.id %>">
+  <td><%= blocked_user.id %></td>
+  <td><%= full_user_link blocked_user.user %></td>
+  <% board = Board.find(blocked_user.blockable_id) %>
+  <td><%= link_to board.name, show_board_path(board.path) if board %></td>
+  <td><%= user_link blocked_user.operator %></td>
+  <td><%= time_digest blocked_user.created_at %></td>
+  <td></td>
+</tr>

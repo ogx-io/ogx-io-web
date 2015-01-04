@@ -1,0 +1,18 @@
+<%= render partial: 'admin/common/admin_nav', locals: {index: 3} %>
+<div class="blocked-users-mng">
+  <%= render 'blocked_users_paginate_bar' %>
+  <table class="table table-hover">
+    <thead>
+    <th>id</th>
+    <th>被封用户</th>
+    <th>所在版面</th>
+    <th>操作人</th>
+    <th>封禁时间</th>
+    <th>操作</th>
+    </thead>
+    <tbody>
+    <%= render @blocked_users %>
+    </tbody>
+  </table>
+  <%= render 'blocked_users_paginate_bar' %>
+</div>

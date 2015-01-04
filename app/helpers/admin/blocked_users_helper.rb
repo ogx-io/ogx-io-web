@@ -1,0 +1,2 @@
+module Admin::BlockedUsersHelper
+end

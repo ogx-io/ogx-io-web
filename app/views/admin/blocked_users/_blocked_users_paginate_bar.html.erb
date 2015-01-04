@@ -1,0 +1,4 @@
+<nav class="list-bar clearfix">
+  被封禁用户数：<%= @all_blocked_users.count %>
+  <%= paginate @blocked_users, left: 1, right: 1 %>
+</nav>
