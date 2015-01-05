@@ -2,9 +2,6 @@
   <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to '主题', show_board_path(@board.path) %></li>
   <li role="presentation" class="<%= "active" if index == 2 %>"><%= link_to '帖子', list_board_posts_path(@board.path) %></li>
   <li role="presentation" class="<%= "active" if index == 3 %>"><%= link_to '精华区', list_board_elites_path(@board.path) %></li>
-  <% if policy(@board).blocked_users? %>
-      <li role="presentation" class="<%= "active" if index == 4 %>"><%= link_to '版主专用', deleted_board_posts_path(@board) %></li>
-  <% end %>
 </ul>
 
 <% content_for :title do %><%= @board.name %> - <%= ['', '主题', '帖子', '精华区', '版主专用'][index] %><% end %>

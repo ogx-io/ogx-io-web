@@ -48,15 +48,10 @@ Rails.application.routes.draw do
 
       collection do
         get :elites
-        get :deleted
       end
     end
 
     resources :topics, shallow: true do
-      collection do
-        get :deleted
-      end
-
       member do
         patch :resume
         patch :toggle_lock

@@ -1,5 +1,6 @@
 <%= render partial: 'admin/common/admin_nav', locals: {index: 3} %>
 <div class="blocked-users-mng">
+  <%= render 'blocked_users_filter_and_adder' %>
   <%= render 'blocked_users_paginate_bar' %>
   <table class="table table-hover">
     <thead>

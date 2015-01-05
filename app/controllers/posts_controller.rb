@@ -14,12 +14,6 @@ class PostsController < ApplicationController
     @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
   end
 
-  def deleted
-    authorize @board, :blocked_users?
-    @all_posts = @board.posts.deleted
-    @posts = @all_posts.desc(:updated_at).page(params[:page]).per(10)
-  end
-
   # GET /posts/1
   # GET /posts/1.json
   def show
