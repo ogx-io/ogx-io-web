@@ -7,6 +7,8 @@ class Admin::BlockedUsersController < ApplicationController
   respond_to :html
 
   def index
+    authorize current_user, :manage?
+
     @all_blocked_users = BlockedUser.where(blockable_type: "Board")
 
     if !current_user.admin?
@@ -29,6 +31,9 @@ class Admin::BlockedUsersController < ApplicationController
   def create
     @blocked_user = BlockedUser.new(blocked_user_params)
     @blocked_user[:blockable_id] = @blocked_user[:blockable_id].to_i
+
+    authorize @blocked_user
+
     if params[:username]
       user = User.find_by(name: params[:username])
       if user
@@ -39,11 +44,14 @@ class Admin::BlockedUsersController < ApplicationController
       end
     end
     @blocked_user.blocker = current_user
+
     @blocked_user.save
     redirect_to :back
   end
 
   def destroy
+    authorize @blocked_user
+
     @blocked_user.destroy
     respond_to do |format|
       format.js { render js: "$('#blocked-user-#{@blocked_user.id}').remove()" }
