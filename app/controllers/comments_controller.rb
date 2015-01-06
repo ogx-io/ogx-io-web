@@ -3,13 +3,6 @@ class CommentsController < ApplicationController
 
   layout false
 
-  def new
-    @comment = Comment.new
-    @comment.commentable_type = params[:commentable_type]
-    @comment.commentable_id = params[:commentable_id]
-    @comment.parent_id = params[:parent_id]
-  end
-
   def create
     @comment = Comment.new(comment_params)
     @comment.commentable_id = @comment.commentable_id.to_i
