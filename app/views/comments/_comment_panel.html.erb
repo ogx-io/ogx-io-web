@@ -1,4 +1,4 @@
-<div class="comment-panel comment-for-<%= commentable.class.to_s %>-<%= commentable.id %>" data-commentable-type="<%= commentable.class.to_s %>" data-commentable-id="<%= commentable.id %>">
+<div id="comment-for-<%= commentable.class.to_s %>-<%= commentable.id %>" class="comment-panel">
   <div class="content-wrapper">
     <%= render partial: '/comments/form', locals: {comment: @comment, hidden: false} %>
   </div>
