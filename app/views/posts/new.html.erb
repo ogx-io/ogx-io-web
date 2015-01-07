@@ -8,7 +8,7 @@
   </div>
   <h4>
     <% if @post.parent %>
-        回复 <%= link_to @post.parent.title, @post.parent %>
+        回复 <%= link_to @post.parent.title, @post.parent, target: '_blank' %>
     <% else %>
         新建主题
     <% end %>
