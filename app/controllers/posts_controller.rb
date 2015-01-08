@@ -23,15 +23,6 @@ class PostsController < ApplicationController
     @comment.commentable = @post
   end
 
-  def preview
-    @post = Post.new(post_params)
-    @post.board = @board
-    @post.author = current_user
-
-    @post.validate
-
-  end
-
   # GET /posts/new
   def new
     @post = Post.new
@@ -52,14 +43,16 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.board = @board
 
-    begin
-      authorize @post
-    rescue Pundit::NotAuthorizedError => exception
-      message = exception.policy.err_msg || '您没有此操作的权限！'
-      respond_to do |format|
-        format.html { flash.now[:error] = message; render :new }
+    if params[:preview] != "true"
+      begin
+        authorize @post
+      rescue Pundit::NotAuthorizedError => exception
+        message = exception.policy.err_msg || '您没有此操作的权限！'
+        respond_to do |format|
+          format.html { flash.now[:error] = message; render :new }
+        end
+        return
       end
-      return
     end
 
     @post.topic = @post.parent.topic if @post.parent
@@ -69,16 +62,24 @@ class PostsController < ApplicationController
     @post.referer = request.referer
 
     respond_to do |format|
-      if @post.save
-        if !@post.parent && params[:lock] == 'true'
-          @post.topic.lock = 1
-          @post.topic.save
+      if params[:preview] == "true"
+        if @post.valid?
+          format.html { render partial: 'preview' }
+        else
+          format.html { render html: "<script type=\"text/javascript\">$('.post-form').submit()</script>".html_safe }
         end
-        format.html { redirect_to show_post_topic_path(@post.topic, for_post: @post.id) + '#floor-' + @post.floor.to_s }
-        format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        if @post.save
+          if !@post.parent && params[:lock] == 'true'
+            @post.topic.lock = 1
+            @post.topic.save
+          end
+          format.html { redirect_to show_post_topic_path(@post.topic, for_post: @post.id) + '#floor-' + @post.floor.to_s }
+          format.json { render :show, status: :created, location: @post }
+        else
+          format.html { render :new }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -86,14 +87,25 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    authorize @post
+    authorize @post if params[:preview] != "true"
     respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post }
-        format.json { render :show, status: :ok, location: @post }
+      if params[:preview] == "true"
+        if @post.valid?
+          @board = @post.board
+          @post = Post.new(post_params)
+          @post.author = current_user
+          format.html { render partial: 'preview' }
+        else
+          format.html { render html: "<script type=\"text/javascript\">$('.post-form').submit()</script>".html_safe }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        if @post.update(post_params)
+          format.html { redirect_to @post }
+          format.json { render :show, status: :ok, location: @post }
+        else
+          format.html { render :edit }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

@@ -1,4 +1,4 @@
-<%= simple_form_for(@board ? [@board, @post] : @post) do |f| %>
+<%= simple_form_for(@board ? [@board, @post] : @post, html: {class: "post-form"}) do |f| %>
 
     <%= f.input :title, label: '标题', hint: '40个以内任意字符', required: false, input_html: {value: @post.parent && @post.title.blank? ? 'Re: ' + @post.parent.title : @post.title}, autofocus: true %>
     <div class="form-group">
@@ -19,7 +19,13 @@
     <% end %>
 
     <div class="actions center mt20 clearfix">
-      <%= f.submit '发表', class: 'btn btn-primary' %>
-      <%= f.submit '预览', class: 'btn btn-default', name: "preview" %>
+      <ul class="list-inline center">
+        <li>
+          <%= f.submit '发表', class: 'post-form-button btn btn-primary' %>
+        </li>
+        <li>
+          <button type="button" id="post-preview" class="post-form-button btn btn-default">预览</button>
+        </li>
+      </ul>
     </div>
 <% end %>

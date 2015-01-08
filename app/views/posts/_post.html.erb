@@ -8,7 +8,11 @@
           <div class="floor pull-right">#<%= post.floor %></div>
       <% end %>
       <h4>
-        <%= link_to h(post.title), show_post_path(post.sid) %>
+        <% if !post.new_record? %>
+            <%= link_to post.title, show_post_path(post.sid) %>
+        <% else %>
+            <%= post.title %>
+        <% end %>
         <% if !post.new_record? %>
             <% if post.elite != 0 %>
                 <span class="elite-mark">精华帖</span>
@@ -19,7 +23,7 @@
         <% end %>
       </h4>
 
-      <div class="post-author"><%= full_user_link post.author %> · <%= full_datetime post.created_at %></div>
+      <div class="post-author"><%= full_user_link post.author %> · <%= full_datetime post.new_record? ? Time.now : post.created_at %></div>
       <div class="post-content"><%= sanitize_post markdown(post.body) %></div>
       <% if !post.new_record? %>
           <div class="post-footer clearfix">

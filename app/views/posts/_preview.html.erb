@@ -1,0 +1,23 @@
+<div class="post-preview-container col-sm-10 right-side-layout">
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li><%= link_to 'boards', boards_path %></li>
+      <li><%= link_to @board.path, show_board_path(@board.path) %></li>
+      <li><a class="back-to-editor" href="javascript:;">发表帖子</a></li>
+      <li>预览</li>
+    </ol>
+  </div>
+
+  <h4>帖子预览</h4>
+  <div class="show-post">
+    <%= render partial: 'post', locals: {post: @post, board: @board} %>
+    <ul class="list-inline center">
+      <li>
+        <button type="button" class="submit-post-form post-form-button btn btn-primary">发表</button>
+      </li>
+      <li>
+        <button type="button" class="back-to-editor post-form-button btn btn-default">继续编辑</button>
+      </li>
+    </ul>
+  </div>
+</div>
