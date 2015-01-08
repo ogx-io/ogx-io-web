@@ -48,6 +48,7 @@ Rails.application.routes.draw do
 
       collection do
         get :elites
+        post :preview
       end
     end
 

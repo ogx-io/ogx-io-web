@@ -1,58 +1,67 @@
-<div id="floor-<%= post.floor %>" name="floor-<%= post.floor %>" class="post-item panel panel-default">
+<div id="floor-<%= post.floor || 'preview' %>" name="floor-<%= post.floor || 'preview' %>" class="post-item panel panel-default">
   <div class="panel-body">
     <div class="pull-left">
       <%= avatar(post.author) %>
     </div>
     <div class="post-detail">
-      <div class="floor pull-right">#<%= post.floor %></div>
+      <% if !post.new_record? %>
+          <div class="floor pull-right">#<%= post.floor %></div>
+      <% end %>
       <h4>
         <%= link_to h(post.title), show_post_path(post.sid) %>
-        <span class="elite-mark" style="<%= 'display: none' if post.elite == 0 %>">精华帖</span>
-        <% if post.deleted? %>
-            <span class="deleted-mark">(已删除)</span>
+        <% if !post.new_record? %>
+            <% if post.elite != 0 %>
+                <span class="elite-mark">精华帖</span>
+            <% end %>
+            <% if post.deleted? %>
+                <span class="deleted-mark">(已删除)</span>
+            <% end %>
         <% end %>
       </h4>
+
       <div class="post-author"><%= full_user_link post.author %> · <%= full_datetime post.created_at %></div>
       <div class="post-content"><%= sanitize_post markdown(post.body) %></div>
-      <div class="post-footer clearfix">
-        <div class="pull-left">
-          <%= social_share_button_tag h("给大家推荐一篇来自 #OGX社区# 的好文《#{post.title}》"), url: show_post_url(post.sid), via: 'ogxio', 'data-twitter-title' => h("给大家推荐一篇来自 #OGX社区 的好文《#{post.title}》") %>
-        </div>
-        <div class="pull-right">
-          <ul class="list-inline">
-            <% if policy(post).toggle? %>
+      <% if !post.new_record? %>
+          <div class="post-footer clearfix">
+            <div class="pull-left">
+              <%= social_share_button_tag h("给大家推荐一篇来自 #OGX社区# 的好文《#{post.title}》"), url: show_post_url(post.sid), via: 'ogxio', 'data-twitter-title' => h("给大家推荐一篇来自 #OGX社区 的好文《#{post.title}》") %>
+            </div>
+            <div class="pull-right">
+              <ul class="list-inline">
+                <% if policy(post).toggle? %>
+                    <li>
+                      <% if post.elite == 1 %>
+                          <%= link_to '取消精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
+                      <% else %>
+                          <%= link_to '设为精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
+                      <% end %>
+                    </li>
+                <% end %>
+                <% if !post.deleted? && policy(post).destroy? %>
+                    <li>
+                      <%= link_to '删除', post_path(post), method: :delete, remote: true %>
+                    </li>
+                <% end %>
+                <% if post.deleted? && policy(post).resume? %>
+                    <li>
+                      <%= link_to '恢复', resume_post_path(post), method: :patch, remote: true %>
+                    </li>
+                <% end %>
+                <% if policy(post).update? %>
+                    <li>
+                      <%= link_to '修改', edit_post_path(post) %>
+                    </li>
+                <% end %>
                 <li>
-                  <% if post.elite == 1 %>
-                      <%= link_to '取消精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
-                  <% else %>
-                      <%= link_to '设为精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
-                  <% end %>
+                  <%= link_to post.comments.normal.count > 0 ? "评论(#{post.comments.normal.count})" : "评论", show_post_path(post.sid) + '#post-comments' %>
                 </li>
-            <% end %>
-            <% if !post.deleted? && policy(post).destroy? %>
                 <li>
-                  <%= link_to '删除', post_path(post), method: :delete, remote: true %>
+                  <%= link_to '回复', new_board_post_path(post.board, parent_id: post.id) %>
                 </li>
-            <% end %>
-            <% if post.deleted? && policy(post).resume? %>
-                <li>
-                  <%= link_to '恢复', resume_post_path(post), method: :patch, remote: true %>
-                </li>
-            <% end %>
-            <% if policy(post).update? %>
-                <li>
-                  <%= link_to '修改', edit_post_path(post) %>
-                </li>
-            <% end %>
-            <li>
-              <%= link_to post.comments.normal.count > 0 ? "评论(#{post.comments.normal.count})" : "评论", show_post_path(post.sid) + '#post-comments' %>
-            </li>
-            <li>
-              <%= link_to '回复', new_board_post_path(post.board, parent_id: post.id) %>
-            </li>
-          </ul>
-        </div>
-      </div>
+              </ul>
+            </div>
+          </div>
+      <% end %>
     </div>
   </div>
 </div>

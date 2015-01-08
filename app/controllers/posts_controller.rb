@@ -23,6 +23,15 @@ class PostsController < ApplicationController
     @comment.commentable = @post
   end
 
+  def preview
+    @post = Post.new(post_params)
+    @post.board = @board
+    @post.author = current_user
+
+    @post.validate
+
+  end
+
   # GET /posts/new
   def new
     @post = Post.new
