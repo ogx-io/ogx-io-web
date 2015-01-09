@@ -1,6 +1,6 @@
 <%= simple_form_for(@board ? [@board, @post] : @post, html: {class: "post-form"}) do |f| %>
 
-    <%= f.input :title, label: '标题', hint: '40个以内任意字符', required: false, input_html: {value: @post.parent && @post.title.blank? ? 'Re: ' + @post.parent.title : @post.title}, autofocus: true %>
+    <%= f.input :title, label: '标题', hint: '40个以内任意字符', required: false, input_html: {value: @post.parent && @post.title.blank? ? (@post.parent.title.start_with?('Re: ') ? '' : 'Re: ') + @post.parent.title : @post.title}, autofocus: true %>
     <div class="form-group">
       <%= f.label '内容' %>
       <%= f.text_area :body, class: 'form-control', rows: 20 %>
