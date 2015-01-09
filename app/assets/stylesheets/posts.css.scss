@@ -103,20 +103,24 @@
 .latest-posts {
   .latest-post-item {
     .post-content {
-      margin-left: 60px;
-      h4 {
-        margin-top: 0;
-        margin-bottom: 7px;
+      margin-left: 50px;
+      .post-title {
+        color: #999;
+        line-height: 13px;
+        margin-bottom: 5px;
         a {
-          color: #333;
+          font-size: 13px;
         }
       }
       .post-body {
         margin-bottom: 2px;
+        font-size: 14px;
       }
       .post-info {
         color: #999;
-        font-size: 12px;
+        a {
+          color: #999;
+        }
       }
     }
     border-bottom: dashed #CCC 1px;
