@@ -23,7 +23,13 @@
         <% end %>
       </h4>
 
-      <div class="post-author"><%= full_user_link post.author %> · <%= full_datetime post.new_record? ? Time.now : post.created_at %></div>
+      <div class="post-author">
+        <%= full_user_link post.author %>
+        · <%= full_datetime post.new_record? ? Time.now : post.created_at %>
+        <% if post.parent %>
+            · parent: <%= link_to '#' + post.parent.floor.to_s, show_post_path(post.parent.sid), class: "reply-object-link" %>
+        <% end %>
+      </div>
       <div class="post-content"><%= sanitize_post markdown(post.body) %></div>
       <% if !post.new_record? %>
           <div class="post-footer clearfix">
