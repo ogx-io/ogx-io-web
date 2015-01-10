@@ -26,4 +26,14 @@ namespace :data do
     end
   end
 
+  desc "Set the parent_ids for the old replying post"
+  task set_post_parent_ids: :environment do
+    Post.all.each do |post|
+      if post.floor != 0 && !post.parent
+        post.parent = post.topic.posts.first
+        post.save
+      end
+    end
+  end
+
 end
