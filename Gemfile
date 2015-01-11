@@ -21,6 +21,7 @@ gem 'redcarpet'
 gem 'coderay'
 gem 'puma'
 gem 'social-share-button', git: 'https://github.com/cuterxy/social-share-button.git'
+gem 'carrierwave'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
