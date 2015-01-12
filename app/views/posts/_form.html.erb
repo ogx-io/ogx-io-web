@@ -3,6 +3,7 @@
     <%= f.input :title, label: '标题', hint: '40个以内任意字符', required: false, input_html: {value: @post.parent && @post.title.blank? ? (@post.parent.title.start_with?('Re: ') ? '' : 'Re: ') + @post.parent.title : @post.title}, autofocus: true %>
     <div class="form-group">
       <%= f.label '内容' %>
+      <div class="pull-right"><a href="javascript:;">插入图片</a></div>
       <%= f.text_area :body, class: 'form-control', rows: 20 %>
       <p class="help-block" style="color: red">* 内容须采用 Markdown 语法书写
         <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown" target="_blank">语法说明和练习</a></p>

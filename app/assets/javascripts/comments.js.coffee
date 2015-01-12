@@ -11,4 +11,3 @@ ready = ->
   $('.comment-form').find(".comment-form-body").trigger("keyup")
 
 $(document).ready(ready)
-$(document).on('page:load', ready)

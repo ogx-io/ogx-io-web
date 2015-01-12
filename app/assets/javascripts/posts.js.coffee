@@ -17,4 +17,3 @@ ready = ->
     $('.post-form').submit()
 
 $(document).ready(ready)
-$(document).on('page:load', ready)

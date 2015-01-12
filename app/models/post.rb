@@ -33,6 +33,7 @@ class Post
   belongs_to :resumer, class_name: "User"
 
   has_many :comments, as: :commentable
+  has_many :pictures, as: :picturable
 
   before_create :set_topic_and_floor
   after_create :update_topic, :update_author

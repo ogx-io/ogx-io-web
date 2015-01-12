@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :pictures
+
   namespace :admin do
     resources :blocked_users
   end
