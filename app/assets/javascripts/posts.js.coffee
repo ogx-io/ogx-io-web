@@ -53,4 +53,5 @@ ready = ->
   restoreUploaderStatus = () ->
     $("#post-add-pic").parent().find("span.loading").remove()
     $("#post-add-pic").show()
+
 $(document).ready(ready)
