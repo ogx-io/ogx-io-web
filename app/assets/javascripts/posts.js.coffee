@@ -16,4 +16,41 @@ ready = ->
   $('body').delegate '.submit-post-form', 'click', ->
     $('.post-form').submit()
 
+  # upload pictures
+  $("#post-add-pic").bind "click", () ->
+    $(".post-editor").focus()
+    $("#post-upload-images").click()
+    return false
+
+  opts =
+    url: "/pictures"
+    type: "POST"
+    beforeSend: () ->
+      $("#post-add-pic").hide().before("<span class='loading'>上传中...</span>")
+    success: (result, status, xhr) ->
+      restoreUploaderStatus()
+      if result != ''
+        appendImageFromUpload([result])
+      else
+        alert('您可能上传图片太频繁了')
+    error: (result, status, errorThrown) ->
+      restoreUploaderStatus()
+      alert(errorThrown)
+  $("#post-upload-images").fileUpload opts
+
+  appendImageFromUpload = (srcs) ->
+    txtBox = $(".post-editor")
+    caret_pos = txtBox.caret('pos')
+    src_merged = ""
+    for src in srcs
+      src_merged = "![](#{src})\n"
+    source = txtBox.val()
+    before_text = source.slice(0, caret_pos)
+    txtBox.val(before_text + src_merged + source.slice(caret_pos+1, source.count))
+    txtBox.caret('pos',caret_pos + src_merged.length)
+    txtBox.focus()
+
+  restoreUploaderStatus = () ->
+    $("#post-add-pic").parent().find("span.loading").remove()
+    $("#post-add-pic").show()
 $(document).ready(ready)

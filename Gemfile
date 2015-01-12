@@ -24,6 +24,8 @@ gem 'puma'
 gem 'social-share-button', git: 'https://github.com/cuterxy/social-share-button.git'
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'qiniu-rs'
+gem 'carrierwave-qiniu', git: 'https://github.com/huobazi/carrierwave-qiniu.git'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

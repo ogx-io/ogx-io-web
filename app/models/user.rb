@@ -52,6 +52,7 @@ class User
 
   field :last_comment_at, type: Time
   field :last_post_at, type: Time
+  field :last_upload_image_at, type: Time
 
   validates_presence_of :name, message: "请输入用户名"
   validates_uniqueness_of :name, message: "该用户名已存在"
@@ -96,4 +97,11 @@ class User
     end
   end
 
+  def can_upload_image?
+    if self.last_upload_image_at
+      Time.now - self.last_upload_image_at > 5.seconds
+    else
+      true
+    end
+  end
 end
