@@ -23,6 +23,10 @@ class Topic
     self.posts.first.title
   end
 
+  def last_reply_user
+    self.posts.normal.last.author
+  end
+
   def resume_by(user)
     self.deleted = 0
     self.resumer = user

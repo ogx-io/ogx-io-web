@@ -1,20 +1,21 @@
-<div class="col-sm-7 latest-posts right-side-layout">
+<div class="col-sm-7 front-page right-side-layout">
   <div class="row">
     <ol class="breadcrumb pull-left">
       <li>最新动态</li>
     </ol>
   </div>
 
-  <% @posts.each do |post| %>
-      <div class="latest-post-item">
+  <% @topics.each do |topic| %>
+      <div class="topic-list-item">
         <div class="author-avatar pull-left">
-          <%= avatar post.author, 40 %>
+          <%= avatar topic.user, 40 %>
         </div>
-        <div class="post-content">
-          <div class="post-title"><%= user_link post.author %> 发表了<%= post.parent ? "回帖" : "主帖" %> <%= link_to post.title, show_post_path(post.sid) %> · <%= time_digest post.created_at %></div>
-          <div class="post-body"><%= truncate post.body, length: 100, omission: '...' %></div>
-          <div class="post-info"><%= link_to post.board.name, show_board_path(post.board.path) %>
-            - <%= link_to post.topic.title, show_topic_path(post.topic.sid) %>
+        <div class="topic-content">
+          <div class="topic-posts-count pull-right"><%= link_to topic.posts.normal.count - 1, show_topic_path(topic.sid), class: "badge" if topic.posts.normal.count > 1 %></div>
+          <div class="topic-title"><%= link_to topic.title, show_topic_path(topic.sid) %></div>
+          <div class="topic-info">
+            <span class="board-name"><%= link_to topic.board.name, show_board_path(topic.board.path) %></span>
+            · 最后由 <%= user_link topic.last_reply_user %> 回复于 <%= time_digest topic.replied_at %>
             </div>
         </div>
       </div>

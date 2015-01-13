@@ -1,6 +1,6 @@
 class VisitorsController < ApplicationController
 
   def index
-    @posts = Post.normal.desc(:created_at).limit(15)
+    @topics = Topic.normal.desc(:replied_at).limit(15)
   end
 end
