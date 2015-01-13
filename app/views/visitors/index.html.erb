@@ -18,9 +18,9 @@
             <span class="board-name"><%= link_to topic.board.name, show_board_path(topic.board.path) %></span>
             ·
             <% if posts_count > 1 %>
-                最后由 <%= user_link topic.last_reply_user %> 回复于 <%= time_digest topic.replied_at %>
+                最后由 <%= user_link topic.last_replying_user %> 回复于 <%= time_digest topic.last_replied_at %>
             <% else %>
-                <%= user_link topic.user %> 发表于 <%= time_digest topic.replied_at %>
+                <%= user_link topic.user %> 发表于 <%= time_digest topic.posts.first.created_at %>
             <% end %>
           </div>
         </div>

@@ -23,8 +23,12 @@ class Topic
     self.posts.first.title
   end
 
-  def last_reply_user
+  def last_replying_user
     self.posts.normal.last.author
+  end
+
+  def last_replied_at
+    self.posts.normal.last.created_at
   end
 
   def resume_by(user)
