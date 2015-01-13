@@ -11,12 +11,18 @@
           <%= avatar topic.user, 40 %>
         </div>
         <div class="topic-content">
-          <div class="topic-posts-count pull-right"><%= link_to topic.posts.normal.count - 1, show_topic_path(topic.sid), class: "badge" if topic.posts.normal.count > 1 %></div>
+          <% posts_count = topic.posts.normal.count %>
+          <div class="topic-posts-count pull-right"><%= link_to posts_count - 1, show_topic_path(topic.sid), class: "badge" if posts_count > 1 %></div>
           <div class="topic-title"><%= link_to topic.title, show_topic_path(topic.sid) %></div>
           <div class="topic-info">
             <span class="board-name"><%= link_to topic.board.name, show_board_path(topic.board.path) %></span>
-            · 最后由 <%= user_link topic.last_reply_user %> 回复于 <%= time_digest topic.replied_at %>
-            </div>
+            ·
+            <% if posts_count > 1 %>
+                最后由 <%= user_link topic.last_reply_user %> 回复于 <%= time_digest topic.replied_at %>
+            <% else %>
+                <%= user_link topic.user %> 发表于 <%= time_digest topic.replied_at %>
+            <% end %>
+          </div>
         </div>
       </div>
   <% end %>
