@@ -12,7 +12,7 @@
       <% if posts_count > 1 %>
           最后由 <%= user_link topic.last_replying_user %> 回复于 <%= link_to time_digest(topic.last_replied_at), show_post_topic_path(topic, for_post: topic.posts.last.id), title: topic.posts.last.title %>
       <% else %>
-          <%= user_link topic.user %> 发表于 <%= link_to time_digest(topic.posts.first.created_at), show_topic_path(topic.sid) %>
+          最初由 <%= user_link topic.user %> 发表于 <%= link_to time_digest(topic.posts.first.created_at), show_topic_path(topic.sid) %>
       <% end %>
     </div>
   </div>
