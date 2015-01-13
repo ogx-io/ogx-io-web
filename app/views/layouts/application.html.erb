@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) + ' - OGX 社区' : "OGX 社区 - Open Geeks 的社区 - 开源、共建、好玩的社区 - 极客们的网上家园" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "OGX 社区 - 开源、共建、好玩的社区 - 极客们的网上家园" %>">
+    <title><%= content_for?(:title) ? yield(:title) + ' - OGX社区' : "OGX社区 - Open Geeks 的社区 - 开源、共建、好玩的社区 - 极客们的网上家园" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "OGX社区 - 开源、共建、好玩的社区 - 极客们的网上家园" %>">
     <% if content_for?(:author) %>
       <meta name="author" content="<%= yield(:author) %>">
     <% end %>
