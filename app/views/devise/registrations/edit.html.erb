@@ -14,13 +14,14 @@
       <%= f.input :email, label: '邮件地址', hint: devise_mapping.confirmable? && resource.pending_reconfirmation? ? "正在等待验证的邮件地址：#{resource.unconfirmed_email}" : '' %>
       <%= f.input :city, label: '所在城市', hint: '20个以内任意字符' %>
       <%= f.input :intro, label: '个人签名', hint: '50个以内任意字符' %>
+      <%= f.input :website, label: '个人网站', placeholder: "http://example.com", hint: '50个以内任意字符' %>
 
       <fieldset>
+        <%= f.input :avatar, label: "更改头像", as: :file %>
         <div>
           <div class="pull-left">当前头像：</div>
-          <%= avatar(resource, 70, false) %>
+          <%= avatar(resource, 160, false) %>
         </div>
-        <div>用邮件地址 <%= resource.email %> 到 <%= link_to '这里注册或登录', 'http://en.gravatar.com', target: '_blank' %> 修改头像</div>
       </fieldset>
       <fieldset>
         <p>如果不想改变密码就在这里留空</p>

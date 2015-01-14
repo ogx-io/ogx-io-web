@@ -49,6 +49,10 @@ class User
   field :nick, type: String  # a user will be displayed as 'nick(@name)'
   field :intro, type: String # a short introduction of a user
   field :city, type: String # the city which the user is living
+  field :website, type: String # the user's personal website
+
+  field :avatar, type: String # the user's avatar
+  mount_uploader :avatar, AvatarUploader
 
   field :last_comment_at, type: Time
   field :last_post_at, type: Time
@@ -68,13 +72,19 @@ class User
 
   validates_length_of :city, maximum: 20, message: '输入的城市名称太长了'
 
+  validates_format_of :website, with: /^https?:\/\/.+/, multiline: true, message: "网址必须以 http:// 或者 https:// 开头"
+
   has_and_belongs_to_many :managing_boards, class_name: "Board", inverse_of: :moderators
   has_many :posts, inverse_of: :author
   has_many :topics
   has_many :blocked_users
 
   def get_avatar(size=70)
-    "#{Rails.application.secrets.avatar_host}/avatar/" + Digest::MD5.hexdigest(self.email) + '?s=' + size.to_s + '&d=retro'
+    if self.avatar.blank?
+      "#{Rails.application.secrets.avatar_host}/avatar/" + Digest::MD5.hexdigest(self.email) + '?s=' + size.to_s + '&d=retro'
+    else
+      "#{self.avatar.url}?imageView2/0/w/#{size}/h/#{size}"
+    end
   end
 
   def get_nick
