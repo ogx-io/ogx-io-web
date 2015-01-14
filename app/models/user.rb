@@ -72,8 +72,6 @@ class User
 
   validates_length_of :city, maximum: 20, message: '输入的城市名称太长了'
 
-  validates_format_of :website, with: /^https?:\/\/.+/, multiline: true, message: "网址必须以 http:// 或者 https:// 开头"
-
   has_and_belongs_to_many :managing_boards, class_name: "Board", inverse_of: :moderators
   has_many :posts, inverse_of: :author
   has_many :topics
