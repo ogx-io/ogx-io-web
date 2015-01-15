@@ -22,17 +22,19 @@ class Comment
   belongs_to :deleter, class_name: "User"
   belongs_to :resumer, class_name: "User"
   belongs_to :board
+  belongs_to :reply_to, class_name: "Comment" # the comment id that this comment reply to
 
   validates_presence_of :body, message: "评论内容不能为空"
   validates_length_of :body, maximum: 200, message: "评论内容不能超过200个字"
 
-  attr_accessor :max_depth # remember setting the maximum depth before saving. default is 999
+  attr_accessor :max_depth # remember setting the maximum depth before saving. default is 2
 
   before_create :set_thread
   after_create :update_user
 
   def set_thread
-    @max_depth ||= 999
+    @max_depth ||= 3
+    self.reply_to_id = self.parent_id
     if self.parent_id != 0
       parent = Comment.find(self.parent_id)
       parent_depth = parent.thread.split('.').length
@@ -40,10 +42,10 @@ class Comment
         self.parent_id = parent.parent_id
       end
       parent = Comment.where(_id: self.parent_id).find_and_modify({"$inc" => { comment_count: 1 }}, new: true)
-      self.thread2 = parent.thread2 + ".#{parent.comment_count}"
+      self.thread2 = parent.thread2 + '.' + get_thread_num(parent.comment_count)
     else
       parent = self.commentable_type.constantize.where(_id: self.commentable_id).find_and_modify({"$inc" => { comment_count: 1 }}, new: true)
-      self.thread2 = "#{parent.comment_count}"
+      self.thread2 = get_thread_num(parent.comment_count)
     end
     self.thread = self.thread2 + '/'
   end
@@ -81,7 +83,7 @@ class Comment
 
   def get_tree
     thread_array = self.thread2.split('.')
-    thread_array[thread_array.length - 1] = thread_array[thread_array.length - 1].to_i - 1
+    thread_array[thread_array.length - 1] = get_thread_num(thread_array[thread_array.length - 1].to_i - 1)
     next_thread = thread_array.join('.') + '/'
     Comment.where(commentable_type: self.commentable_type, commentable_id: self.commentable_id, t: {'$lte' => self.thread, '$gt' => next_thread})
   end
@@ -91,5 +93,11 @@ class Comment
     comment.commentable = parent.commentable
     comment.parent_id = parent.id
     comment
+  end
+
+  private
+
+  def get_thread_num(num)
+    sprintf('%03d',num)
   end
 end

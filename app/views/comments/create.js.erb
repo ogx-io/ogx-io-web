@@ -2,5 +2,6 @@
 alert('<%= @comment.errors[:body][0] %>')
 <% else %>
 $('#comment-for-<%= @comment.commentable_type %>-<%= @comment.commentable_id %>').find('ul#comment-<%= @comment.parent_id %>').prepend("<%= j render @comment %>").find("textarea").autosize({append: false});
-$('ul#comment-<%= @comment.parent_id %>').parent().children('.content-wrapper').find('#comment_body').val('').trigger("keyup").trigger("autosize.resize");
+$('ul#comment-<%= @comment.reply_to_id %>').parent().children('.content-wrapper').find('#comment_body').val('').trigger("keyup").trigger("autosize.resize");
+$('ul#comment-<%= @comment.reply_to_id %>').parent().children('.content-wrapper').find('a.reply-comment').click();
 <% end %>
