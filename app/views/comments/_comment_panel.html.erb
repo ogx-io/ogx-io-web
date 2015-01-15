@@ -1,7 +1,7 @@
 <div id="comment-for-<%= commentable.class.to_s %>-<%= commentable.id %>" class="comment-panel">
   <ul id="comment-0" class="comment-list">
   </ul>
-  <div class="content-wrapper">
+  <div class="form-wrapper">
     <%= render partial: '/comments/form', locals: {comment: @comment, hidden: false} %>
   </div>
 </div>

@@ -4,7 +4,7 @@
   </div>
   <div class="topic-content">
     <% posts_count = topic.posts.normal.count %>
-    <div class="topic-posts-count pull-right"><%= link_to posts_count - 1, show_topic_path(topic.sid), class: "badge" if posts_count > 1 %></div>
+    <div class="topic-posts-count pull-right"><%= link_to posts_count - 1, show_topic_path(topic.sid) if posts_count > 1 %></div>
     <div class="topic-title"><%= link_to topic.title, show_topic_path(topic.sid) %></div>
     <div class="topic-info">
       <span class="board-name"><%= link_to topic.board.name, show_board_path(topic.board.path) %></span>
