@@ -4,7 +4,7 @@
 
 ready = ->
   $('body').delegate '.comment-panel a.reply-comment', 'click', ->
-    $(this).parent().next().toggleClass('hide')
+    $(this).parent().parent().next().next().find('.comment-form').toggleClass('hide').find('.comment-form-body').focus()
 
   $('body').delegate '.comment-form-body', 'keyup change input', ->
     $(this).parent().next().find(".tips .left-number").text(200 - $(this).val().length)

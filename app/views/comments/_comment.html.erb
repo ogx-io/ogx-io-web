@@ -6,16 +6,18 @@
     <div class="author-time">
       <span class="author"><%= user_link comment.user %></span>
       <% if comment.reply_to %>
-      回应 <%= user_link comment.reply_to.user %>
+          回应 <%= user_link comment.reply_to.user %>
       <% end %>
       ·
       <span class="time"><%= time_digest comment.created_at %></span>
     </div>
     <div class="content-wrapper">
       <%= render partial: "comments/comment_content", locals: {comment: comment} %>
-      <%= render partial: '/comments/form', locals: {comment: Comment.new_from_parent(comment), hidden: true} %>
     </div>
     <ul id="comment-<%= comment.id %>" class="child-list">
     </ul>
+    <div class="form-wrapper">
+      <%= render partial: '/comments/form', locals: {comment: Comment.new_from_parent(comment), hidden: true} %>
+    </div>
   </div>
 </li>
