@@ -7,7 +7,7 @@
       <% if !post.new_record? %>
           <div class="floor pull-right">#<%= post.floor %></div>
       <% end %>
-      <h4>
+      <h4 <%= 'class=re-title' if post.title.start_with?('Re:') %>>
         <% if !post.new_record? %>
             <%= link_to post.title, show_post_path(post.sid) %>
         <% else %>
@@ -24,11 +24,11 @@
       </h4>
 
       <div class="post-author">
-        <%= full_user_link post.author %>
-        · <%= full_datetime post.new_record? ? Time.now : post.created_at %>
+        <%= user_link post.author %>
         <% if post.parent %>
-            · 回复了 <%= link_to '#' + post.parent.floor.to_s, show_post_path(post.parent.sid), title: "#{post.parent.author.nick} @#{post.parent.author.name} - #{post.parent.title}" %>
+            回复了 <%= user_link post.parent.author %> 的 <%= link_to '#' + post.parent.floor.to_s, show_post_path(post.parent.sid), title: "#{post.parent.title}" %>
         <% end %>
+        · <%= full_datetime post.new_record? ? Time.now : post.created_at %>
       </div>
       <div class="post-content"><%= sanitize_post markdown(post.body) %></div>
       <% if !post.new_record? %>
