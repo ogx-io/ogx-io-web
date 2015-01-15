@@ -27,7 +27,7 @@
         <%= full_user_link post.author %>
         · <%= full_datetime post.new_record? ? Time.now : post.created_at %>
         <% if post.parent %>
-            · parent: <%= link_to '#' + post.parent.floor.to_s, show_post_path(post.parent.sid), class: "reply-object-link" %>
+            · 回复了 <%= link_to '#' + post.parent.floor.to_s, show_post_path(post.parent.sid), title: "#{post.parent.author.nick} @#{post.parent.author.name} - #{post.parent.title}" %>
         <% end %>
       </div>
       <div class="post-content"><%= sanitize_post markdown(post.body) %></div>
