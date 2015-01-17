@@ -217,10 +217,10 @@ div {
 
 .right-side-layout {
     margin-top: 15px;
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
         border-left: dotted #EEE 1px;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         padding: 0;
     }
 }

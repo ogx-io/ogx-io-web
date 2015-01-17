@@ -16,12 +16,12 @@
     }
   }
   .post-detail {
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       margin-left: 70px + $post-item-padding * 2;
       padding: $post-item-padding;
       border-left: dotted #DDD 1px;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       padding: $post-item-padding * 0.8;
     }
     .floor {
