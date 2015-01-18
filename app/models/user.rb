@@ -76,6 +76,7 @@ class User
   has_many :posts, inverse_of: :author
   has_many :topics
   has_many :blocked_users
+  has_many :notifications, class_name: 'Notification::Base', dependent: :delete
 
   def get_avatar(size=70)
     if self.avatar.blank?

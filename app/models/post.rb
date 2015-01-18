@@ -4,6 +4,7 @@ class Post
   include Mongoid::Enum
 
   include Sidable
+  include Mentionable
 
   field :t, as: :title, type: String
   field :b, as: :body, type: String
@@ -36,7 +37,13 @@ class Post
   has_many :pictures, as: :picturable
 
   before_create :set_topic_and_floor
-  after_create :update_topic, :update_author
+  after_create :update_topic, :update_author, :send_notifications
+
+  def send_notifications
+    if self.parent
+      Notification::PostReply.create(user: self.parent.author, post: self) if self.author != self.parent.author
+    end
+  end
 
   def set_topic_and_floor
     if self.topic.nil?

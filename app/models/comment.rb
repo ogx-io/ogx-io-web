@@ -2,6 +2,8 @@ class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  include Mentionable
+
   field :b, as: :body, type: String
   field :p, as: :parent_id, type: Integer
   field :t, as: :thread, type: String # format: "1.2.1/". It is used for sorting: desc(:thread)
