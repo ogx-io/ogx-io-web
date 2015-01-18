@@ -2,10 +2,9 @@ module Mentionable
   extend ActiveSupport::Concern
 
   included do
-    field :mentioned_user_ids, type: Array, default: []
     has_many :notification_mentions, as: :mentionable, class_name: 'Notification::Mention'
 
-    after_save :send_mention_notifications
+    after_create :send_mention_notifications
   end
 
   def send_mention_notifications
