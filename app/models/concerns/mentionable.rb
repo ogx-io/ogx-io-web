@@ -23,4 +23,11 @@ module Mentionable
     end
   end
 
+  def delete_mention_notifications
+    Notification::Mention.where(mentionable_id: self.id, mentionable_type: self.class.name).delete_all
+    self.class.skip_callback(:save, :after, :send_mention_notifications)
+    update_attribute(:mentioned_user_ids, [])
+    self.class.set_callback(:save, :after, :send_mention_notifications)
+  end
+
 end
