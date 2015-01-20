@@ -71,6 +71,12 @@ Rails.application.routes.draw do
       get :elites
       get :deleted_posts
     end
+
+    resources :notifications do
+      collection do
+        delete :clean
+      end
+    end
   end
 
   get '/:path', to: 'topics#index', as: :show_board

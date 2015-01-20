@@ -1,0 +1,10 @@
+<div class="col-md-9 notification-page right-side-layout">
+  <h3>提醒通知</h3>
+  <%= render 'notification_paginate_bar' %>
+  <table class="notification-list table">
+    <tbody>
+    <%= render partial: "notification", collection: @notifications %>
+    </tbody>
+  </table>
+  <%= render 'notification_paginate_bar' if @all_notifications.count > 0 %>
+</div>

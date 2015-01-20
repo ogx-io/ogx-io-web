@@ -1,0 +1,58 @@
+// Place all the styles related to the notifications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.notification-page {
+  H3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  .table {
+    margin: 15px 0;
+  }
+  .table > tbody > tr > td {
+    padding-top: 10px;
+    padding-bottom: 12px;
+    border-top: solid #EEE 1px;
+  }
+  .table > tbody > tr:last-of-type > td {
+    border-bottom: solid #EEE 1px;
+  }
+}
+
+.notification-row {
+  .avatar {
+    width: 40px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .content {
+    .title {
+      color: #999;
+      margin-bottom: 8px;
+    }
+    .details {
+      padding: 5px 8px;
+      background-color: #EEE;
+      max-width: 550px;
+      border-radius: 3px;
+    }
+  }
+  .time-delete {
+    width: 100px;
+    color: #999;
+    text-align: right;
+    font-size: 12px;
+    .time {
+      margin-bottom: 3px;
+    }
+    a {
+      color: #CCC;
+    }
+  }
+  .new-item-tip {
+    font-size: 11px;
+    color: red;
+  }
+}

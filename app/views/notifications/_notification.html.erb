@@ -1,0 +1,8 @@
+<tr id="notification-<%= notification.id %>" class="notification-row">
+  <%= render partial: "notifications/#{notification.class.name.underscore}", locals: { notification: notification } %>
+  <% notification.set_read %>
+  <td class="time-delete hidden-xs">
+    <div class="time"><%= time_digest notification.created_at %></div>
+    <div class="delete"><%= link_to "删除", user_notification_path(@user, notification), method: :delete %></div>
+  </td>
+</tr>

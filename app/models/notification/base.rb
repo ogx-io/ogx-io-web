@@ -9,4 +9,7 @@ class Notification::Base
 
   scope :unread, -> { where(read: false) }
 
+  def set_read
+    self.update_attribute(:read, true)
+  end
 end

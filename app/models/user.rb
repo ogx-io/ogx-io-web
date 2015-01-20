@@ -90,6 +90,10 @@ class User
     self.nick ? self.nick : self.name
   end
 
+  def new_notification_count
+    self.notifications.unread.count
+  end
+
   def can_post?
     if self.last_post_at
       Time.now - self.last_post_at > 1.minute

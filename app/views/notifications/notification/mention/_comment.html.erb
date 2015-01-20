@@ -1,0 +1,13 @@
+<td class="avatar"><%= avatar mentionable.user, 40 %></td>
+<td class="content">
+  <div class="title">
+    <%= user_link mentionable.user %>
+    在帖子
+    <%= link_to mentionable.commentable.title, show_post_path(mentionable.commentable.sid) %>
+    的评论里提到了你
+    <% if !notification.read %>
+    <span class="new-item-tip">新提醒</span>
+    <% end %>
+  </div>
+  <div class="details"><%= mentionable.body %></div>
+</td>
