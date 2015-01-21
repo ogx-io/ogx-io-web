@@ -1,7 +1,7 @@
 <% content_for :title do %><%= @topic.title %> - <%= @board.name %><% end %>
 <% content_for :description do %><%= (truncate @first.body, length: 200, omission: '...').strip.gsub(/\s+/,'') %><% end %>
 
-<div class="col-sm-10 right-side-layout">
+<div class="col-lg-9 col-sm-10 right-side-layout">
   <div class="row">
     <ol class="breadcrumb pull-left">
       <li><%= link_to 'boards', boards_path %></li>
