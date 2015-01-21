@@ -5,35 +5,38 @@
     </div>
     <div class="post-detail">
       <% if !post.new_record? %>
-          <div class="floor pull-right">#<%= post.floor %></div>
+          <%= link_to show_post_path(post.sid) do %>
+              <div class="floor pull-right">#<%= post.floor %></div>
+          <% end %>
       <% end %>
-      <h4 <%= 'class=re-title' if post.title.start_with?('Re:') %>>
+      <h4 class="<%= 're-title hide' if post.title.start_with?('Re:') %>">
         <% if !post.new_record? %>
             <%= link_to post.title, show_post_path(post.sid) %>
         <% else %>
             <%= post.title %>
-        <% end %>
-        <% if !post.new_record? %>
-            <% if post.elite != 0 %>
-                <span class="elite-mark">精华帖</span>
-            <% end %>
-            <% if post.deleted? %>
-                <span class="deleted-mark">(已删除)</span>
-            <% end %>
         <% end %>
       </h4>
 
       <div class="post-author">
         <%= user_link post.author %>
         <% if post.parent %>
-            回复了 <%= user_link post.parent.author %> 的 <%= link_to '#' + post.parent.floor.to_s, show_post_path(post.parent.sid), title: "#{post.parent.title}" %>
+            回复 <%= user_link post.parent.author %>
+            的 <%= link_to '#' + post.parent.floor.to_s, show_post_path(post.parent.sid), title: "#{post.parent.title}" %>
         <% end %>
         · <%= full_datetime post.new_record? ? Time.now : post.created_at %>
+        <% if !post.new_record? %>
+            <% if post.elite != 0 %>
+                &nbsp;<span class="elite-mark">精华帖</span>
+            <% end %>
+            <% if post.deleted? %>
+                &nbsp;<span class="deleted-mark">(已删除)</span>
+            <% end %>
+        <% end %>
       </div>
       <div class="post-content"><%= sanitize_post markdown(post.body) %></div>
       <% if !post.new_record? %>
           <div class="post-footer clearfix">
-            <div class="pull-left">
+            <div class="pull-left hide">
               <%= social_share_button_tag h("给大家推荐一篇来自 #OGX社区# 的好文《#{post.title}》"), url: show_post_url(post.sid), via: 'ogxio', 'data-twitter-title' => h("给大家推荐一篇来自 #OGX社区 的好文《#{post.title}》") %>
             </div>
             <div class="pull-right">
