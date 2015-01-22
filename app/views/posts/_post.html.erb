@@ -23,7 +23,7 @@
             回复 <%= user_link post.parent.author %>
             的 <%= link_to '#' + post.parent.floor.to_s, show_post_path(post.parent.sid), title: "#{post.parent.title}" %>
         <% end %>
-        · <%= full_datetime post.new_record? ? Time.now : post.created_at %>
+        · <%= time_digest post.new_record? ? Time.now : post.created_at %>
         <% if !post.new_record? %>
             <% if post.elite != 0 %>
                 &nbsp;<span class="elite-mark">精华帖</span>

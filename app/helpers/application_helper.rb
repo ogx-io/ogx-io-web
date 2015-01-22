@@ -51,9 +51,25 @@ module ApplicationHelper
 
   def time_digest(time)
     now = Time.now
-    return time.strftime("%H:%M:%S") if now.day == time.day
-    return time.strftime("%m-%d %H:%M") if now.year == time.year
-    time.strftime("%F")
+    diff_seconds = now - time
+    str = case diff_seconds
+            when 0 .. 59
+              "#{ diff_seconds } 秒前"
+            when 60 .. (3600-1)
+              "#{ (diff_seconds / 60).to_i } 分钟前"
+            when 3600 .. (3600 * 24 - 1)
+              "#{ (diff_seconds / 3600).to_i } 小时前"
+            when (3600 * 24) .. (3600 * 24 * 31)
+              "#{ (diff_seconds / (3600 * 24)).to_i } 天前"
+            else
+              diff_months = (now.year - time.year) * 12 + now.month - time.month
+              if time.year == now.year || diff_months < 12
+                "#{diff_months} 个月前"
+              else
+                "#{now.year - time.year} 年前"
+              end
+          end
+    "<span title=\"#{time.strftime("%F %T")}\">#{str}</span>".html_safe
   end
 
   def markdown(text)
