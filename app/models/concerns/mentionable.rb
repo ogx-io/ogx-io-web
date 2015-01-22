@@ -14,7 +14,7 @@ module Mentionable
       user_ids = User.where(:name.in => names).limit(5).collect { |u| u.id }
       uids = user_ids - self.mentioned_user_ids
       uids.each do |uid|
-        Notification::Mention.create(user_id: uid, mentionable: self)
+        Notification::Mention.create(user_id: uid, mentionable: self) if uid != self.author.id
       end
 
       self.class.skip_callback(:save, :after, :send_mention_notifications)

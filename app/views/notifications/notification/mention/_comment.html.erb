@@ -3,7 +3,7 @@
   <div class="title">
     <%= user_link mentionable.user %>
     在帖子
-    <%= link_to mentionable.commentable.title, show_post_path(mentionable.commentable.sid) %>
+    <%= link_to mentionable.commentable.title, show_post_path(mentionable.commentable.sid) + "#comment-#{mentionable.id}" %>
     的评论里提到了你
     <% if !notification.read %>
     <span class="new-item-tip">新提醒</span>

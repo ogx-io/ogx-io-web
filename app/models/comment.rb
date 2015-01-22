@@ -32,7 +32,15 @@ class Comment
   attr_accessor :max_depth # remember setting the maximum depth before saving. default is 2
 
   before_create :set_thread
-  after_create :update_user
+  after_create :update_user, :send_comment_notification
+
+  def author
+    self.user
+  end
+
+  def send_comment_notification
+    Notification::Comment.create(user: commentable.author, comment: self) if self.author != commentable.author
+  end
 
   def set_thread
     @max_depth ||= 2
