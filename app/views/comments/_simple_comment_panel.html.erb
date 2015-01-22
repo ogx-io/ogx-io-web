@@ -1,0 +1,11 @@
+<div id="comment-for-<%= commentable.class.to_s %>-<%= commentable.id %>" class="comment-panel">
+  <ul id="comment-0" class="comment-list">
+    <%= render partial: '/comments/simple_comment', as: :comment, collection: commentable.comments.pub.asc(:_id) %>
+  </ul>
+  <div class="form-wrapper">
+    <%= render partial: '/comments/form', locals: {comment: @comment, hidden: false} %>
+  </div>
+</div>
+<script type="text/javascript">
+    $("textarea").autosize({append: false}).trigger("change");
+</script>
