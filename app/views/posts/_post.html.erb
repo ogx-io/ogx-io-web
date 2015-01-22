@@ -18,7 +18,7 @@
       </h4>
 
       <div class="post-author">
-        <%= user_link post.author %>
+        <%= full_user_link post.author %>
         <% if post.parent %>
             回复 <%= user_link post.parent.author %>
             的 <%= link_to '#' + post.parent.floor.to_s, show_post_path(post.parent.sid), title: "#{post.parent.title}" %>

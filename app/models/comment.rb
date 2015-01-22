@@ -35,7 +35,7 @@ class Comment
   after_create :update_user
 
   def set_thread
-    @max_depth ||= 3
+    @max_depth ||= 2
     self.reply_to_id = self.parent_id
     if self.parent_id != 0
       parent = Comment.find(self.parent_id)
