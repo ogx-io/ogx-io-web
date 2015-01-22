@@ -66,7 +66,7 @@
                     </li>
                 <% end %>
                 <li>
-                  <%= link_to post.comments.normal.count > 0 ? "评论(#{post.comments.normal.count})" : "评论", show_post_path(post.sid) + '#post-comments' %>
+                  <%= link_to post.comments.normal.count > 0 ? "评论(#{post.comments.normal.count})" : "评论", comments_post_path(post), remote: true, class: 'toggle-post-comments', 'data-post-id' => post.id %>
                 </li>
                 <li>
                   <%= link_to '回复', new_board_post_path(post.board, parent_id: post.id) %>

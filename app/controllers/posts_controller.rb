@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :toggle, :resume]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :toggle, :resume, :comments]
   before_action :set_board, only: [:index, :new, :create, :elites, :deleted]
 
   # GET /posts
@@ -18,6 +18,12 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @board = @post.board
+    @comment = Comment.new
+    @comment.parent_id = 0
+    @comment.commentable = @post
+  end
+
+  def comments
     @comment = Comment.new
     @comment.parent_id = 0
     @comment.commentable = @post

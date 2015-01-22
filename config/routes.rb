@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       member do
         patch :toggle
         patch :resume
+        get :comments
       end
 
       collection do

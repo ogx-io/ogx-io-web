@@ -30,14 +30,7 @@
         对不起，此贴已被删除。
     <% end %>
     <% if policy(@post).comment? || @post.comments.normal.count > 0 %>
-        <div id="post-comments" class="post-comments">
-          <div class="title">
-            评论
-          </div>
-          <div class="comment-container">
-            <%= render partial: 'comments/simple_comment_panel', locals: {commentable: @post} %>
-          </div>
-        </div>
+    <%= render partial: 'post_comment_panel', locals: {post: @post} %>
     <% end %>
   </div>
 </div>

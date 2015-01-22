@@ -22,6 +22,13 @@ ready = ->
     $("#post-upload-images").click()
     return false
 
+  $('body').delegate '.toggle-post-comments', 'ajax:beforeSend', ->
+    panel = $('#post-'+ $(this).data('post-id') + '-comments')
+    if panel.length > 0
+      panel.remove()
+      return false
+
+
   opts =
     url: "/pictures"
     type: "POST"
