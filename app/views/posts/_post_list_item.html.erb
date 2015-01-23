@@ -1,0 +1,21 @@
+<div class="list-item">
+  <div class="author-avatar pull-left">
+    <%= avatar post.author, 40 %>
+  </div>
+  <div class="content">
+    <% count = post.comments.normal.count %>
+    <div class="count pull-right"><%= link_to count - 1, show_post_path(post.sid) if count > 1 %></div>
+    <div class="title"><%= link_to post.title, show_post_path(post.sid) %></div>
+    <div class="info">
+      <span class="board-name"><%= link_to post.board.name, show_board_path(post.board.path) %> ·</span>
+      <% if count > 1 %>
+          <%= user_link post.author %> · 最后由 <%= user_link post.last_commenting_user %> 评论于 <%= time_digest(post.last_commented_at) %>
+      <% else %>
+          <%= user_link post.author %> 发表于 <%= time_digest(post.created_at) %>
+      <% end %>
+      <% if post.elite != 0 %>
+          &nbsp;<span class="elite-mark">精华帖</span>
+      <% end %>
+    </div>
+  </div>
+</div>

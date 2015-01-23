@@ -37,10 +37,10 @@
   color: goldenrod;
 }
 
-.topic-list-item {
-  .topic-content {
+.list-item {
+  .content {
     margin-left: 50px;
-    .topic-posts-count {
+    .count {
       text-align: right;
       margin-top: 8px;
       margin-right: 5px;
@@ -57,14 +57,14 @@
         border-top-right-radius: 8px;
       }
     }
-    .topic-title {
+    .title {
       line-height: 18px;
       margin-bottom: 3px;
       a {
         font-size: 16px;
       }
     }
-    .topic-info {
+    .info {
       font-size: 12px;
       color: #CCC;
       a {

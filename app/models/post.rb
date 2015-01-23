@@ -62,6 +62,14 @@ class Post
     self.author.update(last_post_at: Time.now)
   end
 
+  def last_commenting_user
+    self.comments.normal.last.user
+  end
+
+  def last_commented_at
+    self.comments.normal.last.created_at
+  end
+
   def deleted?
     self.deleted > 0
   end
