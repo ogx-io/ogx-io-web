@@ -6,12 +6,12 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @all_posts = @board.posts.normal
-    @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
+    @posts = @all_posts.desc(:created_at).page(params[:page]).per(15)
   end
 
   def elites
     @all_posts = @board.posts.normal.elites
-    @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
+    @posts = @all_posts.desc(:created_at).page(params[:page]).per(15)
   end
 
   # GET /posts/1
