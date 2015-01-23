@@ -1,4 +1,4 @@
-<div class="col-sm-9 right-side-layout">
+<div class="col-md-10 right-side-layout">
   <div class="row">
     <ol class="breadcrumb pull-left">
       <li><%= link_to 'boards', boards_path %></li>
@@ -6,44 +6,14 @@
       <li>topics</li>
     </ol>
   </div>
-  <%= render 'boards/board_head' %>
-  <%= render 'boards/board_intro' %>
-  <%= render partial: 'boards/board_nav', locals: {index: 1} %>
-  <div class="board-content">
-    <%= render 'topics_paginate_bar' %>
-    <table class="topic-list table table-hover">
-      <thead>
-      <th class="topic-mark" style="width: 20px"></th>
-      <th style="min-width: 150px">主题</th>
-      <th class="text-center" style="width: 100px">创建者</th>
-      <th class="text-center" style="width: 60px">回应</th>
-      <th class="text-center" style="width: 110px">最后回复</th>
-      </thead>
-      <tbody>
-      <% @topics.each do |topic| %>
-          <tr>
-            <td class="topic-mark">
-              <% if topic.top == 1 %>
-                  <span class="glyphicon glyphicon-circle-arrow-up" style="color: red"></span>
-              <% else %>
-                  <span class="glyphicon glyphicon-circle-arrow-right" style="color: green"></span>
-              <% end %>
-            </td>
-            <td class="topic-title">
-              <div>
-                <%= link_to topic.title, show_topic_path(topic.sid), title: topic.title %>
-                <%= render partial: 'topic_lock', locals: {topic: topic} %>
-              </div>
-            </td>
-            <td class="text-center"><%= user_link topic.posts.first.author %></td>
-            <% count = topic.posts.first.deleted? ? topic.posts.normal.count : topic.posts.normal.count - 1 %>
-            <td class="text-center fs13"><%= count > 0 ? count : '' %></td>
-            <td class="text-center fs13"><%= time_digest topic.replied_at %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <%= render 'topics_paginate_bar' %>
+  <div class="board-main">
+    <%= render 'boards/board_head' %>
+    <%= render 'boards/board_intro' %>
+    <%= render partial: 'boards/board_nav', locals: {index: 1} %>
+    <div class="board-content">
+      <%= render partial: "topics/topic_list_item", as: :topic, collection: @topics %>
+    </div>
   </div>
+  <%= render partial: 'boards/board_right_side', locals: {board: @board} %>
 </div>
 

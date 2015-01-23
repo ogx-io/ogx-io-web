@@ -4,8 +4,5 @@
       <li>最新动态</li>
     </ol>
   </div>
-
-  <% @topics.each do |topic| %>
-    <%= render partial: "topics/topic_list_item", locals: {topic: topic} %>
-  <% end %>
+  <%= render partial: "topics/topic_list_item", as: :topic, collection: @topics %>
 </div>

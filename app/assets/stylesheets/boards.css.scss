@@ -22,6 +22,53 @@
   }
 }
 
+.board-nav {
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
 .board-content {
   padding-top: 10px;
+  .board-name {
+    display: none;
+  }
+  .top {
+    a {
+      color: #D00;
+    }
+  }
+}
+
+.board-main {
+  width: 73%;
+  @media (max-width: 992px) {
+    width: 100%;
+  }
+  float: left;
+  padding-right: 10px;
+}
+
+.board-right-side {
+  width: 27%;
+  float: right;
+  padding-left: 10px;
+  .row {
+    margin-left: 15px;
+  }
+  .panel-body, .panel-heading {
+    padding: 8px 12px;
+  }
+  .board-intro {
+    ul {
+      margin-bottom: 0;
+    }
+  }
+  .board-statistic {
+    p {
+      margin-bottom: 5px;
+    }
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
 }

@@ -1,0 +1,23 @@
+<div class="hidden-sm hidden-xs board-right-side">
+  <div class="panel panel-default board-intro">
+    <div class="panel-heading">
+      版主：
+      <ul class="list-inline" style="display: inline-block">
+        <% board.moderators.each do |user| %>
+            <li><%= user_link user %></li>
+        <% end %></ul>
+    </div>
+    <div class="panel-body">
+      <%= board.intro %>
+    </div>
+  </div>
+  <div class="panel panel-default board-statistic">
+    <div class="panel-heading">
+      本版统计
+    </div>
+    <div class="panel-body">
+      <p>主题数：<%= board.topics.normal.count %></p>
+      <p>帖子数：<%= board.posts.normal.count %></p>
+    </div>
+  </div>
+</div>

@@ -51,6 +51,10 @@ class Topic
     self.lock != 0
   end
 
+  def top?
+    self.top == 1
+  end
+
   def is_creator?(user)
     user == self.user
   end

@@ -5,10 +5,9 @@
   <div class="topic-content">
     <% posts_count = topic.posts.normal.count %>
     <div class="topic-posts-count pull-right"><%= link_to posts_count - 1, show_topic_path(topic.sid) if posts_count > 1 %></div>
-    <div class="topic-title"><%= link_to topic.title, show_topic_path(topic.sid) %></div>
+    <div class="topic-title <%= 'top' if topic.top? %>"><%= link_to topic.title, show_topic_path(topic.sid) %></div>
     <div class="topic-info">
-      <span class="board-name"><%= link_to topic.board.name, show_board_path(topic.board.path) %></span>
-      ·
+      <span class="board-name"><%= link_to topic.board.name, show_board_path(topic.board.path) %> ·</span>
       <% if posts_count > 1 %>
           最后由 <%= user_link topic.last_replying_user %> 回复于 <%= link_to time_digest(topic.last_replied_at), show_post_topic_path(topic, for_post: topic.posts.last.id), title: topic.posts.last.title %>
       <% else %>
