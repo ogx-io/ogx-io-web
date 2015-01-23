@@ -7,7 +7,7 @@
     <div class="count pull-right"><%= link_to posts_count - 1, show_topic_path(topic.sid) if posts_count > 1 %></div>
     <div class="title <%= 'top' if topic.top? %>">
       <%= link_to topic.title, show_topic_path(topic.sid) %>
-      <%= render partial: 'topic_lock', locals: {topic: topic} %>
+      <%= render partial: 'topics/topic_lock', locals: {topic: topic} %>
     </div>
     <div class="info">
       <span class="board-name"><%= link_to topic.board.name, show_board_path(topic.board.path) %> ·</span>

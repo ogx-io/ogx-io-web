@@ -249,3 +249,44 @@ a.weak-link {
 .user-name {
   color: #777;
 }
+
+.list-item {
+  .content {
+    margin-left: 50px;
+    .count {
+      text-align: right;
+      margin-top: 8px;
+      margin-right: 5px;
+      min-width: 40px;
+      a {
+        background-color: #BBB;
+        color: #FFF;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 1px 8px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+    }
+    .title {
+      line-height: 18px;
+      margin-bottom: 3px;
+      a {
+        font-size: 16px;
+      }
+    }
+    .info {
+      font-size: 12px;
+      color: #CCC;
+      a {
+        font-size: 12px;
+        color: #999;
+      }
+    }
+  }
+  border-bottom: dashed #CCC 1px;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
