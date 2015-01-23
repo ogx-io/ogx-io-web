@@ -49,6 +49,10 @@
   }
   float: left;
   padding-right: 10px;
+  .board-pagination {
+    text-align: right;
+    margin: 20px auto;
+  }
 }
 
 .board-right-side {
@@ -58,8 +62,11 @@
   .row {
     margin-left: 15px;
   }
-  .panel-body, .panel-heading {
+  .panel-body {
     padding: 8px 12px;
+  }
+  .panel-heading {
+    padding: 6px 12px;
   }
   .board-intro {
     ul {

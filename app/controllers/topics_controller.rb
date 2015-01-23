@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
 
   def index
     @all_topics = @board.topics.normal
-    @topics = @all_topics.desc(:top, :updated_at, :replied_at).page(params[:page]).per(25)
+    @topics = @all_topics.desc(:top, :updated_at, :replied_at).page(params[:page]).per(10)
     respond_with(@topics)
   end
 

@@ -14,6 +14,9 @@
     <div class="board-content">
       <%= render partial: "posts/post_list_item", as: :post, collection: @posts %>
     </div>
+    <div class="board-pagination">
+      <%= paginate @posts, left: 1, right: 1, :theme => 'bootstrap3' %>
+    </div>
   </div>
   <%= render partial: 'boards/board_right_side', locals: {board: @board} %>
 </div>
