@@ -23,8 +23,8 @@
             回复 <%= user_link post.parent.author %>
             的 <%= link_to '#' + post.parent.floor.to_s, show_post_path(post.parent.sid), title: "#{post.parent.title}" %>
         <% end %>
-        · <%= time_digest post.new_record? ? Time.now : post.created_at %>
         <% if !post.new_record? %>
+            · <%= time_digest post.created_at %>
             <% if post.elite != 0 %>
                 &nbsp;<span class="elite-mark">精华帖</span>
             <% end %>
@@ -33,7 +33,7 @@
             <% end %>
         <% end %>
       </div>
-      <div class="post-content"><%= sanitize_post markdown(post.body) %></div>
+      <div class="post-content"><%= sanitize_post post.body_html %></div>
       <% if !post.new_record? %>
           <div class="post-footer clearfix">
             <div class="pull-left hide">

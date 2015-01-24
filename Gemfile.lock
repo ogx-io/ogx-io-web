@@ -203,6 +203,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.1)
       loofah (~> 2.0)
+    rails_autolink (1.1.6)
+      rails (> 3.1)
     rails_layout (1.0.24)
     railties (4.2.0)
       actionpack (= 4.2.0)
@@ -219,6 +221,7 @@ GEM
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rouge (1.7.7)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -294,7 +297,6 @@ DEPENDENCIES
   carrierwave
   carrierwave-mongoid
   carrierwave-qiniu!
-  coderay
   coffee-rails (~> 4.0.0)
   database_cleaner
   devise
@@ -315,8 +317,10 @@ DEPENDENCIES
   qiniu-rs
   quiet_assets
   rails (~> 4.2.0)
+  rails_autolink
   rails_layout
   redcarpet
+  rouge
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

@@ -36,4 +36,11 @@ namespace :data do
     end
   end
 
+  desc "reset the body_html field of the posts"
+  task set_post_body_html: :environment do
+    Post.all.each do |post|
+      post.body_html = MarkdownConverter.convert(post.body)
+      post.save
+    end
+  end
 end

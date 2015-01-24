@@ -8,6 +8,7 @@ class Post
 
   field :t, as: :title, type: String
   field :b, as: :body, type: String
+  field :bh, as: :body_html, type: String
   field :f, as: :floor, type: Integer
   field :e, as: :elite, type: Integer, default: 0
   field :d, as: :deleted, type: Integer, default: 0 # 0: normal, 1:deleted by user, 2: deleted by admin
@@ -23,7 +24,6 @@ class Post
 
   scope :normal, -> { where(deleted: 0) }
   scope :deleted, -> { where(deleted: {'$gt' => 0}) }
-  scope :deleted_by_myself, -> { where(deleted: 1) }
   scope :elites, -> { where(elite: 1) }
 
   belongs_to :board
@@ -38,6 +38,16 @@ class Post
 
   before_create :set_topic_and_floor
   after_create :update_topic, :update_author, :send_notifications
+
+  before_save :set_body_html
+
+  def set_body_html
+    convert_body if self.body_changed?
+  end
+
+  def convert_body
+    self.body_html = MarkdownConverter.convert(self.body)
+  end
 
   def send_notifications
     if self.parent

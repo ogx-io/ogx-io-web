@@ -72,6 +72,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if params[:preview] == "true"
         if @post.valid?
+          @post.convert_body
           format.html { render partial: 'preview' }
         else
           format.html { render html: "<script type=\"text/javascript\">$('.post-form').submit()</script>".html_safe }
@@ -102,6 +103,7 @@ class PostsController < ApplicationController
           @board = @post.board
           @post = Post.new(post_params)
           @post.author = current_user
+          @post.convert_body
           format.html { render partial: 'preview' }
         else
           format.html { render html: "<script type=\"text/javascript\">$('.post-form').submit()</script>".html_safe }

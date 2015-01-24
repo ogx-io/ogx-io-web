@@ -36,3 +36,5 @@ module RailsDevisePundit
     config.i18n.default_locale = 'zh-CN'
   end
 end
+
+require "text_process"
