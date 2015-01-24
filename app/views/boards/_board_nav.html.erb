@@ -1,4 +1,5 @@
 <div class="board-nav">
+  <div class="post-button pull-right"><%= link_to new_board_post_path(@board) do %><button type="button" class="btn btn-success btn-sm">发 帖</button><% end %></div>
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to '主题', show_board_path(@board.path) %></li>
     <li role="presentation" class="<%= "active" if index == 2 %>"><%= link_to '帖子', list_board_posts_path(@board.path) %></li>
