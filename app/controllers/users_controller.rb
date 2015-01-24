@@ -11,27 +11,27 @@ class UsersController < ApplicationController
   def show
     authorize @user
     @all_posts = @user.posts.normal
-    @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
+    @posts = @all_posts.desc(:created_at).page(params[:page]).per(15)
     render 'posts', locals: { index: 1 }
   end
 
   def topics
     authorize @user
     @all_topics = @user.topics.normal
-    @topics = @all_topics.desc(:created_at).page(params[:page]).per(25)
+    @topics = @all_topics.desc(:created_at).page(params[:page]).per(15)
   end
 
   def elites
     authorize @user
     @all_posts = @user.posts.normal.elites
-    @posts = @all_posts.desc(:created_at).page(params[:page]).per(10)
+    @posts = @all_posts.desc(:created_at).page(params[:page]).per(15)
     render 'posts', locals: { index: 3 }
   end
 
   def deleted_posts
     authorize @user
-    @all_posts = @user.posts.deleted_by_myself
-    @posts = @all_posts.desc(:updated_at).page(params[:page]).per(10)
+    @all_posts = @user.posts.deleted
+    @posts = @all_posts.desc(:updated_at).page(params[:page]).per(15)
     @refresh = true
     render 'posts', locals: { index: 4 }
   end

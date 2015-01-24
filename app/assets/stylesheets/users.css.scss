@@ -34,3 +34,19 @@
     }
   }
 }
+
+.user-list-content {
+  .avatar {
+    display: none;
+  }
+  .content {
+    margin-left: 0;
+  }
+  .user-pagination {
+    text-align: center;
+    margin: 20px auto;
+  }
+  .elites .elite-mark {
+    display: none;
+  }
+}

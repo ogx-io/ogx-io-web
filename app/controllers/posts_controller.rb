@@ -17,6 +17,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    authorize @post
+
     @board = @post.board
     @comment = Comment.new
     @comment.parent_id = 0

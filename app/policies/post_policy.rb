@@ -1,5 +1,9 @@
 class PostPolicy < ApplicationPolicy
 
+  def show?
+    test_if(record.deleted? && (!user || record.author != user || !record.board.is_moderator?(user)), "该帖子已被删除，您无权查看。")
+  end
+
   def destroy?
     signed_in? && (record.board.is_moderator?(user) || record.author == user)
   end

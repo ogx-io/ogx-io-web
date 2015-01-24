@@ -1,27 +1,14 @@
 <% content_for :left_side do %>
     <%= render 'profile_left' %>
 <% end %>
-<div class="col-sm-9 right-side-layout">
+<div class="col-lg-7 col-md-8 right-side-layout">
   <%= render partial: 'profile_nav', locals: {index: index} %>
-  <div class="list-content">
-    <%= render 'posts_paginate_bar' %>
-    <table class="table table-hover">
-      <thead>
-      <th>文章</th>
-      <th class="text-center" style="width: 160px">所在版面</th>
-      <% if index == 4 %>
-          <th class="text-center" style="width: 110px">更新时间</th>
-          <th style="width: 100px">操作</th>
-      <% else %>
-          <th class="text-center" style="width: 110px">发表时间</th>
-      <% end %>
-      </thead>
-      <tbody>
-      <% @posts.each do |post| %>
-        <%= render partial: 'post', locals: {post: post, index: index} %>
-      <% end %>
-      </tbody>
-    </table>
-    <%= render 'posts_paginate_bar' %>
+  <div class="user-list-content">
+    <div class="list-content <%= 'elites' if index == 3 %>">
+      <%= render partial: "posts/post_list_item", as: :post, collection: @posts %>
+    </div>
+    <div class="user-pagination">
+      <%= paginate @posts, left: 1, right: 1, :theme => 'bootstrap3' %>
+    </div>
   </div>
 </div>
