@@ -1,8 +1,7 @@
 <div class="hidden-sm hidden-xs board-right-side">
   <div class="panel panel-default board-intro">
     <div class="panel-heading">
-      版主：
-      <ul class="list-inline" style="display: inline-block">
+      版主：<ul class="list-inline" style="display: inline-block">
         <% board.moderators.each do |user| %>
             <li><%= user_link user %></li>
         <% end %></ul>
