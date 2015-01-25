@@ -85,7 +85,7 @@ Rails.application.routes.draw do
   get '/:path/elites', to: 'posts#elites', as: :list_board_elites
   get '/u/:name', to: 'users#show', as: :show_user
   get '/u/:name/topics', to: 'users#topics', as: :show_user_topics
-  get '/u/:name/posts', to: 'users#show', as: :show_user_posts
+  get '/u/:name/posts', to: 'users#posts', as: :show_user_posts
   get '/u/:name/elites', to: 'users#elites', as: :show_user_elites
   get '/u/:name/deleted_posts', to: 'users#deleted_posts', as: :show_user_deleted_posts
   get '/t/:sid', to: 'topics#show', as: :show_topic

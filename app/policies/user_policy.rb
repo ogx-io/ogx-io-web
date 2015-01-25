@@ -18,6 +18,10 @@ class UserPolicy
     true
   end
 
+  def posts?
+    true
+  end
+
   def topics?
     true
   end
