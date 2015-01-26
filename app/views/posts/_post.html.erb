@@ -1,4 +1,4 @@
-<% cache [post, policy(post).toggle?, policy(post).destroy?, policy(post).resume?, policy(post).resume?, policy(post).update?] do %>
+<% cache_unless post.new_record?, [post, policy(post).toggle?, policy(post).destroy?, policy(post).resume?, policy(post).resume?, policy(post).update?] do %>
     <div id="floor-<%= post.floor || 'preview' %>" name="floor-<%= post.floor || 'preview' %>" class="post-item panel panel-default">
       <div class="panel-body">
         <div class="pull-left">
