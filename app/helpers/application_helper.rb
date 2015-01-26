@@ -72,28 +72,14 @@ module ApplicationHelper
     "<span title=\"#{time.strftime("%F %T")}\">#{str}</span>".html_safe
   end
 
-  def markdown(text)
-    options = {
-        :autolink => false,
-        :space_after_headers => true,
-        :fenced_code_blocks => true,
-        :no_intra_emphasis => true,
-        :hard_wrap => true,
-        :strikethrough => true
-    }
-    markdown = Redcarpet::Markdown.new(HTMLwithCodeRay, options)
-    markdown.render(text).html_safe
-  end
-
-  class HTMLwithCodeRay < Redcarpet::Render::HTML
-    def block_code(code, language)
-      language ||= 'text'
-      CodeRay.scan(code, language).div(:tab_width => 2)
-    end
-  end
-
   def sanitize_post(body)
-    sanitize body, :tags => %w(div p br img h1 h2 h3 h4 blockquote pre code b i strong em strike del u a ul ol li span), :attributes => %w(href src class title alt target rel style)
+    sanitize body, :tags => %w(p br img h1 h2 h3 h4 blockquote pre code b i strong em strike del u a ul ol li span), :attributes => %w(href src class title alt target rel style)
+  end
+
+  def sanitize_comment(body)
+    body.gsub!("\n", '<br/>')
+    body = auto_link(body, sanitize: false, html: { target: '_blank' })
+    sanitize body, :tags => %w(p br b i strong em strike u a span), :attributes => %w(href src class title alt target rel style)
   end
 
 end
