@@ -28,7 +28,7 @@ class Post
 
   belongs_to :board
   belongs_to :author, class_name: "User", inverse_of: :posts
-  belongs_to :topic
+  belongs_to :topic, touch: true
   belongs_to :parent, class_name: "Post"
   belongs_to :deleter, class_name: "User"
   belongs_to :resumer, class_name: "User"

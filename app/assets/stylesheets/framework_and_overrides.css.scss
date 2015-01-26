@@ -41,6 +41,15 @@ h4 {
   font-size: 18px;
 }
 
+abbr[title] {
+  border-bottom: 0px;
+}
+
+a {
+  abbr[title] {
+    cursor: pointer;
+  }
+}
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create your own classes
 // to make views framework-neutral

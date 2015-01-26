@@ -19,7 +19,7 @@ class Comment
   scope :deleted, -> { where(deleted: {'$gt' => 0}) }
   scope :pub, -> { where(deleted: {'$lt' => 3}) }
 
-  belongs_to :commentable, polymorphic: true
+  belongs_to :commentable, polymorphic: true, touch: true
   belongs_to :user
   belongs_to :deleter, class_name: "User"
   belongs_to :resumer, class_name: "User"
