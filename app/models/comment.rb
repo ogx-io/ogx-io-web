@@ -3,6 +3,7 @@ class Comment
   include Mongoid::Timestamps
 
   include Mentionable
+  include BodyConvertable
 
   field :b, as: :body, type: String
   field :p, as: :parent_id, type: Integer
@@ -36,6 +37,10 @@ class Comment
 
   def author
     self.user
+  end
+
+  def topic
+    self.commentable.topic
   end
 
   def send_comment_notification

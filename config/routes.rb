@@ -90,5 +90,7 @@ Rails.application.routes.draw do
   get '/u/:name/deleted_posts', to: 'users#deleted_posts', as: :show_user_deleted_posts
   get '/t/:sid', to: 'topics#show', as: :show_topic
   get '/p/:sid', to: 'posts#show', as: :show_post
+  get '/t/:topic_sid/p/:post_sid', to: 'topics#show_post', as: :show_topic_post
+  get '/t/:sid/f/:floor', to: 'topics#show_post', as: :show_topic_floor
 
 end

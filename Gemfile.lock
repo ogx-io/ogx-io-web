@@ -136,6 +136,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    md_emoji (1.0.2)
+      railties (>= 3.1.0)
+      redcarpet (>= 2.0)
     mime-types (2.4.3)
     mini_portile (0.6.1)
     minitest (5.5.0)
@@ -307,6 +310,7 @@ DEPENDENCIES
   jquery-turbolinks
   kaminari
   launchy
+  md_emoji
   mongoid (~> 4.0.0)
   mongoid-enum
   mongoid_auto_increment_id (= 0.6.5)

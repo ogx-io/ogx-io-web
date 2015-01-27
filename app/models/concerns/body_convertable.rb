@@ -10,4 +10,7 @@ module BodyConvertable
     convert_body if self.body_changed?
   end
 
+  def convert_body
+    self.body_html = MarkdownTopicConverter.format(self.body, self.topic)
+  end
 end

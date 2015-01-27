@@ -3,6 +3,7 @@ require 'rails'
 require 'rails_autolink'
 require 'redcarpet'
 require 'singleton'
+require 'md_emoji'
 require 'rouge/plugins/redcarpet'
 
 module Redcarpet
@@ -48,6 +49,8 @@ module Redcarpet
       end
     end
 
+    class HTMLwithTopic < HTMLwithSyntaxHighlight
+    end
   end
 end
 
@@ -69,5 +72,164 @@ class MarkdownConverter
                                                                                            fenced_code_blocks: true,
                                                                                            no_intra_emphasis: true
                                                                                        })
+  end
+end
+
+class MarkdownTopicConverter < MarkdownConverter
+  def self.format(raw, topic)
+    self.instance.format(raw, topic)
+  end
+
+  def format(raw, topic)
+    text = raw.clone
+    return '' if text.blank?
+
+    users = normalize_user_mentions(text)
+
+    # 如果 ``` 在刚刚换行的时候 Redcapter 无法生成正确，需要两个换行
+    text.gsub!("\n```","\n\n```")
+
+    result = convert(text)
+
+    doc = Nokogiri::HTML.fragment(result)
+    link_mention_floor(doc, topic) if topic
+    link_mention_user(doc, users)
+    replace_emoji(doc)
+
+    return doc.to_html.strip
+  rescue => e
+    puts "MarkdownTopicConverter.format ERROR: #{e}"
+    return text
+  end
+
+  private
+
+  # borrow from html-pipeline
+  def has_ancestors?(node, tags)
+    while node = node.parent
+      if tags.include?(node.name.downcase)
+        break true
+      end
+    end
+  end
+
+  # convert '#N' to link
+  # Refer to emoji_filter in html-pipeline
+  def link_mention_floor(doc, topic)
+    doc.search('text()').each do |node|
+      content = node.to_html
+      next if !content.include?('#')
+      next if has_ancestors?(node, %w(pre code))
+
+      html = content.gsub(/#(\d+)/) {
+        %(<a href="/t/#{topic.sid}/f/#{$1}" class="at_floor" data-topic="#{topic.sid}" data-floor="#{$1}">##{$1}</a>)
+      }
+
+      next if html == content
+      node.replace(html)
+    end
+  end
+
+  NORMALIZE_USER_REGEXP = /(^|[^a-zA-Z0-9_!#\$%&*@＠])@([a-zA-Z0-9_]{1,20})/io
+  LINK_USER_REGEXP = /(^|[^a-zA-Z0-9_!#\$%&*@＠])@(user[0-9]{1,6})/io
+
+  # rename user name using incremental id
+  def normalize_user_mentions(text)
+    users = []
+
+    text.gsub!(NORMALIZE_USER_REGEXP) do
+      prefix = $1
+      user = $2
+      users.push(user)
+      "#{prefix}@user#{users.size}"
+    end
+
+    users
+  end
+
+  def link_mention_user(doc, users)
+    link_mention_user_in_text(doc, users)
+    link_mention_user_in_code(doc, users)
+  end
+
+  # convert '@user' to link
+  # match any user even not exist.
+  def link_mention_user_in_text(doc, users)
+    doc.search('text()').each do |node|
+      content = node.to_html
+      next if !content.include?('@')
+      in_code = has_ancestors?(node, %w(pre code))
+      content.gsub!(LINK_USER_REGEXP) {
+        prefix = $1
+        user_placeholder = $2
+        user_id = user_placeholder.sub(/^user/, '').to_i
+        user = users[user_id - 1] || user_placeholder
+
+        if in_code
+          "#{prefix}@#{user}"
+        else
+          %(#{prefix}<a href="/u/#{user}" class="at_user" title="@#{user}">@#{user}</a>)
+        end
+      }
+
+      node.replace(content)
+    end
+  end
+
+  # Some code highlighter mark `@` and following characters as different
+  # syntax class.
+  def link_mention_user_in_code(doc, users)
+    doc.css('pre.highlight span').each do |node|
+      if node.previous && node.previous.inner_html == '@' && node.inner_html =~ /\Auser(\d+)\z/
+        user_id = $1
+        user = users[user_id.to_i - 1]
+        if user
+          node.inner_html = user
+        end
+      end
+    end
+  end
+
+  def replace_emoji(doc)
+    doc.search('text()').each do |node|
+      content = node.to_html
+      next if !content.include?(':')
+      next if has_ancestors?(node, %w(pre code))
+
+      html = content.gsub(/:(\S+):/) do |emoji|
+
+        emoji_code = emoji #.gsub("|", "_")
+        emoji      = emoji_code.gsub(":", "")
+
+        if MdEmoji::EMOJI.include?(emoji)
+          file_name    = "#{emoji.gsub('+', 'plus')}.png"
+
+          %{<img src="#{upload_url}/assets/emojis/#{file_name}" class="emoji" } +
+              %{title="#{emoji_code}" alt="" />}
+        else
+          emoji_code
+        end
+      end
+
+      next if html == content
+      node.replace(html)
+    end
+  end
+
+  # for testing
+  def upload_url
+    ''
+  end
+
+  def initialize
+    @converter = Redcarpet::Markdown.new(Redcarpet::Render::HTMLwithTopic.new, {
+                                                                                 autolink: true,
+                                                                                 fenced_code_blocks: true,
+                                                                                 strikethrough: true,
+                                                                                 space_after_headers: true,
+                                                                                 disable_indented_code_blocks: true,
+                                                                                 no_intra_emphasis: true
+                                                                             })
+    @emoji = MdEmoji::Render.new
   end
 end

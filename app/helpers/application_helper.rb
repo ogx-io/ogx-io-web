@@ -58,9 +58,7 @@ module ApplicationHelper
   end
 
   def sanitize_comment(body)
-    body.gsub!("\n", '<br/>')
-    body = auto_link(body, sanitize: false, html: { target: '_blank' })
-    sanitize body, :tags => %w(p br b i strong em strike u a span), :attributes => %w(href src class title alt target rel style)
+    sanitize body, :tags => %w(p br b i strong em strike u a span img), :attributes => %w(href src class title alt target rel style)
   end
 
 end

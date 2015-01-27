@@ -39,10 +39,6 @@ class Post
   before_create :set_topic_and_floor
   after_create :update_topic, :update_author, :send_notifications
 
-  def convert_body
-    self.body_html = MarkdownConverter.convert(self.body)
-  end
-
   def send_notifications
     if self.parent
       Notification::PostReply.create(user: self.parent.author, post: self) if self.author != self.parent.author

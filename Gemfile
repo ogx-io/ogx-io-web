@@ -29,6 +29,7 @@ gem 'carrierwave-qiniu', git: 'https://github.com/huobazi/carrierwave-qiniu.git'
 gem 'rails_autolink'
 gem 'redcarpet'
 gem 'rouge'
+gem 'md_emoji'
 
 group :development do
   gem 'better_errors'
