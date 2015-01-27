@@ -30,6 +30,7 @@ gem 'rails_autolink'
 gem 'redcarpet'
 gem 'rouge'
 gem 'md_emoji'
+gem "non-stupid-digest-assets"
 
 group :development do
   gem 'better_errors'
