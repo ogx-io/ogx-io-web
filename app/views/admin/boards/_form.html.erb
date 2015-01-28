@@ -1,15 +1,15 @@
-<%= form_for(@board) do |f| %>
-  <% if @board.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@board.errors.count, "error") %> prohibited this board from being saved:</h2>
+<%= form_for(@board, url: @board.new_record? ? admin_boards_path : admin_board_path(@board)) do |f| %>
+    <% if @board.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@board.errors.count, "error") %> prohibited this board from being saved:</h2>
 
-      <ul>
-      <% @board.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% @board.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
     <div class="form-group">
       <%= f.label '名称' %>
       <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
@@ -27,7 +27,7 @@
       <%= f.text_area :intro, class: 'form-control' %>
     </div>
 
-  <div class="actions clearfix">
-    <%= f.submit '提交', :class => 'button right' %>
-  </div>
+    <div class="actions clearfix">
+      <%= f.submit '提交', :class => 'button right' %>
+    </div>
 <% end %>

@@ -12,15 +12,13 @@ Rails.application.routes.draw do
         patch :resume
       end
     end
-  end
-
-  namespace :admin do
     resources :comments do
       member do
         patch :resume
         delete :delete_all
       end
     end
+    resources :boards
   end
 
   resources :comments do
