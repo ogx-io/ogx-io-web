@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
 
   def index
     @all_topics = @board.topics.normal
-    @topics = @all_topics.desc(:top, :updated_at, :replied_at).page(params[:page]).per(15)
+    @topics = @all_topics.desc(:top, :replied_at).page(params[:page]).per(15)
     respond_with(@topics)
   end
 
@@ -56,7 +56,7 @@ class TopicsController < ApplicationController
     authorize @topic
     p = topic_params
     @topic.update(p)
-    @topic.update(updated_at: @topic.replied_at) if p['top'] == '0'
+    @topic.update(toped_at: Time.now) if p['top'] == '1'
     redirect_to :back
     # respond_with(@topic)
   end
