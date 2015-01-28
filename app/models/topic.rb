@@ -7,7 +7,6 @@ class Topic
   field :f, as: :last_floor, type: Integer, default: 0
   field :t, as: :top, type: Integer, default: 0 # 0: normal, 1: always on top
   field :r_at, as: :replied_at, type: Time
-  field :t_at, as: :toped_at, type: Time
   field :d, as: :deleted, type: Integer, default: 0 # 0:normal, 1: deleted
   field :l, as: :lock, type: Integer, default: 0 # 0: unlocked, 1: locked by user, 2: locked by moderator
 

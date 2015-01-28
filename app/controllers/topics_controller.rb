@@ -56,7 +56,6 @@ class TopicsController < ApplicationController
     authorize @topic
     p = topic_params
     @topic.update(p)
-    @topic.update(toped_at: Time.now) if p['top'] == '1'
     redirect_to :back
     # respond_with(@topic)
   end
