@@ -6,6 +6,7 @@
         <% if @topic.top == 0 %>
             <%= link_to '设为置顶', topic_path(@topic, 'topic[top]' => 1), method: :patch %>
         <% else %>
+            <%= link_to "置顶上升(#{@topic.top + 1})", topic_path(@topic, 'topic[top]' => @topic.top + 1), method: :patch %>
             <%= link_to '取消置顶', topic_path(@topic, 'topic[top]' => 0), method: :patch %>
         <% end %>
         <% if @topic.deleted? %>

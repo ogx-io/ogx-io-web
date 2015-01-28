@@ -52,7 +52,7 @@ class Topic
   end
 
   def top?
-    self.top == 1
+    self.top > 0
   end
 
   def is_creator?(user)
