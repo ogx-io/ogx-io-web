@@ -30,7 +30,6 @@ class PostPolicy < ApplicationPolicy
   def update?
     signed_in? &&
         test_if_not(user == record.author, "您不是作者本人，不能修改帖子。") &&
-        test_if_not(user.can_post?, "您的发帖速度太快了，先休息一会儿吧。") &&
         test_if(user.blocked?, "您的已经被全站封禁！") &&
         test_if(record.board.is_blocking?(user), "您已经被版主关进小黑屋，不能在本版发帖了。")
   end
