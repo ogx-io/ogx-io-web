@@ -1,5 +1,8 @@
 <%# add navigation links to this file %>
 <% if user_signed_in? %>
+    <% if policy(current_user).manage? %>
+        <li><%= link_to '管理后台', admin_comments_path %></li>
+    <% end %>
     <li><%= user_link current_user %></li>
     <li>
       <%= link_to '提醒', user_notifications_path(current_user) %>
@@ -7,12 +10,6 @@
         <div class="new-notification-count"><%= current_user.new_notification_count %></div>
       <% end %>
     </li>
-    <% if policy(current_user).manage? %>
-        <li><%= link_to '管理后台', admin_comments_path %></li>
-    <% end %>
-    <% if current_user.admin? %>
-        <li><%= link_to '用户管理', users_path %></li>
-    <% end %>
     <li><%= link_to '设置', edit_user_registration_path %></li>
     <li><%= link_to '退出', destroy_user_session_path, :method => 'delete' %></li>
 <% else %>

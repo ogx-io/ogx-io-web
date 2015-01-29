@@ -1,0 +1,15 @@
+<tr id="user-<%= user.id %>">
+  <td><%= user.id %></td>
+  <td><%= avatar user, 40 %></td>
+  <td><%= user.name %></td>
+  <td><%= user_link user %></td>
+  <td><%= user.email %></td>
+  <td><%= user.sign_in_count %></td>
+  <td><%= time_digest user.last_sign_in_at if user.last_sign_in_at %><br/><%= user.last_sign_in_ip %></td>
+  <td><%= user.role %></td>
+  <td>
+    <%= link_to_unless user.status == 0, "恢复", admin_user_path(user, 'user[status]' => 0), method: :patch, remote: true %>
+    <%= link_to_unless user.status == 1, "封禁", admin_user_path(user, 'user[status]' => 1), method: :patch, remote: true %>
+    <%= link_to_unless user.status == 2, "删除", admin_user_path(user, 'user[status]' => 2), method: :patch, remote: true %>
+  </td>
+</tr>

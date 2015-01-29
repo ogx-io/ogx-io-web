@@ -28,7 +28,7 @@ class Admin::PostsController < ApplicationController
     end
 
     @posts = @all_posts.desc(:_id).page(params[:page]).per(20)
-    respond_with(@admin_posts)
+    respond_with(@posts)
   end
 
   def resume

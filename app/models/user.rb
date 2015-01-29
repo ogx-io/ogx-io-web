@@ -51,6 +51,8 @@ class User
   field :city, type: String # the city which the user is living
   field :website, type: String # the user's personal website
 
+  field :status, type: Integer, default: 0 # 0: normal, 1: blocked, 2: deleted
+
   field :avatar, type: String # the user's avatar
   mount_uploader :avatar, AvatarUploader
 
@@ -92,6 +94,10 @@ class User
 
   def new_notification_count
     self.notifications.unread.count
+  end
+
+  def blocked?
+    self.status == 1 || self.status == 3
   end
 
   def can_post?

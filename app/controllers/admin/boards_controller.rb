@@ -7,7 +7,8 @@ class Admin::BoardsController < ApplicationController
   # GET /admin/boards.json
   def index
     authorize Board.new, :manage?
-    @boards = Board.all.desc(:updated_at).page(params[:page]).per(25)
+    @all_boards = Board.all
+    @boards = @all_boards.desc(:updated_at).page(params[:page]).per(25)
   end
 
   # GET /admin/boards/1

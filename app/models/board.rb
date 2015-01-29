@@ -20,7 +20,7 @@ class Board
     self.moderator_ids.include?(user.id)
   end
 
-  def is_blocked?(user)
+  def is_blocking?(user)
     self.blocked_users.each do |u|
       return true if u.user_id == user.id
     end

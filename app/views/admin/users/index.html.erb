@@ -1,0 +1,22 @@
+<%= render partial: 'admin/common/admin_nav', locals: {index: 5} %>
+<%= render 'users_paginate_bar' %>
+<table class="table table-hover">
+  <thead>
+  <th>id</th>
+  <th>头像</th>
+  <th>用户名</th>
+  <th>昵称</th>
+  <th>邮箱</th>
+  <th>登陆次数</th>
+  <th>最后登陆</th>
+  <th>角色</th>
+  <th>操作</th>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+  <%= render user %>
+  <% end %>
+  </tbody>
+</table>
+<%= render 'users_paginate_bar' %>
+

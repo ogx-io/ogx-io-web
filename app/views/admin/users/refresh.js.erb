@@ -1,0 +1,2 @@
+$("#user-<%= @user.id %>").replaceWith('<%= j render @user %>')
+$("#user-<%= @user.id %>").find("abbr.timeago").timeago()
