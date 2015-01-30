@@ -7,8 +7,8 @@ class Comment
 
   field :b, as: :body, type: String
   field :p, as: :parent_id, type: Integer
-  field :t, as: :thread, type: String # format: "1.2.1/". It is used for sorting: desc(:thread)
-  field :t2, as: :thread2, type: String # format: "1.2.1". It is used for sorting: asc(:thread)
+  field :t, as: :thread, type: String # format: "00001.00002.00001/". It is used for sorting: desc(:thread)
+  field :t2, as: :thread2, type: String # format: "00001.00002.00001". It is used for sorting: asc(:thread)
   field :d, as: :deleted, type: Integer, default: 0 # 0: not deleted, 1: deleted by user, 2: deleted by moderator, 3: deleted and hidden by moderator
   field :comment_count, type: Integer, default: 0
 
@@ -113,6 +113,6 @@ class Comment
   private
 
   def get_thread_num(num)
-    sprintf('%03d',num)
+    sprintf('%05d',num)
   end
 end
