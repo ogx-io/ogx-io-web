@@ -43,4 +43,11 @@ namespace :data do
       post.save
     end
   end
+
+  desc "load the board objects to the nodes collection"
+  task change_board_to_node: :environment do
+    session = Board.mongo_session
+    session[:boards].find().update_all("$set" => {_type: "Board"})
+    session[:boards].rename('nodes')
+  end
 end

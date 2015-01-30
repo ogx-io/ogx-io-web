@@ -28,8 +28,8 @@ class Admin::BoardsController < ApplicationController
   # POST /admin/boards
   # POST /admin/boards.json
   def create
-    authorize @board
     @board = Board.new(board_params)
+    authorize @board
 
     respond_to do |format|
       if @board.save

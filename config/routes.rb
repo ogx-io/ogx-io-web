@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :nodes
+
+  resources :categories
+
   resources :pictures
 
   namespace :admin do
