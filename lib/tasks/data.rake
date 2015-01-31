@@ -54,6 +54,6 @@ namespace :data do
     else
       session['mongoid.auto_increment_ids'].find(_id: 'nodes').update(c: Node.all.count)
     end
-    session['mongoid.auto_increment_ids'].find(:_id => 'boards').remove_all
+    session['mongoid.auto_increment_ids'].find(_id: 'boards').remove_all
   end
 end
