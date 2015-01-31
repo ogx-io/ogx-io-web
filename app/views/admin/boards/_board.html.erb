@@ -1,0 +1,19 @@
+<tr id="node-<%= board.id %>">
+  <td><%= board.id %></td>
+  <td><%= board._type %></td>
+  <td><%= link_to board.name, show_board_path(board.path) %></td>
+  <td><%= link_to board.path, show_board_path(board.path) %></td>
+  <td>
+    <% board.moderators.each do |moderator| %>
+        <%= user_link moderator %>
+    <% end %>
+  </td>
+  <td><%= board.status %></td>
+  <td><%= time_digest board.updated_at %></td>
+  <td>
+    <%= link_to '编辑', edit_admin_board_path(board) %>
+    <%= link_to_unless board.normal?, '恢复', admin_board_path(board, 'board[status]' => 'normal'), method: :patch, remote: true %>
+    <%= link_to_unless board.blocked?, '封禁', admin_board_path(board, 'board[status]' => 'blocked'), method: :patch, remote: true %>
+    <%= link_to_unless board.deleted?, '删除', admin_board_path(board, 'board[status]' => 'deleted'), method: :patch, remote: true %>
+  </td>
+</tr>

@@ -7,10 +7,6 @@ Rails.application.routes.draw do
   resources :pictures
 
   namespace :admin do
-    resources :blocked_users
-  end
-
-  namespace :admin do
     resources :posts do
       member do
         patch :resume
@@ -24,6 +20,8 @@ Rails.application.routes.draw do
     end
     resources :boards
     resources :users
+    resources :nodes
+    resources :blocked_users
   end
 
   resources :comments do

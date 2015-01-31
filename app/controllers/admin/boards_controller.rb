@@ -1,20 +1,7 @@
 class Admin::BoardsController < ApplicationController
-  before_action :set_board, only: [:show, :edit, :update, :destroy]
+  before_action :set_board, only: [:edit, :update, :destroy]
 
   layout 'admin'
-
-  # GET /admin/boards
-  # GET /admin/boards.json
-  def index
-    authorize Board.new, :manage?
-    @all_boards = Board.all
-    @boards = @all_boards.desc(:updated_at).page(params[:page]).per(25)
-  end
-
-  # GET /admin/boards/1
-  # GET /admin/boards/1.json
-  def show
-  end
 
   # GET /admin/boards/new
   def new
@@ -33,11 +20,9 @@ class Admin::BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.save
-        format.html { redirect_to admin_boards_url }
-        format.json { render :show, status: :created, location: @admin_board }
+        format.html { redirect_to admin_nodes_url }
       else
-        format.html { render :new }
-        format.json { render json: @board.errors, status: :unprocessable_entity }
+        format.js { render js: 'alert("error")' }
       end
     end
   end
@@ -49,11 +34,10 @@ class Admin::BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.update(board_params)
-        format.html { redirect_to admin_boards_url }
-        format.json { render :show, status: :ok, location: @admin_board }
+        format.html { redirect_to admin_nodes_url }
+        format.js { render 'admin/nodes/refresh', locals: { node: @board } }
       else
-        format.html { render :edit }
-        format.json { render json: @board.errors, status: :unprocessable_entity }
+        format.js { render js: 'alert("error")' }
       end
     end
   end
@@ -61,10 +45,10 @@ class Admin::BoardsController < ApplicationController
   # DELETE /admin/boards/1
   # DELETE /admin/boards/1.json
   def destroy
-    @board.destroy
+    @board.status = :deleted
+    @board.save
     respond_to do |format|
-      format.html { redirect_to admin_boards_url, notice: 'Board was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js { render 'admin/nodes/refresh', locals: { node: @board } }
     end
   end
 
