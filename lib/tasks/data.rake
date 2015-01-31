@@ -49,8 +49,11 @@ namespace :data do
     session = Board.mongo_session
     session[:boards].find().update_all("$set" => {_type: "Board"})
     session[:boards].rename('nodes')
-    count = session['mongoid.auto_increment_ids'].find(:_id => 'boards').one['c']
-    session['mongoid.auto_increment_ids'].find(:_id => 'nodes').update("$set" => {c: count})
+    if session['mongoid.auto_increment_ids'].find(_id: 'nodes').count == 0
+      session['mongoid.auto_increment_ids'].insert(_id: 'nodes', c: Node.all.count)
+    else
+      session['mongoid.auto_increment_ids'].find(_id: 'nodes').update(c: Node.all.count)
+    end
     session['mongoid.auto_increment_ids'].find(:_id => 'boards').remove_all
   end
 end
