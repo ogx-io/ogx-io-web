@@ -9,7 +9,7 @@
     <% end %>
   </td>
   <td><%= board.status %></td>
-  <td><%= time_digest board.updated_at %></td>
+  <td><%= time_digest board.created_at %></td>
   <td>
     <%= link_to '编辑', edit_admin_board_path(board) %>
     <%= link_to_unless board.normal?, '恢复', admin_board_path(board, 'board[status]' => 'normal'), method: :patch, remote: true %>

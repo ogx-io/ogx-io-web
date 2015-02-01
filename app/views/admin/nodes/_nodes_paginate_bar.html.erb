@@ -1,5 +1,8 @@
 <nav class="topic-bar clearfix">
   节点数：<%= @all_nodes.count %>
   <%= paginate @nodes, left: 1, right: 1 %>
-  <div class="pull-right"><%= link_to '新建版面', new_admin_board_path, class: 'pull-right' %></div>
+  <div class="right-links pull-right">
+    <%= link_to '新建目录', new_admin_category_path %>
+    <%= link_to '新建版面', new_admin_board_path %>
+  </div>
 </nav>

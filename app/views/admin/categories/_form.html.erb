@@ -1,0 +1,8 @@
+<%= simple_form_for(@category, url: @category.new_record? ? admin_categories_path : admin_category_path(@category)) do |f| %>
+    <%= f.input :name, label: '名称', required: false %>
+    <%= f.input :path, label: '路径', required: false %>
+
+    <div class="actions clearfix">
+      <%= f.submit '提交', :class => 'button right' %>
+    </div>
+<% end %>

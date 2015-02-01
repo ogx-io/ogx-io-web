@@ -22,6 +22,7 @@ class Admin::BoardsController < ApplicationController
       if @board.save
         format.html { redirect_to admin_nodes_url }
       else
+        format.html { render :new }
         format.js { render js: 'alert("error")' }
       end
     end
@@ -37,6 +38,7 @@ class Admin::BoardsController < ApplicationController
         format.html { redirect_to admin_nodes_url }
         format.js { render 'admin/nodes/refresh', locals: { node: @board } }
       else
+        format.html { render :edit }
         format.js { render js: 'alert("error")' }
       end
     end

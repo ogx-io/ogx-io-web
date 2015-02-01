@@ -6,7 +6,7 @@ class Admin::NodesController < ApplicationController
   # GET /admin/nodes.json
   def index
     @all_nodes = Node.all
-    @nodes = @all_nodes.asc(:full_path).page(params[:page]).per(25)
+    @nodes = @all_nodes.asc(:path).page(params[:page]).per(25)
   end
 
 end

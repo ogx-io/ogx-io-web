@@ -1,8 +1,6 @@
 class Board < Node
-  include Mongoid::Enum
 
   field :i, as: :intro, type: String
-  enum :status, [:normal, :blocked, :deleted], default: :normal
 
   belongs_to :creator, class_name: "User"
   has_and_belongs_to_many :moderators, class_name: "User", inverse_of: :managing_boards

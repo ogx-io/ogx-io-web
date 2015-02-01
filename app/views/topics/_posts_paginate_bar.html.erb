@@ -1,7 +1,7 @@
 <nav class="topic-bar clearfix">
   帖子数：<%= @all_posts.count %>
   <%= paginate @posts, left: 1, right: 1 %>
-  <div class="post-links pull-right">
+  <div class="right-links pull-right">
     <% if policy(@topic).update? %>
         <% if @topic.top == 0 %>
             <%= link_to '设为置顶', topic_path(@topic, 'topic[top]' => 1), method: :patch %>

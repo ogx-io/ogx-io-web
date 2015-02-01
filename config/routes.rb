@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :boards
     resources :users
     resources :nodes
+    resources :categories
     resources :blocked_users
   end
 
