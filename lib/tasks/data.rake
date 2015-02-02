@@ -59,7 +59,7 @@ namespace :data do
 
   desc "add the root node to the node tree"
   task add_root_node: :environment do
-    Category.create(name: 'root', path: 'root') unless Node.where(name: 'root').exists?
+    Category.create(name: 'root', path: 'root') unless Node.where(path: 'root').exists?
     Node.all.each do |node|
       unless node.path.start_with?('root')
         puts node.path
