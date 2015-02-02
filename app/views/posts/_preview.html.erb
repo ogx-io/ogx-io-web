@@ -2,7 +2,7 @@
   <div class="row">
     <ol class="breadcrumb pull-left">
       <li><%= link_to 'boards', boards_path %></li>
-      <li><%= link_to @board.path, show_board_path(@board.path) %></li>
+      <li><%= link_to @board.path, board_path(@board) %></li>
       <li><a class="back-to-editor" href="javascript:;">发表帖子</a></li>
       <li>预览</li>
     </ol>

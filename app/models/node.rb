@@ -5,6 +5,8 @@ class Node
 
   field :n, as: :name, type: String
   field :p, as: :path, type: String # like 'a/b/c', must be unique
+  field :o, as: :order, type: Integer, default: 0
+  field :l, as: :layer, type: Integer, default: 0
   enum :status, [:normal, :blocked, :deleted], default: :normal
 
   has_many :children, class_name: "Node", inverse_of: :parent
@@ -12,15 +14,16 @@ class Node
 
   before_save :set_parent
 
-  validate :parents_presence
+  validates_uniqueness_of :path, message: "路径已存在"
+  validate :parent_presence
 
-  def parents_presence
+  def parent_presence
     a = self.path.split('/')
-    while a.pop && a.length > 0
+    if a.length > 1
+      a.pop
       pp = a.join('/')
       if !Node.where(path: pp).exists?
-        errors.add(:path, "parent \"#{pp}\" do not exist")
-        break
+        errors.add(:path, "parent \"#{pp}\" does not exist")
       end
     end
   end
@@ -31,5 +34,20 @@ class Node
     if a.length > 0
       self.parent = Node.where(path: a.join('/')).first
     end
+    self.layer = a.length
+  end
+
+  def parents
+    result = []
+    p = self.parent
+    while p
+      result.push(p)
+      p = p.parent
+    end
+    result
+  end
+
+  def last_path
+    self.path.split('/').pop
   end
 end

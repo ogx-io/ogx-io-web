@@ -2,14 +2,7 @@
 <% content_for :description do %><%= (truncate @first.body, length: 200, omission: '...').strip.gsub(/\s+/,'') %><% end %>
 
 <div class="col-sm-10 right-side-layout">
-  <div class="row">
-    <ol class="breadcrumb pull-left">
-      <li><%= link_to 'boards', boards_path %></li>
-      <li><%= link_to @board.path, show_board_path(@board.path) %></li>
-      <li><%= link_to 'topics', show_board_path(@board.path) %></li>
-      <li><%= @topic.title %></li>
-    </ol>
-  </div>
+  <%= render partial: 'nodes/node_path', locals: {node: @board, extras: ['read_topic']} %>
 
   <% if policy(@topic).show? %>
       <div class="topic-head clearfix">

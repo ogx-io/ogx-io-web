@@ -6,14 +6,7 @@
 <% end %>
 
 <div class="col-sm-10 right-side-layout">
-  <div class="row">
-    <ol class="breadcrumb pull-left">
-      <li><%= link_to 'boards', boards_path %></li>
-      <li><%= link_to @board.path, show_board_path(@board.path) %></li>
-      <li><%= link_to 'posts', list_board_posts_path(@board.path) %></li>
-      <li><%= @post.title %></li>
-    </ol>
-  </div>
+  <%= render partial: 'nodes/node_path', locals: {node: @board, extras: ['read_post']} %>
 
   <div class="show-post">
     <% if !@post.deleted? || @board.is_moderator?(current_user) %>

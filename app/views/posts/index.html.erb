@@ -1,12 +1,5 @@
 <div class="col-sm-10 right-side-layout">
-  <div class="row">
-    <ol class="breadcrumb pull-left">
-      <li><%= link_to 'boards', boards_path %></li>
-      <li><%= link_to @board.path, show_board_path(@board.path) %></li>
-      <li>posts</li>
-    </ol>
-  </div>
-
+  <%= render partial: 'nodes/node_path', locals: {node: @board, extras: ['posts']} %>
   <div class="board-main">
     <%= render 'boards/board_head' %>
     <%= render 'boards/board_intro' %>

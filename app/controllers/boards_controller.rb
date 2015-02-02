@@ -11,6 +11,9 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
+    @all_topics = @board.topics.normal
+    @topics = @all_topics.desc(:top, :replied_at).page(params[:page]).per(15)
+    render 'topics/index'
   end
 
   private

@@ -82,9 +82,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/b/:path', to: 'topics#index', as: :show_board
-  get '/b/:path/posts', to: 'posts#index', as: :list_board_posts
-  get '/b/:path/elites', to: 'posts#elites', as: :list_board_elites
   get '/:name', to: 'users#show', as: :show_user
   get '/:name/topics', to: 'users#topics', as: :show_user_topics
   get '/:name/posts', to: 'users#posts', as: :show_user_posts

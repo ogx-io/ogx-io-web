@@ -2,7 +2,7 @@
   <td><%= blocked_user.id %></td>
   <td><%= full_user_link blocked_user.user %></td>
   <% board = Board.find(blocked_user.blockable_id) %>
-  <td><%= link_to board.name, show_board_path(board.path) if board %></td>
+  <td><%= link_to board.name, board_path(board) if board %></td>
   <td><%= user_link blocked_user.blocker %></td>
   <td><%= time_digest blocked_user.created_at %></td>
   <td><%= link_to "解封", admin_blocked_user_path(blocked_user), method: :delete, remote: true %></td>

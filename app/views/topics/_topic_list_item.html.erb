@@ -11,7 +11,7 @@
           <%= render partial: 'topics/topic_lock', locals: {topic: topic} %>
         </div>
         <div class="info">
-          <span class="board-name"><%= link_to topic.board.name, show_board_path(topic.board.path) %> ·</span>
+          <span class="board-name"><%= link_to topic.board.name, board_path(topic.board) %> ·</span>
           <% if posts_count > 1 %>
               <%= user_link topic.user %> · 最后由 <%= user_link topic.last_replying_user %>
               回复于 <%= link_to time_digest(topic.last_replied_at), show_topic_post_path(topic.sid, topic.posts.last.sid), title: topic.posts.last.title %>

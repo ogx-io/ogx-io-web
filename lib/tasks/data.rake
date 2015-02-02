@@ -56,4 +56,17 @@ namespace :data do
     end
     session['mongoid.auto_increment_ids'].find(_id: 'boards').remove_all
   end
+
+  desc "add the root node to the node tree"
+  task add_root_node: :environment do
+    Category.create(name: 'root', path: 'root') unless Node.where(name: 'root').exists?
+    Node.all.each do |node|
+      unless node.path.start_with?('root')
+        puts node.path
+        node.path = 'root/' + node.path
+        node.save
+      end
+    end
+  end
+
 end

@@ -8,7 +8,7 @@
     </div>
     <div class="digest"><%= truncate post.body, length: 100, omission: '...' %></div>
   </td>
-  <td class="text-center"><%= link_to post.board.name, show_board_path(post.board.path) %></td>
+  <td class="text-center"><%= link_to post.board.name, board_path(post.board) %></td>
   <% if index == 4 %>
       <td class="text-center"><%= time_digest post.updated_at %></td>
       <td>
