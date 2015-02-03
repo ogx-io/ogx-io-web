@@ -2,13 +2,13 @@
   <%= render partial: 'nodes/breadcrumbs', locals: {node: @category, extras: nil} %>
   <h3><%= @category.name %></h3>
   <div class="board-list">
-    <% @category.children.normal.boards.desc(:order).each do |board| %>
+    <% @category.children.normal.boards.order_by(order: -1, name: 1).each do |board| %>
     <%= link_to board.name, board %>
     <% end %>
   </div>
   <table class="sub-categories table">
     <tbody>
-    <%= render @category.children.normal.categories.desc(:order) %>
+    <%= render @category.children.normal.categories.order_by(order: -1, name: 1) %>
     </tbody>
   </table>
 </div>

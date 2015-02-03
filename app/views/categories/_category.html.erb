@@ -3,13 +3,13 @@
   <td class="details">
     <% if category.children.normal.categories.count > 0 %>
         <div class="category-list">
-          <% category.children.normal.categories.desc(:order).each do |c| %>
+          <% category.children.normal.categories.order_by(order: -1, name: 1).each do |c| %>
               <%= link_to c.name, c %>
           <% end %>
         </div>
     <% end %>
     <div class="board-list">
-      <% category.children.normal.boards.desc(:order).each do |b| %>
+      <% category.children.normal.boards.order_by(order: -1, name: 1).each do |b| %>
           <%= link_to b.name, b %>
       <% end %>
     </div>
