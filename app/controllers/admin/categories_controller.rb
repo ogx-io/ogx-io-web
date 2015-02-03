@@ -6,6 +6,7 @@ class Admin::CategoriesController < ApplicationController
   # GET /admin/categories/new
   def new
     @category = Category.new
+    @category.path = params[:pp] ? params[:pp] + '/' : 'root/'
   end
 
   # GET /admin/categories/1/edit
