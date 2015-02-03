@@ -14,7 +14,7 @@
         </div>
       </div>
       <ul class="board-list">
-        <% if current_user.collecting_boards.count > 0 %>
+        <% if user_signed_in? && current_user.collecting_boards.count > 0 %>
             <li class="title">收藏板块</li>
             <% current_user.collecting_boards.asc(:name).each do |board| %>
                 <li><%= link_to board.name, board_path(board) %></li>
