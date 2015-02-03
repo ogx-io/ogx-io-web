@@ -75,6 +75,7 @@ class User
   validates_length_of :city, maximum: 20, message: '输入的城市名称太长了'
 
   has_and_belongs_to_many :managing_boards, class_name: "Board", inverse_of: :moderators
+  has_and_belongs_to_many :collecting_boards, class_name: "Board", inverse_of: nil
   has_many :posts, inverse_of: :author
   has_many :topics
   has_many :blocked_users

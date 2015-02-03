@@ -73,6 +73,8 @@ Rails.application.routes.draw do
       get :topics
       get :elites
       get :deleted_posts
+      patch :collect_board
+      patch :uncollect_board
     end
 
     resources :notifications do

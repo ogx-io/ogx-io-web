@@ -1,6 +1,6 @@
 <div class="col-sm-2 left-side-layout hidden-sm hidden-xs">
   <% if content_for?(:left_side) %>
-  <%= yield :left_side %>
+      <%= yield :left_side %>
   <% else %>
       <div class="login-tips panel panel-default">
         <div class="panel-body">
@@ -14,9 +14,13 @@
         </div>
       </div>
       <ul class="board-list">
-        <li class="title">所有板块</li>
-        <% Board.all.asc(:name).each do |board| %>
-            <li><%= link_to board.name, board_path(board) %></li>
+        <% if current_user.collecting_boards.count > 0 %>
+            <li class="title">收藏板块</li>
+            <% current_user.collecting_boards.asc(:name).each do |board| %>
+                <li><%= link_to board.name, board_path(board) %></li>
+            <% end %>
+        <% else %>
+            <li>您还没有收藏任何板块</li>
         <% end %>
       </ul>
   <% end %>

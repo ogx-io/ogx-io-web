@@ -2,16 +2,24 @@
   <div class="panel panel-default board-intro">
     <div class="panel-heading">
       <% if board.moderators.count > 0 %>
-          版主：<ul class="list-inline" style="display: inline-block">
+          版主：
+          <ul class="list-inline" style="display: inline-block">
             <% board.moderators.each do |user| %>
                 <li><%= user_link user %></li>
             <% end %></ul>
       <% else %>
-      诚征版主中
+          诚征版主中
       <% end %>
     </div>
     <div class="panel-body">
       <%= board.intro %>
+      <div class="operations center">
+        <% if current_user.collecting_boards.include?(board) %>
+            <%= link_to '取消收藏', uncollect_board_user_path(current_user, board_id: board.id), method: :patch %>
+        <% else %>
+            <%= link_to '收藏本版', collect_board_user_path(current_user, board_id: board.id), method: :patch %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="panel panel-default board-statistic">

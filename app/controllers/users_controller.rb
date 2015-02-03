@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :posts, :topics, :elites]
-  before_action :set_user, only: [:show, :posts, :topics, :elites, :deleted_posts]
+  before_action :set_user, only: [:show, :update, :collect_board, :uncollect_board, :posts, :topics, :elites, :deleted_posts]
   after_action :verify_authorized
 
   def index
@@ -44,13 +44,26 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
     authorize @user
     if @user.update_attributes(secure_params)
       redirect_to users_path, :notice => "User updated."
     else
       redirect_to users_path, :alert => "Unable to update user."
     end
+  end
+
+  def collect_board
+    authorize @user
+    @board = Board.find(params[:board_id])
+    @user.collecting_boards << @board unless @user.collecting_boards.include?(@board)
+    redirect_to :back
+  end
+
+  def uncollect_board
+    authorize @user
+    @board = Board.find(params[:board_id])
+    @user.collecting_boards.delete(@board)
+    redirect_to :back
   end
 
   private

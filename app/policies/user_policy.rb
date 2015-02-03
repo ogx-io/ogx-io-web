@@ -43,4 +43,12 @@ class UserPolicy
     @current_user.admin?
   end
 
+  def collect_board?
+    @current_user == @user
+  end
+
+  def uncollect_board?
+    @current_user == @user
+  end
+
 end
