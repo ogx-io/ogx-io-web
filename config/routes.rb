@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :nodes
-
   resources :categories
-
   resources :pictures
 
   namespace :admin do
@@ -20,7 +17,12 @@ Rails.application.routes.draw do
     end
     resources :boards
     resources :users
-    resources :nodes
+    resources :nodes do
+      member do
+        patch :order_up
+        patch :order_down
+      end
+    end
     resources :categories
     resources :blocked_users
   end
@@ -31,8 +33,6 @@ Rails.application.routes.draw do
       delete :delete_all
     end
   end
-
-  resources :blocked_users
 
   resources :boards do
     collection do

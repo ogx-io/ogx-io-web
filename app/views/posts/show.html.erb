@@ -6,7 +6,7 @@
 <% end %>
 
 <div class="col-sm-10 right-side-layout">
-  <%= render partial: 'nodes/node_path', locals: {node: @board, extras: ['read_post']} %>
+  <%= render partial: 'nodes/breadcrumbs', locals: {node: @board, extras: ['read_post']} %>
 
   <div class="show-post">
     <% if !@post.deleted? || @board.is_moderator?(current_user) %>

@@ -1,13 +1,6 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show]
 
-  # GET /boards
-  # GET /boards.json
-  def index
-    @boards = Board.all.asc(:name)
-  end
-
-
   # GET /boards/1
   # GET /boards/1.json
   def show

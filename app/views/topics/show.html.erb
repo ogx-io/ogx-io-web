@@ -2,7 +2,7 @@
 <% content_for :description do %><%= (truncate @first.body, length: 200, omission: '...').strip.gsub(/\s+/,'') %><% end %>
 
 <div class="col-sm-10 right-side-layout">
-  <%= render partial: 'nodes/node_path', locals: {node: @board, extras: ['read_topic']} %>
+  <%= render partial: 'nodes/breadcrumbs', locals: {node: @board, extras: ['read_topic']} %>
 
   <% if policy(@topic).show? %>
       <div class="topic-head clearfix">

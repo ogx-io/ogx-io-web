@@ -1,4 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<div class="show-category col-md-10 right-side-layout">
+  <%= render partial: 'nodes/breadcrumbs', locals: {node: @category, extras: nil} %>
+  <h3><%= @category.name %></h3>
+  <div class="board-list">
+    <% @category.children.normal.boards.desc(:order).each do |board| %>
+    <%= link_to board.name, board %>
+    <% end %>
+  </div>
+  <table class="sub-categories table">
+    <tbody>
+    <%= render @category.children.normal.categories.desc(:order) %>
+    </tbody>
+  </table>
+</div>

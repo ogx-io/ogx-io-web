@@ -1,0 +1,13 @@
+<div class="row">
+  <ol class="breadcrumb pull-left">
+    <% node.parents.reverse.each do |parent| %>
+        <li>
+          <%= link_to parent.last_path, parent %>
+        </li>
+    <% end %>
+    <li><%= link_to_unless extras.nil? || extras.length == 0, node.last_path, node %></li>
+    <% extras.each do |item| %>
+        <li><%= item %></li>
+    <% end %>
+  </ol>
+</div>

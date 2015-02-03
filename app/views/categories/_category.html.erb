@@ -1,0 +1,17 @@
+<tr>
+  <td class="title"><%= link_to category.name, category %></td>
+  <td class="details">
+    <% if category.children.normal.categories.count > 0 %>
+        <div class="category-list">
+          <% category.children.normal.categories.desc(:order).each do |c| %>
+              <%= link_to c.name, c %>
+          <% end %>
+        </div>
+    <% end %>
+    <div class="board-list">
+      <% category.children.normal.boards.desc(:order).each do |b| %>
+          <%= link_to b.name, b %>
+      <% end %>
+    </div>
+  </td>
+</tr>

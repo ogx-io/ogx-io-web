@@ -1,5 +1,5 @@
 <div class="edit-post-container col-sm-8 right-side-layout">
-  <%= render partial: 'nodes/node_path', locals: {node: @board, extras: ['edit_post']} %>
+  <%= render partial: 'nodes/breadcrumbs', locals: {node: @board, extras: ['edit_post']} %>
 
   <h4>
     修改 <%= link_to @post.title, @post %>

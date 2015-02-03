@@ -1,3 +1,44 @@
 // Place all the styles related to the Categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.show-category {
+  h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  .board-list {
+    a {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+  }
+  .sub-categories {
+    margin-top: 10px;
+    .title {
+      font-size: 16px;
+      width: 80px;
+      padding-left: 0;
+    }
+    .title, .category-list {
+      a {
+        color: #777;
+      }
+    }
+    .category-list {
+      margin-bottom: 5px;
+      a {
+        margin-right: 10px;
+      }
+    }
+  }
+  table > tbody {
+    tr > td {
+      vertical-align: middle;
+    }
+    tr:last-of-type {
+      td {
+        border-bottom: solid #DDD 1px;
+      }
+    }
+  }
+}

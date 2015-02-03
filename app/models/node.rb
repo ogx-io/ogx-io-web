@@ -9,6 +9,10 @@ class Node
   field :l, as: :layer, type: Integer, default: 0
   enum :status, [:normal, :blocked, :deleted], default: :normal
 
+  scope :categories, -> { where(_type: 'Category') }
+  scope :boards, -> { where(_type: 'Board') }
+  scope :normal, -> { where(status: :normal) }
+
   has_many :children, class_name: "Node", inverse_of: :parent
   belongs_to :parent, class_name: "Node", inverse_of: :children
 
@@ -49,5 +53,9 @@ class Node
 
   def last_path
     self.path.split('/').pop
+  end
+
+  def self.root
+    self.where(path: 'root').first
   end
 end

@@ -1,13 +1,16 @@
 <tr id="node-<%= category.id %>">
   <td><%= category.id %></td>
   <td><%= category._type %></td>
-  <td><%= category.name %></td>
+  <td><%= link_to category.name, category %></td>
   <td><%= category.path %></td>
   <td></td>
   <td><%= category.status %></td>
-  <td><%= time_digest category.created_at %></td>
+  <td><%= category.layer %></td>
+  <td><%= category.order %></td>
   <td>
     <%= link_to '编辑', edit_admin_category_path(category) %>
+    <%= link_to '上升', order_up_admin_node_path(category.id), method: :patch %>
+    <%= link_to '下降', order_down_admin_node_path(category.id), method: :patch %>
     <%= link_to_unless category.normal?, '恢复', admin_category_path(category, 'category[status]' => 'normal'), method: :patch, remote: true %>
     <%= link_to_unless category.deleted?, '删除', admin_category_path(category, 'category[status]' => 'deleted'), method: :patch, remote: true %>
   </td>
