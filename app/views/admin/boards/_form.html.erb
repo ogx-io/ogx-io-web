@@ -2,7 +2,7 @@
     <%= f.input :name, label: '名称', required: false %>
     <%= f.input :path, label: '路径', required: false %>
     <%= f.input :moderator_ids, label: '版主', input_html: {value: @board.moderators.collect{|user| user.name}.join(' ')}, required: false %>
-    <%= f.input :intro, label: '板块简介', required: false %>
+    <%= f.input :intro, label: '板块简介', as: :text, required: false %>
 
     <div class="actions clearfix">
       <%= f.submit '提交', :class => 'button right' %>
