@@ -3,18 +3,15 @@ class Node
   include Mongoid::Timestamps
   include Mongoid::Enum
 
+  include Nodable
+
   field :n, as: :name, type: String
   field :p, as: :path, type: String # like 'a/b/c', must be unique
-  field :o, as: :order, type: Integer, default: 0
-  field :l, as: :layer, type: Integer, default: 0
   enum :status, [:normal, :blocked, :deleted], default: :normal
 
   scope :categories, -> { where(_type: 'Category') }
   scope :boards, -> { where(_type: 'Board') }
   scope :normal, -> { where(status: :normal) }
-
-  has_many :children, class_name: "Node", inverse_of: :parent
-  belongs_to :parent, class_name: "Node", inverse_of: :children
 
   before_save :set_parent
 
@@ -39,16 +36,6 @@ class Node
       self.parent = Node.where(path: a.join('/')).first
     end
     self.layer = a.length
-  end
-
-  def parents
-    result = []
-    p = self.parent
-    while p
-      result.push(p)
-      p = p.parent
-    end
-    result
   end
 
   def last_path
