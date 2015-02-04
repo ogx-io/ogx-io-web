@@ -3,21 +3,20 @@ class Topic
   include Mongoid::Timestamps
 
   include Sidable
+  include LogicDeletable
 
   field :f, as: :last_floor, type: Integer, default: 0
   field :t, as: :top, type: Integer, default: 0 # 0: normal, 1: always on top
   field :r_at, as: :replied_at, type: Time
-  field :d, as: :deleted, type: Integer, default: 0 # 0:normal, 1: deleted
   field :l, as: :lock, type: Integer, default: 0 # 0: unlocked, 1: locked by user, 2: locked by moderator
-
-  scope :normal, -> { where(deleted: 0) }
-  scope :deleted, -> { where(deleted: 1) }
 
   has_many :posts
   belongs_to :board, touch: true
   belongs_to :user
-  belongs_to :deleter, class_name: "User"
-  belongs_to :resumer, class_name: "User"
+
+  def author
+    user
+  end
 
   def title
     self.posts.first.title
@@ -29,22 +28,6 @@ class Topic
 
   def last_replied_at
     self.posts.normal.last.created_at
-  end
-
-  def resume_by(user)
-    self.deleted = 0
-    self.resumer = user
-    self.save
-  end
-
-  def delete_by(user)
-    self.deleted = 1
-    self.deleter = user
-    self.save
-  end
-
-  def deleted?
-    self.deleted == 1
   end
 
   def locked?

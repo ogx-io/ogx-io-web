@@ -6,12 +6,12 @@ class Post
   include Sidable
   include Mentionable
   include BodyConvertable
+  include LogicDeletable
 
   field :t, as: :title, type: String
   field :b, as: :body, type: String
   field :f, as: :floor, type: Integer
   field :e, as: :elite, type: Integer, default: 0
-  field :d, as: :deleted, type: Integer, default: 0 # 0: normal, 1:deleted by user, 2: deleted by admin
 
   field :comment_count, type: Integer, default: 0
 
@@ -22,16 +22,12 @@ class Post
   validates_presence_of :title, message: "必须要有标题"
   validates_length_of :title, maximum: 40, message: "标题太长了"
 
-  scope :normal, -> { where(deleted: 0) }
-  scope :deleted, -> { where(deleted: {'$gt' => 0}) }
   scope :elites, -> { where(elite: 1) }
 
   belongs_to :board
   belongs_to :author, class_name: "User", inverse_of: :posts
   belongs_to :topic, touch: true
   belongs_to :parent, class_name: "Post"
-  belongs_to :deleter, class_name: "User"
-  belongs_to :resumer, class_name: "User"
 
   has_many :comments, as: :commentable
   has_many :pictures, as: :picturable
@@ -70,27 +66,13 @@ class Post
     self.comments.normal.last.created_at
   end
 
-  def deleted?
-    self.deleted > 0
-  end
-
-  def delete_by(user)
-    if self.author == user
-      self.deleted = 1
-    else
-      self.deleted = 2
-    end
-    self.deleter = user
-    self.save
+  def after_delete_by(user)
     if self.topic.posts.normal.count == 0
       self.topic.delete_by(user)
     end
   end
 
-  def resume_by(user)
-    self.deleted = 0
-    self.resumer = user
-    self.save
+  def after_resume_by(user)
     if self.topic.deleted?
       self.topic.resume_by(user)
     end

@@ -13,7 +13,7 @@ module Sidable
     r
   end
 
-  module ClassMethods
+  class_methods do
     def find_by_sid(sid)
       id = 0
       sid.each_byte { |b| id = id * 26 + (b - 97) }
