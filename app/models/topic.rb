@@ -14,7 +14,7 @@ class Topic
   scope :deleted, -> { where(deleted: 1) }
 
   has_many :posts
-  belongs_to :board
+  belongs_to :board, touch: true
   belongs_to :user
   belongs_to :deleter, class_name: "User"
   belongs_to :resumer, class_name: "User"
