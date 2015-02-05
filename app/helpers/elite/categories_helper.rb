@@ -1,0 +1,2 @@
+module Elite::CategoriesHelper
+end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :elite_categories
   resources :categories
   resources :pictures
 
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     end
     resources :categories
     resources :blocked_users
+    resources :elite_categories
   end
 
   resources :comments do
