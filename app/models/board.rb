@@ -19,4 +19,8 @@ class Board < Node
     end
     false
   end
+
+  def elite_root
+    Elite::Category.root_for(self)
+  end
 end
