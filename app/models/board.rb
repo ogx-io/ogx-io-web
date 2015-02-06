@@ -8,6 +8,12 @@ class Board < Node
   has_many :topics
   has_many :blocked_users, as: :blockable
 
+  after_create :set_root_elite_category
+
+  def set_root_elite_category
+    Elite::Category.root_for(self)
+  end
+
   def is_moderator?(user)
     return false if not user
     self.moderator_ids.include?(user.id)

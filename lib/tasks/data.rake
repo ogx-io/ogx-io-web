@@ -69,4 +69,11 @@ namespace :data do
     end
   end
 
+  desc "initialize the elite category for the boards"
+  task init_elite_category: :environment do
+    Board.all.each do |board|
+      root = board.elite_root
+      puts root.board.name
+    end
+  end
 end

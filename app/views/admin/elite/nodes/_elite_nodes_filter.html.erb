@@ -1,0 +1,22 @@
+<div class="elite-filter-list">
+  状态：<div class="btn-group">
+    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+      <%= params[:status].blank? ? "所有" : ['正常显示', '已删除'][params[:status].to_i - 1] %>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li><%= link_to "所有", request.url.split('?')[0] + "?parent_id=#{params[:parent_id]}" %></li>
+      <li><%= link_to "正常显示", request.url.split('?')[0] + "?parent_id=#{params[:parent_id]}&status=1" %></li>
+      <li><%= link_to "已删除", request.url.split('?')[0] + "?parent_id=#{params[:parent_id]}&status=2" %></li>
+    </ul>
+  </div>
+  <ol class="elite-path breadcrumb">
+    <li><%= link_to_if @parent, '所有板块', admin_elite_nodes_path(status: params[:status]) %></li>
+    <% if @parent %>
+        <% @parent.parents.each do |p| %>
+            <li><%= link_to p.name, admin_elite_nodes_path(parent_id: p.id, status: params[:status]) %></li>
+        <% end %>
+        <li><%= @parent.name %></li>
+    <% end %>
+  </ol>
+</div>

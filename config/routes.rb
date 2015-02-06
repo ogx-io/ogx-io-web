@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :elite_categories
   resources :categories
   resources :pictures
 
@@ -26,7 +25,11 @@ Rails.application.routes.draw do
     end
     resources :categories
     resources :blocked_users
-    resources :elite_categories
+
+    namespace :elite do
+      resources :categories
+      resources :nodes
+    end
   end
 
   resources :comments do
@@ -68,7 +71,7 @@ Rails.application.routes.draw do
   end
 
   root to: 'visitors#index'
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
   resources :users do
     member do
