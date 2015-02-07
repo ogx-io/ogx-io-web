@@ -2,7 +2,7 @@ class BlockedUserPolicy < ApplicationPolicy
 
   def create?
     if record.blockable_type == "Board"
-      return record.blockable.is_moderator?(user) || user.admin?
+      return record.blockable.has_moderator?(user) || user.admin?
     end
   end
 

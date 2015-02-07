@@ -14,7 +14,7 @@ class Board < Node
     Elite::Category.root_for(self)
   end
 
-  def is_moderator?(user)
+  def has_moderator?(user)
     return false if not user
     self.moderator_ids.include?(user.id)
   end

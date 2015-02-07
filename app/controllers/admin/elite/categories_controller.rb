@@ -23,7 +23,11 @@ class Admin::Elite::CategoriesController < ApplicationController
   def create
     @elite_category = Elite::Category.new(elite_category_params)
     @elite_category[:parent_id] = @elite_category[:parent_id].to_i
+
+    authorize @elite_category
+
     @elite_category.moderator = current_user
+    @elite_category.board = @elite_category.parent.board
     @elite_category.save
     redirect_to admin_elite_nodes_path(parent_id: @elite_category[:parent_id])
   end
@@ -31,6 +35,8 @@ class Admin::Elite::CategoriesController < ApplicationController
   # PATCH/PUT /admin/elite/categories/1
   # PATCH/PUT /admin/elite/categories/1.json
   def update
+    authorize @elite_category
+
     @elite_category.update(elite_category_params)
     @elite_category[:parent_id] = @elite_category[:parent_id].to_i
     @elite_category.moderator = current_user

@@ -9,7 +9,7 @@
   <%= render partial: 'nodes/breadcrumbs', locals: {node: @board, extras: ['read_post']} %>
 
   <div class="show-post">
-    <% if !@post.deleted? || @board.is_moderator?(current_user) %>
+    <% if policy(@post).show? %>
         <nav class="topic-bar clearfix">
           本帖所在主题：<%= link_to @post.topic.title, @post.topic %>
           -

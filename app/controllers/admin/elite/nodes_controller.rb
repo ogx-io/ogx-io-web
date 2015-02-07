@@ -8,6 +8,7 @@ class Admin::Elite::NodesController < ApplicationController
   def index
     if params[:parent_id].blank?
       @all_nodes = Elite::Node.where(layer: 0)
+      @all_nodes = @all_nodes.where(:board_id.in => current_user.managing_boards.collect{|board| board.id}) unless current_user.admin?
     else
       @parent = Elite::Node.find(params[:parent_id])
       @all_nodes = Elite::Node.where(parent_id: params[:parent_id])
@@ -16,7 +17,7 @@ class Admin::Elite::NodesController < ApplicationController
   end
 
   def order_up
-    # authorize @node, :update?
+    authorize @node, :update?
     @node.order += 1
     @node.save
     respond_to do |format|
@@ -25,7 +26,7 @@ class Admin::Elite::NodesController < ApplicationController
   end
 
   def order_down
-    # authorize @node, :update?
+    authorize @node, :update?
     @node.order -= 1
     @node.save
     respond_to do |format|
@@ -34,6 +35,7 @@ class Admin::Elite::NodesController < ApplicationController
   end
 
   def resume
+    authorize @node, :update?
     @node.resume_by(current_user)
     respond_to do |format|
       format.js { render 'refresh', locals: {node: @node} }
@@ -41,6 +43,7 @@ class Admin::Elite::NodesController < ApplicationController
   end
 
   def destroy
+    authorize @node, :update?
     @node.delete_by(current_user)
     respond_to do |format|
       format.js { render 'refresh', locals: {node: @node} }

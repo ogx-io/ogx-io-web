@@ -1,7 +1,7 @@
 class BoardPolicy < ApplicationPolicy
 
   def blocked_users?
-    signed_in? && record.is_moderator?(user)
+    signed_in? && record.has_moderator?(user)
   end
 
   def update?
