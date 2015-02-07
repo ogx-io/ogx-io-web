@@ -1,10 +1,20 @@
-<tr>
+<tr id="node-<%= category.id %>">
   <td><%= category.id %></td>
   <td><span class="glyphicon glyphicon-folder-close"></span></td>
   <td><%= link_to category.name, admin_elite_nodes_path(parent_id: category.id) %></td>
   <td></td>
   <td></td>
   <td></td>
+  <td><%= category.order %></td>
+  <td><%= category.layer %></td>
   <td><%= category.deleted %></td>
-  <td></td>
+  <td>
+    <%= link_to_unless category.layer == 0, '上升', order_up_admin_elite_node_path(category), method: :patch %>
+    <%= link_to_unless category.layer == 0, '下降', order_down_admin_elite_node_path(category), method: :patch %>
+    <% if category.layer > 0 %>
+        <%= link_to_unless category.deleted?, '删除', admin_elite_node_path(category), method: :delete, remote: true %>
+        <%= link_to_if category.deleted?, '恢复', resume_admin_elite_node_path(category), method: :patch, remote: true %>
+    <% end %>
+    <%= link_to_unless category.layer == 0, '编辑', edit_admin_elite_category_path(category) %>
+  </td>
 </tr>

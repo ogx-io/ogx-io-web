@@ -1,6 +1,5 @@
-<h1>Editing Admin Elite Category</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @admin_elite_category %> |
-<%= link_to 'Back', admin_elite_categories_path %>
+<%= render partial: 'admin/common/admin_nav', locals: {index: 6} %>
+<div class="simpleform">
+  <h3>编辑目录</h3>
+  <%= render 'form' %>
+</div>

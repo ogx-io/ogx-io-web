@@ -1,4 +1,7 @@
 <nav class="list-bar clearfix">
   节点数：<%= @all_nodes.count %>
   <%= paginate @nodes, left: 1, right: 1 %>
+  <div class="right-links pull-right">
+    <%= link_to_if @parent, '新建目录', new_admin_elite_category_path(parent_id: @parent.id) %>
+  </div>
 </nav>

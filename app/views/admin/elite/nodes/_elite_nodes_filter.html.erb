@@ -10,13 +10,5 @@
       <li><%= link_to "已删除", request.url.split('?')[0] + "?parent_id=#{params[:parent_id]}&status=2" %></li>
     </ul>
   </div>
-  <ol class="elite-path breadcrumb">
-    <li><%= link_to_if @parent, '所有板块', admin_elite_nodes_path(status: params[:status]) %></li>
-    <% if @parent %>
-        <% @parent.parents.each do |p| %>
-            <li><%= link_to p.name, admin_elite_nodes_path(parent_id: p.id, status: params[:status]) %></li>
-        <% end %>
-        <li><%= @parent.name %></li>
-    <% end %>
-  </ol>
+  <%= render partial: 'breadcrumbs', locals: {node: @parent} %>
 </div>

@@ -1,20 +1,17 @@
 class Admin::Elite::CategoriesController < ApplicationController
-  before_action :set_admin_elite_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_elite_category, only: [:edit, :update, :destroy]
 
+  layout 'admin'
   # GET /admin/elite/categories
   # GET /admin/elite/categories.json
   def index
     @admin_elite_categories = Admin::Elite::Category.all
   end
 
-  # GET /admin/elite/categories/1
-  # GET /admin/elite/categories/1.json
-  def show
-  end
-
   # GET /admin/elite/categories/new
   def new
-    @admin_elite_category = Admin::Elite::Category.new
+    @elite_category = Elite::Category.new
+    @elite_category[:parent_id] = params[:parent_id]
   end
 
   # GET /admin/elite/categories/1/edit
@@ -24,51 +21,31 @@ class Admin::Elite::CategoriesController < ApplicationController
   # POST /admin/elite/categories
   # POST /admin/elite/categories.json
   def create
-    @admin_elite_category = Admin::Elite::Category.new(admin_elite_category_params)
-
-    respond_to do |format|
-      if @admin_elite_category.save
-        format.html { redirect_to @admin_elite_category, notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @admin_elite_category }
-      else
-        format.html { render :new }
-        format.json { render json: @admin_elite_category.errors, status: :unprocessable_entity }
-      end
-    end
+    @elite_category = Elite::Category.new(elite_category_params)
+    @elite_category[:parent_id] = @elite_category[:parent_id].to_i
+    @elite_category.moderator = current_user
+    @elite_category.save
+    redirect_to admin_elite_nodes_path(parent_id: @elite_category[:parent_id])
   end
 
   # PATCH/PUT /admin/elite/categories/1
   # PATCH/PUT /admin/elite/categories/1.json
   def update
-    respond_to do |format|
-      if @admin_elite_category.update(admin_elite_category_params)
-        format.html { redirect_to @admin_elite_category, notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @admin_elite_category }
-      else
-        format.html { render :edit }
-        format.json { render json: @admin_elite_category.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /admin/elite/categories/1
-  # DELETE /admin/elite/categories/1.json
-  def destroy
-    @admin_elite_category.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_elite_categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @elite_category.update(elite_category_params)
+    @elite_category[:parent_id] = @elite_category[:parent_id].to_i
+    @elite_category.moderator = current_user
+    @elite_category.save
+    redirect_to admin_elite_nodes_path(parent_id: @elite_category[:parent_id])
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_elite_category
-      @admin_elite_category = Admin::Elite::Category.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_elite_category
+    @elite_category = Elite::Category.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def admin_elite_category_params
-      params[:admin_elite_category]
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def elite_category_params
+    params[:elite_category].permit(:title, :parent_id)
+  end
 end

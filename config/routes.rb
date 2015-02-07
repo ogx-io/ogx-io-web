@@ -28,7 +28,13 @@ Rails.application.routes.draw do
 
     namespace :elite do
       resources :categories
-      resources :nodes
+      resources :nodes do
+        member do
+          patch :resume
+          patch :order_up
+          patch :order_down
+        end
+      end
     end
   end
 

@@ -7,4 +7,8 @@ class Elite::Category < Elite::Node
   def name
     self.layer == 0 ? self.board.name : self.title
   end
+
+  def author
+    self.moderator
+  end
 end

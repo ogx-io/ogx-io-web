@@ -1,0 +1,9 @@
+<ol class="elite-path breadcrumb">
+  <li><%= link_to_if node, '所有板块', admin_elite_nodes_path(status: params[:status]) %></li>
+  <% if node %>
+      <% node.parents.reverse.each do |p| %>
+          <li><%= link_to p.name, admin_elite_nodes_path(parent_id: p.id, status: params[:status]) %></li>
+      <% end %>
+      <li><%= node.name %></li>
+  <% end %>
+</ol>
