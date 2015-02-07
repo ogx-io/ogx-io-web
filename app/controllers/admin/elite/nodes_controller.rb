@@ -13,6 +13,12 @@ class Admin::Elite::NodesController < ApplicationController
       @parent = Elite::Node.find(params[:parent_id])
       @all_nodes = Elite::Node.where(parent_id: params[:parent_id])
     end
+    if params[:status].to_i == 1
+      @all_nodes = @all_nodes.normal
+    end
+    if params[:status].to_i == 2
+      @all_nodes = @all_nodes.deleted
+    end
     @nodes = @all_nodes.desc(:order).page(params[:page]).per(20)
   end
 

@@ -1,7 +1,7 @@
 <tr id="node-<%= category.id %>">
   <td><%= category.id %></td>
   <td><span class="glyphicon glyphicon-folder-close"></span></td>
-  <td><%= link_to category.name, admin_elite_nodes_path(parent_id: category.id) %></td>
+  <td><%= link_to category.name, admin_elite_nodes_path(parent_id: category.id, status: params[:status]) %></td>
   <td></td>
   <td></td>
   <td></td>
