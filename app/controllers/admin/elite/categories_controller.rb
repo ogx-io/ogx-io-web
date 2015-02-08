@@ -28,8 +28,13 @@ class Admin::Elite::CategoriesController < ApplicationController
 
     @elite_category.moderator = current_user
     @elite_category.board = @elite_category.parent.board
-    @elite_category.save
-    redirect_to admin_elite_nodes_path(parent_id: @elite_category[:parent_id])
+    respond_to do |format|
+      if @elite_category.save
+        format.html { redirect_to admin_elite_nodes_path(parent_id: @elite_category[:parent_id]) }
+      else
+        format.html { render :new }
+      end
+    end
   end
 
   # PATCH/PUT /admin/elite/categories/1
@@ -41,7 +46,13 @@ class Admin::Elite::CategoriesController < ApplicationController
     @elite_category[:parent_id] = @elite_category[:parent_id].to_i
     @elite_category.moderator = current_user
     @elite_category.save
-    redirect_to admin_elite_nodes_path(parent_id: @elite_category[:parent_id])
+    respond_to do |format|
+      if @elite_category.save
+        format.html { redirect_to admin_elite_nodes_path(parent_id: @elite_category[:parent_id]) }
+      else
+        format.html { render :edit }
+      end
+    end
   end
 
   private

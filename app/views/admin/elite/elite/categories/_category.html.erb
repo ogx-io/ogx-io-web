@@ -3,8 +3,8 @@
   <td><span class="glyphicon glyphicon-folder-close"></span></td>
   <td><%= link_to category.name, admin_elite_nodes_path(parent_id: category.id, status: params[:status]) %></td>
   <td></td>
-  <td></td>
-  <td></td>
+  <td><%= user_link category.moderator if category.layer > 0 %></td>
+  <td><%= category.updated_at.strftime("%F") if category.layer > 0 %></td>
   <td><%= category.order %></td>
   <td><%= category.layer %></td>
   <td><%= category.deleted %></td>
