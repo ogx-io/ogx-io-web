@@ -5,7 +5,7 @@ module Nodable
     field :o, as: :order, type: Integer, default: 0
     field :l, as: :layer, type: Integer, default: 0
 
-    has_many :children, class_name: self.to_s, inverse_of: :parent
+    has_many :children, class_name: self.to_s, inverse_of: :parent, dependent: :destroy
     belongs_to :parent, class_name: self.to_s, inverse_of: :children
   end
 
