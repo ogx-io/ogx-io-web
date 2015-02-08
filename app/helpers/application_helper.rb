@@ -53,6 +53,10 @@ module ApplicationHelper
     "<abbr class=\"timeago\" title=\"#{time.strftime("%FT%T%:z")}\"></abbr>".html_safe
   end
 
+  def time_date(time)
+    "<span class\"time-date\" title=\"#{time.strftime("%T")}\">#{time.strftime("%F")}</span>".html_safe
+  end
+
   def sanitize_post(body)
     sanitize body, :tags => %w(p br img h1 h2 h3 h4 blockquote pre code b i strong em strike del u a ul ol li span), :attributes => %w(href src class title alt target rel style)
   end
