@@ -1,0 +1,7 @@
+<%= simple_form_for(@elite_post, url: admin_elite_post_path(@elite_post)) do |f| %>
+    <%= f.input :parent_id, label: "父目录ID：" %>
+
+    <div class="actions clearfix">
+      <%= f.submit '提交', :class => 'button right' %>
+    </div>
+<% end %>
