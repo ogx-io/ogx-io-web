@@ -1,1 +1,2 @@
 $('#floor-<%= @post.floor %>').replaceWith('<%=j render @post %>')
+$('#floor-<%= @post.floor %>').find("abbr.timeago").timeago()

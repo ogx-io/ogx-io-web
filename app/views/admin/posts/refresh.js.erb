@@ -1,1 +1,2 @@
 $("#post-<%= @post.id %>").replaceWith("<%=j render @post %>")
+$("#post-<%= @post.id %>").find("abbr.timeago").timeago()

@@ -6,3 +6,35 @@
   }
   margin-bottom: 10px;
 }
+
+.elite-category {
+  .breadcrumb {
+    margin: 0;
+  }
+  th.node-mark {
+    width: 26px;
+  }
+  th.moderator {
+    width: 100px;
+    text-align: center;
+  }
+  td.node-mark {
+    font-size: 16px;
+    padding-right: 0;
+  }
+  td.node-mark-category {
+    color: goldenrod;
+  }
+  td.node-mark-post {
+    color: #BBB;
+  }
+  td.title {
+    a {
+      font-size: 16px;
+    }
+  }
+  td.moderator {
+    text-align: center;
+    vertical-align: middle;
+  }
+}

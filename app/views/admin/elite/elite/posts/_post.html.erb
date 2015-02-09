@@ -1,0 +1,18 @@
+<tr id="node-<%= post.id %>">
+  <td><%= post.id %></td>
+  <td><span class="glyphicon glyphicon-file"></span></td>
+  <td><%= link_to post.title, elite_post_path(post) %></td>
+  <td><%= user_link post.author %></td>
+  <td><%= user_link post.moderator %></td>
+  <td><%= time_date post.updated_at %></td>
+  <td><%= post.order %></td>
+  <td><%= post.layer %></td>
+  <td><%= post.deleted %></td>
+  <td>
+    <%= link_to '上升', order_up_admin_elite_node_path(post), method: :patch %>
+    <%= link_to '下降', order_down_admin_elite_node_path(post), method: :patch %>
+    <%= link_to_unless post.deleted?, '删除', admin_elite_node_path(post), method: :delete, remote: true %>
+    <%= link_to_if post.deleted?, '恢复', resume_admin_elite_node_path(post), method: :patch, remote: true %>
+    <%= link_to '编辑', edit_admin_elite_post_path(post) %>
+  </td>
+</tr>

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
     namespace :elite do
       resources :categories
+      resources :posts
       resources :nodes do
         member do
           patch :resume
@@ -36,6 +37,11 @@ Rails.application.routes.draw do
         end
       end
     end
+  end
+
+  namespace :elite do
+    resources :categories
+    resources :posts
   end
 
   resources :comments do
@@ -57,7 +63,8 @@ Rails.application.routes.draw do
 
     resources :posts, shallow: true do
       member do
-        patch :toggle
+        patch :set_elite
+        patch :unset_elite
         patch :resume
         get :comments
       end

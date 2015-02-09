@@ -34,8 +34,12 @@ class PostPolicy < ApplicationPolicy
         test_if(record.board.is_blocking?(user), "您已经被版主关进小黑屋，不能在本版发帖了。")
   end
 
-  def toggle?
+  def set_elite?
     resume?
+  end
+
+  def unset_elite?
+    destroy?
   end
 
   def comment?

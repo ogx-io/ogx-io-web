@@ -1,4 +1,4 @@
-<% cache_unless post.new_record?, post.new_record? ? [] : [post, policy(post).toggle?, policy(post).destroy?, policy(post).resume?, policy(post).resume?, policy(post).update?] do %>
+<% cache_unless post.new_record?, post.new_record? ? [] : [post, policy(post).set_elite?, policy(post).unset_elite?, policy(post).destroy?, policy(post).resume?, policy(post).resume?, policy(post).update?] do %>
     <div id="floor-<%= post.floor || 'preview' %>" name="floor-<%= post.floor || 'preview' %>" class="post-item panel panel-default">
       <div class="panel-body">
         <div class="pull-left">
@@ -26,7 +26,7 @@
             <% end %>
             <% if !post.new_record? %>
                 · <%= time_digest post.created_at %>
-                <% if post.elite != 0 %>
+                <% if post.is_elite? %>
                     &nbsp;<span class="elite-mark">精华帖</span>
                 <% end %>
                 <% if post.deleted? %>
@@ -42,14 +42,10 @@
                 </div>
                 <div class="pull-right">
                   <ul class="list-inline">
-                    <% if policy(post).toggle? %>
-                        <li>
-                          <% if post.elite == 1 %>
-                              <%= link_to '取消精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
-                          <% else %>
-                              <%= link_to '设为精华', toggle_post_path(post, 'post[elite]' => 1), method: :patch, remote: true, class: 'set-elite' %>
-                          <% end %>
-                        </li>
+                    <% if post.is_elite? && policy(post).unset_elite? %>
+                        <li><%= link_to '取消精华', unset_elite_post_path(post), method: :patch, remote: true, class: 'set-elite' %></li>
+                    <% elsif !post.is_elite? && policy(post).set_elite? %>
+                        <li><%= link_to '设为精华', set_elite_post_path(post), method: :patch, remote: true, class: 'set-elite' %></li>
                     <% end %>
                     <% if !post.deleted? && policy(post).destroy? %>
                         <li>

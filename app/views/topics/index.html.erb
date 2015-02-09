@@ -1,9 +1,9 @@
 <div class="col-md-10 right-side-layout">
   <%= render partial: 'nodes/breadcrumbs', locals: {node: @board, extras: nil} %>
   <div class="board-main">
-    <%= render 'boards/board_head' %>
-    <%= render 'boards/board_intro' %>
-    <%= render partial: 'boards/board_nav', locals: {index: 1} %>
+    <%= render partial: 'boards/board_head', locals: {board: @board} %>
+    <%= render partial: 'boards/board_intro', locals: {board: @board} %>
+    <%= render partial: 'boards/board_nav', locals: {board: @board, index: 1} %>
     <div class="board-content">
       <%= render partial: "topics/topic_list_item", as: :topic, collection: @topics %>
     </div>

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :toggle, :resume, :comments]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :set_elite, :unset_elite, :resume, :comments]
   before_action :set_board, only: [:index, :new, :create, :elites, :deleted]
 
   # GET /posts
@@ -121,14 +121,17 @@ class PostsController < ApplicationController
     end
   end
 
-  def toggle
+  def set_elite
     authorize @post
-    p = Hash.new
-    pp = post_params
-    pp.each do |k, v|
-      pp[k] = p[k] = 1 - @post.send(k)
+    Elite::Post.add_post(@post, current_user)
+    respond_to do |format|
+      format.js { render 'refresh' }
     end
-    @post.update(pp)
+  end
+
+  def unset_elite
+    authorize @post
+    @post.elite_post.delete_by(current_user)
     respond_to do |format|
       format.js { render 'refresh' }
     end

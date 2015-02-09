@@ -1,0 +1,6 @@
+<ol class="elite-path breadcrumb">
+  <% category.parents.reverse.each do |p| %>
+      <li><%= link_to p.layer == 0 ? '根目录' : p.name, elite_category_path(p) %></li>
+  <% end %>
+  <li><%= category.layer == 0 ? '根目录' : category.name %></li>
+</ol>

@@ -1,4 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="col-sm-10 right-side-layout">
+  <%= render partial: 'nodes/breadcrumbs', locals: {node: @elite_category.board, extras: ['elites']} %>
+  <div class="board-main">
+    <%= render partial: 'boards/board_head', locals: {board: @elite_category.board} %>
+    <%= render partial: 'boards/board_intro', locals: {board: @elite_category.board} %>
+    <%= render partial: 'boards/board_nav', locals: {board: @elite_category.board, index: 3} %>
 
-<%= link_to 'Edit', edit_elite_category_path(@elite_category) %> |
-<%= link_to 'Back', elite_categories_path %>
+    <div class="elite-category">
+      <%= render partial: 'breadcrumbs', locals: {category: @elite_category} %>
+
+      <table class="table">
+        <thead>
+        <th class="node-mark"></th>
+        <th class="title">标题</th>
+        <th class="moderator">整理</th>
+        </thead>
+        <tbody>
+        <%= render @children %>
+        </tbody>
+      </table>
+
+      <div class="board-pagination">
+        <%= paginate @children, left: 1, right: 1, :theme => 'bootstrap3' %>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'boards/board_right_side', locals: {board: @elite_category.board} %>
+</div>
+

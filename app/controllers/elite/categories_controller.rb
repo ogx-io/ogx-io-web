@@ -4,6 +4,7 @@ class Elite::CategoriesController < ApplicationController
   # GET /elite/categories/1
   # GET /elite/categories/1.json
   def show
+    @children = @elite_category.children.normal.desc(:order).page(params[:page]).per(20)
   end
 
   # GET /elite/categories/new

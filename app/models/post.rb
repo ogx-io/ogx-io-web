@@ -32,6 +32,8 @@ class Post
   has_many :comments, as: :commentable
   has_many :pictures, as: :picturable
 
+  has_one :elite_post, :class_name => 'Elite::Post', inverse_of: :post
+
   before_create :set_topic_and_floor
   after_create :update_topic, :update_author, :send_notifications
 
@@ -76,6 +78,10 @@ class Post
     if self.topic.deleted?
       self.topic.resume_by(user)
     end
+  end
+
+  def is_elite?
+    self.elite_post && !self.elite_post.deleted?
   end
 
 end
