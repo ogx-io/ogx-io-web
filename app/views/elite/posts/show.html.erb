@@ -11,7 +11,10 @@
   <div class="show-post">
     <% if policy(@elite_post).show? %>
         <nav class="topic-bar clearfix">
-          <%= link_to '返回精华区目录', elite_category_path(@elite_post.parent) %>
+          <%= link_to '返回目录', elite_category_path(@elite_post.parent) %>
+          <% if @elite_post.original %>
+              &nbsp;&nbsp;<%= link_to '查看原文', post_path(@elite_post.original) %>
+          <% end %>
         </nav>
         <div class="post-item panel panel-default">
           <div class="panel-body">
