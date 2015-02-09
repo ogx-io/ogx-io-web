@@ -10,7 +10,7 @@
                   <div class="floor pull-right">#<%= post.floor %></div>
               <% end %>
           <% end %>
-          <h4 class="<%= 're-title hide' if post.title.start_with?('Re:') %>">
+          <h4 class="<%= 're-title' if post.title.start_with?('Re:') %>">
             <% if !post.new_record? %>
                 <%= link_to post.title, show_post_path(post.sid) %>
             <% else %>

@@ -16,9 +16,6 @@
           <%= link_to '在主题内查看', show_topic_post_path(@post.topic.sid, @post.sid) %>
         </nav>
         <%= render partial: 'post', locals: {post: @post, board: @board} %>
-        <script type="text/javascript">
-          $('.re-title').removeClass('hide');
-        </script>
     <% else %>
         对不起，此贴已被删除。
     <% end %>
