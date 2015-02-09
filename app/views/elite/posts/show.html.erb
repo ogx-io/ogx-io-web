@@ -1,4 +1,43 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %><%= @elite_post.title %> - <%= @elite_post.author.nick %> @<%= @elite_post.author.name %> - <%= @elite_post.board.name %>
+<% end %>
+<% content_for :description do %><%= (truncate h(@elite_post.body), length: 200, omission: '...').strip.gsub(/\s+/, '') %>
+<% end %>
+<% content_for :author do %><%= @elite_post.author.nick %> @<%= @elite_post.author.name %>
+<% end %>
 
-<%= link_to 'Edit', edit_elite_post_path(@elite_post) %> |
-<%= link_to 'Back', elite_posts_path %>
+<div class="col-sm-10 right-side-layout">
+  <%= render partial: 'nodes/breadcrumbs', locals: {node: @elite_post.board, extras: elite_breadcrumbs(@elite_post).push('read_elite')} %>
+
+  <div class="show-post">
+    <% if policy(@elite_post).show? %>
+        <nav class="topic-bar clearfix">
+          <%= link_to '返回精华区目录', elite_category_path(@elite_post.parent) %>
+        </nav>
+        <div class="post-item panel panel-default">
+          <div class="panel-body">
+            <div class="pull-left">
+              <%= avatar(@elite_post.author) %>
+            </div>
+            <div class="post-detail">
+
+              <h4 class="<%= 're-title' if @elite_post.title.start_with?('Re:') %>">
+                <%= @elite_post.title %>
+              </h4>
+
+              <div class="post-author">
+                <%= full_user_link @elite_post.author %>
+                · <%= time_digest @elite_post.created_at %>
+                <% if @elite_post.deleted? %>
+                    &nbsp;<span class="deleted-mark">(已删除)</span>
+                <% end %>
+              </div>
+              <div class="post-content"><%= sanitize_post @elite_post.body_html %></div>
+            </div>
+          </div>
+        </div>
+
+    <% else %>
+        对不起，此贴已被删除。
+    <% end %>
+  </div>
+</div>

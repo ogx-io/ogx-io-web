@@ -65,4 +65,12 @@ module ApplicationHelper
     sanitize body, :tags => %w(p br b i strong em strike u a span img), :attributes => %w(href src class title alt target rel style)
   end
 
+  def elite_breadcrumbs(elite_node)
+    result = []
+    elite_node.parents.reverse.each do |p|
+      name = p.layer == 0 ? 'elites' : p.name
+      result.push(link_to(name, elite_category_path(p)))
+    end
+    result
+  end
 end

@@ -32,7 +32,7 @@ class Post
   has_many :comments, as: :commentable
   has_many :pictures, as: :picturable
 
-  has_one :elite_post, :class_name => 'Elite::Post', inverse_of: :post
+  has_one :elite_post, :class_name => 'Elite::Post', inverse_of: :original
 
   before_create :set_topic_and_floor
   after_create :update_topic, :update_author, :send_notifications

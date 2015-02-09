@@ -1,12 +1,11 @@
 <div class="col-sm-10 right-side-layout">
-  <%= render partial: 'nodes/breadcrumbs', locals: {node: @elite_category.board, extras: ['elites']} %>
+  <%= render partial: 'nodes/breadcrumbs', locals: {node: @elite_category.board, extras: elite_breadcrumbs(@elite_category).push(@elite_category.layer == 0 ? 'elites' : @elite_category.name)} %>
   <div class="board-main">
     <%= render partial: 'boards/board_head', locals: {board: @elite_category.board} %>
     <%= render partial: 'boards/board_intro', locals: {board: @elite_category.board} %>
     <%= render partial: 'boards/board_nav', locals: {board: @elite_category.board, index: 3} %>
 
     <div class="elite-category">
-      <%= render partial: 'breadcrumbs', locals: {category: @elite_category} %>
 
       <table class="table table-hover">
         <thead>
