@@ -15,6 +15,10 @@
     width: 26px;
   }
   th.moderator {
+    width: 80px;
+    text-align: center;
+  }
+  th.date {
     width: 100px;
     text-align: center;
   }
@@ -33,8 +37,11 @@
       font-size: 16px;
     }
   }
-  td.moderator {
+  td.moderator, td.date {
     text-align: center;
     vertical-align: middle;
+  }
+  td.date {
+    color: #999;
   }
 }
