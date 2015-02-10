@@ -77,6 +77,7 @@ class User
   has_and_belongs_to_many :managing_boards, class_name: "Board", inverse_of: :moderators
   has_and_belongs_to_many :collecting_boards, class_name: "Board", inverse_of: nil
   has_many :posts, inverse_of: :author
+  has_many :elite_posts, :class_name => 'Elite::Post', inverse_of: :author
   has_many :topics
   has_many :blocked_users
   has_many :notifications, class_name: 'Notification::Base', dependent: :delete

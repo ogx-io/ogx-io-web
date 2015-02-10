@@ -11,7 +11,6 @@ class Post
   field :t, as: :title, type: String
   field :b, as: :body, type: String
   field :f, as: :floor, type: Integer
-  field :e, as: :elite, type: Integer, default: 0
 
   field :comment_count, type: Integer, default: 0
 
@@ -21,8 +20,6 @@ class Post
 
   validates_presence_of :title, message: "必须要有标题"
   validates_length_of :title, maximum: 40, message: "标题太长了"
-
-  scope :elites, -> { where(elite: 1) }
 
   belongs_to :board
   belongs_to :author, class_name: "User", inverse_of: :posts

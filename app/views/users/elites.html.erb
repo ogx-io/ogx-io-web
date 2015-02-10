@@ -1,0 +1,16 @@
+<% content_for :left_side do %>
+    <%= render 'profile_left' %>
+<% end %>
+<div class="col-lg-7 col-md-8 right-side-layout">
+  <%= render partial: 'profile_nav', locals: {index: index} %>
+  <div class="user-elite-list">
+    <table class="table">
+      <tbody>
+      <%= render partial: 'elite_post_item', collection: @posts, as: :elite_post %>
+      </tbody>
+    </table>
+    <div class="user-pagination">
+      <%= paginate @posts, left: 1, right: 1, :theme => 'bootstrap3' %>
+    </div>
+  </div>
+</div>

@@ -15,8 +15,11 @@
           <% else %>
               <%= user_link post.author %> 发表于 <%= time_digest(post.created_at) %>
           <% end %>
-          <% if post.elite != 0 %>
-              &nbsp;<span class="elite-mark">精华帖</span>
+          <% if post.is_elite? %>
+              &nbsp;
+              <%= link_to post.elite_post do %>
+                  <span class="elite-mark">精华帖</span>
+              <% end %>
           <% end %>
         </div>
       </div>
