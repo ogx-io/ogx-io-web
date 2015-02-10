@@ -30,10 +30,6 @@ class UserPolicy
     true
   end
 
-  def deleted_posts?
-    @current_user == @user
-  end
-
   def update?
     @current_user.admin?
   end

@@ -17,8 +17,12 @@ class UsersController < ApplicationController
 
   def posts
     authorize @user
-    @all_posts = @user.posts.normal
-    @posts = @all_posts.desc(:created_at).page(params[:page]).per(15)
+    if @user == current_user
+      @all_posts = @user.posts
+    else
+      @all_posts = @user.posts.normal
+    end
+    @posts = @all_posts.desc(:created_at).page(params[:page]).per(20)
     render 'posts', locals: { index: 1 }
   end
 
@@ -30,17 +34,13 @@ class UsersController < ApplicationController
 
   def elites
     authorize @user
-    @all_posts = @user.elite_posts.normal
+    if @user == current_user
+      @all_posts = @user.elite_posts
+    else
+      @all_posts = @user.elite_posts.normal
+    end
     @posts = @all_posts.desc(:created_at).page(params[:page]).per(20)
     render 'elites', locals: { index: 3 }
-  end
-
-  def deleted_posts
-    authorize @user
-    @all_posts = @user.posts.deleted
-    @posts = @all_posts.desc(:updated_at).page(params[:page]).per(15)
-    @refresh = true
-    render 'posts', locals: { index: 4 }
   end
 
   def update

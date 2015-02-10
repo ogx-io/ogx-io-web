@@ -41,7 +41,11 @@ Rails.application.routes.draw do
 
   namespace :elite do
     resources :categories
-    resources :posts
+    resources :posts do
+      member do
+        patch :resume
+      end
+    end
   end
 
   resources :comments do
@@ -86,7 +90,6 @@ Rails.application.routes.draw do
     member do
       get :topics
       get :elites
-      get :deleted_posts
       patch :collect_board
       patch :uncollect_board
     end

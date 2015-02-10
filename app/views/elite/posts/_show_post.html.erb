@@ -1,0 +1,38 @@
+<div id="elite-post-<%= post.id %>" class="post-item panel panel-default">
+  <div class="panel-body">
+    <div class="pull-left">
+      <%= avatar(post.author) %>
+    </div>
+    <div class="post-detail">
+
+      <h4 class="<%= 're-title' if post.title.start_with?('Re:') %>">
+        <%= post.title %>
+      </h4>
+
+      <div class="post-author">
+        <%= full_user_link post.author %>
+        · <%= time_digest post.created_at %>
+        <% if post.deleted? %>
+            &nbsp;<span class="deleted-mark">(已删除)</span>
+        <% end %>
+      </div>
+      <div class="post-content"><%= sanitize_post post.body_html %></div>
+      <div class="post-footer clearfix">
+        <div class="pull-right">
+          <ul class="list-inline">
+            <% if !post.deleted? && policy(post).destroy? %>
+                <li>
+                  <%= link_to '删除', elite_post_path(post), method: :delete, remote: true %>
+                </li>
+            <% end %>
+            <% if post.deleted? && policy(post).resume? %>
+                <li>
+                  <%= link_to '恢复', resume_elite_post_path(post), method: :patch, remote: true %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

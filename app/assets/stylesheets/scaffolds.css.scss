@@ -177,8 +177,10 @@ a.weak-link {
 }
 
 .deleted-mark {
-  color: gray;
+  color: #999;
   font-size: 12px;
+  line-height: 12px;
+  font-weight: bold;
 }
 
 .head-main-nav {
@@ -314,4 +316,10 @@ td.date {
   width: 100px;
   text-align: center;
   color: #999;
+}
+td.deleted {
+  a {
+    color: #777;
+    text-decoration: line-through;
+  }
 }

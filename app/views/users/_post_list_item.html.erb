@@ -1,5 +1,5 @@
 <tr>
-  <td class="title"><%= link_to post.title, show_post_path(post.sid) %></td>
+  <td class="title <%= 'deleted' if post.deleted? %>"><%= link_to post.title, show_post_path(post.sid) %></td>
   <td class="board hidden-xs"><%= link_to post.board.name, post.board %></td>
   <td class="date"><%= time_date post.created_at %></td>
 </tr>

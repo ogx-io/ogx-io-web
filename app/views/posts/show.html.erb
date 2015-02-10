@@ -17,7 +17,7 @@
         </nav>
         <%= render partial: 'post', locals: {post: @post, board: @board} %>
     <% else %>
-        对不起，此贴已被删除。
+        对不起，您无权查看此贴。
     <% end %>
     <% if policy(@post).comment? || @post.comments.normal.count > 0 %>
     <%= render partial: 'post_comment_panel', locals: {post: @post} %>

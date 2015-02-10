@@ -1,0 +1,2 @@
+$('#elite-post-<%= @elite_post.id %>').replaceWith('<%= j render partial: 'show_post', locals: { post: @elite_post } %>')
+$('#elite-post-<%= @elite_post.id %>').find("abbr.timeago").timeago()
