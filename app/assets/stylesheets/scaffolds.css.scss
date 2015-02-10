@@ -297,3 +297,21 @@ a.weak-link {
   padding-bottom: 8px;
   margin-bottom: 12px;
 }
+
+td.title {
+  a {
+    font-size: 16px;
+  }
+}
+td.board, td.author {
+  width: 100px;
+  text-align: center;
+  a {
+    color: #777;
+  }
+}
+td.date {
+  width: 100px;
+  text-align: center;
+  color: #999;
+}

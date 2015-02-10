@@ -1,6 +1,6 @@
 <tr>
   <td class="node-mark node-mark-post"><span class="glyphicon glyphicon-file"></span></td>
   <td class="title"><%= link_to post.title, elite_post_path(post) %></td>
-  <td class="moderator"><%= user_link post.moderator %></td>
-  <td class="date"><%= time_date post.updated_at %></td>
+  <td class="moderator hidden-xs"><%= user_link post.moderator %></td>
+  <td class="date hidden-xs"><%= time_date post.updated_at %></td>
 </tr>

@@ -3,10 +3,13 @@
 <% end %>
 <div class="col-lg-7 col-md-8 right-side-layout">
   <%= render partial: 'profile_nav', locals: {index: index} %>
-  <div class="user-list-content">
-    <div class="list-content <%= 'elites' if index == 3 %>">
-      <%= render partial: "posts/post_list_item", as: :post, collection: @posts %>
-    </div>
+  <div class="user-post-list">
+
+    <table class="table">
+      <tbody>
+      <%= render partial: 'post_list_item', collection: @posts, as: :post %>
+      </tbody>
+    </table>
     <div class="user-pagination">
       <%= paginate @posts, left: 1, right: 1, :theme => 'bootstrap3' %>
     </div>

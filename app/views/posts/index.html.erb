@@ -4,8 +4,12 @@
     <%= render partial: 'boards/board_head', locals: {board: @board} %>
     <%= render partial: 'boards/board_intro', locals: {board: @board} %>
     <%= render partial: 'boards/board_nav', locals: {board: @board, index: 2} %>
-    <div class="board-content">
-      <%= render partial: "posts/post_list_item", as: :post, collection: @posts %>
+    <div class="post-list">
+      <table class="table">
+        <tbody>
+        <%= render partial: "posts/post_list_item", as: :post, collection: @posts %>
+        </tbody>
+      </table>
     </div>
     <div class="board-pagination">
       <%= paginate @posts, left: 1, right: 1, :theme => 'bootstrap3' %>

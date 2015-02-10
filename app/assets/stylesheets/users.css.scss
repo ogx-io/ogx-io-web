@@ -35,44 +35,30 @@
   }
 }
 
-.user-list-content {
+.user-topic-list {
   .avatar {
     display: none;
   }
   .content {
     margin-left: 0;
   }
-  .user-pagination {
-    text-align: center;
-    margin: 20px auto;
-  }
   .elites .elite-mark {
     display: none;
   }
 }
 
-.user-elite-list {
+.user-post-list {
   table tr td {
     border-top: none;
     border-bottom: dashed #DDD 1px;
     vertical-align: middle;
   }
-  .title {
+  table tr .title {
     padding-left: 0;
-    a {
-      font-size: 16px;
-    }
   }
-  .board {
-    width: 100px;
-    text-align: center;
-    a {
-      color: #777;
-    }
-  }
-  .date {
-    width: 100px;
-    text-align: center;
-    color: #999;
-  }
+}
+
+.user-pagination {
+  text-align: center;
+  margin: 20px auto;
 }

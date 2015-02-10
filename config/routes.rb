@@ -68,10 +68,6 @@ Rails.application.routes.draw do
         patch :resume
         get :comments
       end
-
-      collection do
-        get :elites
-      end
     end
 
     resources :topics, shallow: true do
