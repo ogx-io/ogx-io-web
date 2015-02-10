@@ -15,6 +15,12 @@
         <th class="date">编辑日期</th>
         </thead>
         <tbody>
+        <% if @elite_category.layer > 0 %>
+            <td class="node-mark node-mark-category"><span class="glyphicon glyphicon-folder-close"></span></td>
+            <td class="title"><%= link_to "返回上一级目录", elite_category_path(@elite_category.parent) %></td>
+            <td></td>
+            <td></td>
+        <% end %>
         <%= render @children %>
         </tbody>
       </table>
