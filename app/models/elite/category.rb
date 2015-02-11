@@ -9,14 +9,14 @@ class Elite::Category < Elite::Node
   end
 
   def self.root_for(board)
-    category = self.find_by(board_id: board.id)
-    if category.nil?
+    if self.where(board_id: board.id).exists?
+      return self.where(board_id: board.id).first
+    else
       new_category = self.new
       new_category.board = board
       new_category.save
       return new_category
     end
-    category
   end
 
   def name
