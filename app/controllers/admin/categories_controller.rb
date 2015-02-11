@@ -7,8 +7,7 @@ class Admin::CategoriesController < ApplicationController
   def new
     @category = Category.new
     if params[:parent_id]
-      parent = Node.find(params[:parent_id])
-      @category.path = parent.path + '/'
+      @category.parent_id = params[:parent_id]
     end
   end
 
@@ -23,7 +22,7 @@ class Admin::CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to admin_nodes_url }
+        format.html { redirect_to admin_nodes_path(parent_id: @category.parent_id) }
       else
         format.html { render :new }
       end
@@ -35,7 +34,7 @@ class Admin::CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to admin_nodes_url }
+        format.html { redirect_to admin_nodes_path(parent_id: @category.parent_id) }
         format.js { render 'admin/nodes/refresh', locals: { node: @category } }
       else
         format.html { render :edit }
@@ -52,6 +51,6 @@ class Admin::CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params[:category].permit(:name, :path, :status)
+      params[:category].permit(:name, :path, :parent_id, :status)
     end
 end

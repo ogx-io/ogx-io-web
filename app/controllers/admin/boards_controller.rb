@@ -7,8 +7,7 @@ class Admin::BoardsController < ApplicationController
   def new
     @board = Board.new
     if params[:parent_id]
-      parent = Node.find(params[:parent_id])
-      @board.path = parent.path + '/'
+      @board.parent_id = params[:parent_id]
     end
   end
 
@@ -24,7 +23,7 @@ class Admin::BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.save
-        format.html { redirect_to admin_nodes_url }
+        format.html { redirect_to admin_nodes_path(parent_id: @board.parent_id) }
       else
         format.html { render :new }
         format.js { render js: 'alert("error")' }
@@ -39,7 +38,7 @@ class Admin::BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.update(board_params)
-        format.html { redirect_to admin_nodes_url }
+        format.html { redirect_to admin_nodes_path(parent_id: @board.parent_id) }
         format.js { render 'admin/nodes/refresh', locals: { node: @board } }
       else
         format.html { render :edit }
@@ -66,7 +65,7 @@ class Admin::BoardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      p = params[:board].permit(:name, :path, :intro, :moderator_ids, :status)
+      p = params[:board].permit(:name, :path, :parent_id, :intro, :moderator_ids, :status)
       p[:moderator_ids] = p[:moderator_ids].split.collect{|user_name| User.find_by(name: user_name).id} if p[:moderator_ids]
       p
     end

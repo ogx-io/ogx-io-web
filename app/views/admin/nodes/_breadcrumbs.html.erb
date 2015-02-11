@@ -1,9 +1,9 @@
 <div class="row">
   <ol class="breadcrumb pull-left">
     <% node.parents.reverse.each do |parent| %>
-        <li><%= link_to parent.path, parent %></li>
+        <li><%= link_to parent.path, admin_nodes_path(parent_id: parent.id) %></li>
     <% end %>
-    <li><%= link_to_unless extras.nil? || extras.length == 0, node.path, node %></li>
+    <li><%= link_to_unless extras.nil? || extras.length == 0, node.path, admin_nodes_path(parent_id: node.id) %></li>
     <% extras.each do |item| %>
         <li><%= item %></li>
     <% end %>

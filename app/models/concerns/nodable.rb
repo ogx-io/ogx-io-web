@@ -7,6 +7,14 @@ module Nodable
 
     has_many :children, class_name: self.to_s, inverse_of: :parent, dependent: :destroy
     belongs_to :parent, class_name: self.to_s, inverse_of: :children
+
+    before_save :set_layer
+  end
+
+  def set_layer
+    if self.parent
+      self.layer = self.parent.layer + 1
+    end
   end
 
   def parents

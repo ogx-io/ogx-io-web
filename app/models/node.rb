@@ -6,26 +6,21 @@ class Node
   include Nodable
 
   field :n, as: :name, type: String
-  field :p, as: :path, type: String # like 'a/b/c', must be unique
+  field :p, as: :path, type: String
   enum :status, [:normal, :blocked, :deleted], default: :normal
 
   scope :categories, -> { where(_type: 'Category') }
   scope :boards, -> { where(_type: 'Board') }
   scope :normal, -> { where(status: :normal) }
 
-  before_save :set_parent
+  validates_presence_of :name, message: "必须要有名字"
+  validates_presence_of :path, message: "必须要有路径"
+  validates_presence_of :parent_id, message: "必须要有父节点"
+  validate :check_path_uniqueness
 
-  validates_uniqueness_of :path, message: "路径已存在"
-  validate :parent_presence
-
-  def parent_presence
-    a = self.path.split('/')
-    if a.length > 1
-      a.pop
-      pp = a.join('/')
-      if !Node.where(path: pp).exists?
-        errors.add(:path, "parent \"#{pp}\" does not exist")
-      end
+  def check_path_uniqueness
+    if Node.where(parent_id: self.parent_id, path: self.path).exists?
+      errors.add(:path, "this path already exists!")
     end
   end
 
@@ -36,10 +31,6 @@ class Node
       self.parent = Node.where(path: a.join('/')).first
     end
     self.layer = a.length
-  end
-
-  def last_path
-    self.path.split('/').pop
   end
 
   def self.root
