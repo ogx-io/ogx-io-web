@@ -113,35 +113,6 @@ a.weak-link {
   color: #999;
 }
 
-.list-item {
-  .panel-body {
-    padding: 10px;
-    color: #666;
-  }
-  .panel-footer {
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 12px;
-    color: #BBB;
-    span, a {
-      color: #999;
-    }
-    ul {
-      margin: 0;
-      font-size: 12px;
-    }
-  }
-  .list-detail {
-    margin-left: 80px;
-  }
-  .list-detail-body {
-    margin-top: 5px;
-    line-height: 25px;
-  }
-}
-
 .list-bar {
   margin-bottom: 5px;
   background-color: #EEE;
@@ -322,4 +293,11 @@ td.deleted {
     color: #777;
     text-decoration: line-through;
   }
+}
+
+span.board-name {
+  background-color: #F5F5F5;
+  font-size: 12px;
+  line-height: 12px;
+  padding: 2px 4px;
 }
