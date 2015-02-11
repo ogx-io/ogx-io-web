@@ -11,12 +11,15 @@ class Post
   field :t, as: :title, type: String
   field :b, as: :body, type: String
   field :f, as: :floor, type: Integer
+  field :top , type: Integer, default: 0
 
   field :comment_count, type: Integer, default: 0
 
   field :ip, as: :user_ip, type: String
   field :ua, as: :user_agent, type: String
   field :rf, as: :referer, type: String
+
+  scope :top, -> { where(top: {'$gt' => 0}) }
 
   validates_presence_of :title, message: "必须要有标题"
   validates_length_of :title, maximum: 40, message: "标题太长了"
@@ -79,6 +82,10 @@ class Post
 
   def is_elite?
     self.elite_post && !self.elite_post.deleted?
+  end
+
+  def is_top?
+    self.top > 0
   end
 
 end

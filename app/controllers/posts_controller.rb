@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :set_elite, :unset_elite, :resume, :comments]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :set_elite, :unset_elite, :top_up, :top_clear, :resume, :comments]
   before_action :set_board, only: [:index, :new, :create]
 
   # GET /posts
@@ -127,6 +127,24 @@ class PostsController < ApplicationController
   def unset_elite
     authorize @post
     @post.elite_post.delete_by(current_user)
+    respond_to do |format|
+      format.js { render 'refresh' }
+    end
+  end
+
+  def top_up
+    authorize @post
+    @post.top += 1
+    @post.save
+    respond_to do |format|
+      format.js { render 'refresh' }
+    end
+  end
+
+  def top_clear
+    authorize @post
+    @post.top = 0
+    @post.save
     respond_to do |format|
       format.js { render 'refresh' }
     end

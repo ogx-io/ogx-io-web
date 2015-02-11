@@ -42,6 +42,14 @@ class PostPolicy < ApplicationPolicy
     destroy?
   end
 
+  def top_up?
+    set_elite?
+  end
+
+  def top_clear?
+    set_elite?
+  end
+
   def comment?
     signed_in? &&
         test_if_not(user.can_comment?, "您的评论发得太快了，先休息一会儿吧。") &&

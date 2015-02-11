@@ -276,6 +276,7 @@ td.title {
     font-size: 16px;
   }
 }
+
 td.board, td.author {
   width: 100px;
   text-align: center;
@@ -283,16 +284,33 @@ td.board, td.author {
     color: #777;
   }
 }
+
 td.date {
-  width: 100px;
+  width: 80px;
   text-align: center;
   color: #999;
 }
+
 td.deleted {
   a {
     color: #777;
     text-decoration: line-through;
   }
+}
+td.top-mark {
+  width: 50px;
+  span {
+    color: deepskyblue;
+    font-size: 13px;
+    line-height: 13px;
+    padding: 1px 3px;
+    border: solid deepskyblue 1px;
+    border-radius: 3px;
+  }
+}
+td.top-title a {
+  font-size: 16px;
+  color: #D00;
 }
 
 span.board-name {

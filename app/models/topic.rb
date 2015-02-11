@@ -6,7 +6,6 @@ class Topic
   include LogicDeletable
 
   field :f, as: :last_floor, type: Integer, default: 0
-  field :t, as: :top, type: Integer, default: 0 # 0: normal, 1: always on top
   field :r_at, as: :replied_at, type: Time
   field :l, as: :lock, type: Integer, default: 0 # 0: unlocked, 1: locked by user, 2: locked by moderator
 
@@ -32,10 +31,6 @@ class Topic
 
   def locked?
     self.lock != 0
-  end
-
-  def top?
-    self.top > 0
   end
 
   def is_creator?(user)

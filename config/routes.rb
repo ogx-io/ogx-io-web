@@ -69,6 +69,8 @@ Rails.application.routes.draw do
       member do
         patch :set_elite
         patch :unset_elite
+        patch :top_up
+        patch :top_clear
         patch :resume
         get :comments
       end

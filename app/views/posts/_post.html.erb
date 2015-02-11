@@ -27,7 +27,8 @@
             <% if !post.new_record? %>
                 · <%= time_digest post.created_at %>
                 <% if post.is_elite? %>
-                    &nbsp;<%= link_to post.elite_post do %><span class="elite-mark">精华帖</span><% end %>
+                    &nbsp;<%= link_to post.elite_post do %><span class="elite-mark">精华帖</span>
+                    <% end %>
                 <% end %>
                 <% if post.deleted? %>
                     &nbsp;<span class="deleted-mark">(已删除)</span>
@@ -42,10 +43,16 @@
                 </div>
                 <div class="pull-right">
                   <ul class="list-inline">
+                    <% if post.is_top? && policy(post).top_up? && policy(post).top_clear? %>
+                        <li><%= link_to "置顶上升(#{post.top})", top_up_post_path(post), method: :patch, remote: true %></li>
+                        <li><%= link_to "取消置顶", top_clear_post_path(post), method: :patch, remote: true %></li>
+                    <% elsif !post.is_top? && policy(post).top_up? %>
+                        <li><%= link_to "置顶", top_up_post_path(post), method: :patch, remote: true %></li>
+                    <% end %>
                     <% if post.is_elite? && policy(post).unset_elite? %>
                         <li><%= link_to '取消精华', unset_elite_post_path(post), method: :patch, remote: true, class: 'set-elite' %></li>
                     <% elsif !post.is_elite? && policy(post).set_elite? %>
-                        <li><%= link_to '设为精华', set_elite_post_path(post), method: :patch, remote: true, class: 'set-elite' %></li>
+                        <li><%= link_to '精华', set_elite_post_path(post), method: :patch, remote: true, class: 'set-elite' %></li>
                     <% end %>
                     <% if !post.deleted? && policy(post).destroy? %>
                         <li>

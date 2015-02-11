@@ -6,7 +6,7 @@
       <div class="content">
         <% posts_count = topic.posts.normal.count %>
         <div class="count pull-right"><%= link_to posts_count - 1, show_topic_path(topic.sid) if posts_count > 1 %></div>
-        <div class="title <%= 'top' if topic.top? %>">
+        <div class="title">
           <%= link_to topic.title, show_topic_path(topic.sid) %>
           <%= render partial: 'topics/topic_lock', locals: {topic: topic} %>
         </div>

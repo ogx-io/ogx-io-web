@@ -33,4 +33,8 @@ namespace :data do
     end
   end
 
+  desc "clear all top posts"
+  task clear_all_top_posts: :environment do
+    Post.update_all(top: 0)
+  end
 end

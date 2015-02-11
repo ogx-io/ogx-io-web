@@ -180,4 +180,15 @@
   table tr .title {
     padding-left: 0;
   }
+  table tr .top-title {
+    padding-left: 0;
+  }
+  table tr .top-mark {
+    padding-left: 0;
+//    padding-right: 0;
+    text-align: center;
+  }
+  table.top-post-list {
+    margin-bottom: 12px;
+  }
 }

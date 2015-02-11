@@ -1,0 +1,8 @@
+<% cache [post] do %>
+    <tr>
+      <td class="top-mark"><span>置顶</span></td>
+      <td class="top-title"><%= link_to post.title, show_post_path(post.sid) %></td>
+      <td class="author hidden-xs"><%= user_link post.author %></td>
+      <td class="date"><%= time_date post.created_at %></td>
+    </tr>
+<% end %>

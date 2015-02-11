@@ -5,7 +5,8 @@ class BoardsController < ApplicationController
   # GET /boards/1.json
   def show
     @all_topics = @board.topics.normal
-    @topics = @all_topics.desc(:top, :replied_at).page(params[:page]).per(15)
+    @topics = @all_topics.desc(:replied_at).page(params[:page]).per(15)
+    @top_posts = @board.posts.top.desc(:top)
     render 'topics/index'
   end
 
