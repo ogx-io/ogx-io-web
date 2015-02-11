@@ -33,11 +33,4 @@ namespace :data do
     end
   end
 
-  desc "regularize the node path name"
-  task regularize_node_path: :environment do
-    Node.all.each do |node|
-      node.path = node.path.split('/').last
-      node.save(validate: false)
-    end
-  end
 end
