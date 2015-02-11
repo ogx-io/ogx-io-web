@@ -19,7 +19,8 @@ class Node
   validate :check_path_uniqueness
 
   def check_path_uniqueness
-    if Node.where(parent_id: self.parent_id, path: self.path).exists?
+    node = Node.where(parent_id: self.parent_id, path: self.path).first
+    unless node.nil? || node.id == self.id
       errors.add(:path, "this path already exists!")
     end
   end
