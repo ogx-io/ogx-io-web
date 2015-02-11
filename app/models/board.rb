@@ -10,10 +10,6 @@ class Board < Node
 
   after_create :set_root_elite_category
 
-  def set_root_elite_category
-    Elite::Category.root_for(self)
-  end
-
   def has_moderator?(user)
     return false if not user
     self.moderator_ids.include?(user.id)

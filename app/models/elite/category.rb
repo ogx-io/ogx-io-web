@@ -9,7 +9,14 @@ class Elite::Category < Elite::Node
   end
 
   def self.root_for(board)
-    self.find_or_create_by(board_id: board.id)
+    category = self.find_by(board_id: board.id)
+    if category.nil?
+      new_category = self.new
+      new_category.board = board
+      new_category.save
+      return new_category
+    end
+    category
   end
 
   def name
