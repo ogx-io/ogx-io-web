@@ -1,4 +1,5 @@
 <%= render partial: 'admin/common/admin_nav', locals: {index: 4} %>
+<%= render partial: 'nodes/breadcrumbs', locals: { node: @parent, extras: [@parent.name] } if @parent %>
 <%= render 'nodes_paginate_bar' %>
 <table class="table table-hover">
   <thead>

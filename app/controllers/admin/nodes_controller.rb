@@ -6,7 +6,12 @@ class Admin::NodesController < ApplicationController
   # GET /admin/nodes
   # GET /admin/nodes.json
   def index
-    @all_nodes = Node.where(:_type.in => ['Category', 'Board'])
+    if params[:parent_id]
+      @all_nodes = Node.where(parent_id: params[:parent_id])
+      @parent = Node.find(params[:parent_id])
+    else
+      @all_nodes = Node.where(layer: 0)
+    end
     @nodes = @all_nodes.order_by(layer: 1, parent_id: 1, _type: 1, order: -1).page(params[:page]).per(25)
   end
 

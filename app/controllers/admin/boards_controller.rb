@@ -6,7 +6,10 @@ class Admin::BoardsController < ApplicationController
   # GET /admin/boards/new
   def new
     @board = Board.new
-    @board.path = params[:pp] ? params[:pp] + '/' : 'root/'
+    if params[:parent_id]
+      parent = Node.find(params[:parent_id])
+      @board.path = parent.path + '/'
+    end
   end
 
   # GET /admin/boards/1/edit

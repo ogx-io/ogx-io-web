@@ -2,7 +2,10 @@
   节点数：<%= @all_nodes.count %>
   <%= paginate @nodes, left: 1, right: 1 %>
   <div class="right-links pull-right">
-    <%= link_to '新建目录', new_admin_category_path %>
-    <%= link_to '新建板块', new_admin_board_path %>
+    <% if params[:parent_id] %>
+        <%= link_to '返回上级目录', admin_nodes_path(parent_id: @parent.parent_id) %>
+        <%= link_to '新建目录', new_admin_category_path(parent_id: params[:parent_id]) %>
+        <%= link_to '新建板块', new_admin_board_path(parent_id: params[:parent_id]) %>
+    <% end %>
   </div>
 </nav>
