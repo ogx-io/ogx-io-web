@@ -5,13 +5,15 @@
     <%= render partial: 'boards/board_intro', locals: {board: @board} %>
     <%= render partial: 'boards/board_nav', locals: {board: @board, index: 1} %>
     <div class="board-content">
-      <div class="post-list">
-        <table class="table top-post-list">
-          <tbody>
-          <%= render partial: 'posts/top_post_list_item', collection: @top_posts, as: :post %>
-          </tbody>
-        </table>
-      </div>
+      <% unless params[:page] %>
+          <div class="post-list">
+            <table class="table top-post-list">
+              <tbody>
+              <%= render partial: 'posts/top_post_list_item', collection: @top_posts, as: :post %>
+              </tbody>
+            </table>
+          </div>
+      <% end %>
       <%= render partial: "topics/topic_list_item", as: :topic, collection: @topics %>
     </div>
     <div class="board-pagination">
