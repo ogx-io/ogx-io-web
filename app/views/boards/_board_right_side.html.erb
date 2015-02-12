@@ -11,9 +11,11 @@
           诚征版主中
       <% end %>
     </div>
-    <div class="panel-body">
-      <%= board.intro %>
-    </div>
+    <% unless board.intro.blank? %>
+        <div class="panel-body">
+          <%= board.intro %>
+        </div>
+    <% end %>
     <% if user_signed_in? %>
         <div class="actions center">
           <% if current_user.collecting_boards.include?(board) %>

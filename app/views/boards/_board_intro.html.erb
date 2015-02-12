@@ -1,6 +1,13 @@
 <div class="board-intro hidden-lg hidden-md">
   <div>
-    版主：<ul class="list-inline" style="display: inline-block"><% board.moderators.each do |user| %><li><%= user_link user %></li><% end %></ul>
+    <% if board.moderators.count > 0 %>
+        版主：<ul class="list-inline" style="display: inline-block">
+          <% board.moderators.each do |user| %>
+              <li><%= user_link user %></li>
+          <% end %></ul>
+    <% else %>
+        诚征版主中
+    <% end %>
   </div>
   <div class="intro-content">
     <%= board.intro %>
