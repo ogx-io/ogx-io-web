@@ -11,7 +11,8 @@
 
       <div class="post-author">
         <%= full_user_link post.author %>
-        · <%= time_digest post.created_at %>
+        · <%= time_digest post.created_at %> 发表
+        -- 由版主 <%= user_link post.moderator %> 最后编辑于 <%= time_date post.updated_at %>
         <% if post.deleted? %>
             &nbsp;<span class="deleted-mark">(已删除)</span>
         <% end %>

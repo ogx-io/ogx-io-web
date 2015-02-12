@@ -5,15 +5,9 @@
     <%= render partial: 'boards/board_intro', locals: {board: @elite_category.board} %>
     <%= render partial: 'boards/board_nav', locals: {board: @elite_category.board, index: 3} %>
 
-    <div class="elite-category">
+    <div class="post-list elite-category">
 
       <table class="table table-hover">
-        <thead>
-        <th class="node-mark"></th>
-        <th class="title">标题</th>
-        <th class="moderator hidden-xs">整理</th>
-        <th class="date hidden-xs">编辑日期</th>
-        </thead>
         <tbody>
         <% if @elite_category.layer > 0 %>
             <td class="node-mark node-mark-category"><span class="glyphicon glyphicon-folder-close"></span></td>
