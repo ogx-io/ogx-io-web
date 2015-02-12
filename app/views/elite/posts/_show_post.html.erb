@@ -11,7 +11,7 @@
 
       <div class="post-author">
         <%= full_user_link post.author %>
-        · <%= time_digest post.created_at %> 发表
+        · <%= time_digest post.posted_at %> 发表
         <% if post.deleted? %>
             &nbsp;<span class="deleted-mark">(已删除)</span>
         <% end %>
