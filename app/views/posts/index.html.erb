@@ -5,7 +5,7 @@
     <%= render partial: 'boards/board_intro', locals: {board: @board} %>
     <%= render partial: 'boards/board_nav', locals: {board: @board, index: 2} %>
     <div class="post-list">
-      <table class="table">
+      <table class="table table-hover">
         <tbody>
         <%= render partial: "posts/post_list_item", as: :post, collection: @posts %>
         </tbody>

@@ -4,8 +4,7 @@
 <div class="col-lg-7 col-md-8 right-side-layout">
   <%= render partial: 'profile_nav', locals: {index: index} %>
   <div class="user-post-list">
-
-    <table class="table">
+    <table class="table table-hover">
       <tbody>
       <%= render partial: 'post_list_item', collection: @posts, as: :post %>
       </tbody>
