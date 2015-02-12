@@ -30,6 +30,7 @@ img.emoji {
   width: 20px;
   height: 20px;
   display: inline-block;
+  margin-top: -5px;
 }
 
 #notice {
@@ -318,4 +319,36 @@ span.board-name {
   font-size: 12px;
   line-height: 12px;
   padding: 2px 4px;
+}
+
+.markdown-content {
+  font-size: 14px;
+  line-height: 25px;
+  min-height: 28px;
+  color: #333;
+  p, ol, ul {
+    line-height: 25px;
+  }
+  p {
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 17px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+  h3 {
+    font-size: 15px;
+  }
+  h4 {
+    font-size: 14px;
+  }
+  h1, h2, h3 {
+    font-weight: bold;
+    color: #333;
+  }
+  blockquote {
+    font-size: 14px;
+  }
 }

@@ -35,7 +35,7 @@
                 <% end %>
             <% end %>
           </div>
-          <div class="post-content"><%= sanitize_post post.body_html %></div>
+          <div class="markdown-content"><%= sanitize_post post.body_html %></div>
           <% if !post.new_record? %>
               <div class="post-footer clearfix">
                 <div class="pull-left hide">
