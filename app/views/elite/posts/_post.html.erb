@@ -2,5 +2,5 @@
   <td class="node-mark node-mark-post"><span class="glyphicon glyphicon-file"></span></td>
   <td class="title"><%= link_to post.title, elite_post_path(post) %></td>
   <td class="moderator hidden-xs"><%= user_link post.moderator %></td>
-  <td class="date hidden-xs"><%= time_date post.updated_at %></td>
+  <td class="date hidden-xs"><span title="由版主 <%= post.moderator.nick %> 最后编辑于 <%= full_datetime post.updated_at %>"><%= post.updated_at.strftime("%F") %></span></td>
 </tr>
