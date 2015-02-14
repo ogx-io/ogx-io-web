@@ -1,8 +1,10 @@
 FactoryGirl.define do
   factory :user do
-    name "Test User"
+    name "test_user"
+    nick "TestUser"
     email "test@example.com"
     password "please123"
+    confirmed_at { Time.now }
 
     trait :admin do
       role 'admin'

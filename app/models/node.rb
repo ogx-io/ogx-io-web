@@ -35,6 +35,11 @@ class Node
   end
 
   def self.root
-    self.where(path: 'root').first
+    root = self.where(path: 'root').first
+    unless root
+      root = Category.new(name: 'root', path: 'root')
+      root.save(validate: false)
+    end
+    root
   end
 end

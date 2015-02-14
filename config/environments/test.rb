@@ -24,6 +24,7 @@ Rails.application.configure do
   config.action_dispatch.show_exceptions = false
 
   # Disable request forgery protection in test environment.
+  config.action_mailer.default_url_options = { :host => Rails.application.secrets.domain_name }
   config.action_controller.allow_forgery_protection = false
 
   # Tell Action Mailer not to deliver emails to the real world.

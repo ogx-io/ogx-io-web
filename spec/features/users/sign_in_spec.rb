@@ -20,8 +20,8 @@ feature 'Sign in', :devise do
   #   Then I see a success message
   scenario 'user can sign in with valid credentials' do
     user = FactoryGirl.create(:user)
-    signin(user.email, user.password)
-    expect(page).to have_content I18n.t 'devise.sessions.signed_in'
+    signin(user.name, user.password)
+    expect(page).to have_content user.nick
   end
 
   # Scenario: User cannot sign in with wrong email
