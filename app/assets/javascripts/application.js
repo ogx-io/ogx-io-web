@@ -16,4 +16,10 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require social-share-button
+//= require nprogress
 //= require_tree .
+
+NProgress.configure({speed: 300, minimum: 0.03, ease: 'ease'});
+$(document).on('page:fetch',   function() { NProgress.start(); });
+$(document).on('page:change',  function() { NProgress.done(); });
+$(document).on('page:restore', function() { NProgress.remove(); });
