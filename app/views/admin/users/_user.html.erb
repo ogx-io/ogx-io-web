@@ -14,6 +14,7 @@
   </td>
   <td><%= user.sign_in_count %></td>
   <td><%= user.last_sign_in_ip %><br/><%= time_digest user.last_sign_in_at if user.last_sign_in_at %></td>
+  <td><%= user.last_visit_ip %><br/><%= time_digest user.last_visited_at if user.last_visited_at %></td>
   <td><%= user.role %></td>
   <td>
     <%= link_to_unless user.status == 0, "恢复", admin_user_path(user, 'user[status]' => 0), method: :patch, remote: true %>

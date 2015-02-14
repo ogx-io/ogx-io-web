@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  before_action :record_last_visit_info
+
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
@@ -18,6 +20,12 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.html { flash[:error] = message; redirect_to(request.referrer || root_path) }
       format.js { render js: "alert('#{message}');" }
+    end
+  end
+
+  def record_last_visit_info
+    if current_user
+      current_user.update(last_visit_ip: request.remote_ip, last_visited_at: Time.now)
     end
   end
 

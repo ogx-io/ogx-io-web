@@ -56,6 +56,8 @@ class User
   field :avatar, type: String # the user's avatar
   mount_uploader :avatar, AvatarUploader
 
+  field :last_visit_ip, type: String
+  field :last_visited_at, type: Time
   field :last_comment_at, type: Time
   field :last_post_at, type: Time
   field :last_upload_image_at, type: Time
