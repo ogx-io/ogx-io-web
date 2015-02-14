@@ -40,7 +40,7 @@
       signed_up_but_inactive: "您已注册，但尚未激活账号。"
       signed_up_but_locked: "您已注册，但账号被锁定了。"
       signed_up_but_unconfirmed: "一封带有确认链接的邮件已经发送至您的邮箱，请检查邮箱（包括垃圾邮箱），并点击该链接激活您的账号。"
-      update_needs_confirmation: "信息更新成功，但我们需要染整您的新电子邮件地址，请检查邮箱（包括垃圾邮箱），并点击该链接激活您的账号。"
+      update_needs_confirmation: "信息更新成功，但我们需要验证您的新电子邮件地址，请检查邮箱（包括垃圾邮箱），并点击该链接激活您的账号。"
       updated: "帐号资料更新成功。"
     sessions:
       signed_in: "登录成功."
