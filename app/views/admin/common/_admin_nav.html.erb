@@ -1,9 +1,9 @@
 <h4>管理后台</h4>
 <ul class="mb10 nav nav-tabs" role="tablist">
-  <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to '帖子评论', admin_comments_path %></li>
   <li role="presentation" class="<%= "active" if index == 2 %>"><%= link_to '帖子', admin_posts_path %></li>
   <li role="presentation" class="<%= "active" if index == 6 %>"><%= link_to '精华区', admin_elite_nodes_path %></li>
   <li role="presentation" class="<%= "active" if index == 3 %>"><%= link_to '小黑屋', admin_blocked_users_path %></li>
+  <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to '帖子评论', admin_comments_path %></li>
   <% if current_user.admin? %>
       <li role="presentation" class="<%= "active" if index == 4 %>"><%= link_to '节点管理', admin_nodes_path %></li>
       <li role="presentation" class="<%= "active" if index == 5 %>"><%= link_to '用户管理', admin_users_path %></li>

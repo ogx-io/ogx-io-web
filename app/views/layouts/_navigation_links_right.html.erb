@@ -1,7 +1,7 @@
 <%# add navigation links to this file %>
 <% if user_signed_in? %>
     <% if policy(current_user).manage? %>
-        <li><%= link_to '管理后台', admin_comments_path %></li>
+        <li><%= link_to '管理后台', admin_posts_path %></li>
     <% end %>
     <li><%= user_link current_user %></li>
     <li>
