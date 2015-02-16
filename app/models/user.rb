@@ -100,7 +100,7 @@ class User
     self.notifications.unread.count
   end
 
-  def blocked?
+  def is_blocked?
     self.status == 1 || self.status == 3
   end
 
