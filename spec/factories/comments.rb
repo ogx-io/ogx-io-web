@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :common do
-    
-  end
 
+  factory :comment do
+    body 'test content'
+  end
 end

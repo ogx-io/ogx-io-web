@@ -1,6 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :post do
-  end
+  # factory :post do
+  #   title 'test title'
+  # end
 end
