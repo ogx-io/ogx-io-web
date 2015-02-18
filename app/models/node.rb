@@ -43,8 +43,8 @@ class Node
   def self.root
     root = self.where(path: 'root').first
     unless root
-      root = Category.new(name: 'root', path: 'root')
-      root.save(validate: false)
+      root = Category.new(name: 'root', path: 'root', layer: 0)
+      root.save
     end
     root
   end

@@ -14,6 +14,7 @@ class Elite::Category < Elite::Node
     else
       new_category = self.new
       new_category.board = board
+      new_category.layer = 0
       new_category.save(validate: false)
       return new_category
     end

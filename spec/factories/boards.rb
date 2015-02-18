@@ -5,6 +5,6 @@ FactoryGirl.define do
   factory :board do
     name 'TestBoard'
     path 'test_board'
-    association :parent, factory: :root_category
+    parent { Node.root }
   end
 end
