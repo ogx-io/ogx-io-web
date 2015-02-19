@@ -23,16 +23,35 @@ RSpec.describe Post, :type => :model do
     post = create(:post, board: board, author: user)
 
     post.delete_by(user)
+    expect(post.deleted?).to be_truthy
     expect(post.deleted).to eq(1)
     expect(post.deleter).to eq(user)
 
     post.resume_by(user)
+    expect(post.deleted?).to be_falsey
     expect(post.deleted).to eq(0)
     expect(post.resumer).to eq(user)
 
     post.delete_by(moderator)
+    expect(post.deleted?).to be_truthy
     expect(post.deleted).to eq(2)
     expect(post.deleter).to eq(moderator)
+  end
+
+  it 'should delete the topic when it is deleted as the last post of the topic' do
+    board = create(:board)
+    user = create(:user)
+    post = create(:post, board: board, author: user)
+    topic = post.topic
+    reply1 = create(:post, topic: post.topic, parent: post, board: post.board, author: post.author)
+    reply2 = create(:post, topic: post.topic, parent: reply1, board: post.board, author: post.author)
+
+    post.delete_by(user)
+    reply1.delete_by(user)
+    reply2.delete_by(user)
+
+    expect(topic.deleted?).to be_truthy
+    expect(topic.deleter).to eq(user)
   end
 
 end
