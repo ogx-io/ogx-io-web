@@ -3,7 +3,7 @@ class Topic
   include Mongoid::Timestamps
 
   include Sidable
-  include LogicDeletable
+  include SoftDeletable
 
   field :f, as: :last_floor, type: Integer, default: 0
   field :r_at, as: :replied_at, type: Time

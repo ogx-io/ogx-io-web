@@ -3,7 +3,7 @@ class Elite::Node
   include Mongoid::Timestamps
 
   include Nodable
-  include LogicDeletable
+  include SoftDeletable
 
   field :t, as: :title, type: String
 

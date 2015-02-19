@@ -1,4 +1,4 @@
-module LogicDeletable
+module SoftDeletable
   extend ActiveSupport::Concern
 
   included do
