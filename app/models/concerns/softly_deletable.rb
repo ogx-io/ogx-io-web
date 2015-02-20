@@ -1,4 +1,4 @@
-module SoftDeletable
+module SoftlyDeletable
   extend ActiveSupport::Concern
 
   included do

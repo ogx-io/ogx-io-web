@@ -6,7 +6,7 @@ class Post
   include Sidable
   include Mentionable
   include BodyConvertable
-  include SoftDeletable
+  include SoftlyDeletable
 
   field :t, as: :title, type: String
   field :b, as: :body, type: String
