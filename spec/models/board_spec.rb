@@ -10,8 +10,8 @@ RSpec.describe Board, :type => :model do
   end
 
   it "should have the unique path" do
-    board1 = create(:board, name: 'TestBoard1', parent: Node.root)
-    board2 = build(:board, name: 'TestBoard', parent: Node.root)
+    board1 = create(:board, name: 'TestBoard1', path: 'test', parent: Node.root)
+    board2 = build(:board, name: 'TestBoard', path: 'test', parent: Node.root)
     expect(board2.valid?).to be_falsey
     board2.path = 'test2'
     expect(board2.valid?).to be_truthy

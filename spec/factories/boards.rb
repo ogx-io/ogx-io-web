@@ -3,8 +3,8 @@
 FactoryGirl.define do
 
   factory :board do
-    name 'TestBoard'
-    path 'test_board'
+    sequence(:name) {|n| "TestBoard#{n}"}
+    sequence(:path) {|n| "test_board#{n}"}
     parent { Node.root }
   end
 end

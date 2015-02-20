@@ -1,8 +1,8 @@
 FactoryGirl.define do
 
   factory :category do
-    name 'TestCategory'
-    path 'test_category'
+    sequence(:name) {|n| "TestCategory#{n}"}
+    sequence(:path) {|n| "test_category#{n}"}
     parent { Node.root }
   end
 
