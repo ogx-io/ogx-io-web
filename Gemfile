@@ -48,6 +48,7 @@ group :test do
   gem 'faker'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'rspec-html-matchers'
 end
 
 group :production do

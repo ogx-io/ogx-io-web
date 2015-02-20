@@ -54,4 +54,28 @@ RSpec.describe Post, :type => :model do
     expect(topic.deleter).to eq(user)
   end
 
+  it 'should mention the author if his post is replied by the other' do
+    user1 = create(:user)
+    user2 = create(:user)
+    post = create(:post, author: user1)
+    reply = create(:post, author: user2, topic: post.topic, parent: post)
+    expect(user1.notifications.count).to eq(1)
+    expect(user1.notifications[0].class.to_s).to eq('Notification::PostReply')
+    expect(user1.notifications[0].post).to eq(reply)
+  end
+
+  it 'should mention somebody if the author @ him in the content' do
+    user1 = create(:user)
+    user2 = create(:user)
+    post = create(:post, author: user1, body: "hi @#{ user2.name }")
+    expect(user2.notifications.count).to eq(1)
+  end
+
+  it 'should turn the mentioned user in the content into link' do
+    user1 = create(:user)
+    user2 = create(:user)
+    post = create(:post, author: user1, body: "hi @#{ user2.name }")
+    expect(post.body_html).to have_tag('a', text: "@#{ user2.name }", href: "/#{ user2.name }")
+  end
+
 end
