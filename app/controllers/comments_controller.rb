@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:destroy, :delete_all, :resume]
+  before_action :set_comment, only: [:destroy, :resume]
 
   layout false
 
@@ -36,18 +36,6 @@ class CommentsController < ApplicationController
   def destroy
     authorize @comment
     @comment.delete_by(current_user)
-    respond_to do |format|
-      format.js do
-        if @comment.deleted == 3
-          render 'delete_all'
-        end
-      end
-    end
-  end
-
-  def delete_all
-    authorize @comment
-    @comment.delete_all_by(current_user)
     respond_to do |format|
       format.js
     end

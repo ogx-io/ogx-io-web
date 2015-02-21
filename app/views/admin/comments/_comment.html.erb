@@ -3,8 +3,6 @@
   <td><%= comment.body %></td>
   <td><%= link_to comment.board.name, board_path(comment.board) if comment.board %></td>
   <td><%= link_to truncate(comment.commentable.title, length: 15), comment.commentable, title: comment.commentable.title %></td>
-  <td><%= comment.thread %></td>
-  <td><%= comment.parent_id %></td>
   <td><%= user_link comment.user %></td>
   <td><%= time_digest comment.created_at %></td>
   <td><%= comment.ip %></td>

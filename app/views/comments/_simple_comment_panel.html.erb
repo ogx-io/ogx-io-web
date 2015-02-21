@@ -1,6 +1,6 @@
 <div id="comment-for-<%= commentable.class.to_s %>-<%= commentable.id %>" class="comment-panel">
   <ul id="comment-0" class="comment-list">
-    <%= render partial: '/comments/simple_comment', as: :comment, collection: commentable.comments.pub.asc(:_id) %>
+    <%= render partial: '/comments/simple_comment', as: :comment, collection: commentable.comments.normal.asc(:_id) %>
   </ul>
   <div class="form-wrapper">
     <%= render partial: '/comments/form', locals: {comment: @comment, hidden: false} %>

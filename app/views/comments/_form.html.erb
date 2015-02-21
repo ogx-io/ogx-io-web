@@ -7,7 +7,6 @@
       <div class="form-group">
         <div class="form-inputs">
           <%= f.text_area :body, class: 'form-control comment-form-body', placeholder: "添加评论" %>
-          <%= f.input :parent_id, as: :hidden %>
           <%= f.input :commentable_type, as: :hidden %>
           <%= f.input :commentable_id, as: :hidden %>
         </div>
