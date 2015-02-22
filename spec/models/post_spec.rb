@@ -50,14 +50,17 @@ RSpec.describe Post, :type => :model do
   it 'mentions the author if his post is replied by the other' do
     post = create(:post, author: user1)
     reply = create(:post, author: user2, topic: post.topic, parent: post)
+    user1.reload
     expect(user1.notifications.count).to eq(1)
-    expect(user1.notifications[0].class.to_s).to eq('Notification::PostReply')
+    expect(user1.notifications[0].class).to eq(Notification::PostReply)
     expect(user1.notifications[0].post).to eq(reply)
   end
 
   it 'mentions somebody if the author @ him in the content' do
     post = create(:post, author: user1, body: "hi @#{ user2.name }")
+    user2.reload # must call the reload method after sending mention notification or user2.notifications would not contain the right values
     expect(user2.notifications.count).to eq(1)
+    expect(user2.notifications[0].class).to eq(Notification::Mention)
   end
 
   it 'turns the mentioned user in the content into link' do

@@ -8,7 +8,14 @@ module Nodable
     has_many :children, class_name: self.to_s, inverse_of: :parent, dependent: :destroy
     belongs_to :parent, class_name: self.to_s, inverse_of: :children
 
+    validate :check_parent
     before_save :set_layer
+  end
+
+  def check_parent
+    if self.layer > 0 && self.parent_id.blank?
+      errors.add(:parent_id, "必须要有父节点")
+    end
   end
 
   def set_layer

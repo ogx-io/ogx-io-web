@@ -15,14 +15,7 @@ class Node
 
   validates_presence_of :name, message: "必须要有名字"
   validates_presence_of :path, message: "必须要有路径"
-  validate :check_parent
   validate :check_path_uniqueness
-
-  def check_parent
-    if self.layer > 0 && self.parent_id.blank?
-      errors.add(:parent_id, "必须要有父节点")
-    end
-  end
 
   def check_path_uniqueness
     node = Node.where(parent_id: self.parent_id, path: self.path).first

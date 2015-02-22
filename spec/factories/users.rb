@@ -13,9 +13,9 @@ FactoryGirl.define do
   end
 
   factory :moderator, class: User do
-    name 'moderator'
-    nick 'Moderator'
-    email 'moderator@example.com'
+    sequence(:name) {|n| "moderator#{n}"}
+    sequence(:nick) {|n| "Moderator#{n}"}
+    sequence(:email) {|n| "moderator#{n}@example.com" }
     password 'please123'
     confirmed_at { Time.now }
   end
