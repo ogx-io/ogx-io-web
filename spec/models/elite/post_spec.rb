@@ -24,4 +24,22 @@ RSpec.describe Elite::Post, :type => :model do
     expect(category.children).to include(elite_post)
   end
 
+  it 'can be softly deleted and resumed by author or admin' do
+    user = elite_post.author
+    elite_post.delete_by(user)
+    expect(elite_post.deleted?).to be_truthy
+    expect(elite_post.deleted).to eq(1)
+    expect(elite_post.deleter).to eq(user)
+
+    elite_post.resume_by(user)
+    expect(elite_post.deleted?).to be_falsey
+    expect(elite_post.deleted).to eq(0)
+    expect(elite_post.resumer).to eq(user)
+
+    elite_post.delete_by(moderator)
+    expect(elite_post.deleted?).to be_truthy
+    expect(elite_post.deleted).to eq(2)
+    expect(elite_post.deleter).to eq(moderator)
+  end
+
 end
