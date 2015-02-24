@@ -57,7 +57,7 @@ class Post
   end
 
   def update_author
-    self.author.update(last_post_at: Time.now)
+    self.author.update(last_post_at: self.created_at)
   end
 
   def last_commenting_user

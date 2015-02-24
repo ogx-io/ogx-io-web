@@ -27,7 +27,7 @@ describe UserPolicy do
   end
 
   permissions :update? do
-    it "prevents updates if not an admin" do
+    it "prevents updating if not an admin" do
       expect(subject).not_to permit(current_user)
     end
     it "allows an admin to make updates" do

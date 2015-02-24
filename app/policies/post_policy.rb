@@ -1,15 +1,15 @@
 class PostPolicy < ApplicationPolicy
 
   def show?
-    test_if(record.deleted? && !(record.author == user || record.board.has_moderator?(user)), "该帖子已被删除，您无权查看。")
+    test_if(record.deleted? && !(record.author == user || record.board.has_moderator?(user) || user.admin?), "该帖子已被删除，您无权查看。")
   end
 
   def destroy?
-    signed_in? && (record.board.has_moderator?(user) || record.author == user)
+    signed_in? && (record.board.has_moderator?(user) || record.author == user || user.admin?)
   end
 
   def resume?
-    signed_in? && (record.board.has_moderator?(user) || (record.author == user && record.deleted == 1))
+    signed_in? && (user.admin? || record.board.has_moderator?(user) || (record.author == user && record.deleted == 1))
   end
 
   def new?
@@ -35,7 +35,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def set_elite?
-    record.board.has_moderator?(user)
+    record.board.has_moderator?(user) || user.admin?
   end
 
   def unset_elite?

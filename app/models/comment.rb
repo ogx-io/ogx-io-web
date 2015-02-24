@@ -34,7 +34,7 @@ class Comment
   end
 
   def update_user
-    self.user.update(last_comment_at: Time.now)
+    self.user.update(last_comment_at: self.created_at)
   end
 
 end
