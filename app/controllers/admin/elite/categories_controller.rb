@@ -23,11 +23,11 @@ class Admin::Elite::CategoriesController < ApplicationController
   def create
     @elite_category = Elite::Category.new(elite_category_params)
     @elite_category[:parent_id] = @elite_category[:parent_id].to_i
+    @elite_category.board = @elite_category.parent.board
 
     authorize @elite_category
 
     @elite_category.moderator = current_user
-    @elite_category.board = @elite_category.parent.board
     respond_to do |format|
       if @elite_category.save
         format.html { redirect_to admin_elite_nodes_path(parent_id: @elite_category[:parent_id]) }

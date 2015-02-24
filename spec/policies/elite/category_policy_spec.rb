@@ -2,27 +2,31 @@ require 'spec_helper'
 
 describe Elite::CategoryPolicy do
 
-  let(:user) { User.new }
+  let(:user) { create(:user) }
+  let(:admin) { create(:user, :admin) }
+  let(:moderator) { create(:moderator) }
+  let(:board) { create(:board) }
+  let(:elite_category) { create(:elite_category, board: board, parent: Elite::Category.root_for(board), moderator: moderator) }
+  let(:new_elite_category) { build(:elite_category, board: board, parent: Elite::Category.root_for(board), moderator: moderator) }
 
   subject { Elite::CategoryPolicy }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  before(:each) { board.moderators << moderator }
 
   permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it 'allows creating new elite category by moderator and admin' do
+      expect(subject).not_to permit(user, new_elite_category)
+      expect(subject).to permit(moderator, new_elite_category)
+      expect(subject).to permit(admin, new_elite_category)
+    end
   end
 
   permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it 'allows updating elite category by moderator and admin' do
+      expect(subject).not_to permit(user, elite_category)
+      expect(subject).to permit(moderator, elite_category)
+      expect(subject).to permit(admin, elite_category)
+    end
   end
 
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
 end

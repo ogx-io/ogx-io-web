@@ -1,7 +1,7 @@
 class Elite::CategoryPolicy < ApplicationPolicy
 
   def create?
-    signed_in? && (user.admin? || record.parent.board.has_moderator?(user))
+    signed_in? && (user.admin? || record.board.has_moderator?(user))
   end
 
   def update?
