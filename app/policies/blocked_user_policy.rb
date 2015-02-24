@@ -4,6 +4,7 @@ class BlockedUserPolicy < ApplicationPolicy
     if record.blockable_type == "Board"
       return record.blockable.has_moderator?(user) || user.admin?
     end
+    false
   end
 
   def destroy?
