@@ -65,20 +65,25 @@ describe TopicPolicy do
       expect(subject).to permit(admin, topic)
     end
 
-    it 'allows moderator and admin to unlock a topic locked by anyone' do
+    it 'allows author moderator and admin to unlock a topic locked by author' do
       topic.lock_by(author)
+      expect(subject).not_to permit(user, topic)
       expect(subject).to permit(moderator, topic)
       expect(subject).to permit(admin, topic)
-      topic.lock_by(moderator)
-      expect(subject).to permit(moderator, topic)
-      expect(subject).to permit(admin, topic)
+      expect(subject).to permit(author, topic)
     end
 
-    it 'allows author to unlock a topic locked by himself' do
-      topic.lock_by(author)
-      expect(subject).to permit(author, topic)
+    it 'allows moderator and admin to unlock a topic locked by admin or moderator' do
       topic.lock_by(moderator)
+      expect(subject).not_to permit(user, topic)
       expect(subject).not_to permit(author, topic)
+      expect(subject).to permit(moderator, topic)
+      expect(subject).to permit(admin, topic)
+      topic.lock_by(admin)
+      expect(subject).not_to permit(user, topic)
+      expect(subject).not_to permit(author, topic)
+      expect(subject).to permit(moderator, topic)
+      expect(subject).to permit(admin, topic)
     end
   end
 end
