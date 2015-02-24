@@ -2,27 +2,24 @@ require 'spec_helper'
 
 describe BoardPolicy do
 
-  let(:user) { User.new }
+  let(:user) { create(:user) }
+  let(:admin) { create(:user, :admin) }
+  let(:board) { create(:board) }
+  let(:new_board) { build(:board) }
 
   subject { BoardPolicy }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
   permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it 'allows creating board by admin' do
+      expect(subject).not_to permit(user, new_board)
+      expect(subject).to permit(admin, new_board)
+    end
   end
 
   permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it 'allows updating board by admin' do
+      expect(subject).not_to permit(user, board)
+      expect(subject).to permit(admin, board)
+    end
   end
 end
