@@ -49,6 +49,7 @@ describe PostPolicy do
   permissions :show? do
     it 'prevents showing a deleted post to users except author or moderator or admin' do
       post.delete_by(moderator)
+      expect(subject).not_to permit(nil, post)
       expect(subject).not_to permit(user, post)
       expect(subject).to permit(author, post)
       expect(subject).to permit(moderator, post)

@@ -6,6 +6,7 @@ class Elite::PostsController < ApplicationController
   # GET /elite/posts/1
   # GET /elite/posts/1.json
   def show
+    authorize @elite_post
   end
 
   # DELETE /elite/posts/1
