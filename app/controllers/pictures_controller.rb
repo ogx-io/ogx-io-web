@@ -13,7 +13,6 @@ class PicturesController < ApplicationController
     @picture.image = params[:Filedata]
     @picture.user = current_user
     @picture.save
-    current_user.update(last_upload_image_at: Time.now)
     render text: @picture.image.url
   end
 

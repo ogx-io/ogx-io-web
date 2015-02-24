@@ -2,27 +2,21 @@ require 'spec_helper'
 
 describe PicturePolicy do
 
-  let(:user) { User.new }
+  let(:user) { create(:user) }
+  let(:new_picture) { build(:picture) }
 
   subject { PicturePolicy }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
   permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it 'prevents uploading pictures too fast' do
+      last_picture = create(:picture, user: user)
+      expect(subject).not_to permit(user, new_picture)
+    end
+
+    it 'allows uploading a new picture if the last picture by the user was 5 seconds ago' do
+      last_picture = create(:picture, user: user, created_at: 5.seconds.ago)
+      expect(subject).to permit(user, new_picture)
+    end
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
 end
