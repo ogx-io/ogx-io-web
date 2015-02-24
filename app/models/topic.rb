@@ -12,9 +12,11 @@ class Topic
   has_many :posts
   belongs_to :board, touch: true
   belongs_to :user
+  belongs_to :locker, class_name: 'User'
+  belongs_to :unlocker, class_name: 'User'
 
   def author
-    user
+    self.user
   end
 
   def title
@@ -27,6 +29,22 @@ class Topic
 
   def last_replied_at
     self.posts.normal.last.created_at
+  end
+
+  def lock_by(user)
+    if user == self.author
+      self.lock = 1
+    else
+      self.lock = 2
+    end
+    self.locker = user
+    self.save
+  end
+
+  def unlock_by(user)
+    self.lock = 0
+    self.unlocker = user
+    self.save
   end
 
   def locked?

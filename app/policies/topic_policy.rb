@@ -1,19 +1,19 @@
 class TopicPolicy < ApplicationPolicy
 
   def show?
-    !record.deleted? || record.board.has_moderator?(user)
+    !record.deleted? || record.board.has_moderator?(user) || user.admin?
   end
 
   def update?
-    signed_in? && record.board.has_moderator?(user)
+    signed_in? && record.board.has_moderator?(user) || user.admin?
   end
 
   def toggle_lock?
-    if record.user == user || record.board.has_moderator?(user)
+    if record.user == user || record.board.has_moderator?(user) || user.admin?
       if record.lock == 0
         return true
       else
-        return true if (record.lock == 1 && record.user == user) || record.board.has_moderator?(user)
+        return true if (record.lock == 1 && record.user == user) || record.board.has_moderator?(user) || user.admin?
       end
     end
     false
