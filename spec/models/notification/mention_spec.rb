@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Notification::Mention, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:post) { create(:post) }
+
+  subject { create(:notification_mention, mentionable: post) }
+
+  it 'belongs_to mentionable' do
+    expect(subject.mentionable).to be post
+  end
 end

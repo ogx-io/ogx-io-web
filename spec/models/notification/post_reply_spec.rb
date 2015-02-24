@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Notification::PostReply, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:post) { create(:post) }
+
+  subject { create(:notification_post_reply, post: post) }
+
+  it 'belongs to post' do
+    expect(subject.post).to be post
+  end
 end
