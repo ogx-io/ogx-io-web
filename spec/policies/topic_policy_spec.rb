@@ -60,6 +60,7 @@ describe TopicPolicy do
   permissions :toggle_lock? do
     it 'allows author and admin to lock a topic' do
       expect(subject).not_to permit(user, topic)
+      expect(subject).to permit(author, topic)
       expect(subject).to permit(moderator, topic)
       expect(subject).to permit(admin, topic)
     end
