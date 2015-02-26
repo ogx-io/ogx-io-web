@@ -3,11 +3,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :collect_board, :uncollect_board, :posts, :topics, :elites, :deleted_posts]
   after_action :verify_authorized
 
-  def index
-    @users = User.all
-    authorize User
-  end
-
   def show
     authorize @user
     @all_topics = @user.topics.normal

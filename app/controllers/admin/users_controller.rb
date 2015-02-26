@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    authorize User.new, :manage?
+    authorize User
     @all_users = User.all
     @users = @all_users.desc(:_id).page(params[:page]).per(20)
   end
