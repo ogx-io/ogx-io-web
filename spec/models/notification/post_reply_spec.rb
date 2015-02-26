@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Notification::PostReply, :type => :model do
-  let(:post) { create(:post) }
 
-  subject { create(:notification_post_reply, post: post) }
+  subject { Notification::PostReply }
 
   it 'belongs to post' do
-    expect(subject.post).to be post
+    expect(subject).to belong_to(:post)
   end
 end

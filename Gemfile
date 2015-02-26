@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'nokogiri', '1.6.5'
 gem 'rails', '~> 4.2.0'
 gem "therubyracer"
 gem "mongoid", "~> 4.0.0"
@@ -44,11 +45,12 @@ group :development, :test do
 end
 group :test do
   gem 'capybara'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '~> 1.3.0'
   gem 'faker'
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'rspec-html-matchers'
+  gem 'mongoid-rspec'
 end
 
 group :production do
