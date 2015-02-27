@@ -91,6 +91,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :topics
+      get :posts
       get :elites
       patch :collect_board
       patch :uncollect_board
