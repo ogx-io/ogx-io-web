@@ -21,42 +21,12 @@ class TopicsController < ApplicationController
 
   def show_post
     if params[:floor]
-      begin
-        post = @topic.posts.find_by(floor: params[:floor].to_i)
-      rescue
-        post = nil
-      end
+      post = @topic.posts.find_by(floor: params[:floor].to_i)
     else
-      @topic = Topic.find_by_sid(params[:topic_sid])
       post = Post.find_by_sid(params[:post_sid])
     end
-    if post
-      page = @topic.posts.normal.where(_id: {'$lt' => post.id}).count / 10 + 1
-      redirect_to topic_path(post.topic, page: page) + "#floor-#{post.floor}"
-    else
-      redirect_to :back
-    end
-  end
-
-  def new
-    @topic = Topic.new
-    respond_with(@topic)
-  end
-
-  def edit
-  end
-
-  def create
-    @topic = Topic.new(topic_params)
-    @topic.save
-    respond_with(@topic)
-  end
-
-  def update
-    authorize @topic
-    p = topic_params
-    @topic.update(p)
-    redirect_to :back
+    page = @topic.posts.normal.where(_id: {'$lt' => post.id}).count / 10 + 1
+    redirect_to topic_path(post.topic, page: page) + "#floor-#{post.floor}"
   end
 
   def toggle_lock
@@ -72,13 +42,13 @@ class TopicsController < ApplicationController
 
   def resume
     authorize @topic
-    @topic.update(deleted: 0)
+    @topic.resume_by(current_user)
     redirect_to :back
   end
 
   def destroy
     authorize @topic
-    @topic.update(deleted: 1)
+    @topic.delete_by(current_user)
     redirect_to :back
   end
 
@@ -93,7 +63,4 @@ class TopicsController < ApplicationController
     @board = Board.find_by(path: params[:path]) if params[:path]
   end
 
-  def topic_params
-    params[:topic].permit(:top)
-  end
 end
