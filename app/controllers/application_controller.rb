@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  include Pundit
   protect_from_forgery with: :exception
 
+  include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   before_action :record_last_visit_info
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized(exception)
-    message = exception.policy.err_msg || '您没有此操作的权限！'
+    message = exception.policy.respond_to?('err_msg') ? exception.policy.err_msg : '您没有此操作的权限！'
 
     respond_to do |format|
       format.html { flash[:error] = message; redirect_to(request.referrer || root_path) }
