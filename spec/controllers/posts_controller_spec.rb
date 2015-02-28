@@ -150,6 +150,33 @@ RSpec.describe PostsController, type: :controller do
         expect(response).to redirect_to(show_topic_post_path(new_one.topic.sid, new_one.sid))
       end
 
+      it 'fails creating a new topic if the current user is a user blocked by moderator' do
+        create(:blocked_user, user: another_user, blocker: moderator, blockable: board)
+        old_post_count = another_user.posts.count
+        old_topic_count = board.topics.count
+        post :create, board_id: board.id, post: @new_post_info
+        another_user.reload
+        expect(another_user.posts.count).to eq(old_post_count)
+        expect(board.topics.count).to eq(old_topic_count)
+
+        expect(request.flash[:error]).not_to be_blank
+        expect(response).to render_template(:new)
+      end
+
+      it 'fails creating a new topic if the current user is a user blocked by admin' do
+        another_user.status = 1
+        another_user.save
+        old_post_count = another_user.posts.count
+        old_topic_count = board.topics.count
+        post :create, board_id: board.id, post: @new_post_info
+        another_user.reload
+        expect(another_user.posts.count).to eq(old_post_count)
+        expect(board.topics.count).to eq(old_topic_count)
+
+        expect(request.flash[:error]).not_to be_blank
+        expect(response).to render_template(:new)
+      end
+
       it 'succeeds creating a new reply if the current user is a normal user' do
         old_post_count = another_user.posts.count
         old_topic_count = board.topics.count
@@ -162,6 +189,39 @@ RSpec.describe PostsController, type: :controller do
         expect(topic.posts.count).to eq(old_topic_post_count + 1)
         new_one = another_user.posts.last
         expect(response).to redirect_to(show_topic_post_path(new_one.topic.sid, new_one.sid))
+      end
+
+      it 'fails creating a new reply if the current user is a user blocked by moderator' do
+        create(:blocked_user, user: another_user, blocker: moderator, blockable: board)
+        old_post_count = another_user.posts.count
+        old_topic_count = board.topics.count
+        old_topic_post_count = topic.posts.count
+        @new_post_info['parent_id'] = old_post.id
+        post :create, board_id: board.id, post: @new_post_info
+        another_user.reload
+        expect(another_user.posts.count).to eq(old_post_count)
+        expect(board.topics.count).to eq(old_topic_count)
+        expect(topic.posts.count).to eq(old_topic_post_count)
+
+        expect(request.flash[:error]).not_to be_blank
+        expect(response).to render_template(:new)
+      end
+
+      it 'fails creating a new reply if the current user is a user blocked by admin' do
+        another_user.status = 1
+        another_user.save
+        old_post_count = another_user.posts.count
+        old_topic_count = board.topics.count
+        old_topic_post_count = topic.posts.count
+        @new_post_info['parent_id'] = old_post.id
+        post :create, board_id: board.id, post: @new_post_info
+        another_user.reload
+        expect(another_user.posts.count).to eq(old_post_count)
+        expect(board.topics.count).to eq(old_topic_count)
+        expect(topic.posts.count).to eq(old_topic_post_count)
+
+        expect(request.flash[:error]).not_to be_blank
+        expect(response).to render_template(:new)
       end
 
       it 'back to the form with error message when the validation fails' do
@@ -216,6 +276,23 @@ RSpec.describe PostsController, type: :controller do
         expect(response).to redirect_to(post_path(old_post))
         old_post.reload
         expect(old_post.title).to eq('new title')
+      end
+
+      it 'fails if the current user is blocked by moderator' do
+        create(:blocked_user, user: author, blocker: moderator, blockable: board)
+        post :update, id: old_post.id, post: @new_post_info
+        expect(request.flash[:error]).not_to be_blank
+        old_post.reload
+        expect(old_post.title).not_to eq('new title')
+      end
+
+      it 'fails if the current user is blocked by admin' do
+        author.status = 1
+        author.save
+        post :update, id: old_post.id, post: @new_post_info
+        expect(request.flash[:error]).not_to be_blank
+        old_post.reload
+        expect(old_post.title).not_to eq('new title')
       end
 
       it 'back to the form with error message when the validation fails' do
@@ -362,6 +439,25 @@ RSpec.describe PostsController, type: :controller do
       expect(old_post.deleted).to eq(1)
     end
 
+    it 'succeeds when the current user is author even who is blocked by moderator' do
+      sign_in :user, author
+      create(:blocked_user, user: author, blocker: moderator, blockable: board)
+      xhr :delete, :destroy, id: old_post.id
+      expect(response).to render_template(:refresh)
+      old_post.reload
+      expect(old_post.deleted).to eq(1)
+    end
+
+    it 'succeeds when the current user is author even who is blocked by admin' do
+      sign_in :user, author
+      author.status = 1
+      author.save
+      xhr :delete, :destroy, id: old_post.id
+      expect(response).to render_template(:refresh)
+      old_post.reload
+      expect(old_post.deleted).to eq(1)
+    end
+
     it 'fails when the current user is another user' do
       sign_in :user, another_user
       xhr :delete, :destroy, id: old_post.id
@@ -430,6 +526,15 @@ RSpec.describe PostsController, type: :controller do
         expect(response).to render_template(:refresh)
         old_post.reload
         expect(old_post.deleted).to eq(0)
+      end
+
+      it 'fails when the current user is author but who is blocked by moderator' do
+        sign_in :user, author
+        create(:blocked_user, user: author, blocker: moderator, blockable: board)
+        xhr :patch, :resume, id: old_post.id
+        expect(response).not_to render_template(:refresh)
+        old_post.reload
+        expect(old_post.deleted).to eq(1)
       end
 
       it 'fails when the current user is another user' do

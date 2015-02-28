@@ -9,7 +9,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def resume?
-    signed_in? && (user.admin? || record.board.has_moderator?(user) || (record.author == user && record.deleted == 1))
+    signed_in? && (user.admin? || record.board.has_moderator?(user) || (record.author == user && record.deleted == 1 && !user.is_blocked? && !record.board.is_blocking?(user)))
   end
 
   def new?

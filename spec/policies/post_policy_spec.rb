@@ -112,6 +112,19 @@ describe PostPolicy do
       expect(subject).to permit(moderator, post)
       expect(subject).to permit(admin, post)
     end
+
+    it 'prevents resuming by author who is blocked by moderator' do
+      post.delete_by(author)
+      create(:blocked_user, blockable: board, user: author, blocker: moderator)
+      expect(subject).not_to permit(author, post)
+    end
+
+    it 'prevents resuming by author who is blocked by admin' do
+      post.delete_by(author)
+      author.status = 1
+      author.save
+      expect(subject).not_to permit(author, post)
+    end
   end
 
   permissions :new? do
