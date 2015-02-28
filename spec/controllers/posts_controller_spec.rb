@@ -36,7 +36,7 @@ RSpec.describe PostsController, type: :controller do
 
     context 'when the post is deleted' do
       before do
-        post.delete_by(moderator)
+        old_post.delete_by(moderator)
       end
 
       it 'fails if the current user is another user' do
@@ -62,7 +62,7 @@ RSpec.describe PostsController, type: :controller do
 
   describe '#comments' do
     it 'succeeds' do
-      xhr :get, :comments, id: post.id
+      xhr :get, :comments, id: old_post.id
       expect(response).to be_success
     end
   end
@@ -97,7 +97,7 @@ RSpec.describe PostsController, type: :controller do
     context 'user signed in' do
       it 'succeeds if the current user is author' do
         sign_in :user, author
-        get :edit, id: post.id, board_id: board.id
+        get :edit, id: old_post.id, board_id: board.id
         expect(response).to be_success
       end
 
@@ -232,7 +232,7 @@ RSpec.describe PostsController, type: :controller do
 
       it 'can not preview post when the validation fails' do
         @new_post_info['title'] = 'too long title' * 100
-        xhr :post, :update, id: old_post.id, preview: 'true', post: @new_post_info
+        xhr :put, :update, id: old_post.id, preview: 'true', post: @new_post_info
         expect(response).not_to render_template('posts/_preview')
       end
     end

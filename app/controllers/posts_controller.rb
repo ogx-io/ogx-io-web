@@ -90,9 +90,10 @@ class PostsController < ApplicationController
     authorize @post if params[:preview] != "true"
     respond_to do |format|
       if params[:preview] == "true"
+        @board = @post.board
+        @post = Post.new(post_params)
+        @post.board = @board
         if @post.valid?
-          @board = @post.board
-          @post = Post.new(post_params)
           @post.author = current_user
           @post.convert_body
           format.html { render partial: 'preview' }
