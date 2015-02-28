@@ -72,16 +72,13 @@ class PostsController < ApplicationController
         end
       else
         if @post.save
-          if !@post.parent && params[:lock] == 'true'
+          if @post.parent.nil? && params[:lock] == 'true'
             @post.topic.lock = 1
             @post.topic.save
           end
-
           format.html { redirect_to show_topic_post_path(@post.topic.sid, @post.sid) }
-          format.json { render :show, status: :created, location: @post }
         else
           format.html { render :new }
-          format.json { render json: @post.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -105,10 +102,8 @@ class PostsController < ApplicationController
       else
         if @post.update(post_params)
           format.html { redirect_to @post }
-          format.json { render :show, status: :ok, location: @post }
         else
           format.html { render :edit }
-          format.json { render json: @post.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -153,11 +148,7 @@ class PostsController < ApplicationController
     @post.resume_by(current_user)
     respond_to do |format|
       format.js do
-        if params[:type] == 'user'
-          render 'users/refresh_post_item', locals: {post: @post}
-        else
-          render 'refresh'
-        end
+        render 'refresh'
       end
     end
   end
@@ -168,13 +159,8 @@ class PostsController < ApplicationController
     authorize @post
     @post.delete_by(current_user)
     respond_to do |format|
-      # format.html { redirect_to board_posts_path(@post.board), notice: 'Post was successfully destroyed.' }
       format.js do
-        if params[:type] == 'user'
-          render 'users/refresh_post_item', locals: {post: @post}
-        else
-          render 'refresh'
-        end
+        render 'refresh'
       end
     end
   end
@@ -193,7 +179,7 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params[:post].permit(:title, :body, :parent_id, :elite)
+    params[:post].permit(:title, :body, :parent_id)
   end
 
 end

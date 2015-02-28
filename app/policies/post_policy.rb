@@ -5,7 +5,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def destroy?
-    signed_in? && (record.board.has_moderator?(user) || record.author == user || user.admin?)
+    signed_in? && (record.board.has_moderator?(user) || record.author == user || user.admin?) && !record.deleted?
   end
 
   def resume?
