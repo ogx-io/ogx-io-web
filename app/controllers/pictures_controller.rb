@@ -13,6 +13,7 @@ class PicturesController < ApplicationController
     @picture.image = params[:Filedata]
     @picture.user = current_user
     @picture.save
+    p @picture
     render text: @picture.image.url
   end
 
