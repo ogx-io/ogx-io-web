@@ -97,7 +97,7 @@ Rails.application.routes.draw do
       patch :uncollect_board
     end
 
-    resources :notifications do
+    resources :notifications, shallow: true do
       collection do
         delete :clean
       end
