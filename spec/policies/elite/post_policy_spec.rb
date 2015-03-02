@@ -57,13 +57,13 @@ describe Elite::PostPolicy do
   end
 
   permissions :resume? do
-    it 'allows resuming elite post deleted by author by author or moderator or admin' do
+    it 'allows resuming elite post deleted by author by himself' do
       elite_post.delete_by(author)
       expect(subject).not_to permit(nil, elite_post)
       expect(subject).not_to permit(user, elite_post)
       expect(subject).to permit(author, elite_post)
-      expect(subject).to permit(moderator, elite_post)
-      expect(subject).to permit(admin, elite_post)
+      expect(subject).not_to permit(moderator, elite_post)
+      expect(subject).not_to permit(admin, elite_post)
     end
 
     it 'allows resuming elite post deleted by moderator by moderator or admin' do
