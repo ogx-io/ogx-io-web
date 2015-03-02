@@ -7,6 +7,8 @@ RSpec.describe CategoriesController, type: :controller do
   let(:brother2) { create(:category) }
   let(:child1) { create(:category, parent: root_category) }
   let(:child2) { create(:category, parent: root_category) }
+  let(:board1) { create(:board, parent: root_category) }
+  let(:board2) { create(:board, parent: child1) }
 
   before do
     root_category
@@ -14,6 +16,8 @@ RSpec.describe CategoriesController, type: :controller do
     brother2
     child1
     child2
+    board1
+    board2
   end
 
   describe '#show' do
