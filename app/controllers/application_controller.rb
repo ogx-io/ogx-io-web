@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
     respond_to do |format|
       format.html { flash[:error] = message; redirect_to(request.referrer || root_path) }
-      format.js { render js: "alert('#{message}');" }
+      format.js { flash.now[:error] = message; render js: "alert('#{flash[:error]}');" }
     end
   end
 

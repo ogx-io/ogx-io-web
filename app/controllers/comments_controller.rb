@@ -25,14 +25,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  def resume
-    authorize @comment
-    @comment.resume_by(current_user)
-    respond_to do |format|
-      format.js
-    end
-  end
-
   def destroy
     authorize @comment
     @comment.delete_by(current_user)
@@ -48,7 +40,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params[:comment].permit(:body, :parent_id, :commentable_type, :commentable_id)
+    params[:comment].permit(:body, :commentable_type, :commentable_id)
   end
 
 end

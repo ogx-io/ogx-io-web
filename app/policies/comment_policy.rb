@@ -5,7 +5,7 @@ class CommentPolicy < ApplicationPolicy
     if record.commentable_type == 'Post' && record.commentable.board.has_moderator?(user)
       is_supervisor = true
     end
-    signed_in? && (is_supervisor || record.user == user || user.admin?)
+    signed_in? && test_if_not(is_supervisor || record.user == user || user.admin?, '您没有权限删除该评论')
   end
 
   def resume?
