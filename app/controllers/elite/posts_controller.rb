@@ -1,8 +1,6 @@
 class Elite::PostsController < ApplicationController
   before_action :set_elite_post, only: [:show, :destroy, :resume]
 
-
-
   # GET /elite/posts/1
   # GET /elite/posts/1.json
   def show
