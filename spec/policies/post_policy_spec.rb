@@ -109,8 +109,8 @@ describe PostPolicy do
       expect(subject).not_to permit(nil, post)
       expect(subject).not_to permit(user, post)
       expect(subject).to permit(author, post)
-      expect(subject).to permit(moderator, post)
-      expect(subject).to permit(admin, post)
+      expect(subject).not_to permit(moderator, post)
+      expect(subject).not_to permit(admin, post)
     end
 
     it 'prevents resuming by author who is blocked by moderator' do

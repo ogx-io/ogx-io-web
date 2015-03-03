@@ -5,11 +5,11 @@ class PostPolicy < ApplicationPolicy
   end
 
   def destroy?
-    signed_in? && (record.board.has_moderator?(user) || record.author == user || user.admin?) && !record.deleted?
+    signed_in? && test_if_not((record.board.has_moderator?(user) || record.author == user || user.admin?), '您没有权限做此操作') && test_if(record.deleted?, '帖子已删除')
   end
 
   def resume?
-    signed_in? && (user.admin? || record.board.has_moderator?(user) || (record.author == user && record.deleted == 1 && !user.is_blocked? && !record.board.is_blocking?(user)))
+    signed_in? && test_if_not((((user.admin? || record.board.has_moderator?(user)) && record.deleted == 2) || (record.author == user && record.deleted == 1 && !user.is_blocked? && !record.board.is_blocking?(user))), '您没有权限做此操作')
   end
 
   def new?

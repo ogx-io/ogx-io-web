@@ -4,7 +4,11 @@ RSpec.describe Admin::UsersController, type: :controller do
   let(:user) { create(:user) }
   let(:admin) { create(:user, :admin) }
   let(:moderator) { create(:user) }
-  let(:board) { create(:board, moderators: [moderator]) }
+  let(:board) { create(:board) }
+
+  before do
+    board.moderators << moderator
+  end
 
   describe '#index' do
     it 'succeeds when the current user is admin' do
