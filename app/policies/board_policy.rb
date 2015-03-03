@@ -1,7 +1,7 @@
 class BoardPolicy < ApplicationPolicy
 
   def update?
-    signed_in? && user.admin?
+    signed_in? && test_if_not(user.admin?, '您没有此操作的权限')
   end
 
   def create?
