@@ -6,6 +6,7 @@ class Admin::CategoriesController < ApplicationController
   # GET /admin/categories/new
   def new
     @category = Category.new
+    authorize @category
     if params[:parent_id]
       @category.parent_id = params[:parent_id]
     end
@@ -13,12 +14,14 @@ class Admin::CategoriesController < ApplicationController
 
   # GET /admin/categories/1/edit
   def edit
+    authorize @category
   end
 
   # POST /admin/categories
   # POST /admin/categories.json
   def create
     @category = Category.new(category_params)
+    authorize @category
 
     respond_to do |format|
       if @category.save
@@ -32,6 +35,7 @@ class Admin::CategoriesController < ApplicationController
   # PATCH/PUT /admin/categories/1
   # PATCH/PUT /admin/categories/1.json
   def update
+    authorize @category
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to admin_nodes_path(parent_id: @category.parent_id) }
