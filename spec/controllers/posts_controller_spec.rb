@@ -512,12 +512,12 @@ RSpec.describe PostsController, type: :controller do
         old_post.delete_by(author)
       end
 
-      it 'succeeds when the current user is moderator' do
+      it 'fails when the current user is moderator' do
         sign_in :user, moderator
         xhr :patch, :resume, id: old_post.id
-        expect(response).to render_template(:refresh)
+        expect(response).not_to render_template(:refresh)
         old_post.reload
-        expect(old_post.deleted).to eq(0)
+        expect(old_post.deleted).to eq(1)
       end
 
       it 'succeeds when the current user is author' do
@@ -526,6 +526,24 @@ RSpec.describe PostsController, type: :controller do
         expect(response).to render_template(:refresh)
         old_post.reload
         expect(old_post.deleted).to eq(0)
+      end
+
+      it 'fails when the current user is author but who is blocked by admin' do
+        sign_in :user, author
+        author.update(status: 1)
+        xhr :patch, :resume, id: old_post.id
+        expect(response).not_to render_template(:refresh)
+        old_post.reload
+        expect(old_post.deleted).to eq(1)
+      end
+
+      it 'fails when the current user is author but who is blocked by moderator' do
+        sign_in :user, author
+        create(:blocked_user, user: author, blocker: moderator, blockable: board)
+        xhr :patch, :resume, id: old_post.id
+        expect(response).not_to render_template(:refresh)
+        old_post.reload
+        expect(old_post.deleted).to eq(1)
       end
 
       it 'fails when the current user is author but who is blocked by moderator' do

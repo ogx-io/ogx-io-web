@@ -47,14 +47,6 @@ class Admin::CommentsController < ApplicationController
     end
   end
 
-  def delete_all
-    authorize @comment
-    @comment.delete_all_by(current_user)
-    respond_to do |format|
-      format.js { render js: "location.reload();" }
-    end
-  end
-
   private
 
   def set_comment
