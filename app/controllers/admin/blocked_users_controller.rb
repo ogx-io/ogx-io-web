@@ -53,9 +53,7 @@ class Admin::BlockedUsersController < ApplicationController
     authorize @blocked_user
 
     @blocked_user.destroy
-    respond_to do |format|
-      format.js { render js: "$('#blocked-user-#{@blocked_user.id}').remove()" }
-    end
+    redirect_to :back
   end
 
   private
