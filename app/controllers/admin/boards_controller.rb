@@ -6,6 +6,7 @@ class Admin::BoardsController < ApplicationController
   # GET /admin/boards/new
   def new
     @board = Board.new
+    authorize @board
     if params[:parent_id]
       @board.parent_id = params[:parent_id]
     end
@@ -13,6 +14,7 @@ class Admin::BoardsController < ApplicationController
 
   # GET /admin/boards/1/edit
   def edit
+    authorize @board
   end
 
   # POST /admin/boards
@@ -26,7 +28,6 @@ class Admin::BoardsController < ApplicationController
         format.html { redirect_to admin_nodes_path(parent_id: @board.parent_id) }
       else
         format.html { render :new }
-        format.js { render js: 'alert("error")' }
       end
     end
   end
@@ -42,7 +43,7 @@ class Admin::BoardsController < ApplicationController
         format.js { render 'admin/nodes/refresh', locals: { node: @board } }
       else
         format.html { render :edit }
-        format.js { render js: 'alert("error")' }
+        format.js { render 'admin/nodes/refresh', locals: { node: @board } }
       end
     end
   end
