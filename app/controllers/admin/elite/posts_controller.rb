@@ -5,6 +5,7 @@ class Admin::Elite::PostsController < ApplicationController
 
   # GET /admin/elite/posts/1/edit
   def edit
+    authorize @elite_post
   end
 
   # PATCH/PUT /admin/elite/posts/1

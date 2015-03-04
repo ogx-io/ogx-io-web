@@ -131,7 +131,6 @@ RSpec.describe Admin::Elite::CategoriesController, type: :controller do
       expect(response).not_to redirect_to(admin_elite_nodes_path(parent_id: root_category.id))
       child2.reload
       expect(child2.title).not_to eq(@new_category_info[:title])
-
     end
   end
 end
