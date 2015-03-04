@@ -6,6 +6,7 @@ class Admin::Elite::NodesController < ApplicationController
   # GET /admin/elite/nodes
   # GET /admin/elite/nodes.json
   def index
+    authorize User, :manage?
     if params[:parent_id].blank?
       @all_nodes = Elite::Node.where(layer: 0)
       @all_nodes = @all_nodes.where(:board_id.in => current_user.managing_boards.collect{|board| board.id}) unless current_user.admin?
@@ -25,7 +26,7 @@ class Admin::Elite::NodesController < ApplicationController
   def order_up
     authorize @node, :update?
     @node.order += 1
-    @node.save
+    @node.save!
     respond_to do |format|
       format.html { redirect_to :back }
     end
@@ -41,7 +42,7 @@ class Admin::Elite::NodesController < ApplicationController
   end
 
   def resume
-    authorize @node, :update?
+    authorize @node
     @node.resume_by(current_user)
     respond_to do |format|
       format.js { render 'refresh', locals: {node: @node} }
@@ -49,7 +50,7 @@ class Admin::Elite::NodesController < ApplicationController
   end
 
   def destroy
-    authorize @node, :update?
+    authorize @node
     @node.delete_by(current_user)
     respond_to do |format|
       format.js { render 'refresh', locals: {node: @node} }

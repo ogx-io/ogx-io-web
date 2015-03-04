@@ -2,11 +2,6 @@ class Admin::Elite::CategoriesController < ApplicationController
   before_action :set_elite_category, only: [:edit, :update, :destroy]
 
   layout 'admin'
-  # GET /admin/elite/categories
-  # GET /admin/elite/categories.json
-  def index
-    @admin_elite_categories = Admin::Elite::Category.all
-  end
 
   # GET /admin/elite/categories/new
   def new

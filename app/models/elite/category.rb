@@ -1,13 +1,5 @@
 class Elite::Category < Elite::Node
 
-  validate :check_uniqueness
-
-  def check_uniqueness
-    if self.layer > 0 && Elite::Category.where(parent_id: self.parent_id, title: self.title).exists?
-      errors.add(:title, "this title already exists!")
-    end
-  end
-
   def self.root_for(board)
     if self.where(board_id: board.id).exists?
       return self.where(board_id: board.id).first

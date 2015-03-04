@@ -7,11 +7,15 @@ RSpec.describe Elite::PostsController, type: :controller do
   let(:author) { create(:user) }
   let(:moderator) { create(:user) }
   let(:another_user) { create(:user) }
-  let(:board) { create(:board, moderators: [moderator]) }
+  let(:board) { create(:board) }
   let(:old_post) { create(:post, author: author, board: board) }
   let(:elite_post) do
     Elite::Post.add_post(old_post, moderator)
     Elite::Post.find_by(original_id: old_post.id)
+  end
+
+  before do
+    board.moderators << moderator
   end
 
   describe '#show' do
