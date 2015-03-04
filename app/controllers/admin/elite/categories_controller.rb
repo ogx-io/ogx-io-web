@@ -7,10 +7,13 @@ class Admin::Elite::CategoriesController < ApplicationController
   def new
     @elite_category = Elite::Category.new
     @elite_category[:parent_id] = params[:parent_id]
+    @elite_category.board = @elite_category.parent.board
+    authorize @elite_category
   end
 
   # GET /admin/elite/categories/1/edit
   def edit
+    authorize @elite_category
   end
 
   # POST /admin/elite/categories
@@ -40,7 +43,6 @@ class Admin::Elite::CategoriesController < ApplicationController
     @elite_category.update(elite_category_params)
     @elite_category[:parent_id] = @elite_category[:parent_id].to_i
     @elite_category.moderator = current_user
-    @elite_category.save
     respond_to do |format|
       if @elite_category.save
         format.html { redirect_to admin_elite_nodes_path(parent_id: @elite_category[:parent_id]) }
