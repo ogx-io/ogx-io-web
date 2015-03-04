@@ -6,6 +6,7 @@ class Admin::NodesController < ApplicationController
   # GET /admin/nodes
   # GET /admin/nodes.json
   def index
+    authorize Node
     if params[:parent_id]
       @all_nodes = Node.where(parent_id: params[:parent_id])
       @parent = Node.find(params[:parent_id])

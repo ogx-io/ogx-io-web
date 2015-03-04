@@ -23,10 +23,4 @@ RSpec.describe Elite::Category, :type => :model do
     expect(category.children.count).to eq(2)
   end
 
-  it "has the unique path" do
-    child1 = create(:elite_category, title: 'Child', parent: category)
-    child2 = build(:elite_category, title: 'Child', parent: category)
-    expect(child2.valid?).to be_falsey
-  end
-
 end
