@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
+  let(:admin) { create(:user, :admin) }
   let(:another_user) { create(:user) }
   let(:author) { create(:user) }
   let(:moderator) { create(:user) }
@@ -423,6 +424,14 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe '#destroy' do
+    it 'succeeds when the current user is admin' do
+      sign_in :user, admin
+      xhr :delete, :destroy, id: old_post.id
+      expect(response).to render_template(:refresh)
+      old_post.reload
+      expect(old_post.deleted).to eq(2)
+    end
+
     it 'succeeds when the current user is moderator' do
       sign_in :user, moderator
       xhr :delete, :destroy, id: old_post.id
@@ -531,15 +540,6 @@ RSpec.describe PostsController, type: :controller do
       it 'fails when the current user is author but who is blocked by admin' do
         sign_in :user, author
         author.update(status: 1)
-        xhr :patch, :resume, id: old_post.id
-        expect(response).not_to render_template(:refresh)
-        old_post.reload
-        expect(old_post.deleted).to eq(1)
-      end
-
-      it 'fails when the current user is author but who is blocked by moderator' do
-        sign_in :user, author
-        create(:blocked_user, user: author, blocker: moderator, blockable: board)
         xhr :patch, :resume, id: old_post.id
         expect(response).not_to render_template(:refresh)
         old_post.reload
