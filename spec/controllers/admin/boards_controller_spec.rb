@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'controllers/admin/test_helpers'
 
 RSpec.describe Admin::BoardsController, type: :controller do
   let(:admin) { create(:user, :admin) }
@@ -12,19 +13,7 @@ RSpec.describe Admin::BoardsController, type: :controller do
   let(:board2) { create(:board, parent: child1) }
 
   describe '#new' do
-    it 'succeeds when the current user is admin' do
-      sign_in :user, admin
-      get :new
-      expect(response).to be_success
-      expect(request.flash[:error]).to be_blank
-    end
-
-    it 'fails when the current user is another user' do
-      sign_in :user, another_user
-      get :new
-      expect(response).not_to be_success
-      expect(request.flash[:error]).not_to be_blank
-    end
+    it_behaves_like 'only for admin', 'new'
   end
 
   describe '#edit' do
