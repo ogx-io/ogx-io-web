@@ -1,9 +1,5 @@
-<p>您好，<%= @resource.name %>！</p>
-
-<p>您可以通过访问以下链接来确认您在OGX社区新注册的账号：</p>
-
-<p><%= confirmation_url(@resource, confirmation_token: @token) %></p>
-
-<p><%= link_to '确认我的账号', confirmation_url(@resource, confirmation_token: @token) %></p>
-
-<p>--来自OGX社区</p>
+<%= t('views.users.mailer.confirmation_instructions',
+      user: @resource.name,
+      confirmation_url: confirmation_url(@resource, confirmation_token: @token),
+      confirmation_url_link: link_to('确认我的账号', confirmation_url(@resource, confirmation_token: @token))
+    ).html_safe %>

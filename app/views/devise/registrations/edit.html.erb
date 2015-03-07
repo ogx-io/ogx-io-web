@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    更新用户信息
+    <%= t('views.users.update_user') %>
 <% end %>
 
 <% content_for :left_side do %>
@@ -8,30 +8,30 @@
 
 <div class="update-user-form register-form">
   <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :role => 'form'}) do |f| %>
-      <h3>更新用户信息</h3>
-      <%= f.input :name, label: '用户名', hint: '4-20个小写英文字母、数字或下划线', autofocus: true %>
-      <%= f.input :nick, label: '昵称', hint: '20个以内任意字符，用户将标识为：昵称(@用户名)' %>
-      <%= f.input :email, label: '邮件地址', hint: devise_mapping.confirmable? && resource.pending_reconfirmation? ? "正在等待验证的邮件地址：#{resource.unconfirmed_email}" : '' %>
-      <%= f.input :city, label: '所在城市', hint: '20个以内任意字符' %>
-      <%= f.input :intro, label: '个人签名', hint: '50个以内任意字符' %>
-      <%= f.input :website, label: '个人网站', placeholder: "example.com or https://example.com", hint: '50个以内任意字符' %>
+      <h3><%= t('views.users.update_user') %></h3>
+      <%= f.input :name, label: t('views.users.user_name'), hint: t('views.users.user_name_hint'), autofocus: true %>
+      <%= f.input :nick, label: t('views.users.nick'), hint: t('views.users.nick_hint') %>
+      <%= f.input :email, label: t('views.users.email'), hint: devise_mapping.confirmable? && resource.pending_reconfirmation? ? t('views.users.email_edit_hint', unconformed_email: resource.unconfirmed_email) : '' %>
+      <%= f.input :city, label: t('views.users.city'), hint: t('views.users.city_hint') %>
+      <%= f.input :intro, label: t('views.users.intro'), hint: t('views.users.intro_hint') %>
+      <%= f.input :website, label: t('views.users.website'), placeholder: t('views.users.website_placeholder'), hint: t('views.users.website_hint') %>
 
       <fieldset>
-        <%= f.input :avatar, label: "更改头像", as: :file %>
+        <%= f.input :avatar, label: t('views.users.update_avatar'), as: :file %>
         <div>
-          <div class="pull-left">当前头像：</div>
+          <div class="pull-left"><%= t('views.users.current_avatar') %>: </div>
           <%= avatar(resource, 160, false) %>
         </div>
       </fieldset>
       <fieldset>
-        <p>如果不想改变密码就在这里留空</p>
-        <%= f.input :password, label: '密码', hint: '至少8个字符', autocomplete: 'off' %>
-        <%= f.input :password_confirmation, label: '密码确认', hint: '重复输入一次密码' %>
+        <p><%= t('views.users.keep_blank_if_not_change_password') %></p>
+        <%= f.input :password, label: t('views.users.password'), hint: t('views.users.password_hint'), autocomplete: 'off' %>
+        <%= f.input :password_confirmation, label: t('views.users.password_confirmation'), hint: t('views.users.password_confirmation_hint') %>
       </fieldset>
       <fieldset>
-        <p>更新用户信息需要输入当前密码</p>
-        <%= f.input :current_password, label: '当前密码', autocomplete: 'off' %>
+        <p><%= t('views.users.need_password_before_update_user') %></p>
+        <%= f.input :current_password, label: t('views.users.current_password'), autocomplete: 'off' %>
       </fieldset>
-      <%= f.submit '更新', :class => 'button right' %>
+      <%= f.submit t('views.action.update'), :class => 'button right' %>
   <% end %>
 </div>

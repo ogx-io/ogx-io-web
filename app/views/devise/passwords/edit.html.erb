@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    重设密码
+    <%= t('views.users.reset_password') %>
 <% end %>
 
 <% content_for :left_side do %>
@@ -8,15 +8,15 @@
 
 <div class="authform">
   <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :put}) do |f| %>
-      <h3>重设密码</h3>
+      <h3><%= t('views.users.reset_password') %></h3>
       <% if resource.errors[:reset_password_token].presence %>
           <div class="has-error">
-            <p class="help-block">Token已过期</p>
+            <p class="help-block"><%= t('views.users.token_expired') %></p>
           </div>
       <% end %>
       <%= f.hidden_field :reset_password_token %>
-      <%= f.input :password, label: '密码', hint: '至少8个字符' %>
-      <%= f.input :password_confirmation, label: '密码确认', hint: '重复输入一次密码' %>
-      <%= f.submit '更换密码', :class => 'button right' %>
+      <%= f.input :password, label: t('views.users.password'), hint: t('views.users.password_hint') %>
+      <%= f.input :password_confirmation, label: t('views.users.password_confirmation'), hint: t('views.users.password_confirmation_hint') %>
+      <%= f.submit t('views.users.reset_password'), :class => 'button right' %>
   <% end %>
 </div>

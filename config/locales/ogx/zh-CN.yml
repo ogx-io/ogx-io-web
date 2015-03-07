@@ -61,6 +61,7 @@ zh-CN:
       sign_in: '登录'
       sign_up: '注册'
       sign_out: '退出'
+      update: '更新'
 
     pagination:
       first: "首页"
@@ -82,11 +83,54 @@ zh-CN:
       joined_at: '加入于 %{date}'
       sign_in: '用户登录'
       sign_up: '新用户注册'
+      update_user: '更新用户信息'
       user_name: '用户名'
-      forgot_password: '忘记密码了'
+      user_name_hint: '4-20个小写英文字母、数字或下划线'
+      nick: '昵称'
+      nick_hint: '20个以内任意字符，用户的完整标识将为：昵称(@用户名)'
+      email: '邮箱地址'
+      email_hint: '格式：user@domain.com'
+      email_edit_hint: '正在等待验证的邮件地址：%{unconfirmed_email}'
+      city: '所在城市'
+      city_hint: '20个以内任意字符'
+      intro: '个人签名'
+      intro_hint: '50个以内任意字符'
+      website: '个人网站'
+      website_hint: '50个以内任意字符'
+      website_placeholder: 'example.com or https://example.com'
+      update_avatar: '更改头像'
+      current_avatar: '当前头像'
       password: '密码'
+      password_hint: '至少8个字符'
+      password_confirmation: '密码确认'
+      password_confirmation_hint: '重复输入一次密码'
+      current_password: '当前密码'
+      forgot_password: '忘记密码了'
       remember_me: '记住我'
-
+      keep_blank_if_not_change_password: '如果不想改变密码就在这里留空'
+      need_password_before_update_user: '更新用户信息需要输入当前密码'
+      ask_if_forget_password: '忘记密码了？'
+      we_will_send_email_reseting_password: '我们给你发邮件重设密码'
+      reset_password: '重设密码'
+      token_expired: 'Token已过期'
+      mailer:
+        confirmation_instructions: "<p>您好，%{user}！</p>
+                                    <p>您可以通过访问以下链接来确认您在OGX社区新注册的账号：</p>
+                                    <p>%{confirmation_url}</p>
+                                    <p>%{confirmation_url_link}</p>
+                                    <p>--来自OGX社区</p>"
+        unlock_instructions: "<p>您好，%{user}！</p>
+                              <p>您的账号因为多次登录失败而被暂时锁定了。</p>
+                              <p>访问以下链接可以给账号解锁。</p>
+                              <p>%{unlock_url}</p>
+                              <p>%{unlock_url_link}</p>
+                              <p>--来自OGX社区</p>"
+        reset_password_instructions: "<p>您好，%{user}！</p>
+                                      <p>您是否有发起过更换密码的请求？您可以通过访问以下链接去更换密码。</p>
+                                      <p>%{edit_password_url}</p>
+                                      <p>%{edit_password_url_link}</p>
+                                      <p>如果你没有发起过更换密码的请求，请忽略本邮件。不访问这个链接，您的密码就不会改变。</p>
+                                      <p>--来自OGX社区</p>"
 
     topics:
       no_permission_to_show_topic: '对不起，您无权访问此主题。'
