@@ -2,7 +2,7 @@
   <%= render partial: 'nodes/breadcrumbs', locals: {node: @post.board, extras: ['edit_post']} %>
 
   <h4>
-    修改 <%= link_to @post.title, @post %>
+    <%= t('views.action.modify') %> <%= link_to @post.title, @post %>
   </h4>
   <%= render 'form' %>
 </div>

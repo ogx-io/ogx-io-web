@@ -22,13 +22,118 @@
 zh-CN:
   hello: "Hello world"
 
+  global:
+    title: '标题'
+    content: '内容'
+    topic: '主题'
+    post: '帖子'
+    elite: '精华帖'
+    comment: '评论'
+    deleted: '已删除'
+    top_post: '置顶'
+    preview_post: '预览帖子'
+    count:
+      topic: '主题数'
+      post: '帖子数'
+      notification: '通知数'
+
   views:
+    action:
+      new_topic: '新主题'
+      delete: '删除'
+      resume: '恢复'
+      lock: '加锁'
+      unlock: '解锁'
+      reply: '回复'
+      modify: '修改'
+      preview: '预览'
+      post: '发表'
+      continue_editing: '继续编辑'
+      comment: '评论'
+      top_up_post: '置顶上升'
+      top_post: '置顶'
+      untop_post: '取消置顶'
+      elite_post: '设为精华'
+      unelite_post: '取消精华'
+      add_picture: '插入图片'
+      clean: '清空'
+      setting: '设置'
+      sign_in: '登录'
+      sign_up: '注册'
+      sign_out: '退出'
+
     pagination:
       first: "首页"
       last: "末页"
       previous: "上页"
       next: "下页"
       truncate: "&hellip;"
+
+    layout:
+      home: '首页'
+      boards: '板块列表'
+      backend: '管理后台'
+      notification: '提醒'
+
+    visitors:
+      latest: '最新动态'
+
+    users:
+      joined_at: '加入于 %{date}'
+      sign_in: '用户登录'
+      sign_up: '新用户注册'
+      user_name: '用户名'
+      forgot_password: '忘记密码了'
+      password: '密码'
+      remember_me: '记住我'
+
+
+    topics:
+      no_permission_to_show_topic: '对不起，您无权访问此主题。'
+      tip:
+        locked_by_author: '主题创建者加锁，只有主题创建者才能回复'
+        locked_by_moderator: '版主加锁，没人能回复'
+      _topic_list_item:
+        author_info: '%{author} 发表于 %{created_at}'
+        author_and_replier_info: '%{author} · 最后由 %{replier} 回复于 %{replied_at}'
+
+    posts:
+      topic_for_post: '本帖所在主题'
+      show_in_topic: '在主题内查看'
+      no_permission_to_show_post: '对不起，您无权查看此贴。'
+      reply_info: '回复 %{parent_author} 的 %{parent_floor}'
+      social_share_content: '给大家推荐一篇来自 #OGX社区# 的好文《%{title}》'
+      social_share_content_for_twitter: '给大家推荐一篇来自 #OGX社区 的好文《%{title}》'
+      _form:
+        title_hint: '40个以内任意字符'
+        need_markdown: '内容须采用 Markdown 语法书写'
+        markdown_help: '语法说明和练习'
+        additional_features: '附加功能'
+        lock_topic_checkbox: '主题加锁'
+
+    notifications:
+      notification: '提醒通知'
+      new_notification: '新提醒'
+      _post_reply:
+        title: '%{post_author} 回复了你的帖子 %{my_post}'
+      _comment:
+        title: '%{comment_author} 评论了你的帖子 %{post}'
+      _mention:
+        _post:
+          title: '%{post_author} 在帖子 %{post} 里提到了你'
+        _comment:
+          title: '%{mention_user} 在帖子 %{post} 的评论里提到了你'
+
+    elite:
+      item_tip: '由版主 %{moderator} 最后编辑于 %{updated_at}'
+      posts:
+        return_to_category: '返回精华区目录'
+        show_original: '查看原贴'
+        no_permission_to_show_post: '对不起，您无权查看此精华贴。'
+        author_info: '%{author} · %{posted_at} 发表'
+      categories:
+        upper_level: '返回上一级目录'
+
   helpers:
     page_entries_info:
       one_page:

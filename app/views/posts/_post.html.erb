@@ -21,17 +21,16 @@
           <div class="post-author">
             <%= full_user_link post.author %>
             <% if post.parent %>
-                回复 <%= user_link post.parent.author %>
-                的 <%= link_to '#' + post.parent.floor.to_s, show_post_path(post.parent.sid), title: "#{post.parent.title}" %>
+                <%= t('views.posts.reply_info', parent_author: user_link(post.parent.author), parent_floor: link_to('#' + post.parent.floor.to_s, show_post_path(post.parent.sid), title: "#{post.parent.title}")).html_safe %>
             <% end %>
             <% if !post.new_record? %>
                 · <%= time_digest post.created_at %>
                 <% if post.is_elite? %>
-                    &nbsp;<%= link_to post.elite_post do %><span class="elite-mark">精华帖</span>
+                    &nbsp;<%= link_to post.elite_post do %><span class="elite-mark"><%= t('global.elite') %></span>
                     <% end %>
                 <% end %>
                 <% if post.deleted? %>
-                    &nbsp;<span class="deleted-mark">(已删除)</span>
+                    &nbsp;<span class="deleted-mark">(<%= t('global.deleted') %>)</span>
                 <% end %>
             <% end %>
           </div>
@@ -39,41 +38,41 @@
           <% if !post.new_record? %>
               <div class="post-footer clearfix">
                 <div class="pull-left hide">
-                  <%= social_share_button_tag h("给大家推荐一篇来自 #OGX社区# 的好文《#{post.title}》"), url: show_post_url(post.sid), via: 'ogxio', 'data-twitter-title' => h("给大家推荐一篇来自 #OGX社区 的好文《#{post.title}》") %>
+                  <%= social_share_button_tag t('views.posts.social_share_content', title: post.title), url: show_post_url(post.sid), via: 'ogxio', 'data-twitter-title' => t('views.posts.social_share_content_for_twitter', title: post.title) %>
                 </div>
                 <div class="pull-right">
                   <ul class="list-inline">
                     <% if post.is_top? && policy(post).top_up? && policy(post).top_clear? %>
-                        <li><%= link_to "置顶上升(#{post.top})", top_up_post_path(post), method: :patch, remote: true %></li>
-                        <li><%= link_to "取消置顶", top_clear_post_path(post), method: :patch, remote: true %></li>
+                        <li><%= link_to t('views.action.top_up_post') + "(#{post.top})", top_up_post_path(post), method: :patch, remote: true %></li>
+                        <li><%= link_to t('views.action.untop_post'), top_clear_post_path(post), method: :patch, remote: true %></li>
                     <% elsif !post.is_top? && policy(post).top_up? %>
-                        <li><%= link_to "置顶", top_up_post_path(post), method: :patch, remote: true %></li>
+                        <li><%= link_to t('views.action.top_post'), top_up_post_path(post), method: :patch, remote: true %></li>
                     <% end %>
                     <% if post.is_elite? && policy(post).unset_elite? %>
-                        <li><%= link_to '取消精华', unset_elite_post_path(post), method: :patch, remote: true, class: 'set-elite' %></li>
+                        <li><%= link_to t('views.action.unelite_post'), unset_elite_post_path(post), method: :patch, remote: true, class: 'set-elite' %></li>
                     <% elsif !post.is_elite? && policy(post).set_elite? %>
-                        <li><%= link_to '精华', set_elite_post_path(post), method: :patch, remote: true, class: 'set-elite' %></li>
+                        <li><%= link_to t('views.action.elite_post'), set_elite_post_path(post), method: :patch, remote: true, class: 'set-elite' %></li>
                     <% end %>
                     <% if !post.deleted? && policy(post).destroy? %>
                         <li>
-                          <%= link_to '删除', post_path(post), method: :delete, remote: true %>
+                          <%= link_to t('views.action.delete'), post_path(post), method: :delete, remote: true %>
                         </li>
                     <% end %>
                     <% if post.deleted? && policy(post).resume? %>
                         <li>
-                          <%= link_to '恢复', resume_post_path(post), method: :patch, remote: true %>
+                          <%= link_to t('views.action.resume'), resume_post_path(post), method: :patch, remote: true %>
                         </li>
                     <% end %>
                     <% if policy(post).update? %>
                         <li>
-                          <%= link_to '修改', edit_post_path(post) %>
+                          <%= link_to t('views.action.modify'), edit_post_path(post) %>
                         </li>
                     <% end %>
                     <li>
-                      <%= link_to post.comments.normal.count > 0 ? "评论(#{post.comments.normal.count})" : "评论", comments_post_path(post), remote: true, class: 'toggle-post-comments', 'data-post-id' => post.id %>
+                      <%= link_to t('views.action.comment') + (post.comments.normal.count > 0 ? "(#{post.comments.normal.count})" : ''), comments_post_path(post), remote: true, class: 'toggle-post-comments', 'data-post-id' => post.id %>
                     </li>
                     <li>
-                      <%= link_to '回复', new_board_post_path(post.board, parent_id: post.id) %>
+                      <%= link_to t('views.action.reply'), new_board_post_path(post.board, parent_id: post.id) %>
                     </li>
                   </ul>
                 </div>

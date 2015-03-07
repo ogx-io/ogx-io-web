@@ -1,22 +1,22 @@
 <nav class="topic-bar clearfix">
-  帖子数：<%= @all_posts.count %>
+  <%= t('global.count.post') %>: <%= @all_posts.count %>
   <%= paginate @posts, left: 1, right: 1 %>
   <div class="right-links pull-right">
     <% if policy(@topic).update? %>
         <% if @topic.deleted? %>
-            <%= link_to '恢复', resume_topic_path(@topic), method: :patch %>
+            <%= link_to t('views.action.resume'), resume_topic_path(@topic), method: :patch %>
         <% else %>
-            <%= link_to '删除', topic_path(@topic), method: :delete %>
+            <%= link_to t('views.action.delete'), topic_path(@topic), method: :delete %>
         <% end %>
     <% end %>
     <% if policy(@topic).toggle_lock? %>
         <% if @topic.locked? %>
-            <%= link_to '解锁', toggle_lock_topic_path(@topic), method: :patch %>
+            <%= link_to t('views.action.unlock'), toggle_lock_topic_path(@topic), method: :patch %>
         <% else %>
-            <%= link_to '加锁', toggle_lock_topic_path(@topic), method: :patch %>
+            <%= link_to t('views.action.lock'), toggle_lock_topic_path(@topic), method: :patch %>
         <% end %>
     <% end %>
-    <%= link_to '新主题', new_board_post_path(@board) %>
-    <%= link_to '回复', new_board_post_path(@board, parent_id: @first.id) %>
+    <%= link_to t('views.action.new_topic'), new_board_post_path(@board) %>
+    <%= link_to t('views.action.reply'), new_board_post_path(@board, parent_id: @first.id) %>
   </div>
 </nav>

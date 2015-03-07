@@ -1,9 +1,9 @@
 <ul class="mb10 nav nav-tabs" role="tablist">
-  <li role="presentation" class="<%= "active" if index == 2 %>"><%= link_to '主题', show_user_topics_path(@user.name) %></li>
-  <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to '帖子', show_user_posts_path(@user.name) %></li>
-  <li role="presentation" class="<%= "active" if index == 3 %>"><%= link_to '精华帖', show_user_elites_path(@user.name) %></li>
+  <li role="presentation" class="<%= "active" if index == 2 %>"><%= link_to t('global.topic'), show_user_topics_path(@user.name) %></li>
+  <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to t('global.post'), show_user_posts_path(@user.name) %></li>
+  <li role="presentation" class="<%= "active" if index == 3 %>"><%= link_to t('global.elite'), show_user_elites_path(@user.name) %></li>
 </ul>
 
 <% content_for :title do %>
-    <%= @user.get_nick %>的主页 - <%= ['', '帖子', '主题', '精华帖'][index] %>
+    <%= @user.get_nick %> - <%= ['', t('global.post'), t('global.topic'), t('global.elite')][index] %>
 <% end %>

@@ -1,6 +1,6 @@
 <div id="post-<%= post.id %>-comments" class="post-comments">
   <div class="title">
-    评论
+    <%= t('views.action.comment') %>
   </div>
   <div class="comment-container">
     <%= render partial: 'comments/simple_comment_panel', locals: {commentable: post} %>

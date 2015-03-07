@@ -11,14 +11,14 @@
   <div class="show-post">
     <% if policy(@elite_post).show? %>
         <nav class="topic-bar clearfix">
-          <%= link_to '返回精华区目录', elite_category_path(@elite_post.parent) %>
+          <%= link_to t('views.elite.posts.return_to_category'), elite_category_path(@elite_post.parent) %>
           <% if @elite_post.original %>
-              &nbsp;&nbsp;<%= link_to '查看原贴', post_path(@elite_post.original) %>
+              &nbsp;&nbsp;<%= link_to t('views.elite.posts.show_original'), post_path(@elite_post.original) %>
           <% end %>
         </nav>
         <%= render partial: 'show_post', locals: { post: @elite_post } %>
     <% else %>
-        对不起，此贴已被删除。
+        <%= t('views.elite.posts.no_permission_to_show_post') %>
     <% end %>
   </div>
 </div>

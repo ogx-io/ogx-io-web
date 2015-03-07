@@ -1,5 +1,10 @@
 <td class="avatar"><%= avatar notification.post.author, 40 %></td>
 <td class="content">
-  <div class="title"><%= user_link notification.post.author %> 回复了你的帖子 <%= link_to notification.post.parent.title, show_post_path(notification.post.parent.sid) %></div>
+  <div class="title">
+    <%= t('views.notifications._post_reply.title', post_author: user_link(notification.post.author), my_post: link_to(notification.post.parent.title, show_post_path(notification.post.parent.sid))).html_safe %>
+    <% if !notification.read %>
+        <span class="new-item-tip"><%= t('views.notifications.new_notification') %></span>
+    <% end %>
+  </div>
   <div class="details"><%= link_to notification.post.title, show_post_path(notification.post.sid) %></div>
 </td>

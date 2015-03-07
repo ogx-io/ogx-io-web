@@ -11,7 +11,7 @@
         <tbody>
         <% if @elite_category.layer > 0 %>
             <td class="node-mark node-mark-category"><span class="glyphicon glyphicon-folder-close"></span></td>
-            <td class="title"><%= link_to "返回上一级目录", elite_category_path(@elite_category.parent) %></td>
+            <td class="title"><%= link_to t('views.elite.categories.upper_level'), elite_category_path(@elite_category.parent) %></td>
             <td class="moderator hidden-xs"></td>
             <td class="date hidden-xs"></td>
         <% end %>

@@ -11,13 +11,13 @@
   <div class="show-post">
     <% if policy(@post).show? %>
         <nav class="topic-bar clearfix">
-          本帖所在主题：<%= link_to @post.topic.title, @post.topic %>
+          <%= t('views.posts.topic_for_post') %>: <%= link_to @post.topic.title, @post.topic %>
           -
-          <%= link_to '在主题内查看', show_topic_post_path(@post.topic.sid, @post.sid) %>
+          <%= link_to t('views.posts.show_in_topic'), show_topic_post_path(@post.topic.sid, @post.sid) %>
         </nav>
         <%= render partial: 'post', locals: {post: @post, board: @board} %>
     <% else %>
-        对不起，您无权查看此贴。
+        <%= t('views.posts.no_permission_to_show_post') %>
     <% end %>
     <% if policy(@post).comment? || @post.comments.normal.count > 0 %>
     <%= render partial: 'post_comment_panel', locals: {post: @post} %>

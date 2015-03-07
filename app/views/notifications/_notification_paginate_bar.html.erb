@@ -1,7 +1,7 @@
 <nav class="list-bar clearfix">
-  总数：<%= @all_notifications.count %>
+  <%= t('global.count.notification') %>: <%= @all_notifications.count %>
   <%= paginate @notifications, left: 1, right: 1 %>
   <div class="pull-right">
-    <%= link_to "清空", clean_user_notifications_path(@user), method: :delete %>
+    <%= link_to t('views.action.clean'), clean_user_notifications_path(@user), method: :delete %>
   </div>
 </nav>

@@ -1,7 +1,7 @@
 <div class="col-sm-7 front-page right-side-layout">
   <div class="row">
     <ol class="breadcrumb pull-left">
-      <li>最新动态</li>
+      <li><%= t('views.visitors.latest') %></li>
     </ol>
   </div>
   <%= render partial: "topics/topic_list_item", as: :topic, collection: @topics %>

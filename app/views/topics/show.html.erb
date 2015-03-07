@@ -10,7 +10,7 @@
           <%= @first.title %>
           <%= render partial: 'topic_lock', locals: {topic: @topic} %>
           <% if @topic.deleted? %>
-              <span class="deleted-mark">(已删除)</span>
+              <span class="deleted-mark">(<%= t('global.deleted') %>)</span>
           <% end %>
         </h3>
       </div>
@@ -18,6 +18,6 @@
       <%= render partial: '/posts/post', collection: @posts, locals: {board: @board} %>
       <%= render 'posts_paginate_bar' %>
   <% else %>
-      对不起，您无权访问此主题。
+      <%= t('views.topics.no_permission_to_show_topic') %>
   <% end %>
 </div>
