@@ -21,7 +21,7 @@ feature 'User edit', :devise do
     visit edit_user_registration_path(user)
     fill_in 'user_email', :with => 'newemail@example.com'
     fill_in 'user_current_password', :with => user.password
-    click_button '更新'
+    click_button I18n.t('views.action.update')
     expect(page).to have_content I18n.t 'devise.registrations.update_needs_confirmation'
   end
 
@@ -34,7 +34,7 @@ feature 'User edit', :devise do
     other = FactoryGirl.create(:user, name: 'other', email: 'other@example.com')
     login_as(me, :scope => :user)
     visit edit_user_registration_path(other)
-    expect(page).to have_content '更新用户信息'
+    expect(page).to have_content I18n.t('views.users.update_user')
     expect(page).to have_field('user_email', with: me.email)
   end
 

@@ -1,7 +1,7 @@
 class Elite::CategoryPolicy < ApplicationPolicy
 
   def create?
-    signed_in? && test_if_not(user.admin? || record.board.has_moderator?(user), '您没有权限进行此操作')
+    signed_in? && test_if_not(user.admin? || record.board.has_moderator?(user), I18n.t('policies.common.no_permission'))
   end
 
   def update?

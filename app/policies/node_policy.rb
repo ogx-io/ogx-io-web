@@ -5,7 +5,7 @@ class NodePolicy < ApplicationPolicy
   end
 
   def create?
-    signed_in? && test_if_not(user.admin?, '您没有权限做此操作')
+    signed_in? && test_if_not(user.admin?, I18n.t('policies.common.no_permission'))
   end
 
   def update?

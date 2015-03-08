@@ -5,7 +5,7 @@ class Notification::BasePolicy < ApplicationPolicy
   end
 
   def destroy?
-    signed_in? && test_if_not(user == record.user, '您没有访问权限')
+    signed_in? && test_if_not(user == record.user, I18n.t('policies.common.no_permission'))
   end
 
   def clean?

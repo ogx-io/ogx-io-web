@@ -55,7 +55,7 @@ class ApplicationPolicy
   protected
 
   def signed_in?
-    test_if_not(user, '您需要先 <a href="/users/sign_in">登录</a> 才能执行此操作！新用户请先 <a href="/users/sign_up">注册</a> 再登录。')
+    test_if_not(user, I18n.t('policies.common.not_signed_in'))
   end
 
   def test_if_not(cond, msg)

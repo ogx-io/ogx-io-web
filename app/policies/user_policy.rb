@@ -1,4 +1,4 @@
-class UserPolicy
+class UserPolicy < ApplicationPolicy
   attr_reader :current_user, :model
 
   def initialize(current_user, model)
@@ -40,11 +40,11 @@ class UserPolicy
   end
 
   def collect_board?
-    @current_user == @user
+    test_if_not(@current_user == @user, I18n.t('policies.common.no_permission'))
   end
 
   def uncollect_board?
-    @current_user == @user
+    test_if_not(@current_user == @user, I18n.t('policies.common.no_permission'))
   end
 
 end

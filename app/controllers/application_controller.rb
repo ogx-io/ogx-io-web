@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized(exception)
-    message = exception.policy.respond_to?('err_msg') ? exception.policy.err_msg : '您没有此操作的权限！'
+    message = (exception.policy.respond_to?('err_msg') && !exception.policy.err_msg.blank?) ? exception.policy.err_msg : t('policies.common.no_permission')
 
     respond_to do |format|
       format.html { flash[:error] = message; redirect_to(request.referrer || root_path) }
