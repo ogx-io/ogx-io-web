@@ -253,6 +253,11 @@ zh-CN:
         new_category: '新建目录'
         edit_category: '编辑目录属性'
         parent_id: '父节点ID'
+      boards:
+        new_board: '新建板块'
+        edit_board: '编辑板块属性'
+        intro: '板块简介'
+
 
   helpers:
     page_entries_info:

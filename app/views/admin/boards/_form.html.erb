@@ -1,11 +1,11 @@
 <%= simple_form_for(@board, url: @board.new_record? ? admin_boards_path : admin_board_path(@board)) do |f| %>
-    <%= f.input :name, label: '名称' %>
-    <%= f.input :path, label: '路径' %>
-    <%= f.input :parent_id, label: '父节点ID' %>
-    <%= f.input :moderator_ids, label: '版主', input_html: {value: @board.moderators.collect{|user| user.name}.join(' ')}, required: false %>
-    <%= f.input :intro, label: '板块简介', as: :text, required: false %>
+    <%= f.input :name, label: t('global.name') %>
+    <%= f.input :path, label: t('global.path') %>
+    <%= f.input :parent_id, label: t('views.admin.categories.parent_id') %>
+    <%= f.input :moderator_ids, label: t('global.moderator'), input_html: {value: @board.moderators.collect{|user| user.name}.join(' ')}, required: false %>
+    <%= f.input :intro, label: t('views.admin.boards.intro'), as: :text, required: false %>
 
     <div class="actions clearfix">
-      <%= f.submit '提交', :class => 'button right' %>
+      <%= f.submit t('views.action.submit'), :class => 'button right' %>
     </div>
 <% end %>

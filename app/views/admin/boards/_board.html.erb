@@ -12,11 +12,11 @@
   <td><%= board.layer %></td>
   <td><%= board.order %></td>
   <td>
-    <%= link_to '编辑', edit_admin_board_path(board) %>
-    <%= link_to '上升', order_up_admin_node_path(board.id), method: :patch %>
-    <%= link_to '下降', order_down_admin_node_path(board.id), method: :patch %>
-    <%= link_to_unless board.normal?, '恢复', admin_board_path(board, 'board[status]' => 'normal'), method: :patch, remote: true %>
-    <%= link_to_unless board.blocked?, '封禁', admin_board_path(board, 'board[status]' => 'blocked'), method: :patch, remote: true %>
-    <%= link_to_unless board.deleted?, '删除', admin_board_path(board, 'board[status]' => 'deleted'), method: :patch, remote: true %>
+    <%= link_to t('views.action.edit'), edit_admin_board_path(board) %>
+    <%= link_to t('views.action.order_up'), order_up_admin_node_path(board.id), method: :patch %>
+    <%= link_to t('views.action.order_down'), order_down_admin_node_path(board.id), method: :patch %>
+    <%= link_to_unless board.normal?, t('views.action.resume'), admin_board_path(board, 'board[status]' => 'normal'), method: :patch, remote: true %>
+    <%= link_to_unless board.blocked?, t('views.action.block'), admin_board_path(board, 'board[status]' => 'blocked'), method: :patch, remote: true %>
+    <%= link_to_unless board.deleted?, t('views.action.delete'), admin_board_path(board, 'board[status]' => 'deleted'), method: :patch, remote: true %>
   </td>
 </tr>
