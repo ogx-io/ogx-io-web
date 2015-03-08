@@ -37,6 +37,7 @@ zh-CN:
       topic: '主题数'
       post: '帖子数'
       notification: '通知数'
+      user: '用户数'
 
   views:
     action:
@@ -63,6 +64,7 @@ zh-CN:
       sign_up: '注册'
       sign_out: '退出'
       update: '更新'
+      block: '封禁'
 
     pagination:
       first: "首页"
@@ -99,6 +101,7 @@ zh-CN:
       website: '个人网站'
       website_hint: '50个以内任意字符'
       website_placeholder: 'example.com or https://example.com'
+      avatar: '头像'
       update_avatar: '更改头像'
       current_avatar: '当前头像'
       password: '密码'
@@ -190,6 +193,16 @@ zh-CN:
         post_button: '发 帖'
       recruiting_moderator: '诚征版主中'
       board_statistic: '本版统计'
+
+    admin:
+      users:
+        sign_in_times: '登陆次数'
+        last_signed_in_at: '最后登陆'
+        last_visited_at: '最后访问'
+        role: '角色'
+        operator: '操作'
+        confirmed_user: '确认'
+        uncomfirmed_user: '注册未确认'
 
 
   helpers:

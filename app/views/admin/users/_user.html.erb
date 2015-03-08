@@ -7,9 +7,9 @@
     <%= user.email %>
     <br/>
     <% if user.confirmed_at %>
-    <%= time_digest user.confirmed_at %> 确认
-        <% else %>
-    注册未确认
+        <%= time_digest user.confirmed_at %> <%= t('views.admin.users.confirmed_user') %>
+    <% else %>
+        <%= t('views.admin.users.uncomfirmed_user') %>
     <% end %>
   </td>
   <td><%= user.sign_in_count %></td>
@@ -17,8 +17,8 @@
   <td><%= user.last_visit_ip %><br/><%= time_digest user.last_visited_at if user.last_visited_at %></td>
   <td><%= user.role %></td>
   <td>
-    <%= link_to_unless user.status == 0, "恢复", admin_user_path(user, 'user[status]' => 0), method: :patch, remote: true %>
-    <%= link_to_unless user.status == 1, "封禁", admin_user_path(user, 'user[status]' => 1), method: :patch, remote: true %>
-    <%= link_to_unless user.status == 2, "删除", admin_user_path(user, 'user[status]' => 2), method: :patch, remote: true %>
+    <%= link_to_unless user.status == 0, t('views.action.resume'), admin_user_path(user, 'user[status]' => 0), method: :patch, remote: true %>
+    <%= link_to_unless user.status == 1, t('views.action.block'), admin_user_path(user, 'user[status]' => 1), method: :patch, remote: true %>
+    <%= link_to_unless user.status == 2, t('views.action.delete'), admin_user_path(user, 'user[status]' => 2), method: :patch, remote: true %>
   </td>
 </tr>
