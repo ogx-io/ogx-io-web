@@ -5,11 +5,11 @@
   <table class="table table-hover">
     <thead>
     <th>ID</th>
-    <th>被封用户</th>
-    <th>所在板块</th>
-    <th>操作人</th>
-    <th>封禁时间</th>
-    <th>操作</th>
+    <th><%= t('views.admin.blocked_users.blocked_user') %></th>
+    <th><%= t('global.board') %></th>
+    <th><%= t('views.admin.blocked_users.operator') %></th>
+    <th><%= t('views.admin.blocked_users.blocked_at') %></th>
+    <th><%= t('global.operate') %></th>
     </thead>
     <tbody>
     <%= render @blocked_users %>

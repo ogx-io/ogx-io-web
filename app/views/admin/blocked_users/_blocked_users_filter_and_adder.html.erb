@@ -1,12 +1,12 @@
 <div class="filter-list">
-  板块：
+  <%= t('global.board') %>:
   <div class="btn-group">
     <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-      <%= !@board ? "所有板块" : @board.name %>
+      <%= !@board ? t('views.admin.blocked_users.all_boards') : @board.name %>
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu">
-      <li><%= link_to "所有板块", request.url.split('?')[0] %></li>
+      <li><%= link_to t('views.admin.blocked_users.all_boards'), request.url.split('?')[0] %></li>
       <% board_scope = current_user.admin? ? Board.all : current_user.managing_boards %>
       <% board_scope.each do |board| %>
           <li><%= link_to board.name, request.url.split('?')[0] + "?board_id=#{board.id}" %></li>
@@ -17,10 +17,10 @@
   <% if @blocked_user %>
   <div class="block-user-form">
     <%= form_for @blocked_user, url: admin_blocked_users_path do |f| %>
-        用户名：<input type="text" name="username"/>
+        <%= t('views.users.user_name') %>: <input type="text" name="username"/>
         <%= f.hidden_field :blockable_type %>
         <%= f.hidden_field :blockable_id %>
-        <%= submit_tag '封禁' %>
+        <%= submit_tag t('views.action.block') %>
     <% end %>
   </div>
   <% end %>

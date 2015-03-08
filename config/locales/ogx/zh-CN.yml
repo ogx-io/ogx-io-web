@@ -53,6 +53,7 @@ zh-CN:
       user: '用户数'
       node: '节点数'
       comment: '评论数'
+      blocked_user: '被封禁用户数'
 
   views:
     action:
@@ -81,6 +82,7 @@ zh-CN:
       sign_out: '退出'
       update: '更新'
       block: '封禁'
+      unblock: '解封'
       submit: '提交'
       upper_level: '返回上级目录'
       order_up: '上升'
@@ -257,7 +259,11 @@ zh-CN:
         new_board: '新建板块'
         edit_board: '编辑板块属性'
         intro: '板块简介'
-
+      blocked_users:
+        blocked_user: '被封用户'
+        operator: '操作人'
+        blocked_at: '封禁时间'
+        all_boards: '所有板块'
 
   helpers:
     page_entries_info:
