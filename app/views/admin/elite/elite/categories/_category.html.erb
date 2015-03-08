@@ -9,12 +9,12 @@
   <td><%= category.layer %></td>
   <td><%= category.deleted %></td>
   <td>
-    <%= link_to_unless category.layer == 0, '上升', order_up_admin_elite_node_path(category), method: :patch %>
-    <%= link_to_unless category.layer == 0, '下降', order_down_admin_elite_node_path(category), method: :patch %>
+    <%= link_to_unless category.layer == 0, t('views.action.order_up'), order_up_admin_elite_node_path(category), method: :patch %>
+    <%= link_to_unless category.layer == 0, t('views.action.order_down'), order_down_admin_elite_node_path(category), method: :patch %>
     <% if category.layer > 0 %>
-        <%= link_to_unless category.deleted?, '删除', admin_elite_node_path(category), method: :delete, remote: true %>
-        <%= link_to_if category.deleted?, '恢复', resume_admin_elite_node_path(category), method: :patch, remote: true %>
+        <%= link_to_unless category.deleted?, t('views.action.delete'), admin_elite_node_path(category), method: :delete, remote: true %>
+        <%= link_to_if category.deleted?, t('views.action.resume'), resume_admin_elite_node_path(category), method: :patch, remote: true %>
     <% end %>
-    <%= link_to_unless category.layer == 0, '编辑', edit_admin_elite_category_path(category) %>
+    <%= link_to_unless category.layer == 0, t('views.action.edit'), edit_admin_elite_category_path(category) %>
   </td>
 </tr>

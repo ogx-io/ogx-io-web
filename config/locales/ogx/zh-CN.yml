@@ -35,13 +35,17 @@ zh-CN:
     board: '板块'
     moderator: '版主'
     author: '作者'
-    status: '状态'
     operate: '操作'
     type: '类型'
     name: '名称'
     path: '路径'
     layer: '层级'
     order: '顺序'
+    status: '状态'
+    status_values:
+      all: '所有'
+      normal: '正常显示'
+      deleted: '已删除'
     count:
       topic: '主题数'
       post: '帖子数'
@@ -58,6 +62,7 @@ zh-CN:
       unlock: '解锁'
       reply: '回复'
       modify: '修改'
+      edit: '编辑'
       preview: '预览'
       post: '发表'
       continue_editing: '继续编辑'
@@ -75,7 +80,10 @@ zh-CN:
       sign_out: '退出'
       update: '更新'
       block: '封禁'
+      submit: '提交'
       upper_level: '返回上级目录'
+      order_up: '上升'
+      order_down: '下降'
 
     pagination:
       first: "首页"
@@ -221,6 +229,20 @@ zh-CN:
         action:
           new_category: '新建目录'
           new_board: '新建板块'
+
+      elite:
+        posts:
+          change_parent: '改变精华帖所在目录'
+          parent_id: '父目录ID'
+        nodes:
+          operator: '整理人'
+          operated_at: '整理日期'
+          all_boards: '所有板块'
+        categories:
+          new_category: '新建目录'
+          edit_category: '编辑目录'
+          category_name: '目录名'
+          parent_id: '父目录ID'
 
   helpers:
     page_entries_info:
