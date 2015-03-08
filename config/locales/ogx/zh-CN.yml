@@ -32,6 +32,7 @@ zh-CN:
     deleted: '已删除'
     top_post: '置顶'
     preview_post: '预览帖子'
+    moderator: '版主'
     count:
       topic: '主题数'
       post: '帖子数'
@@ -181,6 +182,15 @@ zh-CN:
     comments:
       textarea_placeholder: '添加评论'
       words_limit: '还可以输入 %{number} 个字'
+
+    boards:
+      action:
+        collect: '收藏本版'
+        uncollect: '取消收藏'
+        post_button: '发 帖'
+      recruiting_moderator: '诚征版主中'
+      board_statistic: '本版统计'
+
 
   helpers:
     page_entries_info:

@@ -2,13 +2,13 @@
   <div class="panel panel-default board-intro">
     <div class="panel-heading">
       <% if board.moderators.count > 0 %>
-          版主：
+          <%= t('global.moderator') %>:
           <ul class="list-inline" style="display: inline-block">
             <% board.moderators.each do |user| %>
                 <li><%= user_link user %></li>
             <% end %></ul>
       <% else %>
-          诚征版主中
+          <%= t('views.boards.recruiting_moderator') %>
       <% end %>
     </div>
     <% unless board.intro.blank? %>
@@ -19,21 +19,20 @@
     <% if user_signed_in? %>
         <div class="actions center">
           <% if current_user.collecting_boards.include?(board) %>
-              <%= link_to '取消收藏', uncollect_board_user_path(current_user, board_id: board.id), method: :patch %>
+              <%= link_to t('views.boards.action.uncollect'), uncollect_board_user_path(current_user, board_id: board.id), method: :patch %>
           <% else %>
-              <%= link_to '收藏本版', collect_board_user_path(current_user, board_id: board.id), method: :patch %>
+              <%= link_to t('views.boards.action.collect'), collect_board_user_path(current_user, board_id: board.id), method: :patch %>
           <% end %>
         </div>
     <% end %>
   </div>
   <div class="panel panel-default board-statistic">
     <div class="panel-heading">
-      本版统计
+      <%= t('views.boards.board_statistic') %>
     </div>
     <div class="panel-body">
-      <p>主题数：<%= board.topics.normal.count %></p>
-
-      <p>帖子数：<%= board.posts.normal.count %></p>
+      <p><%= t('global.count.topic') %>: <%= board.topics.normal.count %></p>
+      <p><%= t('global.count.post') %>: <%= board.posts.normal.count %></p>
     </div>
   </div>
 </div>
