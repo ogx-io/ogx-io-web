@@ -52,6 +52,7 @@ zh-CN:
       notification: '通知数'
       user: '用户数'
       node: '节点数'
+      comment: '评论数'
 
   views:
     action:
@@ -212,6 +213,12 @@ zh-CN:
       board_statistic: '本版统计'
 
     admin:
+      backend: '管理后台'
+      black_house: '小黑屋'
+      comment: '帖子评论'
+      node_management: '节点管理'
+      user_management: '用户管理'
+      all_boards: '所有板块'
       users:
         sign_in_times: '登陆次数'
         last_signed_in_at: '最后登陆'
@@ -220,16 +227,13 @@ zh-CN:
         operator: '操作'
         confirmed_user: '确认'
         uncomfirmed_user: '注册未确认'
-
       posts:
         parent: '上级'
         posted_at: '发表时间'
-
       nodes:
         action:
           new_category: '新建目录'
           new_board: '新建板块'
-
       elite:
         posts:
           change_parent: '改变精华帖所在目录'
@@ -243,6 +247,12 @@ zh-CN:
           edit_category: '编辑目录'
           category_name: '目录名'
           parent_id: '父目录ID'
+      comments:
+        commented_at: '评论时间'
+      categories:
+        new_category: '新建目录'
+        edit_category: '编辑目录属性'
+        parent_id: '父节点ID'
 
   helpers:
     page_entries_info:

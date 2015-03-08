@@ -9,10 +9,10 @@
   <td><%= comment.deleted %></td>
   <td>
     <% if comment.deleted? and policy(comment).resume? %>
-        <%= link_to "恢复", resume_admin_comment_path(comment), method: :patch, remote: true %>
+        <%= link_to t('views.action.resume'), resume_admin_comment_path(comment), method: :patch, remote: true %>
     <% end %>
     <% if !comment.deleted? and policy(comment).destroy? %>
-        <%= link_to "删除", admin_comment_path(comment), method: :delete, remote: true %>
+        <%= link_to t('views.action.delete'), admin_comment_path(comment), method: :delete, remote: true %>
     <% end %>
   </td>
 </tr>

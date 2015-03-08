@@ -5,14 +5,14 @@
   <table class="table table-hover">
     <thead>
     <th>ID</th>
-    <th style="width: 400px">内容</th>
-    <th style="width: 100px">所在板块</th>
-    <th style="width: 200px">帖子</th>
-    <th>作者</th>
-    <th>评论时间</th>
+    <th style="width: 400px"><%= t('global.content') %></th>
+    <th style="width: 100px"><%= t('global.board') %></th>
+    <th style="width: 200px"><%= t('global.post') %></th>
+    <th><%= t('global.author') %></th>
+    <th><%= t('views.admin.comments.commented_at') %></th>
     <th>IP</th>
-    <th>状态</th>
-    <th>操作</th>
+    <th><%= t('global.status') %></th>
+    <th><%= t('global.operate') %></th>
     </thead>
     <tbody>
     <%= render @comments %>
