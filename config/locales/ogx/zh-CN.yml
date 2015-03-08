@@ -37,11 +37,17 @@ zh-CN:
     author: '作者'
     status: '状态'
     operate: '操作'
+    type: '类型'
+    name: '名称'
+    path: '路径'
+    layer: '层级'
+    order: '顺序'
     count:
       topic: '主题数'
       post: '帖子数'
       notification: '通知数'
       user: '用户数'
+      node: '节点数'
 
   views:
     action:
@@ -69,6 +75,7 @@ zh-CN:
       sign_out: '退出'
       update: '更新'
       block: '封禁'
+      upper_level: '返回上级目录'
 
     pagination:
       first: "首页"
@@ -183,8 +190,6 @@ zh-CN:
         show_original: '查看原贴'
         no_permission_to_show_post: '对不起，您无权查看此精华贴。'
         author_info: '%{author} · %{posted_at} 发表'
-      categories:
-        upper_level: '返回上一级目录'
 
     comments:
       textarea_placeholder: '添加评论'
@@ -212,6 +217,10 @@ zh-CN:
         parent: '上级'
         posted_at: '发表时间'
 
+      nodes:
+        action:
+          new_category: '新建目录'
+          new_board: '新建板块'
 
   helpers:
     page_entries_info:

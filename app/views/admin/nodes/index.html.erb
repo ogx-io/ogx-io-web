@@ -4,14 +4,14 @@
 <table class="table table-hover">
   <thead>
   <th>ID</th>
-  <th>类型</th>
-  <th>名称</th>
-  <th>路径</th>
-  <th>版主</th>
-  <th>状态</th>
-  <th>层级</th>
-  <th>顺序</th>
-  <th>操作</th>
+  <th><%= t('global.type') %></th>
+  <th><%= t('global.name') %></th>
+  <th><%= t('global.path') %></th>
+  <th><%= t('global.moderator') %></th>
+  <th><%= t('global.status') %></th>
+  <th><%= t('global.layer') %></th>
+  <th><%= t('global.order') %></th>
+  <th><%= t('global.operate') %></th>
   </thead>
   <tbody>
   <%= render @nodes %>
