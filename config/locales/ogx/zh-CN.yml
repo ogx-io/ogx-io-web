@@ -178,6 +178,10 @@ zh-CN:
       categories:
         upper_level: '返回上一级目录'
 
+    comments:
+      textarea_placeholder: '添加评论'
+      words_limit: '还可以输入 %{number} 个字'
+
   helpers:
     page_entries_info:
       one_page:
