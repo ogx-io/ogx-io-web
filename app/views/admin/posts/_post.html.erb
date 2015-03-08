@@ -9,10 +9,10 @@
   <td><%= post.deleted %></td>
   <td>
     <% if post.deleted? && policy(post).resume? %>
-        <%= link_to "恢复", resume_admin_post_path(post), method: :patch, remote: true %>
+        <%= link_to t('views.action.resume'), resume_admin_post_path(post), method: :patch, remote: true %>
     <% end %>
     <% if !post.deleted? && policy(post).destroy? %>
-        <%= link_to "删除", admin_post_path(post), method: :delete, remote: true %>
+        <%= link_to t('views.action.delete'), admin_post_path(post), method: :delete, remote: true %>
     <% end %>
   </td>
 </tr>

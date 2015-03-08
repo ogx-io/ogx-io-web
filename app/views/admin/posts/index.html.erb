@@ -5,14 +5,14 @@
   <table class="table table-hover">
     <thead>
     <th>ID</th>
-    <th>标题</th>
-    <th>所在板块</th>
-    <th>上级</th>
-    <th>作者</th>
-    <th>发表时间</th>
+    <th><%= t('global.title') %></th>
+    <th><%= t('global.board') %></th>
+    <th><%= t('views.admin.posts.parent') %></th>
+    <th><%= t('global.author') %></th>
+    <th><%= t('views.admin.posts.posted_at') %></th>
     <th>IP</th>
-    <th>状态</th>
-    <th>操作</th>
+    <th><%= t('global.status') %></th>
+    <th><%= t('global.operate') %>操作</th>
     </thead>
     <tbody>
     <%= render @posts %>

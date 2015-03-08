@@ -32,7 +32,11 @@ zh-CN:
     deleted: '已删除'
     top_post: '置顶'
     preview_post: '预览帖子'
+    board: '板块'
     moderator: '版主'
+    author: '作者'
+    status: '状态'
+    operate: '操作'
     count:
       topic: '主题数'
       post: '帖子数'
@@ -203,6 +207,10 @@ zh-CN:
         operator: '操作'
         confirmed_user: '确认'
         uncomfirmed_user: '注册未确认'
+
+      posts:
+        parent: '上级'
+        posted_at: '发表时间'
 
 
   helpers:
