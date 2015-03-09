@@ -1,10 +1,8 @@
-OGX.io
-======
+# OGX.io [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ogx-io/ogx-io-web?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 The Open Geeks' Community, an Open Source Cooperative and Funny Community, the Home of the Geeks!
 
-Contributing
-============
+# Contributing
 
 1. Fork it
 2. Create your feature branch (git checkout -b my-new-feature)
@@ -12,8 +10,7 @@ Contributing
 4. Push to the branch (git push origin my-new-feature)
 5. Create new Pull Request
 
-License
-=======
+# License
 
 本网站代码完全开源，遵循AGPLv3版权声明。
 
