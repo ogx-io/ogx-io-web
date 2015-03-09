@@ -13,14 +13,14 @@ class Node
   scope :boards, -> { where(_type: 'Board') }
   scope :normal, -> { where(status: :normal) }
 
-  validates_presence_of :name, message: "必须要有名字"
-  validates_presence_of :path, message: "必须要有路径"
+  validates_presence_of :name, message: I18n.t('mongoid.errors.models.node.attributes.name.blank')
+  validates_presence_of :path, message: I18n.t('mongoid.errors.models.node.attributes.path.blank')
   validate :check_path_uniqueness
 
   def check_path_uniqueness
     node = Node.where(parent_id: self.parent_id, path: self.path).first
     unless node.nil? || node.id == self.id
-      errors.add(:path, "this path already exists!")
+      errors.add(:path, I18n.t('mongoid.errors.models.node.attributes.path.taken'))
     end
   end
 

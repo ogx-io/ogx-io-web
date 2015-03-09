@@ -14,7 +14,7 @@ module Nodable
 
   def check_parent
     if self.layer > 0 && self.parent_id.blank?
-      errors.add(:parent_id, "必须要有父节点")
+      errors.add(:parent_id, I18n.t('mongoid.errors.models.concerns.nodable.attributes.parent.blank'))
     end
   end
 

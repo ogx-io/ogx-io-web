@@ -62,19 +62,19 @@ class User
   field :last_post_at, type: Time
   field :last_upload_image_at, type: Time
 
-  validates_presence_of :name, message: "请输入用户名"
-  validates_uniqueness_of :name, message: "该用户名已存在"
-  validates_format_of :name, with: /[a-z0-9_]{4,20}/, message: "格式不对"
+  validates_presence_of :name, message: I18n.t('mongoid.errors.models.user.attributes.name.blank')
+  validates_uniqueness_of :name, message: I18n.t('mongoid.errors.models.user.attributes.name.taken')
+  validates_format_of :name, with: /[a-z0-9_]{4,20}/, message: I18n.t('mongoid.errors.models.user.attributes.name.invalid')
 
-  validates_presence_of :nick, message: "请输入昵称"
-  validates_length_of :nick, maximum: 20, message: '昵称太长了'
+  validates_presence_of :nick, message: I18n.t('mongoid.errors.models.user.attributes.nick.blank')
+  validates_length_of :nick, maximum: 20, message: I18n.t('mongoid.errors.models.user.attributes.nick.length')
 
-  validates_presence_of :email, message: "请输入邮件地址"
-  validates_format_of :email, with: /([a-z0-9_\.-]{1,20})@([\da-z\.-]+)\.([a-z\.]{2,6})/, message: "请输入正确的邮件地址"
+  validates_presence_of :email, message: I18n.t('mongoid.errors.models.user.attributes.email.blank')
+  validates_format_of :email, with: /([a-z0-9_\.-]{1,20})@([\da-z\.-]+)\.([a-z\.]{2,6})/, message: I18n.t('mongoid.errors.models.user.attributes.email.invalid')
 
-  validates_length_of :intro, maximum: 50, message: '个人简介太长了'
+  validates_length_of :intro, maximum: 50, message: I18n.t('mongoid.errors.models.user.attributes.intro.length')
 
-  validates_length_of :city, maximum: 20, message: '输入的城市名称太长了'
+  validates_length_of :city, maximum: 20, message: I18n.t('mongoid.errors.models.user.attributes.city.length')
 
   has_and_belongs_to_many :managing_boards, class_name: "Board", inverse_of: :moderators
   has_and_belongs_to_many :collecting_boards, class_name: "Board", inverse_of: nil

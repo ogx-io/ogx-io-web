@@ -16,8 +16,8 @@ class Comment
   belongs_to :user
   belongs_to :board
 
-  validates_presence_of :body, message: "评论内容不能为空"
-  validates_length_of :body, maximum: 200, message: "评论内容不能超过200个字"
+  validates_presence_of :body, message: I18n.t('mongoid.errors.models.comment.attributes.body.blank')
+  validates_length_of :body, maximum: 200, message: I18n.t('mongoid.errors.models.comment.attributes.body.length')
 
   after_create :update_user, :send_comment_notification
 

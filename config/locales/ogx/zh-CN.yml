@@ -20,8 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 zh-CN:
-  hello: "Hello world"
-
   global:
     title: '标题'
     content: '内容'
@@ -277,9 +275,6 @@ zh-CN:
       post_too_fast: '您的发帖速度太快了，先休息一会儿吧'
       comment_too_fast: '您的评论发得太快了，先休息一会儿吧'
 
-
-
-
   helpers:
     page_entries_info:
       one_page:
@@ -306,3 +301,36 @@ zh-CN:
               confirmation: "密码确认不对"
             current_password:
               blank: "还没有输入当前的密码"
+            name:
+              blank: '请输入用户名'
+              taken: '该用户名已存在'
+              invalid: '格式不对'
+            nick:
+              blank: '请输入昵称'
+              length: '昵称太长了'
+            intro:
+              length: '个人简介太长了'
+            city:
+              length: '输入的城市名称太长了'
+        post:
+          attributes:
+            title:
+              blank: '请输入标题'
+              length: '标题太长了'
+        node:
+          attributes:
+            name:
+              blank: '必须要有名字'
+            path:
+              blank: '必须要有路径'
+              taken: '该路径已经存在'
+        comment:
+          attributes:
+            body:
+              blank: '评论内容不能为空'
+              length: '评论内容不能超过200个字'
+        concerns:
+          nodable:
+            attributes:
+              parent:
+                blank: '必须要有父节点'
