@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.commentable_id = @comment.commentable_id.to_i
 
     authorize @comment.commentable, :comment?
 

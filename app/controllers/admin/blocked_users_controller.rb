@@ -30,7 +30,6 @@ class Admin::BlockedUsersController < ApplicationController
 
   def create
     @blocked_user = BlockedUser.new(blocked_user_params)
-    @blocked_user[:blockable_id] = @blocked_user[:blockable_id].to_i
 
     authorize @blocked_user
 

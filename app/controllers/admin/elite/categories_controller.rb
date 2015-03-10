@@ -20,7 +20,6 @@ class Admin::Elite::CategoriesController < ApplicationController
   # POST /admin/elite/categories.json
   def create
     @elite_category = Elite::Category.new(elite_category_params)
-    @elite_category[:parent_id] = @elite_category[:parent_id].to_i
     @elite_category.board = @elite_category.parent.board
 
     authorize @elite_category
@@ -41,7 +40,6 @@ class Admin::Elite::CategoriesController < ApplicationController
     authorize @elite_category
 
     @elite_category.update(elite_category_params)
-    @elite_category[:parent_id] = @elite_category[:parent_id].to_i
     @elite_category.moderator = current_user
     respond_to do |format|
       if @elite_category.save
