@@ -86,13 +86,6 @@ zh-CN:
     order_up: '上升'
     order_down: '下降'
 
-  pagination:
-    first: "首页"
-    last: "末页"
-    previous: "上页"
-    next: "下页"
-    truncate: "&hellip;"
-
   layout:
     home: '首页'
     boards: '板块列表'
@@ -288,6 +281,14 @@ zh-CN:
           other: "Displaying <b>all %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+
+  views:
+    pagination:
+      first: "首页"
+      last: "末页"
+      previous: "上页"
+      next: "下页"
+      truncate: "&hellip;"
 
   mongoid:
     errors:
