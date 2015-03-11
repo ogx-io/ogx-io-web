@@ -174,8 +174,6 @@ GEM
       mongoid (~> 4.0.0)
       rake
       rspec (~> 3.1)
-    mongoid_auto_increment_id (0.6.5)
-      mongoid (>= 3.1.0, < 4.1.0)
     moped (2.0.4)
       bson (~> 2.2)
       connection_pool (~> 2.0)
@@ -346,7 +344,6 @@ DEPENDENCIES
   mongoid (~> 4.0.0)
   mongoid-enum
   mongoid-rspec
-  mongoid_auto_increment_id (= 0.6.5)
   newrelic_moped
   newrelic_rpm
   nokogiri (= 1.6.5)

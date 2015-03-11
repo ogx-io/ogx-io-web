@@ -3,7 +3,6 @@ class Post
   include Mongoid::Timestamps
   include Mongoid::Enum
 
-  include Sidable
   include Mentionable
   include BodyConvertable
   include SoftlyDeletable
@@ -30,7 +29,6 @@ class Post
   belongs_to :parent, class_name: "Post"
 
   has_many :comments, as: :commentable
-  has_many :pictures, as: :picturable
 
   has_one :elite_post, :class_name => 'Elite::Post', inverse_of: :original
 

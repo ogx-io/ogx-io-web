@@ -23,7 +23,7 @@ class TopicsController < ApplicationController
     if params[:floor]
       post = @topic.posts.find_by(floor: params[:floor].to_i)
     else
-      post = Post.find_by_sid(params[:post_sid])
+      post = Post.find(params[:post_id])
     end
     page = @topic.posts.normal.where(_id: {'$lt' => post.id}).count / 10 + 1
     redirect_to topic_path(post.topic, page: page) + "#floor-#{post.floor}"

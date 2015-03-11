@@ -1,6 +1,6 @@
 <% cache [post] do %>
     <tr>
-      <td class="title"><%= link_to post.title, show_post_path(post.sid) %></td>
+      <td class="title"><%= link_to post.title, post_path(post) %></td>
       <td class="author hidden-xs"><%= user_link post.author %></td>
       <td class="date"><%= time_date post.created_at %></td>
     </tr>

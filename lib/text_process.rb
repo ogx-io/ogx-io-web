@@ -122,7 +122,7 @@ class MarkdownTopicConverter < MarkdownConverter
       next if has_ancestors?(node, %w(pre code))
 
       html = content.gsub(/#(\d+)/) {
-        %(<a href="/t/#{topic.sid}/f/#{$1}" class="at_floor" data-topic="#{topic.sid}" data-floor="#{$1}">##{$1}</a>)
+        %(<a href="/t/#{topic.id}/f/#{$1}" class="at_floor" data-topic="#{topic.id}" data-floor="#{$1}">##{$1}</a>)
       }
 
       next if html == content

@@ -2,7 +2,6 @@ class Topic
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  include Sidable
   include SoftlyDeletable
 
   field :f, as: :last_floor, type: Integer, default: 0

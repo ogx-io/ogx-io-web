@@ -5,7 +5,6 @@ class Picture
   field :image, type: String
 
   belongs_to :user
-  belongs_to :picturable, polymorphic: true
 
   after_create :update_user
 

@@ -52,13 +52,13 @@ RSpec.describe TopicsController, type: :controller do
 
     context 'using post sid' do
       it 'succeeds' do
-        get :show_post, id: topic.id, post_sid: post_list[18].sid
+        get :show_post, id: topic.id, post_id: post_list[18].id
         expect(response).to redirect_to(topic_path(topic, page: 2) + "#floor-#{post_list[18].floor}")
       end
 
       it '404 if floor not exists' do
         expect {
-          get :show_post, id: topic.id, post_sid: '0'
+          get :show_post, id: topic.id, post_id: '0'
         }.to raise_error(Mongoid::Errors::DocumentNotFound)
       end
     end

@@ -5,18 +5,18 @@
       </div>
       <div class="content">
         <% posts_count = topic.posts.normal.count %>
-        <div class="count pull-right"><%= link_to posts_count - 1, show_topic_path(topic.sid) if posts_count > 1 %></div>
+        <div class="count pull-right"><%= link_to posts_count - 1, topic_path(topic) if posts_count > 1 %></div>
         <div class="title">
-          <%= link_to topic.title, show_topic_path(topic.sid) %>
+          <%= link_to topic.title, topic_path(topic) %>
           <%= render partial: 'topics/topic_lock', locals: {topic: topic} %>
         </div>
         <div class="info">
           <span class="board-name"><%= link_to topic.board.name, board_path(topic.board) %></span>
           <span class="board-separator">·</span>
           <% if posts_count > 1 %>
-              <%= t('topics._topic_list_item.author_and_replier_info', author: user_link(topic.user), replier: user_link(topic.last_replying_user), replied_at: link_to(time_digest(topic.last_replied_at), show_topic_post_path(topic.sid, topic.posts.last.sid), title: topic.posts.last.title)).html_safe %>
+              <%= t('topics._topic_list_item.author_and_replier_info', author: user_link(topic.user), replier: user_link(topic.last_replying_user), replied_at: link_to(time_digest(topic.last_replied_at), show_topic_post_path(topic.id, topic.posts.last.id), title: topic.posts.last.title)).html_safe %>
           <% else %>
-              <%= t('topics._topic_list_item.author_info', author: user_link(topic.user), created_at: link_to(time_digest(topic.posts.first.created_at), show_topic_path(topic.sid))).html_safe %>
+              <%= t('topics._topic_list_item.author_info', author: user_link(topic.user), created_at: link_to(time_digest(topic.posts.first.created_at), topic_path(topic))).html_safe %>
           <% end %>
         </div>
       </div>

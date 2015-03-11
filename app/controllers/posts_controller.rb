@@ -76,7 +76,7 @@ class PostsController < ApplicationController
             @post.topic.lock = 1
             @post.topic.save
           end
-          format.html { redirect_to show_topic_post_path(@post.topic.sid, @post.sid) }
+          format.html { redirect_to show_topic_post_path(@post.topic.id, @post.id) }
         else
           format.html { render :new }
         end

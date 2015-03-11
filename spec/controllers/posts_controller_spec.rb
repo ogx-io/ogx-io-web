@@ -148,7 +148,7 @@ RSpec.describe PostsController, type: :controller do
         expect(another_user.posts.count).to eq(old_post_count + 1)
         expect(board.topics.count).to eq(old_topic_count + 1)
         new_one = another_user.posts.last
-        expect(response).to redirect_to(show_topic_post_path(new_one.topic.sid, new_one.sid))
+        expect(response).to redirect_to(show_topic_post_path(new_one.topic.id, new_one.id))
       end
 
       it 'fails creating a new topic if the current user is a user blocked by moderator' do
@@ -189,7 +189,7 @@ RSpec.describe PostsController, type: :controller do
         expect(board.topics.count).to eq(old_topic_count)
         expect(topic.posts.count).to eq(old_topic_post_count + 1)
         new_one = another_user.posts.last
-        expect(response).to redirect_to(show_topic_post_path(new_one.topic.sid, new_one.sid))
+        expect(response).to redirect_to(show_topic_post_path(new_one.topic.id, new_one.id))
       end
 
       it 'fails creating a new reply if the current user is a user blocked by moderator' do

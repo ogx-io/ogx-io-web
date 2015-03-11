@@ -13,7 +13,7 @@
         <nav class="topic-bar clearfix">
           <%= t('posts.topic_for_post') %>: <%= link_to @post.topic.title, @post.topic %>
           -
-          <%= link_to t('posts.show_in_topic'), show_topic_post_path(@post.topic.sid, @post.sid) %>
+          <%= link_to t('posts.show_in_topic'), show_topic_post_path(@post.topic.id, @post.id) %>
         </nav>
         <%= render partial: 'post', locals: {post: @post, board: @board} %>
     <% else %>

@@ -3,7 +3,7 @@ gem 'nokogiri', '1.6.5'
 gem 'rails', '~> 4.2.0'
 gem "therubyracer"
 gem "mongoid", "~> 4.0.0"
-gem 'mongoid_auto_increment_id', '0.6.5'
+# gem 'mongoid_auto_increment_id', '0.6.5'
 gem "mongoid-enum"
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
