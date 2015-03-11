@@ -1,8 +1,6 @@
 <tr id="post-<%= post.id %>">
-  <td><%= post.id %></td>
   <td><%= link_to post.title, post %><br><%= truncate post.body, length: 60 %></td>
   <td><%= link_to post.board.name, board_path(post.board) if post.board %></td>
-  <td><%= post.parent_id %></td>
   <td><%= user_link post.author %></td>
   <td><%= time_digest post.created_at %></td>
   <td><%= post.ip %></td>
