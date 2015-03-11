@@ -36,7 +36,7 @@ RSpec.describe TopicsController, type: :controller do
     end
   end
 
-  describe 'show_post' do
+  describe '#show_post' do
     context 'using floor' do
       it 'succeeds' do
         get :show_post, id: topic.id, floor: post_list[18].floor
@@ -50,7 +50,7 @@ RSpec.describe TopicsController, type: :controller do
       end
     end
 
-    context 'using post sid' do
+    context 'using post id' do
       it 'succeeds' do
         get :show_post, id: topic.id, post_id: post_list[18].id
         expect(response).to redirect_to(topic_path(topic, page: 2) + "#floor-#{post_list[18].floor}")
