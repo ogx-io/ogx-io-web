@@ -9,12 +9,12 @@
   <td><%= category.layer %></td>
   <td><%= category.deleted %></td>
   <td>
-    <%= link_to_unless category.layer == 0, t('views.action.order_up'), order_up_admin_elite_node_path(category), method: :patch %>
-    <%= link_to_unless category.layer == 0, t('views.action.order_down'), order_down_admin_elite_node_path(category), method: :patch %>
+    <%= link_to_unless category.layer == 0, t('action.order_up'), order_up_admin_elite_node_path(category), method: :patch %>
+    <%= link_to_unless category.layer == 0, t('action.order_down'), order_down_admin_elite_node_path(category), method: :patch %>
     <% if category.layer > 0 %>
-        <%= link_to_unless category.deleted?, t('views.action.delete'), admin_elite_node_path(category), method: :delete, remote: true %>
-        <%= link_to_if category.deleted?, t('views.action.resume'), resume_admin_elite_node_path(category), method: :patch, remote: true %>
+        <%= link_to_unless category.deleted?, t('action.delete'), admin_elite_node_path(category), method: :delete, remote: true %>
+        <%= link_to_if category.deleted?, t('action.resume'), resume_admin_elite_node_path(category), method: :patch, remote: true %>
     <% end %>
-    <%= link_to_unless category.layer == 0, t('views.action.edit'), edit_admin_elite_category_path(category) %>
+    <%= link_to_unless category.layer == 0, t('action.edit'), edit_admin_elite_category_path(category) %>
   </td>
 </tr>

@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    <%= t('views.users.forgot_password') %>
+    <%= t('users.forgot_password') %>
 <% end %>
 
 <% content_for :left_side do %>
@@ -8,13 +8,13 @@
 
 <div class="authform">
   <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f| %>
-    <h3><%= t('views.users.ask_if_forget_password') %></h3>
-    <p><%= t('views.users.we_will_send_email_reseting_password') %></p>
+    <h3><%= t('users.ask_if_forget_password') %></h3>
+    <p><%= t('users.we_will_send_email_reseting_password') %></p>
     <%= devise_error_messages! %>
     <div class="form-group">
-      <%= f.label :email, t('views.users.email') %>
+      <%= f.label :email, t('users.email') %>
       <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
     </div>
-     <%= f.submit t('views.users.reset_password'), :class => 'button right' %>
+     <%= f.submit t('users.reset_password'), :class => 'button right' %>
   <% end %>
 </div>

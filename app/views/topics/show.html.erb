@@ -18,6 +18,6 @@
       <%= render partial: '/posts/post', collection: @posts, locals: {board: @board} %>
       <%= render 'posts_paginate_bar' %>
   <% else %>
-      <%= t('views.topics.no_permission_to_show_topic') %>
+      <%= t('topics.no_permission_to_show_topic') %>
   <% end %>
 </div>

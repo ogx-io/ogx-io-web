@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    <%= t('views.users.sign_up') %>
+    <%= t('users.sign_up') %>
 <% end %>
 
 <% content_for :left_side do %>
@@ -8,12 +8,12 @@
 
 <div class="register-form">
   <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: {role: 'form'} do |f| %>
-      <h3><%= t('views.users.sign_up') %></h3>
-      <%= f.input :name, label: t('views.users.user_name'), hint: t('views.users.user_name_hint'), autofocus: true, required: false %>
-      <%= f.input :nick, label: t('views.users.nick'), hint: t('views.users.nick_hint'), required: false %>
-      <%= f.input :email, label: t('views.users.email'), hint: t('views.users.email_hint'), required: false %>
-      <%= f.input :password, label: t('views.users.password'), hint: t('views.users.password_hint'), required: false %>
-      <%= f.input :password_confirmation, label: t('views.users.password_confirmation'), hint: t('views.users.password_confirmation_hint'), required: false %>
-      <%= f.button :submit, t('views.action.sign_up'), class: 'button right' %>
+      <h3><%= t('users.sign_up') %></h3>
+      <%= f.input :name, label: t('users.user_name'), hint: t('users.user_name_hint'), autofocus: true, required: false %>
+      <%= f.input :nick, label: t('users.nick'), hint: t('users.nick_hint'), required: false %>
+      <%= f.input :email, label: t('users.email'), hint: t('users.email_hint'), required: false %>
+      <%= f.input :password, label: t('users.password'), hint: t('users.password_hint'), required: false %>
+      <%= f.input :password_confirmation, label: t('users.password_confirmation'), hint: t('users.password_confirmation_hint'), required: false %>
+      <%= f.button :submit, t('action.sign_up'), class: 'button right' %>
   <% end %>
 </div>

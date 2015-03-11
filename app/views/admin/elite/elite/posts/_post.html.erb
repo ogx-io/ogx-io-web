@@ -9,10 +9,10 @@
   <td><%= post.layer %></td>
   <td><%= post.deleted %></td>
   <td>
-    <%= link_to t('views.action.order_up'), order_up_admin_elite_node_path(post), method: :patch %>
-    <%= link_to t('views.action.order_down'), order_down_admin_elite_node_path(post), method: :patch %>
-    <%= link_to_unless post.deleted?, t('views.action.delete'), admin_elite_node_path(post), method: :delete, remote: true %>
-    <%= link_to_if post.deleted?, t('views.action.resume'), resume_admin_elite_node_path(post), method: :patch, remote: true %>
-    <%= link_to t('views.action.edit'), edit_admin_elite_post_path(post) %>
+    <%= link_to t('action.order_up'), order_up_admin_elite_node_path(post), method: :patch %>
+    <%= link_to t('action.order_down'), order_down_admin_elite_node_path(post), method: :patch %>
+    <%= link_to_unless post.deleted?, t('action.delete'), admin_elite_node_path(post), method: :delete, remote: true %>
+    <%= link_to_if post.deleted?, t('action.resume'), resume_admin_elite_node_path(post), method: :patch, remote: true %>
+    <%= link_to t('action.edit'), edit_admin_elite_post_path(post) %>
   </td>
 </tr>

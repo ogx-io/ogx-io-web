@@ -6,15 +6,15 @@
       </div>
       <div class="form-group">
         <div class="form-inputs">
-          <%= f.text_area :body, class: 'form-control comment-form-body', placeholder: t('views.comments.textarea_placeholder') %>
+          <%= f.text_area :body, class: 'form-control comment-form-body', placeholder: t('comments.textarea_placeholder') %>
           <%= f.input :commentable_type, as: :hidden %>
           <%= f.input :commentable_id, as: :hidden %>
         </div>
 
         <div class="footer">
-          <div class="tips"><%= t('views.comments.words_limit', number: '<span class="left-number">200</span>').html_safe %></div>
+          <div class="tips"><%= t('comments.words_limit', number: '<span class="left-number">200</span>').html_safe %></div>
           <div class="form-actions">
-            <%= f.submit t('views.action.post'), class: 'btn btn-primary' %>
+            <%= f.submit t('action.post'), class: 'btn btn-primary' %>
           </div>
         </div>
       </div>

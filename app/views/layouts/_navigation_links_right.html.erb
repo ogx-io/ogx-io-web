@@ -1,20 +1,20 @@
 <%# add navigation links to this file %>
 <% if user_signed_in? %>
     <% if policy(current_user).manage? %>
-        <li><%= link_to t('views.layout.backend'), admin_posts_path %></li>
+        <li><%= link_to t('layout.backend'), admin_posts_path %></li>
     <% end %>
     <li><%= user_link current_user %></li>
     <li>
-      <%= link_to t('views.layout.notification'), user_notifications_path(current_user) %>
+      <%= link_to t('layout.notification'), user_notifications_path(current_user) %>
       <% if current_user.new_notification_count > 0 %>
           <%= link_to user_notifications_path(current_user) do %>
               <div class="new-notification-count"><%= current_user.new_notification_count %></div>
           <% end %>
       <% end %>
     </li>
-    <li><%= link_to t('views.action.setting'), edit_user_registration_path %></li>
-    <li><%= link_to t('views.action.sign_out'), destroy_user_session_path, :method => 'delete' %></li>
+    <li><%= link_to t('action.setting'), edit_user_registration_path %></li>
+    <li><%= link_to t('action.sign_out'), destroy_user_session_path, :method => 'delete' %></li>
 <% else %>
-    <li><%= link_to t('views.action.sign_in'), new_user_session_path %></li>
-    <li><%= link_to t('views.action.sign_up'), new_user_registration_path %></li>
+    <li><%= link_to t('action.sign_in'), new_user_session_path %></li>
+    <li><%= link_to t('action.sign_up'), new_user_registration_path %></li>
 <% end %>

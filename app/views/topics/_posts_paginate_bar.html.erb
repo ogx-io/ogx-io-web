@@ -4,19 +4,19 @@
   <div class="right-links pull-right">
     <% if policy(@topic).update? %>
         <% if @topic.deleted? %>
-            <%= link_to t('views.action.resume'), resume_topic_path(@topic), method: :patch %>
+            <%= link_to t('action.resume'), resume_topic_path(@topic), method: :patch %>
         <% else %>
-            <%= link_to t('views.action.delete'), topic_path(@topic), method: :delete %>
+            <%= link_to t('action.delete'), topic_path(@topic), method: :delete %>
         <% end %>
     <% end %>
     <% if policy(@topic).toggle_lock? %>
         <% if @topic.locked? %>
-            <%= link_to t('views.action.unlock'), toggle_lock_topic_path(@topic), method: :patch %>
+            <%= link_to t('action.unlock'), toggle_lock_topic_path(@topic), method: :patch %>
         <% else %>
-            <%= link_to t('views.action.lock'), toggle_lock_topic_path(@topic), method: :patch %>
+            <%= link_to t('action.lock'), toggle_lock_topic_path(@topic), method: :patch %>
         <% end %>
     <% end %>
-    <%= link_to t('views.action.new_topic'), new_board_post_path(@board) %>
-    <%= link_to t('views.action.reply'), new_board_post_path(@board, parent_id: @first.id) %>
+    <%= link_to t('action.new_topic'), new_board_post_path(@board) %>
+    <%= link_to t('action.reply'), new_board_post_path(@board, parent_id: @first.id) %>
   </div>
 </nav>

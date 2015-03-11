@@ -2,9 +2,9 @@
   <%= render partial: 'nodes/breadcrumbs', locals: {node: @board, extras: ['new_post']} %>
   <h4>
     <% if @post.parent %>
-        <%= t('views.action.reply') %> <%= link_to @post.parent.title, @post.parent, target: '_blank' %>
+        <%= t('action.reply') %> <%= link_to @post.parent.title, @post.parent, target: '_blank' %>
     <% else %>
-        <%= t('views.action.new_topic') %>
+        <%= t('action.new_topic') %>
     <% end %>
   </h4>
   <%= render 'form' %>

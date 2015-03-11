@@ -1,11 +1,11 @@
 <%= simple_form_for(@board, url: @board.new_record? ? admin_boards_path : admin_board_path(@board)) do |f| %>
     <%= f.input :name, label: t('global.name') %>
     <%= f.input :path, label: t('global.path') %>
-    <%= f.input :parent_id, label: t('views.admin.categories.parent_id') %>
+    <%= f.input :parent_id, label: t('admin.categories.parent_id') %>
     <%= f.input :moderator_ids, label: t('global.moderator'), input_html: {value: @board.moderators.collect{|user| user.name}.join(' ')}, required: false %>
-    <%= f.input :intro, label: t('views.admin.boards.intro'), as: :text, required: false %>
+    <%= f.input :intro, label: t('admin.boards.intro'), as: :text, required: false %>
 
     <div class="actions clearfix">
-      <%= f.submit t('views.action.submit'), :class => 'button right' %>
+      <%= f.submit t('action.submit'), :class => 'button right' %>
     </div>
 <% end %>

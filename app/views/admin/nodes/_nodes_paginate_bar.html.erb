@@ -3,9 +3,9 @@
   <%= paginate @nodes, left: 1, right: 1 %>
   <div class="right-links pull-right">
     <% if params[:parent_id] %>
-        <%= link_to t('views.action.upper_level'), admin_nodes_path(parent_id: @parent.parent_id) %>
-        <%= link_to t('views.admin.nodes.action.new_category'), new_admin_category_path(parent_id: params[:parent_id]) %>
-        <%= link_to t('views.admin.nodes.action.new_board'), new_admin_board_path(parent_id: params[:parent_id]) %>
+        <%= link_to t('action.upper_level'), admin_nodes_path(parent_id: @parent.parent_id) %>
+        <%= link_to t('admin.nodes.action.new_category'), new_admin_category_path(parent_id: params[:parent_id]) %>
+        <%= link_to t('admin.nodes.action.new_board'), new_admin_board_path(parent_id: params[:parent_id]) %>
     <% end %>
   </div>
 </nav>

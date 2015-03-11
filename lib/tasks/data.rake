@@ -37,4 +37,26 @@ namespace :data do
   task clear_all_top_posts: :environment do
     Post.update_all(top: 0)
   end
+
+  desc "change _id type to object id"
+  task change_to_object_id: :environment do
+    class IdGenerator
+      include Mongoid::Document
+      def self.get_new_object_id
+        g = self.create
+        g.id
+      end
+    end
+
+    relations = {
+        User => {
+            Topic => {
+                user_id: false
+            },
+            Post => {
+                author_id: false
+            }
+        }
+    }
+  end
 end

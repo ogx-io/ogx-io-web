@@ -2,5 +2,5 @@
   <td class="node-mark node-mark-category"><span class="glyphicon glyphicon-folder-close"></span></td>
   <td class="title"><%= link_to category.name, elite_category_path(category) %></td>
   <td class="moderator hidden-xs"><%= user_link category.moderator %></td>
-  <td class="date hidden-xs"><span title="<%= t('views.elite.item_tip', moderator: category.moderator.nick, updated_at: full_datetime(category.updated_at)) %>"><%= category.updated_at.strftime("%F") %></span></td>
+  <td class="date hidden-xs"><span title="<%= t('elite.item_tip', moderator: category.moderator.nick, updated_at: full_datetime(category.updated_at)) %>"><%= category.updated_at.strftime("%F") %></span></td>
 </tr>

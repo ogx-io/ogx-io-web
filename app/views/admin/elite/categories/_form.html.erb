@@ -1,8 +1,8 @@
 <%= simple_form_for(@elite_category, url: @elite_category.new_record? ? admin_elite_categories_path : admin_elite_category_path(@elite_category)) do |f| %>
-    <%= f.input :title, label: t('views.admin.elite.categories.category_name') + ': ' %>
-    <%= f.input :parent_id, label: t('views.admin.elite.categories.parent_id') + ': ' %>
+    <%= f.input :title, label: t('admin.elite.categories.category_name') + ': ' %>
+    <%= f.input :parent_id, label: t('admin.elite.categories.parent_id') + ': ' %>
 
     <div class="actions clearfix">
-      <%= f.submit t('views.action.submit'), :class => 'button right' %>
+      <%= f.submit t('action.submit'), :class => 'button right' %>
     </div>
 <% end %>

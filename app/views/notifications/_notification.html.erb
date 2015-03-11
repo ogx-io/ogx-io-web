@@ -3,6 +3,6 @@
   <% notification.set_read %>
   <td class="time-delete hidden-xs">
     <div class="time"><%= time_digest notification.created_at %></div>
-    <div class="delete"><%= link_to t('views.action.delete'), notification_path(notification), method: :delete %></div>
+    <div class="delete"><%= link_to t('action.delete'), notification_path(notification), method: :delete %></div>
   </td>
 </tr>

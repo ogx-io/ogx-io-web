@@ -8,10 +8,10 @@
   <td><%= category.layer %></td>
   <td><%= category.order %></td>
   <td>
-    <%= link_to t('views.action.edit'), edit_admin_category_path(category) %>
-    <%= link_to t('views.action.order_up'), order_up_admin_node_path(category.id), method: :patch %>
-    <%= link_to t('views.action.order_down'), order_down_admin_node_path(category.id), method: :patch %>
-    <%= link_to_unless category.normal?, t('views.action.resume'), admin_category_path(category, 'category[status]' => 'normal'), method: :patch, remote: true %>
-    <%= link_to_unless category.deleted?, t('views.action.delete'), admin_category_path(category, 'category[status]' => 'deleted'), method: :patch, remote: true %>
+    <%= link_to t('action.edit'), edit_admin_category_path(category) %>
+    <%= link_to t('action.order_up'), order_up_admin_node_path(category.id), method: :patch %>
+    <%= link_to t('action.order_down'), order_down_admin_node_path(category.id), method: :patch %>
+    <%= link_to_unless category.normal?, t('action.resume'), admin_category_path(category, 'category[status]' => 'normal'), method: :patch, remote: true %>
+    <%= link_to_unless category.deleted?, t('action.delete'), admin_category_path(category, 'category[status]' => 'deleted'), method: :patch, remote: true %>
   </td>
 </tr>

@@ -1,5 +1,5 @@
 <ol class="elite-path breadcrumb">
-  <li><%= link_to_if node, t('views.admin.elite.nodes.all_boards'), admin_elite_nodes_path(status: params[:status]) %></li>
+  <li><%= link_to_if node, t('admin.elite.nodes.all_boards'), admin_elite_nodes_path(status: params[:status]) %></li>
   <% if node %>
       <% node.parents.reverse.each do |p| %>
           <li><%= link_to p.name, admin_elite_nodes_path(parent_id: p.id, status: params[:status]) %></li>

@@ -1,21 +1,21 @@
 <%= simple_form_for(@board ? [@board, @post] : @post, html: {class: "post-form"}) do |f| %>
 
-    <%= f.input :title, label: t('global.title'), hint: t('views.posts._form.title_hint'), required: false, input_html: {value: @post.parent && @post.title.blank? ? (@post.parent.title.start_with?('Re:') ? '' : 'Re: ') + @post.parent.title : @post.title}, autofocus: true %>
+    <%= f.input :title, label: t('global.title'), hint: t('posts._form.title_hint'), required: false, input_html: {value: @post.parent && @post.title.blank? ? (@post.parent.title.start_with?('Re:') ? '' : 'Re: ') + @post.parent.title : @post.title}, autofocus: true %>
     <div class="form-group">
       <%= f.label t('global.content') %>
-      <div class="pull-right"><a id="post-add-pic" href="javascript:;"><%= t('views.action.add_picture') %></a></div>
+      <div class="pull-right"><a id="post-add-pic" href="javascript:;"><%= t('action.add_picture') %></a></div>
       <input id="post-upload-images" class="hidden" type="file">
       <%= f.text_area :body, class: 'form-control post-editor', rows: 20 %>
-      <p class="help-block" style="color: red">* <%= t('views.posts._form.need_markdown') %>
-        <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown" target="_blank"><%= t('views.posts._form.markdown_help') %></a></p>
+      <p class="help-block" style="color: red">* <%= t('posts._form.need_markdown') %>
+        <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown" target="_blank"><%= t('posts._form.markdown_help') %></a></p>
     </div>
     <% if @post.new_record? %>
         <% if @post.parent %>
             <%= f.hidden_field :parent_id, value: @post.parent.id %>
         <% else %>
             <div class="form-group">
-              <label><%= t('views.posts._form.additional_features') %>: </label>
-              <%= check_box_tag :lock, 'true' %> <%= t('views.posts._form.lock_topic_checkbox') %>
+              <label><%= t('posts._form.additional_features') %>: </label>
+              <%= check_box_tag :lock, 'true' %> <%= t('posts._form.lock_topic_checkbox') %>
             </div>
         <% end %>
     <% end %>
@@ -23,10 +23,10 @@
     <div class="actions center mt20 clearfix">
       <ul class="list-inline center">
         <li>
-          <%= f.submit t('views.action.post'), class: 'post-form-button btn btn-primary' %>
+          <%= f.submit t('action.post'), class: 'post-form-button btn btn-primary' %>
         </li>
         <li>
-          <button type="button" id="post-preview" class="post-form-button btn btn-default"><%= t('views.action.preview') %></button>
+          <button type="button" id="post-preview" class="post-form-button btn btn-default"><%= t('action.preview') %></button>
         </li>
       </ul>
     </div>

@@ -14,9 +14,9 @@
           <span class="board-name"><%= link_to topic.board.name, board_path(topic.board) %></span>
           <span class="board-separator">·</span>
           <% if posts_count > 1 %>
-              <%= t('views.topics._topic_list_item.author_and_replier_info', author: user_link(topic.user), replier: user_link(topic.last_replying_user), replied_at: link_to(time_digest(topic.last_replied_at), show_topic_post_path(topic.sid, topic.posts.last.sid), title: topic.posts.last.title)).html_safe %>
+              <%= t('topics._topic_list_item.author_and_replier_info', author: user_link(topic.user), replier: user_link(topic.last_replying_user), replied_at: link_to(time_digest(topic.last_replied_at), show_topic_post_path(topic.sid, topic.posts.last.sid), title: topic.posts.last.title)).html_safe %>
           <% else %>
-              <%= t('views.topics._topic_list_item.author_info', author: user_link(topic.user), created_at: link_to(time_digest(topic.posts.first.created_at), show_topic_path(topic.sid))).html_safe %>
+              <%= t('topics._topic_list_item.author_info', author: user_link(topic.user), created_at: link_to(time_digest(topic.posts.first.created_at), show_topic_path(topic.sid))).html_safe %>
           <% end %>
         </div>
       </div>

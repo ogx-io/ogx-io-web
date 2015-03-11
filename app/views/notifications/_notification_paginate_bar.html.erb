@@ -2,6 +2,6 @@
   <%= t('global.count.notification') %>: <%= @all_notifications.count %>
   <%= paginate @notifications, left: 1, right: 1 %>
   <div class="pull-right">
-    <%= link_to t('views.action.clean'), clean_user_notifications_path(@user), method: :delete %>
+    <%= link_to t('action.clean'), clean_user_notifications_path(@user), method: :delete %>
   </div>
 </nav>

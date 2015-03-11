@@ -12,11 +12,11 @@
   <td><%= board.layer %></td>
   <td><%= board.order %></td>
   <td>
-    <%= link_to t('views.action.edit'), edit_admin_board_path(board) %>
-    <%= link_to t('views.action.order_up'), order_up_admin_node_path(board.id), method: :patch %>
-    <%= link_to t('views.action.order_down'), order_down_admin_node_path(board.id), method: :patch %>
-    <%= link_to_unless board.normal?, t('views.action.resume'), admin_board_path(board, 'board[status]' => 'normal'), method: :patch, remote: true %>
-    <%= link_to_unless board.blocked?, t('views.action.block'), admin_board_path(board, 'board[status]' => 'blocked'), method: :patch, remote: true %>
-    <%= link_to_unless board.deleted?, t('views.action.delete'), admin_board_path(board, 'board[status]' => 'deleted'), method: :patch, remote: true %>
+    <%= link_to t('action.edit'), edit_admin_board_path(board) %>
+    <%= link_to t('action.order_up'), order_up_admin_node_path(board.id), method: :patch %>
+    <%= link_to t('action.order_down'), order_down_admin_node_path(board.id), method: :patch %>
+    <%= link_to_unless board.normal?, t('action.resume'), admin_board_path(board, 'board[status]' => 'normal'), method: :patch, remote: true %>
+    <%= link_to_unless board.blocked?, t('action.block'), admin_board_path(board, 'board[status]' => 'blocked'), method: :patch, remote: true %>
+    <%= link_to_unless board.deleted?, t('action.delete'), admin_board_path(board, 'board[status]' => 'deleted'), method: :patch, remote: true %>
   </td>
 </tr>

@@ -2,6 +2,6 @@
   <%= t('global.count.node') %>: <%= @all_nodes.count %>
   <%= paginate @nodes, left: 1, right: 1 %>
   <div class="right-links pull-right">
-    <%= link_to_if @parent, t('views.admin.nodes.action.new_category'), new_admin_elite_category_path(parent_id: @parent.id) %>
+    <%= link_to_if @parent, t('admin.nodes.action.new_category'), new_admin_elite_category_path(parent_id: @parent.id) %>
   </div>
 </nav>

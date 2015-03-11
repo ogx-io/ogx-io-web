@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    <%= t('views.users.update_user') %>
+    <%= t('users.update_user') %>
 <% end %>
 
 <% content_for :left_side do %>
@@ -8,30 +8,30 @@
 
 <div class="update-user-form register-form">
   <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :role => 'form'}) do |f| %>
-      <h3><%= t('views.users.update_user') %></h3>
-      <%= f.input :name, label: t('views.users.user_name'), hint: t('views.users.user_name_hint'), autofocus: true %>
-      <%= f.input :nick, label: t('views.users.nick'), hint: t('views.users.nick_hint') %>
-      <%= f.input :email, label: t('views.users.email'), hint: devise_mapping.confirmable? && resource.pending_reconfirmation? ? t('views.users.email_edit_hint', unconfirmed_email: resource.unconfirmed_email) : '' %>
-      <%= f.input :city, label: t('views.users.city'), hint: t('views.users.city_hint') %>
-      <%= f.input :intro, label: t('views.users.intro'), hint: t('views.users.intro_hint') %>
-      <%= f.input :website, label: t('views.users.website'), placeholder: t('views.users.website_placeholder'), hint: t('views.users.website_hint') %>
+      <h3><%= t('users.update_user') %></h3>
+      <%= f.input :name, label: t('users.user_name'), hint: t('users.user_name_hint'), autofocus: true %>
+      <%= f.input :nick, label: t('users.nick'), hint: t('users.nick_hint') %>
+      <%= f.input :email, label: t('users.email'), hint: devise_mapping.confirmable? && resource.pending_reconfirmation? ? t('users.email_edit_hint', unconfirmed_email: resource.unconfirmed_email) : '' %>
+      <%= f.input :city, label: t('users.city'), hint: t('users.city_hint') %>
+      <%= f.input :intro, label: t('users.intro'), hint: t('users.intro_hint') %>
+      <%= f.input :website, label: t('users.website'), placeholder: t('users.website_placeholder'), hint: t('users.website_hint') %>
 
       <fieldset>
-        <%= f.input :avatar, label: t('views.users.update_avatar'), as: :file %>
+        <%= f.input :avatar, label: t('users.update_avatar'), as: :file %>
         <div>
-          <div class="pull-left"><%= t('views.users.current_avatar') %>: </div>
+          <div class="pull-left"><%= t('users.current_avatar') %>: </div>
           <%= avatar(resource, 160, false) %>
         </div>
       </fieldset>
       <fieldset>
-        <p><%= t('views.users.keep_blank_if_not_change_password') %></p>
-        <%= f.input :password, label: t('views.users.password'), hint: t('views.users.password_hint'), autocomplete: 'off' %>
-        <%= f.input :password_confirmation, label: t('views.users.password_confirmation'), hint: t('views.users.password_confirmation_hint') %>
+        <p><%= t('users.keep_blank_if_not_change_password') %></p>
+        <%= f.input :password, label: t('users.password'), hint: t('users.password_hint'), autocomplete: 'off' %>
+        <%= f.input :password_confirmation, label: t('users.password_confirmation'), hint: t('users.password_confirmation_hint') %>
       </fieldset>
       <fieldset>
-        <p><%= t('views.users.need_password_before_update_user') %></p>
-        <%= f.input :current_password, label: t('views.users.current_password'), autocomplete: 'off' %>
+        <p><%= t('users.need_password_before_update_user') %></p>
+        <%= f.input :current_password, label: t('users.current_password'), autocomplete: 'off' %>
       </fieldset>
-      <%= f.submit t('views.action.update'), :class => 'button right' %>
+      <%= f.submit t('action.update'), :class => 'button right' %>
   <% end %>
 </div>

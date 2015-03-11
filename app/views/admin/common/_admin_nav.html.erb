@@ -1,11 +1,11 @@
-<h4><%= t('views.admin.backend') %></h4>
+<h4><%= t('admin.backend') %></h4>
 <ul class="mb10 nav nav-tabs" role="tablist">
   <li role="presentation" class="<%= "active" if index == 2 %>"><%= link_to t('global.post'), admin_posts_path %></li>
   <li role="presentation" class="<%= "active" if index == 6 %>"><%= link_to t('global.elite'), admin_elite_nodes_path %></li>
-  <li role="presentation" class="<%= "active" if index == 3 %>"><%= link_to t('views.admin.black_house'), admin_blocked_users_path %></li>
-  <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to t('views.admin.comment'), admin_comments_path %></li>
+  <li role="presentation" class="<%= "active" if index == 3 %>"><%= link_to t('admin.black_house'), admin_blocked_users_path %></li>
+  <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to t('admin.comment'), admin_comments_path %></li>
   <% if current_user.admin? %>
-      <li role="presentation" class="<%= "active" if index == 4 %>"><%= link_to t('views.admin.node_management'), admin_nodes_path %></li>
-      <li role="presentation" class="<%= "active" if index == 5 %>"><%= link_to t('views.admin.user_management'), admin_users_path %></li>
+      <li role="presentation" class="<%= "active" if index == 4 %>"><%= link_to t('admin.node_management'), admin_nodes_path %></li>
+      <li role="presentation" class="<%= "active" if index == 5 %>"><%= link_to t('admin.user_management'), admin_users_path %></li>
   <% end %>
 </ul>
