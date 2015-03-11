@@ -159,6 +159,9 @@ namespace :data do
         Notification::Base => {
         },
         Elite::Node => {
+            Elite::Node => {
+                parent_id: 0
+            }
         }
     }
 
