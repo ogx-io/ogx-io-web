@@ -8,19 +8,18 @@
               <div class="nick"><%= link_to current_user.nick, show_user_path(current_user.name) %></div>
               <div class="name">@<%= current_user.name %></div>
           <% else %>
-              您是匿名浏览用户，需要 <%= link_to '登录', new_user_session_path %> 或 <%= link_to '注册', new_user_registration_path %>
-              之后才能发文
+              <%= t('layout.need_sign_in_html', sign_in: link_to(t('action.sign_in'), new_user_session_path), sign_up: link_to(t('action.sign_up'), new_user_registration_path)) %>
           <% end %>
         </div>
       </div>
       <ul class="board-list">
         <% if user_signed_in? && current_user.collecting_boards.count > 0 %>
-            <li class="title">收藏板块</li>
+            <li class="title"><%= t('layout.collections') %></li>
             <% current_user.collecting_boards.each do |board| %>
                 <li><%= link_to board.name, board_path(board) %></li>
             <% end %>
         <% else %>
-            <li>您还没有收藏任何板块</li>
+            <li><%= t('layout.no_collection_tip') %></li>
         <% end %>
       </ul>
   <% end %>

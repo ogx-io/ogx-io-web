@@ -67,14 +67,14 @@ class User
   validates_format_of :name, with: /[a-z0-9_]{4,20}/, message: I18n.t('mongoid.errors.models.user.attributes.name.invalid')
 
   validates_presence_of :nick, message: I18n.t('mongoid.errors.models.user.attributes.nick.blank')
-  validates_length_of :nick, maximum: 20, message: I18n.t('mongoid.errors.models.user.attributes.nick.length')
+  validates_length_of :nick, maximum: 20, message: I18n.t('mongoid.errors.models.user.attributes.nick.too_long')
 
   validates_presence_of :email, message: I18n.t('mongoid.errors.models.user.attributes.email.blank')
   validates_format_of :email, with: /([a-z0-9_\.-]{1,20})@([\da-z\.-]+)\.([a-z\.]{2,6})/, message: I18n.t('mongoid.errors.models.user.attributes.email.invalid')
 
-  validates_length_of :intro, maximum: 50, message: I18n.t('mongoid.errors.models.user.attributes.intro.length')
+  validates_length_of :intro, maximum: 50, message: I18n.t('mongoid.errors.models.user.attributes.intro.too_long')
 
-  validates_length_of :city, maximum: 20, message: I18n.t('mongoid.errors.models.user.attributes.city.length')
+  validates_length_of :city, maximum: 20, message: I18n.t('mongoid.errors.models.user.attributes.city.too_long')
 
   has_and_belongs_to_many :managing_boards, class_name: "Board", inverse_of: :moderators
   has_and_belongs_to_many :collecting_boards, class_name: "Board", inverse_of: nil

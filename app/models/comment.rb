@@ -17,7 +17,7 @@ class Comment
   belongs_to :board
 
   validates_presence_of :body, message: I18n.t('mongoid.errors.models.comment.attributes.body.blank')
-  validates_length_of :body, maximum: 200, message: I18n.t('mongoid.errors.models.comment.attributes.body.length')
+  validates_length_of :body, maximum: 200, message: I18n.t('mongoid.errors.models.comment.attributes.body.too_long')
 
   after_create :update_user, :send_comment_notification
 

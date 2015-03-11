@@ -22,7 +22,7 @@ class Post
   scope :top, -> { where(top: {'$gt' => 0}) }
 
   validates_presence_of :title, message: I18n.t('mongoid.errors.models.post.attributes.title.blank')
-  validates_length_of :title, maximum: 40, message: I18n.t('mongoid.errors.models.post.attributes.title.length')
+  validates_length_of :title, maximum: 40, message: I18n.t('mongoid.errors.models.post.attributes.title.too_long')
 
   belongs_to :board
   belongs_to :author, class_name: "User", inverse_of: :posts

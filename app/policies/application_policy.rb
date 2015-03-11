@@ -55,7 +55,7 @@ class ApplicationPolicy
   protected
 
   def signed_in?
-    test_if_not(user, I18n.t('policies.common.not_signed_in'))
+    test_if_not(user, I18n.t('policies.common.not_signed_in_html'))
   end
 
   def test_if_not(cond, msg)

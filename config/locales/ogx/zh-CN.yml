@@ -21,6 +21,7 @@
 
 zh-CN:
   global:
+    ogx: 'OGX社区'
     title: '标题'
     content: '内容'
     topic: '主题'
@@ -97,6 +98,10 @@ zh-CN:
     boards: '板块列表'
     backend: '管理后台'
     notification: '提醒'
+    need_sign_in_html: '您是匿名浏览用户，需要 %{sign_in} 或 %{sign_up} 之后才能发文'
+    collections: '收藏板块'
+    no_collection_tip: '您还没有收藏任何板块'
+    ogx_desc: 'OGX社区 - 开源、共建、好玩的社区 - 极客们的网上家园'
 
   visitors:
     latest: '最新动态'
@@ -267,7 +272,7 @@ zh-CN:
       no_permission: '您没有权限做此操作'
       user_is_blocked_by_admin: '您的账号已经被全站封禁'
       user_is_blocked_by_moderator: '您已经被版主关进小黑屋'
-      not_signed_in: '您需要先 <a href="/users/sign_in">登录</a> 才能执行此操作！新用户请先 <a href="/users/sign_up">注册</a> 再登录。'
+      not_signed_in_html: '您需要先 <a href="/users/sign_in">登录</a> 才能执行此操作！新用户请先 <a href="/users/sign_up">注册</a> 再登录。'
     post:
       post_has_been_deleted: '帖子已删除'
       topic_is_locked: '所在主题已经被加锁，您不能回复了'
@@ -306,16 +311,16 @@ zh-CN:
               invalid: '格式不对'
             nick:
               blank: '请输入昵称'
-              length: '昵称太长了'
+              too_long: '昵称太长了'
             intro:
-              length: '个人简介太长了'
+              too_long: '个人简介太长了'
             city:
-              length: '输入的城市名称太长了'
+              too_long: '输入的城市名称太长了'
         post:
           attributes:
             title:
               blank: '请输入标题'
-              length: '标题太长了'
+              too_long: '标题太长了'
         node:
           attributes:
             name:
@@ -327,7 +332,7 @@ zh-CN:
           attributes:
             body:
               blank: '评论内容不能为空'
-              length: '评论内容不能超过200个字'
+              too_long: '评论内容不能超过200个字'
         concerns:
           nodable:
             attributes:
