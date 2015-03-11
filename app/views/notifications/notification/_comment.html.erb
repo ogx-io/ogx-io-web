@@ -1,7 +1,7 @@
 <td class="avatar"><%= avatar notification.comment.user, 40 %></td>
 <td class="content">
   <div class="title">
-    <%= t('notifications._comment.title', comment_author: user_link(notification.comment.user), post: link_to(notification.comment.commentable.title, post_path(notification.comment.commentable) + "#comment-#{notification.comment.id}")).html_safe %>
+    <%= t('notifications._comment.title_html', comment_author: user_link(notification.comment.user), post: link_to(notification.comment.commentable.title, post_path(notification.comment.commentable) + "#comment-#{notification.comment.id}")) %>
     <% if !notification.read %>
         <span class="new-item-tip"><%= t('notifications.new_notification') %></span>
     <% end %>

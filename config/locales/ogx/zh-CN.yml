@@ -135,23 +135,23 @@ zh-CN:
     reset_password: '重设密码'
     token_expired: 'Token已过期'
     mailer:
-      confirmation_instructions: "<p>您好，%{user}！</p>
-                                  <p>您可以通过访问以下链接来确认您在OGX社区新注册的账号：</p>
-                                  <p>%{confirmation_url}</p>
-                                  <p>%{confirmation_url_link}</p>
-                                  <p>--来自OGX社区</p>"
-      unlock_instructions: "<p>您好，%{user}！</p>
-                            <p>您的账号因为多次登录失败而被暂时锁定了。</p>
-                            <p>访问以下链接可以给账号解锁。</p>
-                            <p>%{unlock_url}</p>
-                            <p>%{unlock_url_link}</p>
-                            <p>--来自OGX社区</p>"
-      reset_password_instructions: "<p>您好，%{user}！</p>
-                                    <p>您是否有发起过更换密码的请求？您可以通过访问以下链接去更换密码。</p>
-                                    <p>%{edit_password_url}</p>
-                                    <p>%{edit_password_url_link}</p>
-                                    <p>如果你没有发起过更换密码的请求，请忽略本邮件。不访问这个链接，您的密码就不会改变。</p>
-                                    <p>--来自OGX社区</p>"
+      confirmation_instructions_html: "<p>您好，%{user}！</p>
+                                       <p>您可以通过访问以下链接来确认您在OGX社区新注册的账号：</p>
+                                       <p>%{confirmation_url}</p>
+                                       <p>%{confirmation_url_link}</p>
+                                       <p>--来自OGX社区</p>"
+      unlock_instructions_html: "<p>您好，%{user}！</p>
+                                 <p>您的账号因为多次登录失败而被暂时锁定了。</p>
+                                 <p>访问以下链接可以给账号解锁。</p>
+                                 <p>%{unlock_url}</p>
+                                 <p>%{unlock_url_link}</p>
+                                 <p>--来自OGX社区</p>"
+      reset_password_instructions_html: "<p>您好，%{user}！</p>
+                                         <p>您是否有发起过更换密码的请求？您可以通过访问以下链接去更换密码。</p>
+                                         <p>%{edit_password_url}</p>
+                                         <p>%{edit_password_url_link}</p>
+                                         <p>如果你没有发起过更换密码的请求，请忽略本邮件。不访问这个链接，您的密码就不会改变。</p>
+                                         <p>--来自OGX社区</p>"
 
   topics:
     no_permission_to_show_topic: '对不起，您无权访问此主题。'
@@ -159,14 +159,14 @@ zh-CN:
       locked_by_author: '主题创建者加锁，只有主题创建者才能回复'
       locked_by_moderator: '版主加锁，没人能回复'
     _topic_list_item:
-      author_info: '%{author} 发表于 %{created_at}'
-      author_and_replier_info: '%{author} · 最后由 %{replier} 回复于 %{replied_at}'
+      author_info_html: '%{author} 发表于 %{created_at}'
+      author_and_replier_info_html: '%{author} · 最后由 %{replier} 回复于 %{replied_at}'
 
   posts:
     topic_for_post: '本帖所在主题'
     show_in_topic: '在主题内查看'
     no_permission_to_show_post: '对不起，您无权查看此贴。'
-    reply_info: '回复 %{parent_author} 的 %{parent_floor}'
+    reply_info_html: '回复 %{parent_author} 的 %{parent_floor}'
     social_share_content: '给大家推荐一篇来自 #OGX社区# 的好文《%{title}》'
     social_share_content_for_twitter: '给大家推荐一篇来自 #OGX社区 的好文《%{title}》'
     _form:
@@ -180,14 +180,14 @@ zh-CN:
     notification: '提醒通知'
     new_notification: '新提醒'
     _post_reply:
-      title: '%{post_author} 回复了你的帖子 %{my_post}'
+      title_html: '%{post_author} 回复了你的帖子 %{my_post}'
     _comment:
-      title: '%{comment_author} 评论了你的帖子 %{post}'
+      title_html: '%{comment_author} 评论了你的帖子 %{post}'
     _mention:
       _post:
-        title: '%{post_author} 在帖子 %{post} 里提到了你'
+        title_html: '%{post_author} 在帖子 %{post} 里提到了你'
       _comment:
-        title: '%{mention_user} 在帖子 %{post} 的评论里提到了你'
+        title_html: '%{mention_user} 在帖子 %{post} 的评论里提到了你'
 
   elite:
     item_tip: '由版主 %{moderator} 最后编辑于 %{updated_at}'
@@ -195,7 +195,7 @@ zh-CN:
       return_to_category: '返回精华区目录'
       show_original: '查看原贴'
       no_permission_to_show_post: '对不起，您无权查看此精华贴。'
-      author_info: '%{author} · %{posted_at} 发表'
+      author_info_html: '%{author} · %{posted_at} 发表'
 
   comments:
     textarea_placeholder: '添加评论'

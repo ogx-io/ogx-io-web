@@ -10,7 +10,7 @@
       </h4>
 
       <div class="post-author">
-        <%= t('elite.posts.author_info', author: full_user_link(post.author), posted_at: time_digest(post.posted_at)) %>
+        <%= t('elite.posts.author_info_html', author: full_user_link(post.author), posted_at: time_digest(post.posted_at)) %>
         <% if post.deleted? %>
             &nbsp;<span class="deleted-mark">(<%= t('global.deleted') %>)</span>
         <% end %>

@@ -1,5 +1,5 @@
-<%= t('users.mailer.unlock_instructions',
+<%= t('users.mailer.unlock_instructions_html',
       user: @resource.name,
       unlock_url: unlock_url(@resource, unlock_token: @token),
       unlock_url_link: link_to('解锁账号', unlock_url(@resource, unlock_token: @token))
-    ).html_safe %>
+    ) %>

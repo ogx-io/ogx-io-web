@@ -21,7 +21,7 @@
           <div class="post-author">
             <%= full_user_link post.author %>
             <% if post.parent %>
-                <%= t('posts.reply_info', parent_author: user_link(post.parent.author), parent_floor: link_to('#' + post.parent.floor.to_s, post_path(post.parent), title: "#{post.parent.title}")).html_safe %>
+                <%= t('posts.reply_info_html', parent_author: user_link(post.parent.author), parent_floor: link_to('#' + post.parent.floor.to_s, post_path(post.parent), title: "#{post.parent.title}")) %>
             <% end %>
             <% if !post.new_record? %>
                 · <%= time_digest post.created_at %>

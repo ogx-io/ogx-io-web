@@ -1,7 +1,7 @@
 <td class="avatar"><%= avatar notification.post.author, 40 %></td>
 <td class="content">
   <div class="title">
-    <%= t('notifications._post_reply.title', post_author: user_link(notification.post.author), my_post: link_to(notification.post.parent.title, post_path(notification.post.parent))).html_safe %>
+    <%= t('notifications._post_reply.title_html', post_author: user_link(notification.post.author), my_post: link_to(notification.post.parent.title, post_path(notification.post.parent))) %>
     <% if !notification.read %>
         <span class="new-item-tip"><%= t('notifications.new_notification') %></span>
     <% end %>
