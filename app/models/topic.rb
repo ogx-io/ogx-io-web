@@ -19,7 +19,7 @@ class Topic
   end
 
   def title
-    self.posts.first.title
+    self.posts.asc(:floor).first.title
   end
 
   def last_replying_user

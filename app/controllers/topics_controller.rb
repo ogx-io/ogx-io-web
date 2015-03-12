@@ -15,7 +15,7 @@ class TopicsController < ApplicationController
     @first = @topic.posts.first
 
     @all_posts = @topic.posts.normal
-    @posts = @all_posts.asc(:_id).page(params[:page]).per(10)
+    @posts = @all_posts.asc(:floor).page(params[:page]).per(10)
     respond_with(@topic)
   end
 
@@ -25,7 +25,7 @@ class TopicsController < ApplicationController
     else
       post = Post.find(params[:post_id])
     end
-    page = @topic.posts.normal.where(_id: {'$lt' => post.id}).count / 10 + 1
+    page = @topic.posts.normal.where(floor: {'$lt' => post.floor}).count / 10 + 1
     redirect_to topic_path(post.topic, page: page) + "#floor-#{post.floor}"
   end
 
