@@ -1,14 +1,12 @@
 Feature: user authentication
 
   Scenario: user signs in
-    Given a user with username "ohai" and password "secret"
-    When I sign in manually as "ohai" with password "secret"
-    Then I should be on the home page
-    And I should in the signed-in status
+    Given I am a user with username "test_user" and password "password"
+    When I sign in
+    Then I should sign in successfully
 
   Scenario: user signs out
-    Given I am signed in
-    And I click "sign out" in the header
-    And I follow "Log out"
-    Then I should be on the home page
-    And I should be in the signed-out status
+    Given I am a user with username "test_user" and password "password"
+    And I sign in
+    And I click the "Sign Out" button in the header
+    Then I should sign out successfully
