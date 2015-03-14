@@ -7,8 +7,8 @@
     <li>
       <%= link_to t('layout.notification'), user_notifications_path(current_user) %>
       <% if current_user.new_notification_count > 0 %>
-          <%= link_to user_notifications_path(current_user) do %>
-              <div class="new-notification-count"><%= current_user.new_notification_count %></div>
+          <%= link_to user_notifications_path(current_user), class: 'new-notification-count-link' do %>
+              <div class="new-notification-count-box"><%= current_user.new_notification_count %></div>
           <% end %>
       <% end %>
     </li>

@@ -6,7 +6,7 @@ When /^I sign in$/ do
 end
 
 Then /^I should sign in successfully$/ do
-  page.has_content? @me.nick
+  expect(page).to have_content @me.nick
 end
 
 And /^I click the "Sign Out" button in the header$/ do
