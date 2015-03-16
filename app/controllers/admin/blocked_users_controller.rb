@@ -16,7 +16,7 @@ class Admin::BlockedUsersController < ApplicationController
     end
 
     if params[:board_id]
-      @board = Board.find(params[:board_id].to_i)
+      @board = Board.find(params[:board_id])
       if @board
         @blocked_user = BlockedUser.new
         @blocked_user.blockable = @board
