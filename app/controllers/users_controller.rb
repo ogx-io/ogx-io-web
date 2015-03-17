@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :posts, :topics, :elites]
-  before_action :set_user, only: [:show, :update, :collect_board, :uncollect_board, :posts, :topics, :elites, :deleted_posts]
+  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :deleted_posts]
   after_action :verify_authorized
 
   def show
@@ -36,20 +36,6 @@ class UsersController < ApplicationController
     end
     @posts = @all_posts.desc(:created_at).page(params[:page]).per(20)
     render 'elites', locals: { index: 3 }
-  end
-
-  def collect_board
-    authorize @user
-    @board = Board.find(params[:board_id])
-    @user.collecting_boards << @board unless @user.collecting_boards.include?(@board)
-    redirect_to :back
-  end
-
-  def uncollect_board
-    authorize @user
-    @board = Board.find(params[:board_id])
-    @user.collecting_boards.delete(@board)
-    redirect_to :back
   end
 
   private

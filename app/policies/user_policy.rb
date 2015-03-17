@@ -39,12 +39,4 @@ class UserPolicy < ApplicationPolicy
     @current_user.admin?
   end
 
-  def collect_board?
-    test_if_not(@current_user == @user, I18n.t('policies.common.no_permission'))
-  end
-
-  def uncollect_board?
-    test_if_not(@current_user == @user, I18n.t('policies.common.no_permission'))
-  end
-
 end

@@ -97,8 +97,6 @@ Rails.application.routes.draw do
       get :topics
       get :posts
       get :elites
-      patch :collect_board
-      patch :uncollect_board
     end
 
     resources :notifications, shallow: true do

@@ -11,11 +11,13 @@ class BoardsController < ApplicationController
   end
 
   def favor
+    authorize @board
     current_user.add_favorite(@board)
     redirect_to :back
   end
 
   def disfavor
+    authorize @board
     current_user.remove_favorite(@board)
     redirect_to :back
   end
