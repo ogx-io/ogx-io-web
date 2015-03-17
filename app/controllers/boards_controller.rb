@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: [:show]
+  before_action :set_board, only: [:show, :favor, :disfavor]
 
   # GET /boards/1
   # GET /boards/1.json
@@ -8,6 +8,16 @@ class BoardsController < ApplicationController
     @topics = @all_topics.desc(:replied_at).page(params[:page]).per(15)
     @top_posts = @board.posts.top.desc(:top)
     render 'topics/index'
+  end
+
+  def favor
+    current_user.add_favorite(@board)
+    redirect_to :back
+  end
+
+  def disfavor
+    current_user.remove_favorite(@board)
+    redirect_to :back
   end
 
   private

@@ -12,11 +12,11 @@
           <% end %>
         </div>
       </div>
-      <ul class="board-list">
-        <% if user_signed_in? && current_user.collecting_boards.count > 0 %>
+      <ul class="favorite-board-list">
+        <% if user_signed_in? && current_user.favorite_boards.count > 0 %>
             <li class="title"><%= t('layout.collections') %></li>
-            <% current_user.collecting_boards.each do |board| %>
-                <li><%= link_to board.name, board_path(board) %></li>
+            <% current_user.favorite_boards.each do |favorite| %>
+                <li><%= link_to favorite.favorable.name, board_path(favorite.favorable) %></li>
             <% end %>
         <% else %>
             <li><%= t('layout.no_collection_tip') %></li>

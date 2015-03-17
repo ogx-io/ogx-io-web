@@ -34,22 +34,22 @@ RSpec.describe BoardsController, type: :controller do
 
     it 'succeeds' do
       expect {
-        patch :favor, board_id: board.id
+        patch :favor, id: board.id
       }.to change(user.favorites, :count).by(1)
       expect(response).to redirect_to("where_i_came_from")
     end
   end
 
-  describe 'PATCH #unfavor' do
+  describe 'PATCH #disfavor' do
     before do
       sign_in :user, user
       request.env["HTTP_REFERER"] = "where_i_came_from"
     end
 
     it 'succeeds' do
-      user.favorites << board
+      user.add_favorite(board)
       expect {
-        patch :unfavor, board_id: board.id
+        patch :disfavor, id: board.id
       }.to change(user.favorites, :count).by(-1)
       expect(response).to redirect_to("where_i_came_from")
     end

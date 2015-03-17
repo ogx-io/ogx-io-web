@@ -18,10 +18,10 @@
     <% end %>
     <% if user_signed_in? %>
         <div class="actions center">
-          <% if current_user.collecting_boards.include?(board) %>
-              <%= link_to t('boards.action.uncollect'), uncollect_board_user_path(current_user, board_id: board.id), method: :patch %>
+          <% if current_user.favorites.where(favorable: board).exists? %>
+              <%= link_to t('boards.action.uncollect'), disfavor_board_path(board), id: 'disfavor-board', method: :patch %>
           <% else %>
-              <%= link_to t('boards.action.collect'), collect_board_user_path(current_user, board_id: board.id), method: :patch %>
+              <%= link_to t('boards.action.collect'), favor_board_path(board), id: 'favor-board', method: :patch %>
           <% end %>
         </div>
     <% end %>

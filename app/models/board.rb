@@ -7,6 +7,7 @@ class Board < Node
   has_many :posts
   has_many :topics
   has_many :blocked_users, as: :blockable
+  has_many :favorites, as: :favorable
 
   def has_moderator?(user)
     return false if not user

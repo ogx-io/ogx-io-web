@@ -83,6 +83,19 @@ class User
   has_many :topics
   has_many :blocked_users
   has_many :notifications, class_name: 'Notification::Base', dependent: :delete
+  has_many :favorites, inverse_of: :user
+
+  def add_favorite(favorable)
+    Favorite.create(user: self, favorable: favorable)
+  end
+
+  def remove_favorite(favorable)
+    self.favorites.where(favorable: favorable).delete
+  end
+
+  def favorite_boards
+    self.favorites.where(favorable_type: 'Board')
+  end
 
   def get_avatar(size=70)
     if self.avatar.blank?
