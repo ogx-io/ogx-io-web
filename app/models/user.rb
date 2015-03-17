@@ -77,7 +77,6 @@ class User
   validates_length_of :city, maximum: 20, message: I18n.t('mongoid.errors.models.user.attributes.city.too_long')
 
   has_and_belongs_to_many :managing_boards, class_name: "Board", inverse_of: :moderators
-  has_and_belongs_to_many :collecting_boards, class_name: "Board", inverse_of: nil
   has_many :posts, inverse_of: :author
   has_many :elite_posts, :class_name => 'Elite::Post', inverse_of: :author
   has_many :topics
