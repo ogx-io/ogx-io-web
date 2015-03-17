@@ -5,7 +5,7 @@ RSpec.describe PostsController, type: :controller do
   let(:another_user) { create(:user) }
   let(:author) { create(:user) }
   let(:moderator) { create(:user) }
-  let(:board) { create(:board, moderators: [moderator]) }
+  let(:board) { create(:board) }
   let(:old_post) { create(:post, author: author, board: board) }
   let(:new_post) { build(:post, author: author, board: board) }
   let(:topic) { old_post.topic }
@@ -14,6 +14,7 @@ RSpec.describe PostsController, type: :controller do
   let(:comment_list) { 25.times.collect { |i| create(:comment, commentable: old_post, user: another_user) } }
 
   before do
+    board.moderators << moderator
     topic_list
     post_list
     comment_list

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :favorites
+
   resources :categories
   resources :pictures
 
@@ -63,6 +65,8 @@ Rails.application.routes.draw do
     member do
       get :blocked_users
       post :block_user
+      patch :favor
+      patch :disfavor
     end
 
     resources :posts, shallow: true do

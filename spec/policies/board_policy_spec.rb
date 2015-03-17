@@ -22,4 +22,18 @@ describe BoardPolicy do
       expect(subject).to permit(admin, board)
     end
   end
+
+  permissions :favor? do
+    it 'allows favoring a board by any user signed in' do
+      expect(subject).to permit(user, board)
+      expect(subject).not_to permit(nil, board)
+    end
+  end
+
+  permissions :disfavor? do
+    it 'allows disfavoring a board by any user signed in' do
+      expect(subject).to permit(user, board)
+      expect(subject).not_to permit(nil, board)
+    end
+  end
 end
