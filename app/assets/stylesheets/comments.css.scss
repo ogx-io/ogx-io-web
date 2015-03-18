@@ -92,6 +92,10 @@
       }
       .markdown-content {
         font-size: 14px;
+        line-height: 23px;
+        p, ol, ul {
+          line-height: 23px;
+        }
       }
     }
   }
