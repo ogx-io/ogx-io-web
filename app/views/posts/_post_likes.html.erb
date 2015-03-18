@@ -1,0 +1,23 @@
+<span class="like-link-container">
+<% if user.has_liked?(post) %>
+    <%= link_to dislike_post_path(post), id: 'dislike', method: :patch, remote: true do %>
+        <span class="glyphicon glyphicon-heart liked"></span>
+          <span class="like-tip">
+            <% if post.likes.count > 0 %>
+            <%= t('posts.many_likes', count: post.likes.count) %>
+            <% else %>
+            <%= t('posts.like', count: post.likes.count) %>
+            <% end %>
+          </span>
+    <% end %>
+<% else %>
+    <%= link_to like_post_path(post), id: 'like', method: :patch, remote: true do %>
+        <span class="glyphicon glyphicon-heart-empty"></span>
+          <% if post.likes.count > 0 %>
+            <%= t('posts.many_likes', count: post.likes.count) %>
+            <% else %>
+            <%= t('posts.like', count: post.likes.count) %>
+            <% end %>
+    <% end %>
+<% end %>
+</span>

@@ -164,6 +164,8 @@ zh-CN:
       author_and_replier_info_html: '%{author} · 最后由 %{replier} 回复于 %{replied_at}'
 
   posts:
+    like: '喜欢'
+    many_likes: '%{count} 人喜欢'
     topic_for_post: '本帖所在主题'
     show_in_topic: '在主题内查看'
     no_permission_to_show_post: '对不起，您无权查看此贴。'

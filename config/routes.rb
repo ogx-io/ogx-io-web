@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :likes
+
   resources :favorites
 
   resources :categories
@@ -77,6 +79,8 @@ Rails.application.routes.draw do
         patch :top_clear
         patch :resume
         get :comments
+        patch :like
+        patch :dislike
       end
     end
 

@@ -76,6 +76,20 @@
         margin-top: 1px;
       }
     }
+    .like-link-container {
+      a {
+        .glyphicon {
+          font-size: 14px;
+        }
+        color: #BBB;
+        .liked {
+          color: tomato;
+        }
+      }
+      a:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
 

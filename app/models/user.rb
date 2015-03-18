@@ -84,6 +84,10 @@ class User
   has_many :notifications, class_name: 'Notification::Base', dependent: :delete
   has_many :favorites, inverse_of: :user
 
+  def has_liked?(likable)
+    Like.where(user: self, likable: likable).exists?
+  end
+
   def add_favorite(favorable)
     Favorite.create(user: self, favorable: favorable)
   end

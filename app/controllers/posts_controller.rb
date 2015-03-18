@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :set_elite, :unset_elite, :top_up, :top_clear, :resume, :comments]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :set_elite, :unset_elite, :top_up, :top_clear, :resume, :comments, :like, :dislike]
   before_action :set_board, only: [:index, :new, :create]
 
   # GET /posts
@@ -163,6 +163,20 @@ class PostsController < ApplicationController
       format.js do
         render 'refresh'
       end
+    end
+  end
+
+  def like
+    Like.create(user: current_user, likable: @post)
+    respond_to do |format|
+      format.js { render 'refresh_like_count' }
+    end
+  end
+
+  def dislike
+    Like.where(user: current_user, likable: @post).destroy
+    respond_to do |format|
+      format.js { render 'refresh_like_count' }
     end
   end
 

@@ -57,6 +57,14 @@ class PostPolicy < ApplicationPolicy
         test_if(record.board.is_blocking?(user), I18n.t('policies.common.user_is_blocked_by_moderator'))
   end
 
+  def like?
+    signed_in?
+  end
+
+  def dislike?
+    signed_in?
+  end
+
   class Scope < Scope
     def resolve
       scope

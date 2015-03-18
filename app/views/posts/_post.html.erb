@@ -1,5 +1,5 @@
-<% cache_unless post.new_record?, post.new_record? ? [] : [post, policy(post).set_elite?, policy(post).unset_elite?, policy(post).destroy?, policy(post).resume?, policy(post).resume?, policy(post).update?] do %>
-    <div id="floor-<%= post.floor || 'preview' %>" name="floor-<%= post.floor || 'preview' %>" class="post-item panel panel-default">
+<% cache_unless post.new_record?, post.new_record? ? [] : [post, current_user.has_liked?(post), policy(post).set_elite?, policy(post).unset_elite?, policy(post).destroy?, policy(post).resume?, policy(post).resume?, policy(post).update?] do %>
+    <div id="floor-<%= post.floor || 'preview' %>" name="floor-<%= post.floor || 'preview' %>" class="post-item panel panel-default post-id-<%= post.id %>">
       <div class="panel-body">
         <div class="pull-left">
           <%= avatar(post.author) %>
@@ -37,8 +37,9 @@
           <div class="markdown-content"><%= sanitize_post post.body_html %></div>
           <% if !post.new_record? %>
               <div class="post-footer clearfix">
-                <div class="pull-left hide">
-                  <%= social_share_button_tag t('posts.social_share_content', title: post.title), url: post_url(post), via: 'ogxio', 'data-twitter-title' => t('posts.social_share_content_for_twitter', title: post.title) %>
+                <div class="pull-left">
+                  <%= render partial: 'posts/post_likes', locals: {user: current_user, post: post} %>
+                  <% social_share_button_tag t('posts.social_share_content', title: post.title), url: post_url(post), via: 'ogxio', 'data-twitter-title' => t('posts.social_share_content_for_twitter', title: post.title) %>
                 </div>
                 <div class="pull-right">
                   <ul class="list-inline">

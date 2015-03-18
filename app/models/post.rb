@@ -30,6 +30,8 @@ class Post
 
   has_many :comments, as: :commentable
 
+  has_many :likes, as: :likable
+
   has_one :elite_post, :class_name => 'Elite::Post', inverse_of: :original
 
   before_create :set_topic_and_floor

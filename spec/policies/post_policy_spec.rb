@@ -195,4 +195,18 @@ describe PostPolicy do
       expect(subject).to permit(user, post)
     end
   end
+
+  permissions :like? do
+    it 'allow liking a post by a user signed in' do
+      expect(subject).to permit(user, post)
+      expect(subject).not_to permit(nil, post)
+    end
+  end
+
+  permissions :dislike? do
+    it 'allow disliking a post by a user signed in' do
+      expect(subject).to permit(user, post)
+      expect(subject).not_to permit(nil, post)
+    end
+  end
 end

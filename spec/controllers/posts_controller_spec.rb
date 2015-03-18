@@ -565,4 +565,39 @@ RSpec.describe PostsController, type: :controller do
       end
     end
   end
+
+  describe 'PATCH #like' do
+    before do
+      sign_in :user, another_user
+    end
+
+    it 'succeeds and not repeatable' do
+      xhr :patch, :like, id: old_post.id
+      expect(response).to render_template(:refresh_like_count)
+      old_post.reload
+      expect(old_post.likes.count).to eq(1)
+      expect {
+        xhr :patch, :like, id: old_post.id
+      }.to raise_error
+      old_post.reload
+      expect(old_post.likes.count).to eq(1)
+    end
+  end
+
+  describe 'PATCH #dislike' do
+    before do
+      sign_in :user, another_user
+      xhr :patch, :like, id: old_post.id
+    end
+
+    it 'succeeds and not repeatable' do
+      xhr :patch, :dislike, id: old_post.id
+      expect(response).to render_template(:refresh_like_count)
+      old_post.reload
+      expect(old_post.likes.count).to eq(0)
+      xhr :patch, :dislike, id: old_post.id
+      old_post.reload
+      expect(old_post.likes.count).to eq(0)
+    end
+  end
 end
