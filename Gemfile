@@ -50,7 +50,6 @@ group :test do
   gem 'faker'
   gem 'launchy'
   gem 'poltergeist'
-  gem "capybara-webkit"
   gem 'rspec-html-matchers'
   gem 'mongoid-rspec'
 end
