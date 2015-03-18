@@ -1,5 +1,5 @@
 When /^I sign in manually as "(.*?)" with password "(.*?)"$/ do |name, password|
-  visit new_user_session_url
+  visit new_user_session_path
   fill_in 'user_name', with: name
   fill_in 'user_password', with: password
   click_button I18n.t('action.sign_in')

@@ -75,6 +75,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.4.1)
+      capybara (>= 2.3.0, < 2.5.0)
+      json
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -84,8 +87,7 @@ GEM
       carrierwave (>= 0.8.0, < 0.11.0)
       mongoid (>= 3.0, < 5.0)
       mongoid-grid_fs (>= 1.3, < 3.0)
-    childprocess (0.5.5)
-      ffi (~> 1.0, >= 1.0.11)
+    cliver (0.3.2)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -126,7 +128,6 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
-    ffi (1.9.6)
     gherkin (2.12.2)
       multi_json (~> 1.3)
     globalid (0.3.3)
@@ -191,6 +192,11 @@ GEM
     optionable (0.2.0)
     origin (2.1.1)
     orm_adapter (0.5.0)
+    poltergeist (1.6.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     puma (2.11.1)
       rack (>= 1.1, < 2.0)
     pundit (0.3.0)
@@ -271,7 +277,6 @@ GEM
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
     ruby-hmac (0.4.0)
-    rubyzip (1.1.7)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
@@ -281,11 +286,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    selenium-webdriver (2.44.0)
-      childprocess (~> 0.5)
-      multi_json (~> 1.0)
-      rubyzip (~> 1.0)
-      websocket (~> 1.0)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -314,7 +314,9 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
-    websocket (1.2.1)
+    websocket-driver (0.5.3)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -326,6 +328,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass
   capybara
+  capybara-webkit
   carrierwave
   carrierwave-mongoid
   carrierwave-qiniu!
@@ -348,6 +351,7 @@ DEPENDENCIES
   newrelic_rpm
   nokogiri (= 1.6.5)
   non-stupid-digest-assets
+  poltergeist
   puma
   pundit
   qiniu-rs
@@ -361,7 +365,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
-  selenium-webdriver
   simple_form
   social-share-button!
   spring

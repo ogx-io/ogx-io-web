@@ -49,7 +49,8 @@ group :test do
   gem 'database_cleaner', '~> 1.3.0'
   gem 'faker'
   gem 'launchy'
-  gem 'selenium-webdriver'
+  gem 'poltergeist'
+  gem "capybara-webkit"
   gem 'rspec-html-matchers'
   gem 'mongoid-rspec'
 end
