@@ -155,6 +155,7 @@ zh-CN:
 
   topics:
     no_permission_to_show_topic: '对不起，您无权访问此主题。'
+    click_count: '%{count} 次点击'
     tip:
       locked_by_author: '主题创建者加锁，只有主题创建者才能回复'
       locked_by_moderator: '版主加锁，没人能回复'

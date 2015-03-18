@@ -7,12 +7,17 @@ class Topic
   field :f, as: :last_floor, type: Integer, default: 0
   field :r_at, as: :replied_at, type: Time
   field :l, as: :lock, type: Integer, default: 0 # 0: unlocked, 1: locked by user, 2: locked by moderator
+  field :cc, as: :click_count, type: Integer, default: 0
 
   has_many :posts
   belongs_to :board, touch: true
   belongs_to :user
   belongs_to :locker, class_name: 'User'
   belongs_to :unlocker, class_name: 'User'
+
+  def inc_click_count
+    self.inc(click_count: 1)
+  end
 
   def author
     self.user

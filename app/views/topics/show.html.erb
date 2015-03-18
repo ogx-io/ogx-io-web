@@ -7,11 +7,14 @@
   <% if policy(@topic).show? %>
       <div class="topic-head clearfix">
         <h3 class="pull-left">
-          <%= @first.title %>
+          <%= @topic.title %>
           <%= render partial: 'topic_lock', locals: {topic: @topic} %>
           <% if @topic.deleted? %>
               <span class="deleted-mark">(<%= t('global.deleted') %>)</span>
           <% end %>
+          <span class="topic-click-count">
+            <%= t('topics.click_count', count: @topic.click_count) %>
+          </span>
         </h3>
       </div>
       <%= render 'posts_paginate_bar' %>
