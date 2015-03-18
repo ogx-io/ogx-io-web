@@ -1,5 +1,5 @@
 <span class="like-link-container">
-<% if user.has_liked?(post) %>
+<% if user && user.has_liked?(post) %>
     <%= link_to dislike_post_path(post), id: 'dislike', method: :patch, remote: true do %>
         <span class="glyphicon glyphicon-heart liked"></span>
           <span class="like-tip">

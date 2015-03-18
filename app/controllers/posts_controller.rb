@@ -167,6 +167,7 @@ class PostsController < ApplicationController
   end
 
   def like
+    authorize @post
     Like.create(user: current_user, likable: @post)
     respond_to do |format|
       format.js { render 'refresh_like_count' }
@@ -174,6 +175,7 @@ class PostsController < ApplicationController
   end
 
   def dislike
+    authorize @post
     Like.where(user: current_user, likable: @post).destroy
     respond_to do |format|
       format.js { render 'refresh_like_count' }
