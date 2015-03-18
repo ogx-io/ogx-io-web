@@ -1,4 +1,4 @@
-<% cache [topic] do %>
+<% cache [topic, topic.user.get_avatar] do %>
     <div class="list-item">
       <div class="author-avatar pull-left">
         <%= avatar topic.user, 40 %>
