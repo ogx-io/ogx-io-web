@@ -325,7 +325,7 @@ span.board-name {
 }
 
 .markdown-content {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 25px;
   min-height: 28px;
   color: #333;
@@ -336,18 +336,20 @@ span.board-name {
     margin-bottom: 12px;
   }
   h1 {
-    font-size: 17px;
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: solid #EEE 1px;
   }
   h2 {
-    font-size: 16px;
+    font-size: 18px;
   }
   h3 {
-    font-size: 15px;
+    font-size: 17px;
   }
   h4 {
-    font-size: 14px;
+    font-size: 16px;
   }
-  h1, h2, h3 {
+  h1, h2, h3, h4 {
     font-weight: bold;
     color: #333;
   }
