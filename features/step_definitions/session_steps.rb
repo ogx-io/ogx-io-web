@@ -26,3 +26,7 @@ Given /^I have already signed in as "(.*?)" with password "(.*?)"$/ do |name, pa
   step %(I sign in manually as "#{name}" with password "#{password}")
   step %(I would sign in)
 end
+
+And(/^I sign in manually as the moderator$/) do
+  step %(I sign in manually as "#{@moderator.name}" with password "please123")
+end
