@@ -16,11 +16,11 @@
           <%= link_to t('posts.show_in_topic'), show_topic_post_path(@post.topic.id, @post.id) %>
         </nav>
         <%= render partial: 'post', locals: {post: @post, board: @board} %>
+        <% if policy(@post).comment? || @post.comments.normal.count > 0 %>
+            <%= render partial: 'post_comment_panel', locals: {post: @post} %>
+        <% end %>
     <% else %>
         <%= t('posts.no_permission_to_show_post') %>
-    <% end %>
-    <% if policy(@post).comment? || @post.comments.normal.count > 0 %>
-    <%= render partial: 'post_comment_panel', locals: {post: @post} %>
     <% end %>
   </div>
 </div>

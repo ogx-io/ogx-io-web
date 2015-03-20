@@ -1,2 +1,2 @@
 $('#post-<%= @post.id %>-comments').remove();
-$('#floor-<%= @post.floor %>').after("<%= j render partial: 'post_comment_panel', locals: {post: @post} %>");
+$('#post-<%= @post.id %>-container .comment-container').html("<%= j render partial: 'post_comment_panel', locals: {post: @post} %>");
