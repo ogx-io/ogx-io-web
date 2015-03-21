@@ -178,7 +178,9 @@
 }
 
 .reply-form {
-  margin-left: 96px;
+  @media (min-width: 768px) {
+    margin-left: 96px;
+  }
   .form-group {
     margin-top: 5px;
     margin-bottom: 0;
