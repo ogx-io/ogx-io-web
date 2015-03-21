@@ -1,5 +1,5 @@
 <% cache_unless post.new_record?, post.new_record? ? [] : [post, current_user && current_user.has_liked?(post), policy(post).set_elite?, policy(post).unset_elite?, policy(post).destroy?, policy(post).resume?, policy(post).resume?, policy(post).update?] do %>
-    <div id="post-<%= post.id %>-container">
+    <div id="post-<%= post.id %>-container" class="post-container">
       <div id="floor-<%= post.floor || 'preview' %>" name="floor-<%= post.floor || 'preview' %>" class="post-item panel panel-default post-id-<%= post.id %>">
         <div class="panel-body">
           <div class="pull-left">
@@ -74,7 +74,7 @@
                         <%= link_to t('action.comment') + (post.comments.normal.count > 0 ? "(#{post.comments.normal.count})" : ''), comments_post_path(post), remote: true, class: 'toggle-post-comments', 'data-post-id' => post.id %>
                       </li>
                       <li>
-                        <%= link_to t('action.reply'), new_board_post_path(post.board, parent_id: post.id) %>
+                        <%= link_to t('action.reply'), 'javascript:;', class: 'fast-reply' %>
                       </li>
                     </ul>
                   </div>
@@ -84,6 +84,38 @@
         </div>
       </div>
       <div class="comment-container"></div>
-      <div class="reply-container"></div>
+      <div class="reply-container hide">
+        <div class="reply-form well">
+          <%= simple_form_for([@board, Post.new], html: {class: "post-form"}, remote: true) do |f| %>
+              <%= f.input :title, label: false, required: false, placeholder: default_reply_title(post), autofocus: true %>
+              <div class="form-group">
+                <%= f.label t('global.content') %>
+                <div class="pull-right"><a id="post-add-pic" href="javascript:;"><%= t('action.add_picture') %></a>
+                </div>
+                <input id="post-upload-images" class="hidden" type="file">
+                <%= f.hidden_field :parent_id, value: post.id %>
+                <%= f.text_area :body, class: 'form-control post-editor', rows: 6 %>
+              </div>
+              <div class="clearfix">
+                <div class="help-block pull-left" style="color: red">* <%= t('posts._form.need_markdown') %>
+                  <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown" target="_blank"><%= t('posts._form.markdown_help') %></a>
+                </div>
+
+                <div class="actions pull-right">
+                  <ul class="list-inline">
+                    <li>
+                      <%= link_to new_board_post_path(@board, parent_id: post.id) do %>
+                          <button type="button" class="post-form-button btn btn-default btn-sm"><%= t('posts._form.switch_to_single_page') %></button>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= f.submit t('action.post'), class: 'post-form-button btn btn-primary btn-sm' %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
     </div>
 <% end %>

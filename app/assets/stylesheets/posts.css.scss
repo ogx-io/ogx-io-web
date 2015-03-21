@@ -176,3 +176,24 @@
     margin-bottom: 12px;
   }
 }
+
+.reply-form {
+  margin-left: 96px;
+  .form-group {
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+  .actions {
+    margin-top: 10px;
+    margin-bottom: 0;
+    ul {
+      margin-bottom: 0;
+      li {
+        padding-right: 0;
+        .post-form-button {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

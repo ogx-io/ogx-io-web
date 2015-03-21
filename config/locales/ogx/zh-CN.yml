@@ -178,6 +178,7 @@ zh-CN:
       markdown_help: '语法说明和练习'
       additional_features: '附加功能'
       lock_topic_checkbox: '主题加锁'
+      switch_to_single_page: '到单独发帖页'
 
   notifications:
     notification: '提醒通知'

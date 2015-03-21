@@ -17,7 +17,10 @@
         </nav>
         <%= render partial: 'post', locals: {post: @post, board: @board} %>
         <% if policy(@post).comment? || @post.comments.normal.count > 0 %>
-            <%= render partial: 'post_comment_panel', locals: {post: @post} %>
+            <script type="text/javascript">
+                $('#post-<%= @post.id %>-comments').remove();
+                $('#post-<%= @post.id %>-container .comment-container').html("<%= j render partial: 'post_comment_panel', locals: {post: @post} %>");
+            </script>
         <% end %>
     <% else %>
         <%= t('posts.no_permission_to_show_post') %>

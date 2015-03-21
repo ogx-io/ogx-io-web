@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  include PostsHelper
+
   before_action :set_post, only: [:show, :edit, :update, :destroy, :set_elite, :unset_elite, :top_up, :top_clear, :resume, :comments, :like, :dislike]
   before_action :set_board, only: [:index, :new, :create]
 
@@ -17,6 +20,10 @@ class PostsController < ApplicationController
     @board = @post.board
     @comment = Comment.new
     @comment.commentable = @post
+
+    @new_post = Post.new
+    @new_post.board = @board
+    @new_post.parent = @post
   end
 
   def comments
@@ -51,6 +58,9 @@ class PostsController < ApplicationController
         message = exception.policy.err_msg || '您没有此操作的权限！'
         respond_to do |format|
           format.html { flash.now[:error] = message; render :new }
+          format.js {
+            render js: "alert('#{message}')"
+          }
         end
         return
       end
@@ -61,6 +71,7 @@ class PostsController < ApplicationController
     @post.user_ip = request.remote_ip
     @post.user_agent = request.user_agent
     @post.referer = request.referer
+    @post.title = default_reply_title(@post.parent) if @post.parent && @post.title.blank?
 
     respond_to do |format|
       if params[:preview] == "true"
@@ -77,6 +88,9 @@ class PostsController < ApplicationController
             @post.topic.save
           end
           format.html { redirect_to show_topic_post_path(@post.topic.id, @post.id) }
+          format.js {
+            render 'reply'
+          }
         else
           format.html { render :new }
         end

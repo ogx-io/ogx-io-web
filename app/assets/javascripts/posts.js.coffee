@@ -9,6 +9,9 @@ ready = ->
     xhr.done (content)->
       $('.edit-post-container').hide().after(content)
 
+  $('body').delegate '.fast-reply', 'click', ->
+    $(this).parents('.post-container').find('.reply-container').toggleClass('hide')
+
   # process the two buttons in the preview page
   $('body').delegate '.back-to-editor', 'click', ->
     $('.post-preview-container').remove()
