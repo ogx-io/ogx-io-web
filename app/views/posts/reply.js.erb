@@ -2,3 +2,4 @@ $('#post-<%= @post.parent.id %>-container .reply-container').addClass('hide');
 $('#post-<%= @post.parent.id %>-container #post_title').val("");
 $('#post-<%= @post.parent.id %>-container #post_body').val("");
 $('#post-<%= @post.parent.id %>-container').after("<%= j render partial: 'posts/post', locals: {post: @post} %>");
+$('.post-id-<%= @post.id %>').find("abbr.timeago").timeago()
