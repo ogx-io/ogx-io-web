@@ -7,5 +7,5 @@
   </div>
 </div>
 <script type="text/javascript">
-    $("textarea").autosize({append: false}).trigger("change");
+    $("#comment-for-<%= commentable.class.to_s %>-<%= commentable.id %> textarea").autosize({append: false}).trigger("change");
 </script>

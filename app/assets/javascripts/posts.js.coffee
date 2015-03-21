@@ -9,6 +9,7 @@ ready = ->
     xhr.done (content)->
       $('.edit-post-container').hide().after(content)
 
+  # fast reply in the post list
   $('body').delegate '.fast-reply', 'click', ->
     $(this).parents('.post-container').find('.reply-container').toggleClass('hide')
 
