@@ -1,6 +1,6 @@
 <%= simple_form_for(@board ? [@board, @post] : @post, html: {class: "post-form"}) do |f| %>
 
-    <%= f.input :title, label: t('global.title'), hint: t('posts._form.title_hint'), required: false, input_html: {value: @post.parent && @post.title.blank? ? default_reply_title(@post.parent) : @post.title}, autofocus: true %>
+    <%= f.input :title, label: t('global.title'), hint: t('posts._form.title_hint'), required: false, placeholder: default_reply_title(@post.parent), autofocus: true %>
     <div class="form-group">
       <%= f.label t('global.content') %>
       <div class="pull-right"><a id="post-add-pic" href="javascript:;"><%= t('action.add_picture') %></a></div>

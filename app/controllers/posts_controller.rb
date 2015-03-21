@@ -102,10 +102,13 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     authorize @post if params[:preview] != "true"
+    post_params_clone = post_params.clone
+    post_params_clone[:title] = default_reply_title(@post.parent) if @post.parent && post_params_clone[:title].blank?
+
     respond_to do |format|
       if params[:preview] == "true"
         @board = @post.board
-        @post = Post.new(post_params)
+        @post = Post.new(post_params_clone)
         @post.board = @board
         if @post.valid?
           @post.author = current_user
@@ -115,7 +118,7 @@ class PostsController < ApplicationController
           format.html { render html: "<script type=\"text/javascript\">$('.post-form').submit()</script>".html_safe }
         end
       else
-        if @post.update(post_params)
+        if @post.update(post_params_clone)
           format.html { redirect_to @post }
         else
           format.html { render :edit }
