@@ -88,7 +88,7 @@
       <div class="comment-container"></div>
       <div class="reply-container hide">
         <div class="reply-form well">
-          <%= simple_form_for([@board, Post.new], html: {class: "post-form"}, remote: true) do |f| %>
+          <%= simple_form_for([post.board, Post.new], html: {class: "post-form"}, remote: true) do |f| %>
               <%= f.input :title, label: false, required: false, placeholder: default_reply_title(post), autofocus: true %>
               <div class="form-group">
                 <%= f.label t('global.content') %>
@@ -106,7 +106,7 @@
                 <div class="actions pull-right">
                   <ul class="list-inline">
                     <li>
-                      <%= link_to new_board_post_path(@board, parent_id: post.id) do %>
+                      <%= link_to new_board_post_path(post.board, parent_id: post.id) do %>
                           <button type="button" class="post-form-button btn btn-default btn-sm"><%= t('posts._form.switch_to_single_page') %></button>
                       <% end %>
                     </li>
