@@ -41,3 +41,36 @@ end
 And(/^the post is deleted by the moderator$/) do
   @post.delete_by(@moderator)
 end
+
+And(/^I click the reply link of the post of the (\d+)th floor$/) do |n|
+  @post = @topic.posts[n.to_i]
+  visit show_topic_post_path(@topic.id, @post.id)
+  within("#post-#{@post.id}-container") do
+    click_link I18n.t('action.reply')
+    find('.reply-container')
+  end
+end
+
+Then(/^the reply form should appear$/) do
+  within("#post-#{@post.id}-container") do
+    find('.reply-container')
+  end
+end
+
+And(/^I input "(.*?)" into the textarea$/) do |content|
+  @posted_content = content
+  within("#post-#{@post.id}-container") do
+    fill_in 'post_body', with: content
+  end
+end
+
+And(/^I click the submit button of the reply form$/) do
+  within("#post-#{@post.id}-container") do
+    click_button I18n.t('action.post')
+  end
+end
+
+Then(/^the new reply post should appear below the replied post$/) do
+  find("#floor-#{@topic.posts.count}")
+  expect(page).to have_content(@posted_content)
+end

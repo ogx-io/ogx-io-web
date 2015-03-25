@@ -14,3 +14,9 @@ end
 And(/^visit the topic on the page (\d+)$/) do |page|
   visit topic_path(@topic, page: 2)
 end
+
+Given(/^there is a topic with (\d+) replies$/) do |n|
+  post = create(:post)
+  @topic = post.topic
+  n.to_i.times.collect { |i| create :post, topic: @topic, parent: post }
+end
