@@ -1,4 +1,4 @@
-<% cache_unless post.new_record?, post.new_record? ? [] : [post, current_user && current_user.has_liked?(post), policy(post).set_elite?, policy(post).unset_elite?, policy(post).destroy?, policy(post).resume?, policy(post).resume?, policy(post).update?, policy(post).comment?] do %>
+<% cache_unless post.new_record?, post.new_record? ? [] : [post, policy(post).set_elite?, policy(post).unset_elite?, policy(post).destroy?, policy(post).resume?, policy(post).resume?, policy(post).update?, policy(post).comment?] do %>
     <div id="post-<%= post.id %>-container" class="post-container">
       <div id="floor-<%= post.floor || 'preview' %>" name="floor-<%= post.floor || 'preview' %>" class="post-item panel panel-default post-id-<%= post.id %>">
         <div class="panel-body">
