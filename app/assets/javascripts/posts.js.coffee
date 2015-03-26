@@ -66,3 +66,7 @@ ready = ->
     $("#post-add-pic").show()
 
 $(document).ready(ready)
+
+$(document).on 'click', '.switch-reply-page-button', ->
+  sessionStorage.post_form_title = $(this).parents('form').find('#post_title').val()
+  sessionStorage.post_form_body = $(this).parents('form').find('#post_body').val()

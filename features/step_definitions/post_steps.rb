@@ -82,5 +82,5 @@ And(/^I click the switch button of the reply form$/) do
 end
 
 Then(/^the body textarea of the post page should have the same content$/) do
-  expect(page).to have_content(@test_content)
+  expect(find_field('post_body').value).to eq(@test_content)
 end

@@ -31,3 +31,9 @@
       </ul>
     </div>
 <% end %>
+<script type="text/javascript">
+  $('#post_title').val(sessionStorage.post_form_title);
+  $('#post_body').val(sessionStorage.post_form_body);
+  sessionStorage.post_form_title = '';
+  sessionStorage.post_form_body = '';
+</script>
