@@ -38,8 +38,8 @@
             <div class="markdown-content"><%= sanitize_post post.body_html %></div>
             <% if !post.new_record? %>
                 <div class="post-footer clearfix">
-                  <div class="pull-left">
-                    <%= render partial: 'posts/post_likes', locals: {user: current_user, post: post} %>
+                  <div class="likes-container pull-left">
+
                     <% social_share_button_tag t('posts.social_share_content', title: post.title), url: post_url(post), via: 'ogxio', 'data-twitter-title' => t('posts.social_share_content_for_twitter', title: post.title) %>
                   </div>
                   <div class="pull-right">
@@ -88,38 +88,11 @@
       <div class="comment-container"></div>
       <div class="reply-container hide">
         <% if !post.new_record? %>
-            <div class="reply-form well">
-              <%= simple_form_for([post.board, Post.new], html: {class: "post-form"}, remote: true) do |f| %>
-                  <%= f.input :title, label: false, required: false, placeholder: default_reply_title(post), autofocus: true %>
-                  <div class="form-group">
-                    <%= f.label t('global.content') %>
-                    <div class="pull-right"><a id="post-add-pic" href="javascript:;"><%= t('action.add_picture') %></a>
-                    </div>
-                    <input id="post-upload-images" class="hidden" type="file">
-                    <%= f.hidden_field :parent_id, value: post.id %>
-                    <%= f.text_area :body, class: 'form-control post-editor', rows: 6 %>
-                  </div>
-                  <div class="clearfix">
-                    <div class="help-block pull-left" style="color: red">* <%= t('posts._form.need_markdown') %>
-                      <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown" target="_blank"><%= t('posts._form.markdown_help') %></a>
-                    </div>
-
-                    <div class="actions pull-right">
-                      <ul class="list-inline">
-                        <li>
-                          <%= link_to new_board_post_path(post.board, parent_id: post.id) do %>
-                              <button type="button" class="switch-reply-page-button post-form-button btn btn-default btn-sm"><%= t('posts._form.switch_to_single_page') %></button>
-                          <% end %>
-                        </li>
-                        <li>
-                          <%= f.submit t('action.post'), class: 'post-form-button btn btn-primary btn-sm' %>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-              <% end %>
-            </div>
+        <%= render partial: 'posts/reply_form', locals: {post: post} %>
         <% end %>
       </div>
     </div>
 <% end %>
+<script type="text/javascript">
+  $('#post-<%= post.id %>-container .likes-container').html("<%= j render partial: 'posts/post_likes', locals: {user: current_user, post: post} %>")
+</script>
