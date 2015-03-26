@@ -58,7 +58,7 @@ Then(/^the reply form should appear$/) do
 end
 
 And(/^I input "(.*?)" into the textarea$/) do |content|
-  @posted_content = content
+  @test_content = content
   within("#post-#{@post.id}-container") do
     fill_in 'post_body', with: content
   end
@@ -72,5 +72,15 @@ end
 
 Then(/^the new reply post should appear below the replied post$/) do
   find("#floor-#{@topic.posts.count}")
-  expect(page).to have_content(@posted_content)
+  expect(page).to have_content(@test_content)
+end
+
+And(/^I click the switch button of the reply form$/) do
+  within("#post-#{@post.id}-container") do
+    click_button I18n.t('posts._form.switch_to_single_page')
+  end
+end
+
+Then(/^the body textarea of the post page should have the same content$/) do
+  expect(page).to have_content(@test_content)
 end
