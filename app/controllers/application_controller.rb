@@ -19,7 +19,12 @@ class ApplicationController < ActionController::Base
 
     respond_to do |format|
       format.html { flash[:error] = message; redirect_to(request.referrer || root_path) }
-      format.js { flash.now[:error] = message; render js: "alert('#{flash[:error]}');" }
+      format.js do
+        flash.now[:error] = message
+        unsanitized_message = flash[:error]
+        sanitized_message = ActionController::Base.helpers.strip_tags(unsanitized_message)
+        render js: "alert('#{sanitized_message}');"
+      end
     end
   end
 
