@@ -88,11 +88,13 @@
       <div class="comment-container"></div>
       <div class="reply-container hide">
         <% if !post.new_record? %>
-        <%= render partial: 'posts/reply_form', locals: {post: post} %>
+            <%= render partial: 'posts/reply_form', locals: {post: post} %>
         <% end %>
       </div>
     </div>
 <% end %>
 <script type="text/javascript">
-  $('#post-<%= post.id %>-container .likes-container').html("<%= j render partial: 'posts/post_likes', locals: {user: current_user, post: post} %>")
+    <% if !post.new_record? %>
+    $('#post-<%= post.id %>-container .likes-container').html("<%= j render partial: 'posts/post_likes', locals: {user: current_user, post: post} %>")
+    <% end %>
 </script>
