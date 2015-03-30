@@ -15,6 +15,16 @@ class Topic
   belongs_to :locker, class_name: 'User'
   belongs_to :unlocker, class_name: 'User'
 
+  def move_to_board(new_board_id)
+    self.update(board_id: new_board_id)
+    self.posts.each do |post|
+      post.update(board_id: new_board_id)
+      post.comments.each do |comment|
+        comment.update(board_id: new_board_id)
+      end
+    end
+  end
+
   def inc_click_count
     self.inc(click_count: 1)
   end

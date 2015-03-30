@@ -7,6 +7,7 @@ RSpec.describe Topic, :type => :model do
   let (:comment) { create(:comment, user: user, commentable: post, board: board)}
   let (:topic) { post.topic }
   let (:board) { create(:board) }
+  let (:another_board) { create(:board) }
   let (:moderator) { create(:moderator, managing_boards: [board]) }
 
   it 'updates the replied_at field after a new reply occurs' do
@@ -30,6 +31,15 @@ RSpec.describe Topic, :type => :model do
     expect(topic.deleted?).to be_truthy
     expect(topic.deleted).to eq(2)
     expect(topic.deleter).to eq(moderator)
+  end
+
+  it 'can be moved to another board' do
+    comment
+    topic.move_to_board(another_board.id)
+    topic.reload
+    expect(topic.board).to eq(another_board)
+    expect(post.board).to eq(another_board)
+    expect(comment.board).to eq(another_board)
   end
 
 end

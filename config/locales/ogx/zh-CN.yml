@@ -85,6 +85,7 @@ zh-CN:
     upper_level: '返回上级目录'
     order_up: '上升'
     order_down: '下降'
+    change_board: '迁移'
 
   layout:
     home: '首页'
