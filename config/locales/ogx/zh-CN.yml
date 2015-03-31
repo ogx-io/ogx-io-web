@@ -155,6 +155,7 @@ zh-CN:
                                          <p>--来自OGX社区</p>"
 
   topics:
+    change_topic_board_html: '更改 %{title} 的板块'
     no_permission_to_show_topic: '对不起，您无权访问此主题。'
     click_count: '%{count} 次点击'
     tip:

@@ -89,6 +89,7 @@ Rails.application.routes.draw do
         patch :resume
         patch :toggle_lock
         get :show_post
+        get :change_board
       end
     end
   end

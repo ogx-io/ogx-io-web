@@ -27,6 +27,10 @@ class TopicPolicy < ApplicationPolicy
     update?
   end
 
+  def change_board?
+    update?
+  end
+
   class Scope < Scope
     def resolve
       scope

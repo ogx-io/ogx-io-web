@@ -2,6 +2,9 @@
   <%= t('global.count.post') %>: <%= @all_posts.count %>
   <%= paginate @posts, left: 1, right: 1 %>
   <div class="right-links pull-right">
+    <% if policy(@topic).change_board? %>
+    <%= link_to t('action.change_board'), change_board_topic_path(@topic) %>
+    <% end %>
     <% if policy(@topic).update? %>
         <% if @topic.deleted? %>
             <%= link_to t('action.resume'), resume_topic_path(@topic), method: :patch %>

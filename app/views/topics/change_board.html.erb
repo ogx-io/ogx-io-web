@@ -1,0 +1,16 @@
+<% content_for :title do %><%= @topic.title %> - <%= @board.name %>
+<% end %>
+
+<div class="col-sm-10 right-side-layout">
+  <%= render partial: 'nodes/breadcrumbs', locals: {node: @topic.board, extras: ['change_topic']} %>
+
+  <div class="topic-head clearfix">
+    <h3 class="pull-left">
+      <%= t('topics.change_topic_board_html', title: link_to(@topic.title, topic_path(@topic))) %>
+    </h3>
+  </div>
+  <%= simple_form_for(@topic, html: {id: 'change_board_form'}) do |f| %>
+      <%= f.input :board_id, label: '新板块ID', required: false, autofocus: true %>
+      <%= f.submit t('action.submit'), class: 'btn btn-primary' %>
+  <% end %>
+</div>

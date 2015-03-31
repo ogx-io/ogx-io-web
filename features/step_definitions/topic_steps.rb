@@ -35,7 +35,7 @@ end
 
 And(/^I click the "move" link of the topic$/) do
   visit topic_path(@topic)
-  click_link I18n.t('action.change_board')
+  first(:link, I18n.t('action.change_board')).click
 end
 
 Then(/^I should see the form for moving the topic$/) do
@@ -49,11 +49,14 @@ And(/^submit the new board id that the topic is changing to$/) do
 end
 
 Then(/^the topic and its posts and comments should be changed to the new board$/) do
+  @topic.reload
   expect(@topic.board).to eq(@new_board)
   @posts.each do |post|
+    post.reload
     expect(post.board).to eq(@new_board)
   end
   @comments.each do |comment|
+    comment.reload
     expect(comment.board).to eq(@new_board)
   end
 end

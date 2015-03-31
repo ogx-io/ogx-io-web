@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :show_post, :edit, :update, :destroy, :resume, :toggle_lock]
+  before_action :set_topic, only: [:show, :show_post, :edit, :update, :destroy, :resume, :toggle_lock, :change_board]
   before_action :set_board, only: [:index, :edit, :update, :deleted]
 
   respond_to :html, :xml, :json
@@ -54,6 +54,16 @@ class TopicsController < ApplicationController
     redirect_to :back
   end
 
+  def change_board
+    authorize @topic
+  end
+
+  def update
+    authorize @topic
+    @topic.move_to_board(topic_params[:board_id]) if topic_params[:board_id]
+    redirect_to topic_path(@topic)
+  end
+
   private
   def set_topic
     @topic = Topic.find(params[:id]) if params[:id]
@@ -65,4 +75,8 @@ class TopicsController < ApplicationController
     @board = Board.find_by(path: params[:path]) if params[:path]
   end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def topic_params
+    params[:topic].permit(:board_id)
+  end
 end
