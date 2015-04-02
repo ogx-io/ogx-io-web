@@ -13,8 +13,16 @@ namespace :data do
   desc "reset the body_html field of the posts"
   task set_post_body_html: :environment do
     Post.all.each do |post|
-      post.body_html = MarkdownConverter.convert(post.body)
+      post.body_html = MarkdownTopicConverter.format(post.body, post.topic)
       post.save
+    end
+  end
+
+  desc "reset the body_html field of the comments"
+  task set_comment_body_html: :environment do
+    Comment.all.each do |comment|
+      comment.body_html = MarkdownTopicConverter.format(comment.body, comment.topic)
+      comment.save
     end
   end
 
