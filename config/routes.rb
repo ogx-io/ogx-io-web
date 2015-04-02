@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  root to: 'visitors#index'
+  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
+
   resources :likes
 
   resources :favorites
@@ -94,8 +97,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'visitors#index'
-  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
   resources :users do
     member do
@@ -121,4 +122,5 @@ Rails.application.routes.draw do
   get '/t/:id/p/:post_id', to: 'topics#show_post', as: :show_topic_post
   get '/t/:id/f/:floor', to: 'topics#show_post', as: :show_topic_floor
 
+  get '/*node_path', to: 'nodes#show'
 end

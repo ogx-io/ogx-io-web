@@ -33,6 +33,18 @@ class Node
     self.layer = a.length
   end
 
+  def full_path
+    paths = []
+    node = self
+    loop do
+      paths.push node.path
+      node = node.parent
+      break if node.nil?
+    end
+    paths.reverse!
+    paths.join('/')
+  end
+
   def self.root
     root = self.where(path: 'root').first
     unless root
@@ -40,5 +52,17 @@ class Node
       root.save
     end
     root
+  end
+
+  def self.get_node_by_path(path)
+    paths = path.split('/')
+    node = self.root
+    paths.each do |p|
+      node = Node.where(parent_id: node.id, path: p).first
+      if node.nil?
+        return nil
+      end
+    end
+    return node
   end
 end

@@ -73,4 +73,10 @@ module ApplicationHelper
     end
     result
   end
+
+  def pretty_path_for_node(node)
+    paths = node.full_path.split('/')
+    paths[0] = ''
+    paths.join('/')
+  end
 end
