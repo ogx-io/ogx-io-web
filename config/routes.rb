@@ -111,11 +111,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/:name', to: 'users#show', as: :show_user
-  get '/:name/topics', to: 'users#topics', as: :show_user_topics
-  get '/:name/posts', to: 'users#posts', as: :show_user_posts
-  get '/:name/elites', to: 'users#elites', as: :show_user_elites
-  get '/:name/deleted_posts', to: 'users#deleted_posts', as: :show_user_deleted_posts
+  get '/@:name', to: 'users#show', as: :show_user
+  get '/@:name/topics', to: 'users#topics', as: :show_user_topics
+  get '/@:name/posts', to: 'users#posts', as: :show_user_posts
+  get '/@:name/elites', to: 'users#elites', as: :show_user_elites
+  get '/@:name/deleted_posts', to: 'users#deleted_posts', as: :show_user_deleted_posts
   get '/t/:sid', to: 'topics#show', as: :show_topic
   get '/p/:sid', to: 'posts#show', as: :show_post
   get '/t/:id/p/:post_id', to: 'topics#show_post', as: :show_topic_post

@@ -168,7 +168,7 @@ class MarkdownTopicConverter < MarkdownConverter
         if in_code
           "#{prefix}@#{user}"
         else
-          %(#{prefix}<a href="/#{user}" class="at_user" title="@#{user}">@#{user}</a>)
+          %(#{prefix}<a href="/@#{user}" class="at_user" title="@#{user}">@#{user}</a>)
         end
       }
 
