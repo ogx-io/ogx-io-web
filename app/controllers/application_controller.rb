@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   def record_last_visit_info
     if current_user
-      current_user.update(last_visit_ip: request.remote_ip, last_visited_at: Time.now)
+      current_user.timeless.update(last_visit_ip: request.remote_ip, last_visited_at: Time.now)
     end
   end
 
