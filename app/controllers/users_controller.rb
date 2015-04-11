@@ -79,7 +79,7 @@ class UsersController < ApplicationController
           update_user_with_translated_info_from_github(id_guessed_user, ogx_acc_info)
           sign_in(:user, id_guessed_user)
           flash[:notice] = t('users.github_sign_in_success')
-          redirect_to "https://ogx.io"
+          redirect_to root_path
         elsif email_guessed_user
           # Found the user by email
           email_guessed_user.github_access_token = token
@@ -87,7 +87,7 @@ class UsersController < ApplicationController
           update_user_with_translated_info_from_github(email_guessed_user, ogx_acc_info)
           sign_in(:user, email_guessed_user)
           flash[:notice] = t('users.github_sign_in_success')
-          redirect_to "https://ogx.io"
+          redirect_to root_path
         else
           # Register a new user
           set_session_github_token(token)
@@ -96,7 +96,7 @@ class UsersController < ApplicationController
       end
     else
       flash[:error] = t('users.github_binding_error')
-      redirect_to "https://ogx.io"
+      redirect_to root_path
     end
   end
 
