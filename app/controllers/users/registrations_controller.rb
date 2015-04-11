@@ -1,10 +1,14 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+
+  include GithubHelper
+
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
-  # GET /resource/sign_up
   # def new
   #   super
+  # # BUG This doesn't work
+  #   @github_token = session_github_token
   # end
 
   # POST /resource
@@ -15,6 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   # def edit
   #   super
+  #   current_user
   # end
 
   # PUT /resource
@@ -38,9 +43,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # protected
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:github_access_token, :name, :email, :password, :password_confirmation, :nick, :intro, :city, :website, :avatar, :github_id, :github_user_name)
+    end
+  end
+
   # You can put the params you want to permit in the empty array.
   # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
+  #   devise_parameter_sanitizer.for(:sign_up) << :github_access_token
   # end
 
   # You can put the params you want to permit in the empty array.

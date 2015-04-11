@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'visitors#index'
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
-
+  get '/github_callback' => 'users#github_callback'
   resources :likes
 
   resources :favorites
@@ -99,6 +99,9 @@ Rails.application.routes.draw do
 
 
   resources :users do
+    collection do
+      get :auth_with_github
+    end
     member do
       get :topics
       get :posts

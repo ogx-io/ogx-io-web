@@ -102,6 +102,31 @@
     background-color: #EEE;
     display: inline-block;
     border-radius: 3px;
+
+.user-setting-panel {
+  margin-top: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.user-setting-panel-top {
+  @media (max-width: 992px) {
+    display: block;
+  }
+
+  height: 20px;
+  border-radius: 6px;
+  background-color: whitesmoke;
+  max-width: 520px;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: -15px;
+  width: 100%;
+  padding-left: 15px;
+
+  @media (min-width: 992px) {
+    display: none;
   }
 
 }

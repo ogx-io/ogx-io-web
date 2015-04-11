@@ -15,6 +15,7 @@
     <li><%= link_to t('action.setting'), edit_user_registration_path %></li>
     <li><%= link_to t('action.sign_out'), destroy_user_session_path, :method => 'delete' %></li>
 <% else %>
+    <li><%= link_to t('action.sign_in_with_github'), auth_with_github_users_path %></li>
     <li><%= link_to t('action.sign_in'), new_user_session_path %></li>
     <li><%= link_to t('action.sign_up'), new_user_registration_path %></li>
 <% end %>

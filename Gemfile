@@ -19,6 +19,7 @@ gem 'devise'
 gem 'pundit'
 gem 'kaminari'
 gem 'simple_form'
+gem "octokit", "~> 3.0"
 
 gem 'puma'
 gem 'social-share-button', git: 'https://github.com/cuterxy/social-share-button.git'

@@ -79,6 +79,8 @@ zh-CN:
     setting: '设置'
     sign_in: '登录'
     sign_up: '注册'
+    finish_sign_up: '完成注册'
+    sign_in_with_github: '用Github登录'
     sign_out: '退出'
     update: '更新'
     block: '封禁'
@@ -106,6 +108,8 @@ zh-CN:
     joined_at: '加入于 %{date}'
     sign_in: '用户登录'
     sign_up: '新用户注册'
+    sign_up_with_github: '完善个人资料'
+    sign_in_with_github: '用Github登录'
     update_user: '更新用户信息'
     user_name: '用户名'
     user_name_hint: '4-20个小写英文字母、数字或下划线'
@@ -141,6 +145,12 @@ zh-CN:
     self_intro: '自我介绍'
     contributes: '社区贡献'
     managing_baords: '管理板块'
+    github_info: 'Github信息'
+    bind_github: '绑定Github'
+    github_binding_success: '绑定Github成功！'
+    github_binding_error: '绑定Github出错！'
+    github_sign_in_success: 'Github登录成功！'
+    preferences: '偏好设置'
     mailer:
       confirmation_instructions_html: "<p>您好，%{user}！</p>
                                        <p>您可以通过访问以下链接来确认您在OGX社区新注册的账号：</p>

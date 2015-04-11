@@ -6,13 +6,18 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, # :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   ## Database authenticatable
   field :name,              :type => String, :default => ""
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
+
+  ## Github user information
+  field :github_access_token, :type => String, :default => ""
+  field :github_user_name, :type => String, :default => ""
+  field :github_id, :type => String, :default => ""
 
   ## Recoverable
   field :reset_password_token,   :type => String
