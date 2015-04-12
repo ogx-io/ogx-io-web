@@ -6,15 +6,14 @@
     &nbsp;
 <% end %>
 
+<%# To avoid devise bug %>
+<% @github_data = session['devise.github_data'] %>
+<% @user = User.from_oauth_github(@github_data) %>
+<% resource = @user %>
+
 <div class="register-form">
-  <% if session_github_token %>
-    <% @user_info = user_info_for_token(session_github_token) %>
-    <% @ogx_user_info = github_acc_info_to_ogx_acc_info(@user_info) %>
-    <% update_user_with_translated_info_from_github(@user, @ogx_user_info, false) %>
-    <% @user = resource %>
-  <% end %>
-  <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: {role: 'form'} do |f| %>
-    <% if session_github_token %>
+  <%= simple_form_for resource, as: resource_name, url: registration_path(resource), html: {role: 'form'} do |f| %>
+    <% if @github_data %>
       <h3><%= t('users.sign_up_with_github') %></h3>
     <% else %>
       <h3><%= t('users.sign_up') %></h3>
@@ -25,10 +24,10 @@
     <%= f.input :email, label: t('users.email'), hint: t('users.email_hint'), required: false %>
     <%= f.input :password, label: t('users.password'), hint: t('users.password_hint'), required: false %>
     <%= f.input :password_confirmation, label: t('users.password_confirmation'), hint: t('users.password_confirmation_hint'), required: false %>
-    <%= f.input :github_access_token, as: "hidden" , required: false, input_html: { value: session_github_token } %>
+    <%= f.input :github_access_token, as: "hidden" , required: false %>
     <%= f.input :github_id, as: "hidden" , required: false %>
     <%= f.input :github_user_name, as: "hidden" , required: false %>
-    <% if session_github_token %>
+    <% if @github_data %>
       <%= f.button :submit, t('action.finish_sign_up'), class: 'button right' %>
     <% else %>
       <%= f.button :submit, t('action.sign_up'), class: 'button right' %>

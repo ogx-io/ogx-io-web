@@ -51,7 +51,7 @@
     <p>id: <%= current_user.github_id %></p>
     <p>user_name: <%= current_user.github_user_name %></p>
   <% else %>
-    <%= link_to t('users.bind_github'), auth_with_github_users_path %>
+    <%= link_to t('users.bind_github'), user_omniauth_authorize_path(:github) %>
   <% end %>
 </div>
 

@@ -1,14 +1,15 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-  include GithubHelper
-
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
   # def new
   #   super
-  # # BUG This doesn't work
-  #   @github_token = session_github_token
+  #   @github_data = session['devise.github_data']
+  #   if @github_data
+  #     @user = User.from_oauth_github(@github_data)
+  #     resource = @user
+  #   end
   # end
 
   # POST /resource
