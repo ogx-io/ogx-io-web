@@ -28,6 +28,8 @@ zh-CN:
     post: '帖子'
     elite: '精华帖'
     comment: '评论'
+    got_likes: '收获喜欢'
+    accepted_pr: '有效PR'
     deleted: '已删除'
     top_post: '置顶'
     preview_post: '预览帖子'
@@ -135,6 +137,10 @@ zh-CN:
     we_will_send_email_reseting_password: '我们给你发邮件重设密码'
     reset_password: '重设密码'
     token_expired: 'Token已过期'
+    profile: '个人资料'
+    self_intro: '自我介绍'
+    contributes: '社区贡献'
+    managing_baords: '管理板块'
     mailer:
       confirmation_instructions_html: "<p>您好，%{user}！</p>
                                        <p>您可以通过访问以下链接来确认您在OGX社区新注册的账号：</p>
