@@ -9,44 +9,14 @@
     </div>
     <div class="profile-content">
       <div class="contribute-row clearfix">
-        <div class="contribute-item panel panel-default">
-          <div class="panel-body">
-            <div class="subject"><%= t('global.topic') %></div>
-            <div class="count">123</div>
-          </div>
-        </div>
-        <div class="contribute-item panel panel-default">
-          <div class="panel-body">
-            <div class="subject"><%= t('global.post') %></div>
-            <div class="count">123</div>
-          </div>
-        </div>
-        <div class="contribute-item panel panel-default">
-          <div class="panel-body">
-            <div class="subject"><%= t('global.comment') %></div>
-            <div class="count">123</div>
-          </div>
-        </div>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.topic'), count: @user.topics.normal.count} %>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.post'), count: @user.posts.normal.count} %>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.comment'), count: @user.comments.normal.count} %>
       </div>
       <div class="contribute-row clearfix">
-        <div class="contribute-item panel panel-default">
-          <div class="panel-body">
-            <div class="subject"><%= t('global.elite') %></div>
-            <div class="count">123</div>
-          </div>
-        </div>
-        <div class="contribute-item panel panel-default">
-          <div class="panel-body">
-            <div class="subject"><%= t('global.got_likes') %></div>
-            <div class="count">123</div>
-          </div>
-        </div>
-        <div class="contribute-item panel panel-default">
-          <div class="panel-body">
-            <div class="subject"><%= t('global.accepted_pr') %></div>
-            <div class="count">123</div>
-          </div>
-        </div>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.elite'), count: Elite::Post.normal.where(author_id: @user.id).count} %>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.got_likes'), count: 0} %>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.accepted_pr'), count: 0} %>
       </div>
     </div>
     <% if @user.managing_boards.count > 0 %>
