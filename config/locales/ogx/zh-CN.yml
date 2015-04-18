@@ -351,3 +351,7 @@ zh-CN:
             attributes:
               parent:
                 blank: '必须要有父节点'
+        like:
+          attributes:
+            user_id:
+              can_not_be_author: '作者不能喜欢自己的作品'

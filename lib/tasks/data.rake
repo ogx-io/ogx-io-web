@@ -51,4 +51,11 @@ namespace :data do
     User.each {|user| user.unset(:collecting_board_ids)}
   end
 
+  desc "correct the likes count of every user"
+  task set_author_of_like: :environment do
+    Like.each do |like|
+      like.update(author_id: like.likable.author_id)
+    end
+  end
+
 end
