@@ -24,4 +24,9 @@ RSpec.describe Like, type: :model do
     end
     expect(author.got_likes.count).to eq(post_list.count)
   end
+
+  it 'one can not like the likable of himself' do
+    like = build(:like, user: user, likable: create(:post, author: user))
+    expect(like.valid?).to be_falsey
+  end
 end
