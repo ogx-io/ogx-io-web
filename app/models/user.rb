@@ -81,6 +81,7 @@ class User
   has_many :elite_posts, :class_name => 'Elite::Post', inverse_of: :author
   has_many :topics
   has_many :comments
+  has_many :got_likes, class_name: 'Like', foreign_key: 'author_id', inverse_of: :author
   has_many :blocked_users
   has_many :notifications, class_name: 'Notification::Base', dependent: :delete
   has_many :favorites, inverse_of: :user

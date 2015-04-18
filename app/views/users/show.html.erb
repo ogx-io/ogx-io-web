@@ -15,7 +15,7 @@
       </div>
       <div class="contribute-row clearfix">
         <%= render partial: 'users/contribute_item', locals: {subject: t('global.elite'), count: @user.elite_posts.normal.count} %>
-        <%= render partial: 'users/contribute_item', locals: {subject: t('global.got_likes'), count: 0} %>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.got_likes'), count: @user.got_likes.count} %>
         <%= render partial: 'users/contribute_item', locals: {subject: t('global.accepted_pr'), count: 0} %>
       </div>
     </div>
