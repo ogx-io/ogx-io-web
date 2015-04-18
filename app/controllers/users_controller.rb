@@ -5,9 +5,6 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
-    @all_topics = @user.topics.normal
-    @topics = @all_topics.desc(:created_at).page(params[:page]).per(15)
-    render 'topics'
   end
 
   def posts
@@ -18,7 +15,7 @@ class UsersController < ApplicationController
       @all_posts = @user.posts.normal
     end
     @posts = @all_posts.desc(:created_at).page(params[:page]).per(20)
-    render 'posts', locals: { index: 1 }
+    render 'posts'
   end
 
   def topics
@@ -35,7 +32,7 @@ class UsersController < ApplicationController
       @all_posts = @user.elite_posts.normal
     end
     @posts = @all_posts.desc(:created_at).page(params[:page]).per(20)
-    render 'elites', locals: { index: 3 }
+    render 'elites'
   end
 
   private

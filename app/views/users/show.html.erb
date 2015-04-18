@@ -1,0 +1,33 @@
+<% content_for :left_side do %>
+    <%= render 'profile_left' %>
+<% end %>
+<div class="col-lg-7 col-md-8 right-side-layout">
+  <%= render partial: 'profile_nav', locals: {index: 1} %>
+  <div class="user-profile">
+    <div class="profile-title">
+      <span><%= t('users.contributes') %></span>
+    </div>
+    <div class="profile-content">
+      <div class="contribute-row clearfix">
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.topic'), count: @user.topics.normal.count} %>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.post'), count: @user.posts.normal.count} %>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.comment'), count: @user.comments.normal.count} %>
+      </div>
+      <div class="contribute-row clearfix">
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.elite'), count: Elite::Post.normal.where(author_id: @user.id).count} %>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.got_likes'), count: 0} %>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('global.accepted_pr'), count: 0} %>
+      </div>
+    </div>
+    <% if @user.managing_boards.count > 0 %>
+        <div class="profile-title">
+          <span><%= t('users.managing_baords') %></span>
+        </div>
+        <div class="profile-content">
+          <% @user.managing_boards.each do |board| %>
+          <%= link_to board.name, pretty_path_for_node(board), class: 'board-link-item' %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>

@@ -62,3 +62,46 @@
   text-align: center;
   margin: 20px auto;
 }
+
+.user-profile {
+  .profile-title {
+    border-bottom: solid 1px #EEE;
+    margin-bottom: 10px;
+    span {
+      font-weight: bold;
+      color: #999;
+    }
+  }
+
+  .contribute-row {
+    margin-bottom: 10px;
+  }
+
+  .contribute-item {
+    width: 80px;
+    float: left;
+    text-align: center;
+    margin-bottom: 0;
+    margin-right: 10px;
+    .panel-body {
+      padding: 10px;
+    }
+    .subject {
+      color: #777;
+    }
+    .count {
+      font-size: 16px;
+    }
+  }
+
+  .board-link-item {
+    font-size: 16px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 2px 8px;
+    background-color: #EEE;
+    display: inline-block;
+    border-radius: 3px;
+  }
+
+}

@@ -80,6 +80,8 @@ class User
   has_many :posts, inverse_of: :author
   has_many :elite_posts, :class_name => 'Elite::Post', inverse_of: :author
   has_many :topics
+  has_many :elites
+  has_many :comments
   has_many :blocked_users
   has_many :notifications, class_name: 'Notification::Base', dependent: :delete
   has_many :favorites, inverse_of: :user
