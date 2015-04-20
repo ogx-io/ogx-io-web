@@ -1,15 +1,6 @@
 # coding: utf-8
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-
-    # flash[:notice] = t('users.github_binding_success')
-    # flash[:notice] = t('users.github_sign_in_success')
-    # flash[:notice] = t('users.github_sign_in_success')
-    # set_session_github_token(token)
-    # redirect_to new_user_registration_path
-    # flash[:error] = t('users.github_binding_error')
-
-
   def github
     # This object is an instance of class OmniAuth::AuthHash
     auth_object = env["omniauth.auth"]

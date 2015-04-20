@@ -242,7 +242,7 @@ class User
     # 这种情况是很常见的，用户用同一个email注册了ogx.io跟github，但是没有绑定关系
     # 自动绑定，然后登录
     if email_owner && !cur_user
-      return FOUND_BY_EMAIL
+      return GithubBindingStatus::FOUND_BY_EMAIL
     elsif email_owner && cur_user
       if email_owner == cur_user
         # 这种情况如果出现，一定是过去的bug，他的确绑定了，更新用户token吧
