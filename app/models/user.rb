@@ -159,7 +159,6 @@ class User
 
   def self.from_oauth_github(oauth_data)
     return User.new if oauth_data.blank?
-    puts "DATA: #{oauth_data}"
     auth_object = oauth_data
     token = oauth_data["credentials"]["token"]
     info = auth_object["extra"]["raw_info"] #.slice(:login, :avatar_url, :name, :company, :blog, :location, :email, :id)
@@ -182,7 +181,6 @@ class User
     user.city = ogx_info[:city] if user.city.blank?
     user.github_id = ogx_info[:github_id]
     user.github_user_name = ogx_info[:github_user_name]
-    puts "USFER: #{user.inspect}"
     user
   end
 
