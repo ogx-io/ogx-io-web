@@ -91,10 +91,14 @@
         margin-bottom: 15px;
       }
       .markdown-content {
-        font-size: 14px;
-        line-height: 23px;
+        font-size: 13px;
+        line-height: 21px;
+        min-height: 21px;
         p, ol, ul {
-          line-height: 23px;
+          line-height: 21px;
+        }
+        p {
+          margin-bottom: 0;
         }
       }
     }
