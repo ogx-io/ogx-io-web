@@ -15,13 +15,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'bootstrap-sass'
-gem 'devise'
 gem 'pundit'
 gem 'kaminari'
 gem 'simple_form'
 
+gem 'devise'
 gem 'omniauth-github'
-gem 'octokit', "~> 3.0"
 
 gem 'puma'
 gem 'social-share-button', git: 'https://github.com/cuterxy/social-share-button.git'
