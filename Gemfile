@@ -15,10 +15,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'bootstrap-sass'
-gem 'devise'
 gem 'pundit'
 gem 'kaminari'
 gem 'simple_form'
+
+gem 'devise'
+gem 'omniauth-github'
 
 gem 'puma'
 gem 'social-share-button', git: 'https://github.com/cuterxy/social-share-button.git'
@@ -46,6 +48,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'byebug'
 end
 group :test do
   gem 'cucumber-rails', :require => false

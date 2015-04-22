@@ -3,10 +3,19 @@
 <% end %>
 
 <% content_for :left_side do %>
-    &nbsp;
-<% end %>
+  <div class="panel panel-default user-setting-panel">
 
-<div class="update-user-form register-form">
+    <a class="setting-basic-user-info">基本信息</a><br>
+    <a class="setting-github">github绑定</a><br>
+    <!-- <a class="setting-preferences">偏好设置</a> -->
+  </div>
+<% end %>
+<div class="user-setting-panel-top">
+    <a class="setting-basic-user-info">基本信息</a>
+    <a class="setting-github">github绑定</a>
+    <!-- <a class="setting-preferences">偏好设置</a> -->
+</div>
+<div class="update-user-form register-form" id="setting-basic">
   <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :role => 'form'}) do |f| %>
       <h3><%= t('users.update_user') %></h3>
       <%= f.input :name, label: t('users.user_name'), hint: t('users.user_name_hint'), autofocus: true %>
@@ -35,3 +44,38 @@
       <%= f.submit t('action.update'), :class => 'button right' %>
   <% end %>
 </div>
+
+<div class="update-user-form register-form" id="setting-github">
+  <h3><%= t('users.github_info') %></h3>
+  <% unless current_user.github_access_token.empty?  %>
+    <p>id: <%= current_user.github_id %></p>
+    <p>user_name: <%= current_user.github_user_name %></p>
+  <% else %>
+    <%= link_to t('users.bind_github'), user_omniauth_authorize_path(:github) %>
+  <% end %>
+</div>
+
+<div class="update-user-form register-form" id="setting-preferences">
+  <h3><%= t('users.preferences') %></h3>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#setting-github").css('display', 'none');
+  $("#setting-preferences").css('display', 'none');
+  $(".setting-basic-user-info").on('click', function(){
+    $("#setting-github").css('display', 'none');
+    $("#setting-basic").css('display', 'block');
+    $("#setting-preferences").css('display', 'none');
+  });
+  $(".setting-github").on('click', function(){
+    $("#setting-github").css('display', 'block');
+    $("#setting-basic").css('display', 'none');
+    $("#setting-preferences").css('display', 'none');
+  });
+  $(".setting-preferences").on('click', function(){
+    $("#setting-github").css('display', 'none');
+    $("#setting-basic").css('display', 'none');
+    $("#setting-preferences").css('display', 'block');
+  });
+});
+</script>

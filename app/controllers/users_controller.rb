@@ -1,5 +1,6 @@
+# coding: utf-8
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, except: [:show, :posts, :topics, :elites]
+  before_action :authenticate_user!, except: [:show, :posts, :topics, :elites]
   before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :deleted_posts]
   after_action :verify_authorized
 
