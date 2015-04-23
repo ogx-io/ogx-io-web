@@ -44,11 +44,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # protected
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:github_access_token, :name, :email, :password, :password_confirmation, :nick, :intro, :city, :website, :avatar, :github_id, :github_user_name)
-    end
-  end
+  # def configure_permitted_parameters
+  #   devise_parameter_sanitizer.for(:sign_up) do |u|
+  #     u.permit(:github_access_token, :name, :email, :password, :password_confirmation, :nick, :intro, :city, :website, :avatar, :github_id, :github_user_name)
+  #   end
+  # end
 
   # You can put the params you want to permit in the empty array.
   # def configure_sign_up_params
