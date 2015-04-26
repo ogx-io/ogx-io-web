@@ -27,7 +27,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
     it "REGISTER_NEW_USER => new_user_registration_path" do
       allow(User).to receive(:github_token_status).and_return User::GithubBindingStatus::REGISTER_NEW_USER
       get :github
-      expect(response).to redirect_to(new_user_registration_path)
+      expect(response).to render_template('devise/registrations/new')
     end
     it "FOUND_BY_ID => root_path" do
       allow(User).to receive(:github_token_status).and_return User::GithubBindingStatus::FOUND_BY_ID

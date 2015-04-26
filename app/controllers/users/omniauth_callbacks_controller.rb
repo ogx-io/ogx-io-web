@@ -10,8 +10,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     case status
     # 这种情况，注册新用户
     when User::GithubBindingStatus::REGISTER_NEW_USER
-      session["devise.github_data"] = auth_object
-      redirect_to new_user_registration_path
+      user = User.from_oauth_github(auth_object)
+      render 'devise/registrations/new', locals: {resource: user}
     # 这种情况，为用户登录
     when User::GithubBindingStatus::TOKEN_OWNER_FOUND
       token_owner = User.where(github_access_token: token).first

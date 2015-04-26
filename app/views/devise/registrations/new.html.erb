@@ -6,11 +6,6 @@
     &nbsp;
 <% end %>
 
-<%# To avoid devise bug %>
-<% @github_data = session['devise.github_data'] %>
-<% @user = User.from_oauth_github(@github_data) %>
-<% resource = @user %>
-
 <div class="register-form">
   <%= simple_form_for resource, as: resource_name, url: registration_path(resource), html: {role: 'form'} do |f| %>
     <% if @github_data %>
