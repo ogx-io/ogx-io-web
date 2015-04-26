@@ -5,6 +5,8 @@ FactoryGirl.define do
     sequence(:email) {|n| "test#{n}@example.com" }
     password "please123"
     confirmed_at { Time.now }
+    created_at { Time.now }
+    updated_at { Time.now }
 
     trait :admin do
       role 'admin'
