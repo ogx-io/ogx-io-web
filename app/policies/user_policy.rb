@@ -31,7 +31,16 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    @current_user.admin?
+    record == @current_user
+    true
+  end
+
+  def edit_info?
+    update?
+  end
+
+  def edit_avatar?
+    update?
   end
 
   def destroy?

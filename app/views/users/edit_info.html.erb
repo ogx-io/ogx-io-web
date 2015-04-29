@@ -1,0 +1,18 @@
+<% content_for :title do %>
+    <%= t('users.update_user') %>
+<% end %>
+
+<div class="update-user-form">
+  <h3 class="title"><%= t('users.update_user') %></h3>
+  <%= render partial: 'update_nav', locals: {index: 1} %>
+  <%= simple_form_for(@user, url: user_path(@user), :html => {:method => :put, :role => 'form'}) do |f| %>
+      <%= f.input :nick, label: t('users.nick'), hint: t('users.nick_hint') %>
+      <%= f.input :city, label: t('users.city'), hint: t('users.city_hint') %>
+      <%= f.input :intro, label: t('users.intro'), hint: t('users.intro_hint') %>
+      <%= f.input :website, label: t('users.website'), placeholder: t('users.website_placeholder'), hint: t('users.website_hint') %>
+
+      <div class="btn-container">
+        <%= f.submit t('action.update'), :class => 'button' %>
+      </div>
+  <% end %>
+</div>

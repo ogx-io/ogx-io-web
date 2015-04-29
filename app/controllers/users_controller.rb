@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :posts, :topics, :elites]
-  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :deleted_posts]
+  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar]
   after_action :verify_authorized
 
   def show
@@ -35,6 +35,28 @@ class UsersController < ApplicationController
     render 'elites'
   end
 
+  def edit_info
+    authorize @user
+    render layout: 'admin'
+  end
+
+  def edit_avatar
+    authorize @user
+    render layout: 'admin'
+  end
+
+  def update
+    authorize @user
+    respond_to do |format|
+      if @user.update(user_params)
+        flash[:notice] = I18n.t('devise.registrations.updated')
+        format.html { redirect_to :back }
+      else
+        format.html { redirect_to :back }
+      end
+    end
+  end
+
   private
 
   def set_user
@@ -42,4 +64,7 @@ class UsersController < ApplicationController
     @user = User.find_by(name: params[:name]) if params[:name]
   end
 
+  def user_params
+    params[:user].permit(:nick, :city, :intro, :website, :avatar)
+  end
 end

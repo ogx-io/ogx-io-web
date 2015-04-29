@@ -103,6 +103,8 @@ Rails.application.routes.draw do
       get :topics
       get :posts
       get :elites
+      get :edit_info
+      get :edit_avatar
     end
 
     resources :notifications, shallow: true do
