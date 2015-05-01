@@ -103,31 +103,30 @@
     display: inline-block;
     border-radius: 3px;
   }
-}
-.user-setting-panel {
-  margin-top: 15px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  text-align: center;
+
 }
 
-.user-setting-panel-top {
-  @media (max-width: 992px) {
-    display: block;
+.update-user-form {
+  margin: auto;
+  max-width: 600px;
+  .title {
+    margin-bottom: 20px;
   }
-
-  height: 20px;
-  border-radius: 6px;
-  background-color: whitesmoke;
-  max-width: 520px;
-  margin: 0 auto;
-  margin-top: 15px;
-  margin-bottom: -15px;
-  width: 100%;
-  padding-left: 15px;
-
-  @media (min-width: 992px) {
-    display: none;
+  .btn-container {
+    text-align: center;
+    margin: auto;
   }
-  
+}
+
+.bind-accounts-container {
+  .title {
+    color: #999;
+    border-bottom: solid 1px #EEE;
+    margin-bottom: 5px;
+  }
+  .content {
+    p {
+      margin-bottom: 5px;
+    }
+  }
 }

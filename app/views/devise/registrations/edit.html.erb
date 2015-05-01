@@ -2,80 +2,23 @@
     <%= t('users.update_user') %>
 <% end %>
 
-<% content_for :left_side do %>
-  <div class="panel panel-default user-setting-panel">
-
-    <a class="setting-basic-user-info">基本信息</a><br>
-    <a class="setting-github">github绑定</a><br>
-    <!-- <a class="setting-preferences">偏好设置</a> -->
-  </div>
-<% end %>
-<div class="user-setting-panel-top">
-    <a class="setting-basic-user-info">基本信息</a>
-    <a class="setting-github">github绑定</a>
-    <!-- <a class="setting-preferences">偏好设置</a> -->
-</div>
-<div class="update-user-form register-form" id="setting-basic">
+<div class="update-user-form">
+  <h3 class="title"><%= t('users.update_user') %></h3>
+  <%= render partial: 'users/update_nav', locals: {index: 4} %>
   <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :role => 'form'}) do |f| %>
-      <h3><%= t('users.update_user') %></h3>
       <%= f.input :name, label: t('users.user_name'), hint: t('users.user_name_hint'), autofocus: true %>
-      <%= f.input :nick, label: t('users.nick'), hint: t('users.nick_hint') %>
       <%= f.input :email, label: t('users.email'), hint: devise_mapping.confirmable? && resource.pending_reconfirmation? ? t('users.email_edit_hint', unconfirmed_email: resource.unconfirmed_email) : '' %>
-      <%= f.input :city, label: t('users.city'), hint: t('users.city_hint') %>
-      <%= f.input :intro, label: t('users.intro'), hint: t('users.intro_hint') %>
-      <%= f.input :website, label: t('users.website'), placeholder: t('users.website_placeholder'), hint: t('users.website_hint') %>
 
-      <fieldset>
-        <%= f.input :avatar, label: t('users.update_avatar'), as: :file %>
-        <div>
-          <div class="pull-left"><%= t('users.current_avatar') %>: </div>
-          <%= avatar(resource, 160, false) %>
-        </div>
-      </fieldset>
-      <fieldset>
-        <p><%= t('users.keep_blank_if_not_change_password') %></p>
-        <%= f.input :password, label: t('users.password'), hint: t('users.password_hint'), autocomplete: 'off' %>
-        <%= f.input :password_confirmation, label: t('users.password_confirmation'), hint: t('users.password_confirmation_hint') %>
-      </fieldset>
+      <p><%= t('users.keep_blank_if_not_change_password') %></p>
+      <%= f.input :password, label: t('users.password'), hint: t('users.password_hint'), autocomplete: 'off' %>
+      <%= f.input :password_confirmation, label: t('users.password_confirmation'), hint: t('users.password_confirmation_hint') %>
+
       <fieldset>
         <p><%= t('users.need_password_before_update_user') %></p>
         <%= f.input :current_password, label: t('users.current_password'), autocomplete: 'off' %>
       </fieldset>
-      <%= f.submit t('action.update'), :class => 'button right' %>
+      <div class="btn-container">
+        <%= f.submit t('action.update'), :class => 'button' %>
+      </div>
   <% end %>
 </div>
-
-<div class="update-user-form register-form" id="setting-github">
-  <h3><%= t('users.github_info') %></h3>
-  <% unless current_user.github_access_token.empty?  %>
-    <p>id: <%= current_user.github_id %></p>
-    <p>user_name: <%= current_user.github_user_name %></p>
-  <% else %>
-    <%= link_to t('users.bind_github'), user_omniauth_authorize_path(:github) %>
-  <% end %>
-</div>
-
-<div class="update-user-form register-form" id="setting-preferences">
-  <h3><%= t('users.preferences') %></h3>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){
-  $("#setting-github").css('display', 'none');
-  $("#setting-preferences").css('display', 'none');
-  $(".setting-basic-user-info").on('click', function(){
-    $("#setting-github").css('display', 'none');
-    $("#setting-basic").css('display', 'block');
-    $("#setting-preferences").css('display', 'none');
-  });
-  $(".setting-github").on('click', function(){
-    $("#setting-github").css('display', 'block');
-    $("#setting-basic").css('display', 'none');
-    $("#setting-preferences").css('display', 'none');
-  });
-  $(".setting-preferences").on('click', function(){
-    $("#setting-github").css('display', 'none');
-    $("#setting-basic").css('display', 'none');
-    $("#setting-preferences").css('display', 'block');
-  });
-});
-</script>

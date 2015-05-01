@@ -1,0 +1,6 @@
+<ul class="mb10 nav nav-tabs" role="tablist">
+  <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to t('users.edit_info'), edit_info_user_path(@user) %></li>
+  <li role="presentation" class="<%= "active" if index == 2 %>"><%= link_to t('users.edit_avatar'), edit_avatar_user_path(@user) %></li>
+  <li role="presentation" class="<%= "active" if index == 3 %>"><%= link_to t('users.edit_accounts'), edit_accounts_user_path(@user) %></li>
+  <li role="presentation" class="<%= "active" if index == 4 %>"><%= link_to t('users.edit_login'), edit_user_registration_path %></li>
+</ul>
