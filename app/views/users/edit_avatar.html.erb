@@ -6,11 +6,10 @@
   <h3 class="title"><%= t('users.update_user') %></h3>
   <%= render partial: 'update_nav', locals: {index: 2} %>
   <%= simple_form_for(@user, url: user_path(@user), :html => {:method => :put, :role => 'form'}) do |f| %>
-      <%= f.input :avatar, label: t('users.update_avatar'), as: :file %>
-      <div class="clearfix">
-        <div class="pull-left"><%= t('users.current_avatar') %>: </div>
+      <div class="current-avatar">
         <%= avatar(@user, 160, false) %>
       </div>
+      <%= f.input :avatar, label: t('users.update_avatar'), as: :file %>
 
       <div class="btn-container">
         <%= f.submit t('action.update'), :class => 'button' %>
