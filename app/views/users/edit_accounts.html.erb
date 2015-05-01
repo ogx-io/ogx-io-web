@@ -7,11 +7,14 @@
   <%= render partial: 'update_nav', locals: {index: 3} %>
   <div class="bind-accounts-container">
     <div class="title">GitHub</div>
-    <% unless @user.github_access_token.empty?  %>
-        <p>id: <%= current_user.github_id %></p>
-        <p>user_name: <%= current_user.github_user_name %></p>
-    <% else %>
-        <%= link_to t('users.bind_github'), user_omniauth_authorize_path(:github) %>
-    <% end %>
+    <div class="content">
+      <% unless @user.github_access_token.empty?  %>
+          <p>
+            <%= t('users.binded_account') %>: <%= current_user.github_id %>
+          </p>
+      <% else %>
+          <%= link_to t('users.bind_github'), user_omniauth_authorize_path(:github) %>
+      <% end %>
+    </div>
   </div>
 </div>
