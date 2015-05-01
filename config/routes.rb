@@ -105,6 +105,7 @@ Rails.application.routes.draw do
       get :elites
       get :edit_info
       get :edit_avatar
+      get :edit_accounts
     end
 
     resources :notifications, shallow: true do

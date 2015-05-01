@@ -144,6 +144,7 @@ zh-CN:
     edit_info: '基本信息'
     edit_avatar: '用户头像'
     edit_login: '登录信息'
+    edit_accounts: '账号绑定'
 
     mailer:
       confirmation_instructions_html: "<p>您好，%{user}！</p>

@@ -43,6 +43,10 @@ class UserPolicy < ApplicationPolicy
     update?
   end
 
+  def edit_accounts?
+    update?
+  end
+
   def destroy?
     return false if @current_user == @user
     @current_user.admin?

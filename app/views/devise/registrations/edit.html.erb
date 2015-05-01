@@ -4,7 +4,7 @@
 
 <div class="update-user-form">
   <h3 class="title"><%= t('users.update_user') %></h3>
-  <%= render partial: 'users/update_nav', locals: {index: 3} %>
+  <%= render partial: 'users/update_nav', locals: {index: 4} %>
   <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :role => 'form'}) do |f| %>
       <%= f.input :name, label: t('users.user_name'), hint: t('users.user_name_hint'), autofocus: true %>
       <%= f.input :email, label: t('users.email'), hint: devise_mapping.confirmable? && resource.pending_reconfirmation? ? t('users.email_edit_hint', unconfirmed_email: resource.unconfirmed_email) : '' %>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :posts, :topics, :elites]
-  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar]
+  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar, :edit_accounts]
   after_action :verify_authorized
 
   def show
@@ -41,6 +41,11 @@ class UsersController < ApplicationController
   end
 
   def edit_avatar
+    authorize @user
+    render layout: 'admin'
+  end
+
+  def edit_accounts
     authorize @user
     render layout: 'admin'
   end
