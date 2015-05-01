@@ -7,14 +7,25 @@
 <% end %>
 
 <div class="register-form">
-  <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: {role: 'form'} do |f| %>
+  <%= simple_form_for resource, as: resource_name, url: registration_path(resource), html: {role: 'form'} do |f| %>
+    <% if @github_data %>
+      <h3><%= t('users.sign_up_with_github') %></h3>
+    <% else %>
       <h3><%= t('users.sign_up') %></h3>
-      <%= f.input :name, label: t('users.user_name'), hint: t('users.user_name_hint'), autofocus: true, required: false,
+    <% end %>
+    <%= f.input :name, label: t('users.user_name'), hint: t('users.user_name_hint'), autofocus: true, required: false,
         input_html: {autocapitalize: "off", autocorrect: "none", spellcheck: "false"} %>
-      <%= f.input :nick, label: t('users.nick'), hint: t('users.nick_hint'), required: false %>
-      <%= f.input :email, label: t('users.email'), hint: t('users.email_hint'), required: false %>
-      <%= f.input :password, label: t('users.password'), hint: t('users.password_hint'), required: false %>
-      <%= f.input :password_confirmation, label: t('users.password_confirmation'), hint: t('users.password_confirmation_hint'), required: false %>
+    <%= f.input :nick, label: t('users.nick'), hint: t('users.nick_hint'), required: false %>
+    <%= f.input :email, label: t('users.email'), hint: t('users.email_hint'), required: false %>
+    <%= f.input :password, label: t('users.password'), hint: t('users.password_hint'), required: false %>
+    <%= f.input :password_confirmation, label: t('users.password_confirmation'), hint: t('users.password_confirmation_hint'), required: false %>
+    <%= f.input :github_access_token, as: "hidden" , required: false %>
+    <%= f.input :github_id, as: "hidden" , required: false %>
+    <%= f.input :github_user_name, as: "hidden" , required: false %>
+    <% if @github_data %>
+      <%= f.button :submit, t('action.finish_sign_up'), class: 'button right' %>
+    <% else %>
       <%= f.button :submit, t('action.sign_up'), class: 'button right' %>
+    <% end %>
   <% end %>
 </div>
