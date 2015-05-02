@@ -10,7 +10,7 @@
       <tbody>
       <tr>
         <td>GitHub</td>
-        <td><%= @user.github_user_name.empty? ? '未绑定' : link_to(@user.github_user_name, 'https://github.com/' + @user.github_user_name) %></td>
+        <td><%= @user.github_user_name.empty? ? '未绑定' : link_to(@user.github_user_name, 'https://github.com/' + @user.github_user_name, target: '_blank') %></td>
         <td>
           <% if @user.github_user_name.empty? %>
             <%= link_to t('users.bind_account'), user_omniauth_authorize_path(:github), id: 'bind-github-account' %>

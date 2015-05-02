@@ -36,31 +36,31 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # 这种情况，告诉用户，你要绑定的github被别的账号绑定了
     when User::GithubBindingStatus::CURRENT_USER_IS_NOT_TOKEN_OWNER
       flash[:error] = '这个github账号已经被绑定了'
-      redirect_to edit_user_registration_path
+      redirect_to edit_accounts_user_path(current_user)
     # 这种情况，告诉用户，你要绑定的github被别的账号绑定了
     # 然而，还要更新一下那个用户的信息
     when User::GithubBindingStatus::FOUND_BY_ID_BUT_BINDED_GITHUB
       github_id_owner = User.where(github_id: github_user_info[:id]).first
       update_user_with_github_information(github_id_owner, token, github_user_info[:id], github_user_info[:login])
       flash[:error] = '这个github账号已经被绑定了'
-      redirect_to edit_user_registration_path
+      redirect_to edit_accounts_user_path(current_user)
     # 这种情况，在神级bug的情况下会出现，为他绑定就好了
     when User::GithubBindingStatus::FOUND_BY_EMAIL_BUT_BINDED_GITHUB
       update_user_with_github_information(current_user, token, github_user_info[:id], github_user_info[:login])
-      redirect_to edit_user_registration_path
+      redirect_to edit_accounts_user_path(current_user)
     # 这种情况，可以为他绑定
     when User::GithubBindingStatus::FOUND_BY_EMAIL_BUT_NOT_BINDED_GITHUB
       update_user_with_github_information(current_user, token, github_user_info[:id], github_user_info[:login])
-      redirect_to edit_user_registration_path
+      redirect_to edit_accounts_user_path(current_user)
     # 这种情况，告诉用户，你都绑定了，不必再绑定
     when User::GithubBindingStatus::TOKEN_OWNER_IS_CURRENT_USER
       flash[:notice] = '您已经绑定了github'
-      redirect_to edit_user_registration_path
+      redirect_to edit_accounts_user_path(current_user)
     # 这种情况，用户已经绑定了，但是保存的信息旧了，应该要更新一下
     when User::GithubBindingStatus::TOKEN_OWNER_IS_CURRENT_USER_SHOULD_UPDATE_TOKEN
       update_user_with_github_information(current_user, token, github_user_info[:id], github_user_info[:login])
       flash[:notice] = '您已经绑定了github'
-      redirect_to edit_user_registration_path
+      redirect_to edit_accounts_user_path(current_user)
     end
   end
 
