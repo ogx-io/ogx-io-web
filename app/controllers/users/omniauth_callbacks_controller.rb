@@ -32,7 +32,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # 这种情况，为当前用户做绑定
     when User::GithubBindingStatus::BINDING_FOR_CURRENT_USER
       update_user_with_github_information(current_user, token, github_user_info[:id], github_user_info[:login])
-      redirect_to edit_user_registration_path
+      redirect_to edit_accounts_user_path(current_user)
     # 这种情况，告诉用户，你要绑定的github被别的账号绑定了
     when User::GithubBindingStatus::CURRENT_USER_IS_NOT_TOKEN_OWNER
       flash[:error] = '这个github账号已经被绑定了'
