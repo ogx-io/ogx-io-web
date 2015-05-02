@@ -31,8 +31,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    record == @current_user
-    true
+    @user == @current_user
   end
 
   def edit_info?
