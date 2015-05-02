@@ -6,15 +6,20 @@
   <h3 class="title"><%= t('users.update_user') %></h3>
   <%= render partial: 'update_nav', locals: {index: 3} %>
   <div class="bind-accounts-container">
-    <div class="title">GitHub</div>
-    <div class="content">
-      <% unless @user.github_access_token.empty?  %>
-          <p>
-            <%= t('users.binded_account') %>: <%= @user.github_user_name %>
-          </p>
-      <% else %>
-          <%= link_to t('users.bind_github'), user_omniauth_authorize_path(:github) %>
-      <% end %>
-    </div>
+    <table class="table table-hover">
+      <tbody>
+      <tr>
+        <td>GitHub</td>
+        <td><%= @user.github_user_name.empty? ? '未绑定' : link_to(@user.github_user_name, 'https://github.com/' + @user.github_user_name) %></td>
+        <td>
+          <% if @user.github_user_name.empty? %>
+            <%= link_to t('users.bind_account'), user_omniauth_authorize_path(:github), id: 'bind-github-account' %>
+          <% else %>
+            <%= link_to t('users.unbind_account'), unbind_account_user_path(@user, type: 'github'), method: :patch, id: 'unbind-github-account' %>
+          <% end %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

@@ -119,14 +119,11 @@
 }
 
 .bind-accounts-container {
-  .title {
-    color: #999;
-    border-bottom: solid 1px #EEE;
-    margin-bottom: 5px;
-  }
-  .content {
-    p {
-      margin-bottom: 5px;
+  .table {
+    tbody:first-child {
+      td {
+        border-top: none;
+      }
     }
   }
 }

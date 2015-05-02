@@ -107,6 +107,7 @@ Rails.application.routes.draw do
       get :edit_info
       get :edit_avatar
       get :edit_accounts
+      patch :unbind_account
     end
 
     resources :notifications, shallow: true do
