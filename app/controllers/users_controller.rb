@@ -1,7 +1,7 @@
 # coding: utf-8
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :posts, :topics, :elites]
-  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar, :edit_accounts]
+  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar, :edit_accounts, :unbind_account]
   after_action :verify_authorized
 
   def show
@@ -60,6 +60,16 @@ class UsersController < ApplicationController
       else
         format.html { redirect_to :back }
       end
+    end
+  end
+
+  def unbind_account
+    authorize @user
+    if params[:type] == 'github'
+      @user.update(github_access_token: '', github_user_name: '', github_id: '')
+    end
+    respond_to do |format|
+      format.html { redirect_to :back }
     end
   end
 
