@@ -4,6 +4,14 @@
 <div class="col-lg-7 col-md-8 right-side-layout">
   <%= render partial: 'profile_nav', locals: {index: 1} %>
   <div class="user-profile">
+    <% if @user.user_detail && !@user.user_detail.intro_html.blank? %>
+    <div class="profile-title">
+      <span><%= t('users.self_intro') %></span>
+    </div>
+    <div class="profile-content self-intro">
+      <%= sanitize_self_intro @user.user_detail.intro_html %>
+    </div>
+    <% end %>
     <div class="profile-title">
       <span><%= t('users.contributes') %></span>
     </div>

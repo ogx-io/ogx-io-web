@@ -100,4 +100,17 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe '#update_self_intro' do
+    it 'can update the self introduction of a user' do
+      sign_in :user, user
+      test_intro = '# my intro'
+      request.env["HTTP_REFERER"] = edit_self_intro_user_path(user)
+      patch :update_self_intro, id: user.id, intro: test_intro
+      expect(response).to redirect_to(edit_self_intro_user_path(user))
+      user.reload
+      expect(user.user_detail.intro).to eq(test_intro)
+      expect(user.user_detail.intro_html).to eq('<h1>my intro</h1>')
+    end
+  end
+
 end

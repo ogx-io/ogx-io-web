@@ -92,6 +92,7 @@ class User
   has_many :blocked_users
   has_many :notifications, class_name: 'Notification::Base', dependent: :delete
   has_many :favorites, inverse_of: :user
+  has_one :user_detail, dependent: :delete
 
   def has_liked?(likable)
     Like.where(user: self, likable: likable).exists?

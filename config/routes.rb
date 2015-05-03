@@ -107,6 +107,8 @@ Rails.application.routes.draw do
       get :edit_info
       get :edit_avatar
       get :edit_accounts
+      get :edit_self_intro
+      patch :update_self_intro
       patch :unbind_account
     end
 

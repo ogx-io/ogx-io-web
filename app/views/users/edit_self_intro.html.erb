@@ -1,0 +1,14 @@
+<% content_for :title do %>
+    <%= t('users.update_user') %>
+<% end %>
+
+<div class="update-user-form">
+  <h3 class="title"><%= t('users.update_user') %></h3>
+  <%= render partial: 'update_nav', locals: {index: 5} %>
+  <%= form_tag update_self_intro_user_path(@user), method: :patch do %>
+      <textarea name="intro" class="self-intro-input form-control"><%= @user.user_detail.intro %></textarea>
+      <div class="btn-container">
+        <%= submit_tag t('action.update'), :class => 'button' %>
+      </div>
+  <% end %>
+</div>
