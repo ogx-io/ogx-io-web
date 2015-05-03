@@ -46,6 +46,14 @@ class UserPolicy < ApplicationPolicy
     update?
   end
 
+  def edit_self_intro?
+    update?
+  end
+
+  def update_self_intro?
+    update?
+  end
+
   def unbind_account?
     update?
   end

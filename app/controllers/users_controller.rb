@@ -1,7 +1,7 @@
 # coding: utf-8
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :posts, :topics, :elites]
-  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar, :edit_accounts, :unbind_account]
+  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar, :edit_accounts, :unbind_account, :edit_self_intro, :update_self_intro]
   after_action :verify_authorized
 
   def show
@@ -49,6 +49,24 @@ class UsersController < ApplicationController
   def edit_accounts
     authorize @user
     render layout: 'admin'
+  end
+
+  def edit_self_intro
+    authorize @user
+    render layout: 'admin'
+  end
+
+  def update_self_intro
+    authorize @user
+    @user.create_user_detail unless @user.user_detail
+    respond_to do |format|
+      if @user.user_detail.update(intro: params[:intro])
+        flash[:notice] = I18n.t('devise.registrations.updated')
+        format.html { redirect_to :back }
+      else
+        format.html { redirect_to :back }
+      end
+    end
   end
 
   def update
