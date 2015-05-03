@@ -104,6 +104,12 @@
     border-radius: 3px;
   }
 
+  .self-intro {
+    font-size: 14px;
+    a {
+      font-size: 14px;
+    }
+  }
 }
 
 .update-user-form {
@@ -115,6 +121,11 @@
   .btn-container {
     text-align: center;
     margin: auto;
+  }
+  .self-intro-input {
+    min-height: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
 

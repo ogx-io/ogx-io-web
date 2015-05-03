@@ -65,6 +65,10 @@ module ApplicationHelper
     sanitize body, :tags => %w(p br b i strong em strike u a span img), :attributes => %w(href src class title alt target rel style)
   end
 
+  def sanitize_self_intro(body)
+    sanitize body, :tags => %w(p br b i strong em strike u a span img), :attributes => %w(href src class title alt target rel style)
+  end
+
   def elite_breadcrumbs(elite_node)
     result = []
     elite_node.parents.reverse.each do |p|
