@@ -29,7 +29,6 @@ zh-CN:
     elite: '精华帖'
     comment: '评论'
     got_likes: '收获喜欢'
-    accepted_pr: '有效PR'
     deleted: '已删除'
     top_post: '置顶'
     preview_post: '预览帖子'
@@ -94,6 +93,7 @@ zh-CN:
   layout:
     home: '首页'
     boards: '板块列表'
+    contributors: '贡献者'
     backend: '管理后台'
     notification: '提醒'
     need_sign_in_html: '您是匿名浏览用户，需要 %{sign_in} 或 %{sign_up} 之后才能发文'
@@ -236,6 +236,10 @@ zh-CN:
       post_button: '发 帖'
     recruiting_moderator: '诚征版主中'
     board_statistic: '本版统计'
+
+  merged_pull_requests:
+    merged_time: '收录时间'
+    merged_pr: '有效PR'
 
   admin:
     backend: '管理后台'
