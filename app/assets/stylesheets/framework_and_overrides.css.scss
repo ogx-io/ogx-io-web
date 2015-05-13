@@ -80,6 +80,9 @@ main {
   padding-bottom: 80px;
   margin-top: 66px; // accommodate the navbar
   margin-bottom: 66px;
+  @media (min-width: 768px) {
+    min-height: 600px;
+  }
 }
 
 .flash-msg {
