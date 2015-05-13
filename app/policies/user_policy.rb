@@ -6,6 +6,10 @@ class UserPolicy < ApplicationPolicy
     @user = model
   end
 
+  def admin?
+    @current_user.admin?
+  end
+
   def manage?
     @current_user.admin? || @current_user.managing_boards.count > 0
   end

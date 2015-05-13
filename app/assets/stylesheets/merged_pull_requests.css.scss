@@ -1,0 +1,27 @@
+// Place all the styles related to the MergedPullRequests controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pr-merged-time {
+  color: #999;
+}
+
+.personal-merged-prs {
+  margin-top: -10px;
+  tbody > tr {
+    td {
+      border-top: dashed 1px #EEE;
+    }
+    td.title {
+      padding-left: 0;
+    }
+    td.time {
+      color: #BBB;
+    }
+  }
+  tr:first-of-type {
+    td {
+      border-top: none;
+    }
+  }
+}

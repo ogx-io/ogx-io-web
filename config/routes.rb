@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
 
   root to: 'visitors#index'
+  get 'merged_prs', to: 'visitors#merged_prs'
 
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :likes
-
   resources :favorites
-
   resources :categories
   resources :pictures
 

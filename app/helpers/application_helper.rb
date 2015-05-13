@@ -45,6 +45,28 @@ module ApplicationHelper
     end
   end
 
+  def pr_avatar(pr, size = 40)
+    local_user = pr.local_user
+    if local_user
+      avatar(local_user, size)
+    else
+      link_to pr.remote_user_link, target: '_blank' do
+        content_tag :div, class: 'avatar', style: "max-width: #{size}px;max-height: #{size}px;" do
+          image_tag(pr.remote_user_avatar, alt: '', title: pr.remote_user_name)
+        end
+      end
+    end
+  end
+
+  def pr_author(pr)
+    local_user = pr.local_user
+    if local_user
+      user_link(local_user)
+    else
+      link_to(pr.remote_user_name, pr.remote_user_link, class: 'user-link', target: '_blank').html_safe
+    end
+  end
+
   def full_datetime(time)
     time.strftime("%F %T")
   end

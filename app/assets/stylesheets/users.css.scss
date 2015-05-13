@@ -66,11 +66,15 @@
 .user-profile {
   .profile-title {
     border-bottom: solid 1px #EEE;
+    margin-top: 20px;
     margin-bottom: 10px;
     span {
       font-weight: bold;
       color: #999;
     }
+  }
+  .profile-title:first-of-type {
+    margin-top: 15px;
   }
 
   .contribute-row {

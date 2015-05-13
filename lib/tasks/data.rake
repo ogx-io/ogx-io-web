@@ -48,13 +48,61 @@ namespace :data do
 
   desc "remove user collecting boards"
   task remove_user_collecting_boards: :environment do
-    User.each {|user| user.unset(:collecting_board_ids)}
+    User.each { |user| user.unset(:collecting_board_ids) }
   end
 
   desc "correct the likes count of every user"
   task set_author_of_like: :environment do
     Like.each do |like|
       like.update(author_id: like.likable.author_id)
+    end
+  end
+
+  desc 'fetch the merged pull requests from GitHub'
+  task fetch_merged_pull_requests: :environment do
+    require 'net/http'
+    uri = URI('https://api.github.com/repos/ogx-io/ogx-io-web/pulls?state=closed')
+    body = Net::HTTP.get(uri)
+    pull_requests = JSON.parse(body)
+    pull_requests.each do |pr|
+      unless pr['merged_at'].blank?
+        remote_id = pr['id'].to_s
+        remote_user_id = pr['user']['id'].to_s
+        raw_info = pr.to_json
+        merged_at = Time.parse(pr['merged_at'])
+        remote_created_at = Time.parse(pr['created_at'])
+        title = pr['title']
+        link = pr['html_url']
+        remote_user_name = pr['user']['login']
+        remote_user_link = pr['user']['html_url']
+        remote_user_avatar = pr['user']['avatar_url']
+        if MergedPullRequest.where(pr_type: 'GitHub', remote_id: remote_id).exists?
+          db_pr = MergedPullRequest.where(pr_type: 'GitHub', remote_id: remote_id).first
+          db_pr.remote_user_id = remote_user_id
+          db_pr.raw_info = raw_info
+          db_pr.merged_at = merged_at
+          db_pr.remote_created_at = remote_created_at
+          db_pr.title = title
+          db_pr.link = link
+          db_pr.remote_user_name = remote_user_name
+          db_pr.remote_user_link = remote_user_link
+          db_pr.remote_user_avatar = remote_user_avatar
+          db_pr.save
+        else
+          MergedPullRequest.create!(pr_type: 'GitHub',
+                                    remote_id: remote_id,
+                                    remote_user_id: remote_user_id,
+                                    raw_info: raw_info,
+                                    repos: 'ogx-io/ogx-io-web',
+                                    merged_at: merged_at,
+                                    remote_created_at: remote_created_at,
+                                    title: title,
+                                    link: link,
+                                    remote_user_name: remote_user_name,
+                                    remote_user_link: remote_user_link,
+                                    remote_user_avatar: remote_user_avatar)
+        end
+      end
     end
   end
 

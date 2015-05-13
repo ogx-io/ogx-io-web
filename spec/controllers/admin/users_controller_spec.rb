@@ -27,6 +27,8 @@ RSpec.describe Admin::UsersController, type: :controller do
       xhr :post, :update, id: another_user.id, user: @new_user_info
       expect(response).to be_success
       expect(request.flash[:error]).not_to be_blank
+      another_user.reload
+      expect(another_user.status).not_to eq(1)
     end
 
     it 'fails when the current user is a normal user' do
@@ -34,6 +36,8 @@ RSpec.describe Admin::UsersController, type: :controller do
       xhr :post, :update, id: another_user.id, user: @new_user_info
       expect(response).to be_success
       expect(request.flash[:error]).not_to be_blank
+      another_user.reload
+      expect(another_user.status).not_to eq(1)
     end
   end
 end

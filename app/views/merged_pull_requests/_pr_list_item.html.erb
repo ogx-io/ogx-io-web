@@ -1,0 +1,17 @@
+<div class="list-item">
+  <div class="author-avatar pull-left">
+    <%= pr_avatar pr, 40 %>
+  </div>
+  <div class="content">
+    <div class="title">
+      <%= link_to pr.title, pr.link, target: '_blank' %>
+    </div>
+    <div class="info">
+      <span class="pr-info-title"><%= t('global.author') %>: </span>
+      <span class="pr-author"><%= pr_author pr %></span>
+      &nbsp;&nbsp;
+      <span class="pr-info-title"><%= t('merged_pull_requests.merged_time') %>: </span>
+      <span class="pr-merged-time"><%= time_date pr.merged_at %></span>
+    </div>
+  </div>
+</div>

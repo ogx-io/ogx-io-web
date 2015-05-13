@@ -28,7 +28,7 @@ describe UserPolicy do
 
   permissions :update? do
     it "allows current user to make updates" do
-      expect(subject).to permit(current_user)
+      expect(subject).to permit(current_user, current_user)
     end
   end
 

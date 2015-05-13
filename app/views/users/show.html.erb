@@ -24,7 +24,7 @@
       <div class="contribute-row clearfix">
         <%= render partial: 'users/contribute_item', locals: {subject: t('global.elite'), count: @user.elite_posts.normal.count} %>
         <%= render partial: 'users/contribute_item', locals: {subject: t('global.got_likes'), count: @user.got_likes.count} %>
-        <%= render partial: 'users/contribute_item', locals: {subject: t('global.accepted_pr'), count: 0} %>
+        <%= render partial: 'users/contribute_item', locals: {subject: t('merged_pull_requests.merged_pr'), count: @user.merged_prs.count} %>
       </div>
     </div>
     <% if @user.managing_boards.count > 0 %>
@@ -35,6 +35,23 @@
           <% @user.managing_boards.each do |board| %>
           <%= link_to board.name, pretty_path_for_node(board), class: 'board-link-item' %>
           <% end %>
+        </div>
+    <% end %>
+    <% if @user.merged_prs.count > 0 %>
+        <div class="profile-title">
+          <span><%= t('merged_pull_requests.merged_pr') %></span>
+        </div>
+        <div class="profile-content">
+          <table class="table personal-merged-prs">
+            <tbody>
+            <% @user.merged_prs.each do |pr| %>
+                <tr>
+                  <td class="title"><%= link_to pr.title, pr.link, target: '_blank' %></td>
+                  <td class="time"><%= time_date pr.merged_at %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
         </div>
     <% end %>
   </div>

@@ -1,0 +1,8 @@
+<div class="col-sm-7 front-page right-side-layout">
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li><%= t('merged_pull_requests.merged_pr') %></li>
+    </ol>
+  </div>
+  <%= render partial: "merged_pull_requests/pr_list_item", as: :pr, collection: @merged_pull_requests %>
+</div>
