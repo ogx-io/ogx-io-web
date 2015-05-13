@@ -94,6 +94,14 @@ class User
   has_many :favorites, inverse_of: :user
   has_one :user_detail, dependent: :delete
 
+  def merged_prs
+    if github_id
+      MergedPullRequest.where(pr_type: 'GitHub', repos: 'ogx-io/ogx-io-web', remote_user_id: github_id)
+    else
+      []
+    end
+  end
+
   def has_liked?(likable)
     Like.where(user: self, likable: likable).exists?
   end

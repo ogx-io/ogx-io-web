@@ -5,3 +5,23 @@
 .pr-merged-time {
   color: #999;
 }
+
+.personal-merged-prs {
+  margin-top: -10px;
+  tbody > tr {
+    td {
+      border-top: dashed 1px #EEE;
+    }
+    td.title {
+      padding-left: 0;
+    }
+    td.time {
+      color: #BBB;
+    }
+  }
+  tr:first-of-type {
+    td {
+      border-top: none;
+    }
+  }
+}
