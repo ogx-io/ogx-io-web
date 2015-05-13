@@ -15,7 +15,7 @@ class Admin::UsersController < ApplicationController
   # PATCH/PUT /admin/users/1
   # PATCH/PUT /admin/users/1.json
   def update
-    authorize @user, :manage?
+    authorize @user, :admin?
     @user.update(user_params)
     respond_to do |format|
       format.js { render 'refresh' }

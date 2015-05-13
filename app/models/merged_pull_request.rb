@@ -11,9 +11,9 @@ class MergedPullRequest
   field :merged_at, type: Time
   field :title, type: String
   field :link, type: String
-  field :remote_user_name
-  field :remote_user_link
-  field :remote_user_avatar
+  field :remote_user_name, type: String
+  field :remote_user_link, type: String
+  field :remote_user_avatar, type: String
 
   def local_user
     user = nil
