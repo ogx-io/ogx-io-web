@@ -38,9 +38,8 @@ gem "non-stupid-digest-assets"
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'capistrano-rvm'
-end
+  gem 'capistrano3-puma'
 
-group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'quiet_assets'
