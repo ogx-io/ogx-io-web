@@ -1,0 +1,9 @@
+<%= render partial: 'admin/common/admin_nav', locals: {index: 7} %>
+<div class="site-info-form">
+  <%= simple_form_for(@site_info, url: admin_site_info_update_path, :html => {:method => :put, :role => 'form'}) do |f| %>
+      <%= f.input :about, label: t('global.about'), as: :text %>
+      <div class="btn-container">
+        <%= f.submit t('action.update'), :class => 'button' %>
+      </div>
+  <% end %>
+</div>
