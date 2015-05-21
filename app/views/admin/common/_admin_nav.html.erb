@@ -7,5 +7,6 @@
   <% if current_user.admin? %>
       <li role="presentation" class="<%= "active" if index == 4 %>"><%= link_to t('admin.node_management'), admin_nodes_path %></li>
       <li role="presentation" class="<%= "active" if index == 5 %>"><%= link_to t('admin.user_management'), admin_users_path %></li>
+      <li role="presentation" class="<%= "active" if index == 7 %>"><%= link_to t('admin.site_info'), admin_site_info_edit_path %></li>
   <% end %>
 </ul>

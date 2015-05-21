@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'visitors#index'
   get 'merged_prs', to: 'visitors#merged_prs'
+  get 'about', to: 'visitors#about'
 
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
   resources :pictures
 
   namespace :admin do
+    get 'site_info/edit'
+    put 'site_info/update'
+
     resources :posts do
       member do
         patch :resume

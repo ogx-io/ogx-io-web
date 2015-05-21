@@ -41,6 +41,8 @@ zh-CN:
     path: '路径'
     layer: '层级'
     order: '顺序'
+    about: '关于'
+    update_successfully: '更新成功！'
     status: '状态'
     status_values:
       all: '所有'
@@ -247,6 +249,7 @@ zh-CN:
     comment: '帖子评论'
     node_management: '节点管理'
     user_management: '用户管理'
+    site_info: '站点信息'
     all_boards: '所有板块'
     users:
       sign_in_times: '登陆次数'
