@@ -102,6 +102,7 @@ namespace :data do
                                     remote_user_link: remote_user_link,
                                     remote_user_avatar: remote_user_avatar)
         end
+        puts title
       end
     end
   end
