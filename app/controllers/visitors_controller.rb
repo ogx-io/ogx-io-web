@@ -7,7 +7,7 @@ class VisitorsController < ApplicationController
   end
 
   def merged_prs
-    @merged_pull_requests = MergedPullRequest.where(pr_type: 'GitHub', repos: 'ogx-io/ogx-io-web')
+    @merged_pull_requests = MergedPullRequest.where(pr_type: 'GitHub', repos: 'ogx-io/ogx-io-web').desc(:merged_at)
   end
 
   def about
