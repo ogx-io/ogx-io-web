@@ -98,3 +98,13 @@
     }
   }
 }
+
+.board-editing {
+  form textarea {
+    height: 200px;
+  }
+  .actions {
+    margin: auto;
+    text-align: center;
+  }
+}

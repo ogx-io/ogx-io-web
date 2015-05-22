@@ -41,6 +41,7 @@ zh-CN:
     path: '路径'
     layer: '层级'
     order: '顺序'
+    edit: '编辑'
     about: '关于'
     update_successfully: '更新成功！'
     status: '状态'
@@ -238,6 +239,7 @@ zh-CN:
       post_button: '发 帖'
     recruiting_moderator: '诚征版主中'
     board_statistic: '本版统计'
+    intro: '板块简介'
 
   merged_pull_requests:
     merged_time: '收录时间'
@@ -288,7 +290,6 @@ zh-CN:
     boards:
       new_board: '新建板块'
       edit_board: '编辑板块属性'
-      intro: '板块简介'
     blocked_users:
       blocked_user: '被封用户'
       operator: '操作人'

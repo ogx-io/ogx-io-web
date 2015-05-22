@@ -1,0 +1,18 @@
+<div class="col-sm-10 right-side-layout">
+  <%= render partial: 'nodes/breadcrumbs', locals: {node: @board, extras: ['edit']} %>
+  <div class="board-main">
+    <%= render partial: 'boards/board_head', locals: {board: @board} %>
+    <%= render partial: 'boards/board_intro', locals: {board: @board} %>
+    <%= render partial: 'boards/board_nav', locals: {board: @board, index: 4} %>
+    <div class="board-editing">
+      <%= simple_form_for(@board, url: board_path(@board), method: :patch) do |f| %>
+        <%= f.input :intro, label: t('boards.intro'), as: :text, required: false %>
+        <div class="actions clearfix">
+          <%= f.submit t('action.submit'), :class => 'button' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= render partial: 'boards/board_right_side', locals: {board: @board} %>
+</div>
+

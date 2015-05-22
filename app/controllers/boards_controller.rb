@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: [:show, :favor, :disfavor]
+  before_action :set_board, only: [:show, :favor, :disfavor, :edit, :update]
 
   # GET /boards/1
   # GET /boards/1.json
@@ -22,6 +22,21 @@ class BoardsController < ApplicationController
     redirect_to :back
   end
 
+  def edit
+    authorize @board
+  end
+
+  def update
+    authorize @board
+    respond_to do |format|
+      if @board.update(board_params)
+        format.html { flash[:notice] = I18n.t('global.update_successfully'); redirect_to edit_board_path(@board) }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_board
@@ -29,4 +44,7 @@ class BoardsController < ApplicationController
       @board = Board.find_by(path: params[:path]) if params[:path]
     end
 
+    def board_params
+      params[:board].permit(:intro)
+    end
 end

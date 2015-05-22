@@ -4,6 +4,9 @@
     <li role="presentation" class="<%= "active" if index == 1 %>"><%= link_to t('global.topic'), board_path(board) %></li>
     <li role="presentation" class="<%= "active" if index == 2 %>"><%= link_to t('global.post'), board_posts_path(board) %></li>
     <li role="presentation" class="<%= "active" if index == 3 %>"><%= link_to t('global.elite'), elite_category_path(board.elite_root) %></li>
+    <% if policy(board).edit? %>
+      <li role="presentation" class="<%= "active" if index == 4 %>"><%= link_to t('global.edit'), edit_board_path(board) %></li>
+    <% end %>
   </ul>
 </div>
 <% content_for :title do %><%= board.name %> - <%= ['', t('global.topic'), t('global.post'), t('global.elite')][index] %>

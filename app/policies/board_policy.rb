@@ -6,4 +6,12 @@ class BoardPolicy < NodePolicy
   def disfavor?
     signed_in?
   end
+
+  def update?
+    record.has_moderator?(user)
+  end
+
+  def edit?
+    update?
+  end
 end
