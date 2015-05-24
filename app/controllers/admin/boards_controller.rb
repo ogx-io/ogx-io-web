@@ -14,7 +14,7 @@ class Admin::BoardsController < ApplicationController
 
   # GET /admin/boards/1/edit
   def edit
-    authorize @board
+    authorize current_user, :admin?
   end
 
   # POST /admin/boards
@@ -35,7 +35,7 @@ class Admin::BoardsController < ApplicationController
   # PATCH/PUT /admin/boards/1
   # PATCH/PUT /admin/boards/1.json
   def update
-    authorize @board
+    authorize current_user, :admin?
 
     respond_to do |format|
       if @board.update(board_params)

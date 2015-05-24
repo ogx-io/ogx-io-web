@@ -8,7 +8,7 @@ class BoardPolicy < NodePolicy
   end
 
   def update?
-    record.has_moderator?(user)
+    signed_in? && test_if_not(record.has_moderator?(user), I18n.t('policies.common.no_permission'))
   end
 
   def edit?
