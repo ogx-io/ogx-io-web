@@ -17,7 +17,7 @@ class Admin::NodesController < ApplicationController
   end
 
   def order_up
-    authorize @node, :update?
+    authorize current_user, :admin?
     @node.order += 1
     @node.save
     respond_to do |format|
@@ -26,7 +26,7 @@ class Admin::NodesController < ApplicationController
   end
 
   def order_down
-    authorize @node, :update?
+    authorize current_user, :admin?
     @node.order -= 1
     @node.save
     respond_to do |format|

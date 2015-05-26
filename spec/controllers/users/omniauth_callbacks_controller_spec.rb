@@ -1,6 +1,9 @@
 require "rails_helper"
 
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
+
+  let(:another_user) { create(:user) }
+
   describe "handles github callback in these ways: " do
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
@@ -44,48 +47,55 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       expect(response).to redirect_to(root_path)
     end
     it "BINDING_FOR_CURRENT_USER => edit_user_registration_path" do
+      sign_in :user, another_user
       allow(User).to receive(:github_token_status).and_return User::GithubBindingStatus::BINDING_FOR_CURRENT_USER
       expect(controller).to receive(:update_user_with_github_information).once
       get :github
-      expect(response).to redirect_to(edit_user_registration_path)
+      expect(response).to redirect_to(edit_accounts_user_path(another_user))
     end
     it "CURRENT_USER_IS_NOT_TOKEN_OWNER => edit_user_registration_path" do
+      sign_in :user, another_user
       allow(User).to receive(:github_token_status).and_return User::GithubBindingStatus::CURRENT_USER_IS_NOT_TOKEN_OWNER
       get :github
       expect(flash[:error]).not_to be_empty
-      expect(response).to redirect_to(edit_user_registration_path)
+      expect(response).to redirect_to(edit_accounts_user_path(another_user))
     end
     it "FOUND_BY_ID_BUT_BINDED_GITHUB => edit_user_registration_path" do
+      sign_in :user, another_user
       allow(User).to receive(:github_token_status).and_return User::GithubBindingStatus::FOUND_BY_ID_BUT_BINDED_GITHUB
       expect(controller).to receive(:update_user_with_github_information).once
       get :github
       expect(flash[:error]).not_to be_empty
-      expect(response).to redirect_to(edit_user_registration_path)
+      expect(response).to redirect_to(edit_accounts_user_path(another_user))
     end
     it "FOUND_BY_EMAIL_BUT_BINDED_GITHUB => edit_user_registration_path" do
+      sign_in :user, another_user
       allow(User).to receive(:github_token_status).and_return User::GithubBindingStatus::FOUND_BY_EMAIL_BUT_BINDED_GITHUB
       expect(controller).to receive(:update_user_with_github_information).once
       get :github
-      expect(response).to redirect_to(edit_user_registration_path)
+      expect(response).to redirect_to(edit_accounts_user_path(another_user))
     end
     it "FOUND_BY_EMAIL_BUT_NOT_BINDED_GITHUB => edit_user_registration_path" do
+      sign_in :user, another_user
       allow(User).to receive(:github_token_status).and_return User::GithubBindingStatus::FOUND_BY_EMAIL_BUT_NOT_BINDED_GITHUB
       expect(controller).to receive(:update_user_with_github_information).once
       get :github
-      expect(response).to redirect_to(edit_user_registration_path)
+      expect(response).to redirect_to(edit_accounts_user_path(another_user))
     end
     it "TOKEN_OWNER_IS_CURRENT_USER => edit_user_registration_path" do
+      sign_in :user, another_user
       allow(User).to receive(:github_token_status).and_return User::GithubBindingStatus::TOKEN_OWNER_IS_CURRENT_USER
       get :github
       expect(flash[:notice]).not_to be_empty
-      expect(response).to redirect_to(edit_user_registration_path)
+      expect(response).to redirect_to(edit_accounts_user_path(another_user))
     end
     it "TOKEN_OWNER_IS_CURRENT_USER_SHOULD_UPDATE_TOKEN => edit_user_registration_path" do
+      sign_in :user, another_user
       allow(User).to receive(:github_token_status).and_return User::GithubBindingStatus::TOKEN_OWNER_IS_CURRENT_USER_SHOULD_UPDATE_TOKEN
       expect(controller).to receive(:update_user_with_github_information).once
       get :github
       expect(flash[:notice]).not_to be_empty
-      expect(response).to redirect_to(edit_user_registration_path)
+      expect(response).to redirect_to(edit_accounts_user_path(another_user))
     end
   end
 end
