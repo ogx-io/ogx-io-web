@@ -71,13 +71,13 @@ class User
 
   validates_presence_of :name, message: I18n.t('mongoid.errors.models.user.attributes.name.blank')
   validates_uniqueness_of :name, message: I18n.t('mongoid.errors.models.user.attributes.name.taken')
-  validates_format_of :name, with: /[a-z0-9_]{4,20}/, message: I18n.t('mongoid.errors.models.user.attributes.name.invalid')
+  validates_format_of :name, with: /^[a-z0-9_]{4,20}$/, :multiline => true, message: I18n.t('mongoid.errors.models.user.attributes.name.invalid')
 
   validates_presence_of :nick, message: I18n.t('mongoid.errors.models.user.attributes.nick.blank')
   validates_length_of :nick, maximum: 20, message: I18n.t('mongoid.errors.models.user.attributes.nick.too_long')
 
   validates_presence_of :email, message: I18n.t('mongoid.errors.models.user.attributes.email.blank')
-  validates_format_of :email, with: /([a-z0-9_\.-]{1,20})@([\da-z\.-]+)\.([a-z\.]{2,6})/, message: I18n.t('mongoid.errors.models.user.attributes.email.invalid')
+  validates_format_of :email, with: /^([a-z0-9_\.-]{1,20})@([\da-z\.-]+)\.([a-z\.]{2,6})$/, :multiline => true, message: I18n.t('mongoid.errors.models.user.attributes.email.invalid')
 
   validates_length_of :intro, maximum: 50, message: I18n.t('mongoid.errors.models.user.attributes.intro.too_long')
 
