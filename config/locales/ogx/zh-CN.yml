@@ -219,6 +219,10 @@ zh-CN:
         title_html: '%{post_author} 在帖子 %{post} 里提到了你'
       _comment:
         title_html: '%{mention_user} 在帖子 %{post} 的评论里提到了你'
+    mailer:
+      post_reply:
+        subject: '[提醒] %{author_name} 回复了您的帖子《%{title}》'
+        body_tip_html: '以下是 %{user_link} 的回帖：'
 
   elite:
     item_tip: '由版主 %{moderator} 最后编辑于 %{updated_at}'

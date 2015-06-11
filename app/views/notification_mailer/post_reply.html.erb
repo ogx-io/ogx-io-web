@@ -1,0 +1,7 @@
+<p><%= t('notifications.mailer.post_reply.body_tip_html', user_link: link_to(@author_name, user_url(@author), target: '_blank')) %></p>
+
+<p><%= link_to @reply.title, show_topic_post_url(@reply.topic.id, @reply.id), target: '_blank' %></p>
+
+<div>
+  <%= @reply.body_html.html_safe %>
+</div>

@@ -59,6 +59,7 @@ class User
   field :website, type: String # the user's personal website
 
   field :status, type: Integer, default: 0 # 0: normal, 1: blocked, 2: deleted
+  field :enable_email_notification, type: Boolean, default: false
 
   field :avatar, type: String # the user's avatar
   mount_uploader :avatar, AvatarUploader
