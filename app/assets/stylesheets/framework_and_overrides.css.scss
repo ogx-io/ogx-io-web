@@ -194,6 +194,10 @@ fieldset {
   @extend .well;
 }
 
+.simple_form .checkbox {
+  margin-bottom: 0;
+}
+
 .form-group p.help-block {
   color: #999;
 }

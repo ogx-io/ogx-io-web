@@ -218,7 +218,21 @@ zh-CN:
       _post:
         title_html: '%{post_author} 在帖子 %{post} 里提到了你'
       _comment:
-        title_html: '%{mention_user} 在帖子 %{post} 的评论里提到了你'
+        title_html: '%{mention_user} 在对帖子 %{post} 的评论里提到了你'
+    mailer:
+      post_reply:
+        subject: '[提醒] %{author_name} 回复了您的帖子《%{title}》'
+        body_tip_html: '以下是 %{user_link} 的回帖：'
+      mention:
+        comment:
+          subject: '[提醒] %{comment_author} 在对帖子《%{title}》的评论里提到了你'
+          body_tip_html: '下面是提及您的评论：'
+        post:
+          subject: '[提醒] %{post_author} 在帖子《%{title}》里提到了你'
+          body_tip_html: '以下是 %{user_link} 的帖子：'
+      comment:
+        subject: '[提醒] %{comment_author} 评论了您的帖子《%{title}》'
+        body_tip_html: '以下是 %{user_link} 对您的帖子 %{post_link} 的评论：'
 
   elite:
     item_tip: '由版主 %{moderator} 最后编辑于 %{updated_at}'

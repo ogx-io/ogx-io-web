@@ -99,6 +99,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params[:user].permit(:nick, :city, :intro, :website, :avatar)
+    params[:user].permit(:nick, :city, :intro, :website, :avatar, :enable_email_notification)
   end
 end

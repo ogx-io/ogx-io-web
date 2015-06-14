@@ -132,5 +132,5 @@ Rails.application.routes.draw do
   get '/t/:id/p/:post_id', to: 'topics#show_post', as: :show_topic_post
   get '/t/:id/f/:floor', to: 'topics#show_post', as: :show_topic_floor
 
-  get '/*node_path', to: 'nodes#show'
+  get '/*node_path', to: 'nodes#show', constraints: { node_path: /(?!rails\/mailers).*/ }
 end

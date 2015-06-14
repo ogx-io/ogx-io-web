@@ -6,9 +6,13 @@ module ApplicationHelper
     end
   end
 
+  def user_show_name(user)
+    user.nick ? h(user.nick) : user.name
+  end
+
   def user_link(user)
     if user
-      link_to(user.nick ? h(user.nick) : user.name, show_user_path(user.name), class: 'user-link', title: "@#{user.name}").html_safe
+      link_to(user_show_name(user), show_user_path(user.name), class: 'user-link', title: "@#{user.name}").html_safe
     else
       '<span class="user-link">已注销</span>'.html_safe
     end
