@@ -9,7 +9,13 @@ class Notification::Base
 
   scope :unread, -> { where(read: false) }
 
+  after_create :check_email_notification
+
   def set_read
     self.update_attribute(:read, true)
+  end
+
+  def check_email_notification
+    send_email if user.enable_email_notification
   end
 end

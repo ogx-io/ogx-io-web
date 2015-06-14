@@ -10,6 +10,7 @@
       <%= f.input :city, label: t('users.city'), hint: t('users.city_hint') %>
       <%= f.input :intro, label: t('users.intro'), hint: t('users.intro_hint') %>
       <%= f.input :website, label: t('users.website'), placeholder: t('users.website_placeholder'), hint: t('users.website_hint') %>
+      <%= f.input :enable_email_notification, as: :boolean, checked_value: true, unchecked_value: false, label: "启用 Email 提醒", hint: "打开之后，一旦有新的提醒信息就会给你发送一封邮件" %>
 
       <div class="btn-container">
         <%= f.submit t('action.update'), :class => 'button' %>

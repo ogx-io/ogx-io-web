@@ -2,13 +2,16 @@ require "rails_helper"
 
 RSpec.describe NotificationMailer, type: :mailer do
 
+  let(:user) { create(:user) }
+
   before do
+    user.update(enable_email_notification: true)
     ActionMailer::Base.deliveries.clear
   end
 
   describe '#post_reply' do
     it 'sends email after create a post reply notification' do
-      notification = create(:notification_post_reply)
+      notification = create(:notification_post_reply, user: user)
       expect(ActionMailer::Base.deliveries).not_to be_empty
 
       email = ActionMailer::Base.deliveries.last
@@ -24,7 +27,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
   describe '#comment_mention' do
     it 'sends email after create a comment mention notification' do
-      notification = create(:notification_mention, mentionable: create(:comment))
+      notification = create(:notification_mention, mentionable: create(:comment), user: user)
       expect(ActionMailer::Base.deliveries).not_to be_empty
 
       email = ActionMailer::Base.deliveries.last
@@ -39,7 +42,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
   describe '#post_mention' do
     it 'sends email after create a post mention notification' do
-      notification = create(:notification_mention, mentionable: create(:post))
+      notification = create(:notification_mention, mentionable: create(:post), user: user)
       expect(ActionMailer::Base.deliveries).not_to be_empty
 
       email = ActionMailer::Base.deliveries.last
@@ -55,7 +58,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
   describe '#comment' do
     it 'sends email after create a comment notification' do
-      notification = create(:notification_comment)
+      notification = create(:notification_comment, user: user)
       expect(ActionMailer::Base.deliveries).not_to be_empty
 
       email = ActionMailer::Base.deliveries.last
@@ -65,6 +68,12 @@ RSpec.describe NotificationMailer, type: :mailer do
       expect(email.subject).to eq(email_subject)
 
       expect(email.body.to_s).to match(notification.comment.body_html)
+    end
+
+    it 'will not send emails after create a comment notification if the receiver have not enable this feature yet' do
+      new_user = create(:user)
+      create(:notification_comment, user: new_user)
+      expect(ActionMailer::Base.deliveries).to be_empty
     end
   end
 
