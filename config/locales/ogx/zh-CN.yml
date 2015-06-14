@@ -160,6 +160,8 @@ zh-CN:
     github_binding_error: '绑定 GitHub 出错！'
     github_sign_in_success: 'GitHub 登录成功！'
     preferences: '偏好设置'
+    enable_email_notification: '启用 Email 提醒'
+    enable_email_notification_hint: '打开之后，一旦有新的提醒信息就会给你发送一封邮件'
     mailer:
       confirmation_instructions_html: "<p>您好，%{user}！</p>
                                        <p>您可以通过访问以下链接来确认您在OGX社区新注册的账号：</p>
