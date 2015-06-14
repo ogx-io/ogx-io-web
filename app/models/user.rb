@@ -97,9 +97,9 @@ class User
   has_many :favorites, inverse_of: :user
   has_one :user_detail, dependent: :delete
 
-  def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
-  end
+  # def send_devise_notification(notification, *args)
+  #   devise_mailer.send(notification, self, *args).deliver_later
+  # end
 
   def merged_prs
     if github_id
