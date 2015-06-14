@@ -86,6 +86,10 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
 
+  # Be sure to have the adapter's gem in your Gemfile
+  # and follow the adapter's specific installation
+  # and deployment instructions.
+  config.active_job.queue_adapter = :sidekiq
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false

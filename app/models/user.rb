@@ -4,6 +4,8 @@ class User
   include Mongoid::Timestamps
   include Mongoid::Enum
 
+  include GlobalID::Identification
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

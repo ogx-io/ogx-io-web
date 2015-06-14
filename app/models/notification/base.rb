@@ -2,6 +2,8 @@ class Notification::Base
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  include GlobalID::Identification
+
   store_in collection: 'notifications'
 
   field :read, default: false
