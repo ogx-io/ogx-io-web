@@ -34,7 +34,9 @@ gem 'rouge'
 gem 'md_emoji'
 gem "non-stupid-digest-assets"
 
+gem 'redis'
 gem 'sidekiq'
+gem 'sinatra', :require => nil
 
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'

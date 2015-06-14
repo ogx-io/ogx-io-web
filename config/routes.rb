@@ -1,4 +1,8 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+
+  mount Sidekiq::Web => '/sidekiq'
 
   root to: 'visitors#index'
   get 'merged_prs', to: 'visitors#merged_prs'

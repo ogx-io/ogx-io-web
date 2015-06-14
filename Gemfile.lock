@@ -260,6 +260,8 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.1)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
@@ -345,6 +347,10 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    sinatra (1.4.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     spring (1.3.6)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -427,6 +433,7 @@ DEPENDENCIES
   rails_autolink
   rails_layout
   redcarpet
+  redis
   rouge
   rspec-html-matchers
   rspec-rails
@@ -434,6 +441,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   sidekiq
   simple_form
+  sinatra
   social-share-button!
   spring
   therubyracer
