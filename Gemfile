@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 gem 'nokogiri', '1.6.5'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.3'
 gem "therubyracer"
 gem "mongoid", "~> 4.0.0"
 gem "mongoid-enum"
