@@ -1,0 +1,45 @@
+#emoji-picker {
+  position: relative;
+}
+
+.comment-form #emoji-picker {
+  margin-left: 5px;
+}
+
+#emoji-container {
+  position: absolute;
+  background-color: #EEE;
+  left: -100px;
+  #emoji-list {
+    width: 254px;
+    height: 155px;
+    padding: 2px;
+  }
+  #emoji-paginate {
+    div {
+      display: inline-block;
+      width: 33.33%;
+      text-align: center;
+    }
+    div.page-btn:hover {
+      cursor: pointer;
+      background-color: #DDD;
+    }
+  }
+}
+
+.emoji-item {
+  float: left;
+  width: 25px;
+  height: 25px;
+  img {
+    vertical-align: middle;
+    margin: 3px auto;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.emoji-item:hover {
+  background-color: #DDD;
+}

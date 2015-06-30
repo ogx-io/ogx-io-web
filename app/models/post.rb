@@ -10,7 +10,7 @@ class Post
   field :t, as: :title, type: String
   field :b, as: :body, type: String
   field :f, as: :floor, type: Integer
-  field :top , type: Integer, default: 0
+  field :top, type: Integer, default: 0
 
   field :comment_count, type: Integer, default: 0
 
