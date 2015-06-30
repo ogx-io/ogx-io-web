@@ -1,0 +1,62 @@
+$(document).on 'click', '#emoji-picker', ->
+  if $('#emoji-container').length
+    $('#emoji-container').remove()
+  else
+    $(this).append('<div id="emoji-container" class="auto-clean"></div>')
+    $('#emoji-container').append('<div id="emoji-list"></div>')
+    $('#emoji-container').append('<div id="emoji-paginate"><div id="prev" class="page-btn"><</div><div id="page-info"></div><div id="next" class="page-btn">></div>')
+
+    emoji_array = <%= MdEmoji::EMOJI %>
+    page = 1
+    per_page = 60
+    last_page = Math.round(emoji_array.length / 60)
+
+    get_emoji_item = (index)->
+      if index < emoji_array.length
+        emoji_name = emoji_array[index]
+        pic_name = emoji_name.replace(/\+/g, 'plus')
+        "<a href=\"javascript:;\" class=\"emoji-item\" data-emoji-name=\"#{emoji_name}\"><img src=\"/assets/emojis/#{pic_name}.png\"></a>"
+      else
+        ''
+
+    fill_in_emoji_list = ->
+      str = ("#{get_emoji_item(num)}" for num in [(page - 1) * per_page .. page * per_page - 1]).join('')
+      $('#emoji-list').html(str)
+      $('#emoji-paginate > #page-info').html("#{page} / #{last_page}")
+
+    $('#emoji-paginate > #prev').click ->
+      if page > 1
+        page = page - 1
+        fill_in_emoji_list()
+      false
+
+    $('#emoji-paginate > #next').click ->
+      if page < last_page
+        page = page + 1
+        fill_in_emoji_list()
+      false
+
+    fill_in_emoji_list()
+  false
+
+$(document).on 'click', '.emoji-item', ->
+  insertText = (obj, str) ->
+    if document.selection
+      sel = document.selection.createRange()
+      sel.text = str
+    else
+      if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number')
+        startPos = obj.selectionStart
+        endPos = obj.selectionEnd
+        cursorPos = startPos
+        tmpStr = obj.value
+        obj.value = tmpStr.substring(0, startPos) + str + tmpStr.substring(endPos, tmpStr.length)
+        cursorPos += str.length
+        obj.selectionStart = obj.selectionEnd = cursorPos
+      else
+        obj.value += str;
+  str = ' :' + $(this).data('emoji-name') + ': '
+  $obj = $(this).parents('form').find('textarea')
+  insertText($obj[0], str)
+  $obj.change()
+

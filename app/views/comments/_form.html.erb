@@ -13,6 +13,9 @@
 
         <div class="footer">
           <div class="tips"><%= t('comments.words_limit', number: '<span class="left-number">200</span>').html_safe %></div>
+          <span id="emoji-picker">
+            <a href="javascript:;"><%= t('action.pick_emoji') %></a>
+          </span>
           <div class="form-actions">
             <%= f.submit t('action.post'), class: 'btn btn-primary' %>
           </div>
