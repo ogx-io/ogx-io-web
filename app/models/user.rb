@@ -147,7 +147,7 @@ class User
 
   def can_post?
     if self.last_post_at
-      Time.now - self.last_post_at > 1.seconds
+      Time.now - self.last_post_at > 3.seconds
     else
       true
     end
@@ -155,7 +155,7 @@ class User
 
   def can_comment?
     if self.last_comment_at
-      Time.now - self.last_comment_at > 1.seconds
+      Time.now - self.last_comment_at > 3.seconds
     else
       true
     end
@@ -163,7 +163,7 @@ class User
 
   def can_upload_image?
     if self.last_upload_image_at
-      Time.now - self.last_upload_image_at > 1.seconds
+      Time.now - self.last_upload_image_at > 3.seconds
     else
       true
     end
