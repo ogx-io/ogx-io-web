@@ -109,4 +109,12 @@ module ApplicationHelper
     paths[0] = ''
     paths.join('/')
   end
+
+  def get_post_draft_key(post, type)
+    if current_user
+      post.parent ? "user_#{current_user.id.to_s}_reply_to_#{post.parent.id.to_s}_#{type}" : "user_#{current_user.id.to_s}_new_post_#{type}"
+    else
+      ''
+    end
+  end
 end

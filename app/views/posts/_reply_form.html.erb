@@ -1,6 +1,7 @@
 <div class="reply-form well">
-  <%= simple_form_for([post.board, Post.new], html: {class: "post-form"}, remote: true) do |f| %>
-    <%= f.input :title, label: false, required: false, placeholder: default_reply_title(post), autofocus: true %>
+  <% reply_post = Post.new(parent: post) %>
+  <%= simple_form_for([post.board, reply_post], html: {class: "post-form"}, remote: true) do |f| %>
+    <%= f.input :title, label: false, required: false, placeholder: default_reply_title(post), autofocus: true, input_html: {class: 'need-save-draft', 'draft-key' => get_post_draft_key(reply_post, 'title') } %>
     <div class="form-group">
       <%= f.label t('global.content') %>
       <div class="pull-right">
@@ -10,9 +11,9 @@
         <a id="post-add-pic" href="javascript:;"><%= t('action.add_picture') %></a>
       </div>
       <input id="post-upload-images" class="hidden" type="file">
-      <%= f.hidden_field :parent_id, value: post.id %>
-      <%= f.text_area :body, class: 'form-control post-editor', rows: 6 %>
+      <%= f.text_area :body, class: 'form-control post-editor need-save-draft', rows: 6, 'draft-key' => get_post_draft_key(reply_post, 'body') %>
     </div>
+    <%= f.hidden_field :parent_id, value: post.id %>
     <div class="clearfix">
       <div class="help-block pull-left" style="color: red">* <%= t('posts._form.need_markdown') %>
         <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown" target="_blank"><%= t('posts._form.markdown_help') %></a>
@@ -26,7 +27,7 @@
             <% end %>
           </li>
           <li>
-            <%= f.submit t('action.post'), class: 'post-form-button btn btn-primary btn-sm' %>
+            <%= f.submit t('action.post'), class: 'clean-draft post-form-button btn btn-primary btn-sm' %>
           </li>
         </ul>
       </div>
