@@ -1,5 +1,10 @@
 interval_id = 0
 
+save_draft_item = ->
+  key = $(this).attr('draft-key')
+  localStorage.setItem(key, $(this).val()) if key != '' and $(this).val() != ''
+  localStorage.removeItem(key) if $(this).val() == ''
+
 $(document).on 'page:change', ->
   if $('.need-save-draft').length
     if interval_id
@@ -8,14 +13,6 @@ $(document).on 'page:change', ->
 
     $('.need-save-draft').each ->
       $(this).val(localStorage.getItem($(this).attr('draft-key')))
-
-    save_draft_item = ->
-      key = $(this).attr('draft-key')
-      localStorage.setItem(key, $(this).val()) if key != '' and $(this).val() != ''
-      localStorage.removeItem(key) if $(this).val() == ''
-
-    $('.need-save-draft').each ->
-      $(this).blur(save_draft_item)
 
     save_draft_func = ->
       if interval_id
@@ -29,3 +26,6 @@ $(document).on 'click', '.clean-draft', ->
   interval_id = 0
   $(this).parents('form').find('.need-save-draft').each ->
     localStorage.removeItem($(this).attr('draft-key'))
+
+$(document).on 'blur', '.need-save-draft', ->
+  $(this).blur(save_draft_item)
