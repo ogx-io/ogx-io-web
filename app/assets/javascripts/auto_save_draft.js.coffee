@@ -9,11 +9,18 @@ $(document).on 'page:change', ->
     $('.need-save-draft').each ->
       $(this).val(localStorage.getItem($(this).attr('draft-key')))
 
+    save_draft_item = ->
+      key = $(this).attr('draft-key')
+      localStorage.setItem(key, $(this).val()) if key != '' and $(this).val() != ''
+      localStorage.removeItem(key) if $(this).val() == ''
+
+    $('.need-save-draft').each ->
+      $(this).blur(save_draft_item)
+
     save_draft_func = ->
-      $('.need-save-draft').each ->
-        key = $(this).attr('draft-key')
-        localStorage.setItem(key, $(this).val()) if interval_id and key != '' and $(this).val() != ''
-        localStorage.removeItem(key) if interval_id and $(this).val() == ''
+      if interval_id
+        $('.need-save-draft').each ->
+          $(this).blur()
 
     interval_id = setInterval(save_draft_func, 15000)
 
