@@ -2,15 +2,20 @@ interval_id = 0
 
 $(document).on 'page:change', ->
   if $('.need-save-draft').length
+    if interval_id
+      clearInterval(interval_id)
+      interval_id = 0
+
     $('.need-save-draft').each ->
       $(this).val(localStorage.getItem($(this).attr('draft-key')))
-      alert($(this).attr('draft-key') + ' : ' + localStorage.getItem($(this).attr('draft-key'))) if localStorage.getItem($(this).attr('draft-key'))
 
     save_draft_func = ->
       $('.need-save-draft').each ->
-        localStorage.setItem($(this).attr('draft-key'), $(this).val()) if interval_id
+        key = $(this).attr('draft-key')
+        localStorage.setItem(key, $(this).val()) if interval_id and key != '' and $(this).val() != ''
+        localStorage.removeItem(key) if interval_id and $(this).val() == ''
 
-    interval_id = setInterval(save_draft_func, 15)
+    interval_id = setInterval(save_draft_func, 15000)
 
 $(document).on 'click', '.clean-draft', ->
   clearInterval(interval_id)
