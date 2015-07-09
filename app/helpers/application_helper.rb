@@ -111,8 +111,12 @@ module ApplicationHelper
   end
 
   def get_post_draft_key(post, type)
-    if current_user and post.new_record?
-      post.parent ? "draft_user_#{current_user.id.to_s}_reply_to_#{post.parent.id.to_s}_#{type}" : "draft_user_#{current_user.id.to_s}_new_post_#{type}"
+    if current_user
+      if post.new_record?
+        post.parent ? "draft_user_#{current_user.id.to_s}_reply_to_#{post.parent.id.to_s}_type_#{type}" : "draft_user_#{current_user.id.to_s}_new_post_type_#{type}"
+      else
+        "draft_user_#{current_user.id.to_s}_update_post_#{post.id.to_s}_type_#{type}"
+      end
     else
       ''
     end
