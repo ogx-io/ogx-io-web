@@ -45,6 +45,7 @@ zh-CN:
     about: '关于'
     update_successfully: '更新成功！'
     status: '状态'
+    delete_draft_tips: '您现在看到的内容是您之前编辑过程中自动保存的草稿，删除之后可以恢复成原来的样子'
     status_values:
       all: '所有'
       normal: '正常显示'
@@ -93,6 +94,7 @@ zh-CN:
     order_up: '上升'
     order_down: '下降'
     change_board: '迁移'
+    delete_draft: '删除草稿'
 
   layout:
     home: '首页'
