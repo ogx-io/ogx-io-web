@@ -44,7 +44,7 @@
         <div class="profile-content">
           <table class="table personal-merged-prs">
             <tbody>
-            <% @user.merged_prs.each do |pr| %>
+            <% @user.merged_prs.desc(:merged_at).each do |pr| %>
                 <tr>
                   <td class="title"><%= link_to pr.title, pr.link, target: '_blank' %></td>
                   <td class="time"><%= time_date pr.merged_at %></td>
