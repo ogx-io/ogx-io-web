@@ -376,7 +376,7 @@ zh-CN:
           attributes:
             title:
               blank: '请输入标题'
-              too_long: '标题太长了'
+              too_long: '标题不能超过140字'
         node:
           attributes:
             name:
@@ -388,7 +388,7 @@ zh-CN:
           attributes:
             body:
               blank: '评论内容不能为空'
-              too_long: '评论内容不能超过200个字'
+              too_long: '评论内容不能超过200字'
         concerns:
           nodable:
             attributes:
