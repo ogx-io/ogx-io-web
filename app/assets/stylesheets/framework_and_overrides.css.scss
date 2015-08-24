@@ -77,11 +77,17 @@ a {
 main {
   @extend .container;
   background-color: #fff;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
   margin-top: 66px; // accommodate the navbar
-  margin-bottom: 66px;
+  margin-bottom: 0;
   @media (min-width: 768px) {
     min-height: 600px;
+  }
+}
+
+footer {
+  img {
+    height: 60px;
   }
 }
 
