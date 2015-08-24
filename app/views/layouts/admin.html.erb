@@ -5,7 +5,7 @@
   <title><%= content_for?(:title) ? yield(:title) + ' - ' + t('global.ogx') : t('layout.ogx_desc') %></title>
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : t('layout.ogx_desc') %>">
   <% if content_for?(:author) %>
-      <meta name="author" content="<%= yield(:author) %>">
+    <meta name="author" content="<%= yield(:author) %>">
   <% end %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -19,6 +19,9 @@
   <%= render 'layouts/messages' %>
   <%= yield %>
 </main>
+<footer>
+  <img src="http://assets.qiniu.com/qiniu-transparent.png">
+</footer>
 <%= render 'layouts/access_analytics' %>
 </body>
 </html>
