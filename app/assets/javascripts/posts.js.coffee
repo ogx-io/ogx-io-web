@@ -32,6 +32,7 @@ ready = ->
       panel.remove()
       return false
 
+  $(".post-editor").colorfy("markdown")
 
   opts =
     url: "/pictures"
