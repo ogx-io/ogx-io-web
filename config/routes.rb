@@ -2,6 +2,8 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+  resources :articles
+  resources :blogs
   mount Sidekiq::Web => '/sidekiq'
 
   root to: 'visitors#index'

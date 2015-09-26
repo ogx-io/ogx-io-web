@@ -46,12 +46,28 @@ class Node
   end
 
   def self.root
-    root = self.where(path: 'root').first
+    root = self.where(path: 'root', layer: 0).first
     unless root
       root = Category.new(name: 'root', path: 'root', layer: 0)
       root.save
     end
     root
+  end
+
+  def self.blog
+    node = self.get_node_by_path('blog')
+    unless node
+      node = Category.new(name: 'blog', path: 'blog', layer: 1, parent_id: self.root.id)
+    end
+    node
+  end
+
+  def self.public
+    node = self.get_node_by_path('public')
+    unless node
+      node = Category.new(name: 'public', path: 'public', layer: 1, parent_id: self.root.id)
+    end
+    node
   end
 
   def self.get_node_by_path(path)
