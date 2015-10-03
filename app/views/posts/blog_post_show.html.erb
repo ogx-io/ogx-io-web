@@ -18,11 +18,11 @@
   </div>
   <div class="show-post">
     <% if policy(@post).show? %>
-      <%= render partial: 'blog_post', as: 'post', locals: {post: @post, board: @board} %>
+      <%= render partial: 'posts/blog_post', as: 'post', locals: {post: @post, board: @board} %>
       <% if policy(@post).comment? || @post.comments.normal.count > 0 %>
         <script type="text/javascript">
           $('#post-<%= @post.id %>-comments').remove();
-          $('#post-<%= @post.id %>-container .comment-container').html("<%= j render partial: 'post_comment_panel', locals: {post: @post} %>");
+          $('#post-<%= @post.id %>-container .comment-container').html("<%= j render partial: 'posts/post_comment_panel', locals: {post: @post} %>");
         </script>
       <% end %>
     <% else %>

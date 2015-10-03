@@ -12,13 +12,18 @@ class TopicsController < ApplicationController
 
   def show
     @board = @topic.board
-    @first = @topic.posts.first
 
-    @topic.inc_click_count if params[:page].blank?
+    if @board.is_blog?
+      redirect_to @topic.posts.first
+    else
+      @first = @topic.posts.first
 
-    @all_posts = @topic.posts.normal
-    @posts = @all_posts.asc(:floor).page(params[:page]).per(10)
-    respond_with(@topic)
+      @topic.inc_click_count if params[:page].blank?
+
+      @all_posts = @topic.posts.normal
+      @posts = @all_posts.asc(:floor).page(params[:page]).per(10)
+      respond_with(@topic)
+    end
   end
 
   def show_post

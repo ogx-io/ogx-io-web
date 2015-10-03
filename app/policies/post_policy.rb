@@ -16,7 +16,8 @@ class PostPolicy < ApplicationPolicy
     signed_in? &&
         test_if(record.parent && !record.parent.topic.can_reply_by(user), I18n.t('policies.post.topic_is_locked')) &&
         test_if(user.is_blocked?, I18n.t('policies.common.user_is_blocked_by_admin')) &&
-        test_if(record.board.is_blocking?(user), I18n.t('policies.common.user_is_blocked_by_moderator'))
+        test_if(record.board.is_blocking?(user), I18n.t('policies.common.user_is_blocked_by_moderator')) &&
+        test_if(record.board.is_blog? && user != record.board.creator, I18n.t('policies.common.no_permission'))
   end
 
   def create?
@@ -24,14 +25,16 @@ class PostPolicy < ApplicationPolicy
         test_if(record.parent && !record.parent.topic.can_reply_by(user), I18n.t('policies.post.topic_is_locked')) &&
         test_if_not(user.can_post?, I18n.t('policies.post.post_too_fast')) &&
         test_if(user.is_blocked?, I18n.t('policies.common.user_is_blocked_by_admin')) &&
-        test_if(record.board.is_blocking?(user), I18n.t('policies.common.user_is_blocked_by_moderator'))
+        test_if(record.board.is_blocking?(user), I18n.t('policies.common.user_is_blocked_by_moderator')) &&
+        test_if(record.board.is_blog? && user != record.board.creator, I18n.t('policies.common.no_permission'))
   end
 
   def update?
     signed_in? &&
         test_if_not(user == record.author, I18n.t('policies.common.no_permission')) &&
         test_if(user.is_blocked?, I18n.t('policies.common.user_is_blocked_by_admin')) &&
-        test_if(record.board.is_blocking?(user), I18n.t('policies.common.user_is_blocked_by_moderator'))
+        test_if(record.board.is_blocking?(user), I18n.t('policies.common.user_is_blocked_by_moderator')) &&
+        test_if(record.board.is_blog? && user != record.board.creator, I18n.t('policies.common.no_permission'))
   end
 
   def set_elite?

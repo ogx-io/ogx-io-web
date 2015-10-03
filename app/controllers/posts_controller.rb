@@ -39,11 +39,18 @@ class PostsController < ApplicationController
     @post.parent_id = params[:parent_id]
 
     authorize @post
+
+    if @board.is_blog?
+      render 'new_blog_post'
+    end
   end
 
   # GET /posts/1/edit
   def edit
     authorize @post
+    if @post.board.is_blog?
+      render 'edit_blog_post'
+    end
   end
 
   # POST /posts

@@ -8,7 +8,14 @@
 
 <div class="col-md-10 right-side-layout">
   <div class="board-main">
-    <%= render partial: 'boards/board_head', locals: {board: @board} %>
+    <div class="board-head clearfix">
+      <h2 class="no-margin pull-left"><%= @board.name %></h2>
+      <% if @board.creator == current_user %>
+        <div class="post-button pull-right">
+          <%= link_to new_board_post_path(@board) do %><button type="button" class="btn btn-success btn-sm"><%= t('boards.action.post_button') %></button><% end %>
+        </div>
+      <% end %>
+    </div>
     <div class="board-intro">
       <div class="intro-content">
         <%= @board.intro %>
