@@ -101,6 +101,10 @@ class User
     devise_mailer.send(notification, self, *args).deliver_later
   end
 
+  def blog
+    Board.where(parent: Node.blog, creator: self).first
+  end
+
   def merged_prs
     if github_id
       MergedPullRequest.where(pr_type: 'GitHub', repos: 'ogx-io/ogx-io-web', remote_user_id: github_id)

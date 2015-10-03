@@ -1,0 +1,30 @@
+<% content_for :title do %>
+  <%= t('users.update_blog') %>
+<% end %>
+
+<div class="update-user-form">
+  <h3 class="title"><%= t('users.update_blog') %></h3>
+  <%= render partial: 'update_nav', locals: {index: 6} %>
+  <% if @blog %>
+    <%= simple_form_for(@blog) do |f| %>
+      <%= f.input :name, label: t('global.name') %>
+      <%= f.input :intro, label: t('boards.intro'), as: :text, required: false %>
+
+      <div class="btn-container">
+        <%= f.submit t('action.update'), class: 'button' %>
+        <%= link_to @blog do %>
+          <div class="btn btn-default">查看</div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>
+      您还没有创建您的个人博客。可以点击下面的按钮创建您的个人博客。
+    </p>
+    <%= form_tag create_blog_user_path(@user), method: :post do %>
+      <div class="actions clearfix">
+        <%= submit_tag t('users.create_blog'), :class => 'button' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

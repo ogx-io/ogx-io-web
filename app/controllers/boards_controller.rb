@@ -4,10 +4,17 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
-    @all_topics = @board.topics.normal
-    @topics = @all_topics.desc(:replied_at).page(params[:page]).per(15)
-    @top_posts = @board.posts.top.desc(:top)
-    render 'topics/index'
+    if @board.is_blog?
+      @user = @board.creator
+      @all_posts = @board.posts.normal
+      @posts = @all_posts.desc(:created_at).page(params[:page]).per(15)
+      render 'show_blog'
+    else
+      @all_topics = @board.topics.normal
+      @topics = @all_topics.desc(:replied_at).page(params[:page]).per(15)
+      @top_posts = @board.posts.top.desc(:top)
+      render 'topics/index'
+    end
   end
 
   def favor
@@ -38,13 +45,17 @@ class BoardsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_board
-      @board = Board.find(params[:id]) if params[:id]
-      @board = Board.find_by(path: params[:path]) if params[:path]
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_board
+    @board = Board.find(params[:id]) if params[:id]
+    @board = Board.find_by(path: params[:path]) if params[:path]
+  end
 
-    def board_params
+  def board_params
+    if @board.is_blog?
+      params[:board].permit(:name, :intro)
+    else
       params[:board].permit(:intro)
     end
+  end
 end

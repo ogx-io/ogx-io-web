@@ -21,9 +21,10 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @comment.commentable = @post
 
-    @new_post = Post.new
-    @new_post.board = @board
-    @new_post.parent = @post
+    if @board.is_blog?
+      @user = @post.author
+      render 'blog_post_show'
+    end
   end
 
   def comments

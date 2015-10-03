@@ -2,8 +2,6 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
-  resources :articles
-  resources :blogs
   mount Sidekiq::Web => '/sidekiq'
 
   root to: 'visitors#index'
@@ -116,6 +114,8 @@ Rails.application.routes.draw do
       get :edit_info
       get :edit_avatar
       get :edit_accounts
+      get :edit_blog
+      post :create_blog
       get :edit_self_intro
       patch :update_self_intro
       patch :unbind_account
@@ -126,6 +126,8 @@ Rails.application.routes.draw do
         delete :clean
       end
     end
+
+    resources :blogs, shallow: true
   end
 
   get '/@:name', to: 'users#show', as: :show_user

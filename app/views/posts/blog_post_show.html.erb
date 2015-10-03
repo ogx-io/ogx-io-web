@@ -1,0 +1,32 @@
+<% content_for :title do %><%= @post.title %> - <%= @post.author.nick %> @<%= @post.author.name %> - <%= @board.name %>
+<% end %>
+<% content_for :description do %><%= (truncate h(@post.body), length: 200, omission: '...').strip.gsub(/\s+/, '') %>
+<% end %>
+<% content_for :author do %><%= @post.author.nick %> @<%= @post.author.name %>
+<% end %>
+
+<% content_for :left_side do %>
+  <%= render 'users/profile_left' %>
+<% end %>
+
+<div class="col-sm-10 right-side-layout blog-show">
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li><%= link_to @board.name, @board %></li>
+      <li><%= @post.title %></li>
+    </ol>
+  </div>
+  <div class="show-post">
+    <% if policy(@post).show? %>
+      <%= render partial: 'blog_post', as: 'post', locals: {post: @post, board: @board} %>
+      <% if policy(@post).comment? || @post.comments.normal.count > 0 %>
+        <script type="text/javascript">
+          $('#post-<%= @post.id %>-comments').remove();
+          $('#post-<%= @post.id %>-container .comment-container').html("<%= j render partial: 'post_comment_panel', locals: {post: @post} %>");
+        </script>
+      <% end %>
+    <% else %>
+      <%= t('posts.no_permission_to_show_post') %>
+    <% end %>
+  </div>
+</div>

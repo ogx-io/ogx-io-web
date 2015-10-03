@@ -50,6 +50,14 @@ class UserPolicy < ApplicationPolicy
     update?
   end
 
+  def edit_blog?
+    update?
+  end
+
+  def create_blog?
+    update?
+  end
+
   def edit_self_intro?
     update?
   end

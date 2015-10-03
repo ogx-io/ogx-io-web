@@ -45,6 +45,18 @@ class Node
     paths.join('/')
   end
 
+  def is_blog?
+    parent.id == Node.blog.id
+  end
+
+  def show_path
+    if is_blog?
+      creator.name
+    else
+      path
+    end
+  end
+
   def self.root
     root = self.where(path: 'root', layer: 0).first
     unless root
@@ -57,7 +69,8 @@ class Node
   def self.blog
     node = self.get_node_by_path('blog')
     unless node
-      node = Category.new(name: 'blog', path: 'blog', layer: 1, parent_id: self.root.id)
+      node = Category.new(name: 'blog', path: 'blog', layer: 1, parent: self.root)
+      node.save!
     end
     node
   end
@@ -65,7 +78,8 @@ class Node
   def self.public
     node = self.get_node_by_path('public')
     unless node
-      node = Category.new(name: 'public', path: 'public', layer: 1, parent_id: self.root.id)
+      node = Category.new(name: 'public', path: 'public', layer: 1, parent: self.root)
+      node.save!
     end
     node
   end
@@ -74,7 +88,7 @@ class Node
     paths = path.split('/')
     node = self.root
     paths.each do |p|
-      node = Node.where(parent_id: node.id, path: p).first
+      node = Node.where(parent: node, path: p).first
       if node.nil?
         return nil
       end

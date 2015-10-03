@@ -1,7 +1,7 @@
 # coding: utf-8
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :posts, :topics, :elites]
-  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar, :edit_accounts, :unbind_account, :edit_self_intro, :update_self_intro]
+  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar, :edit_accounts, :unbind_account, :edit_self_intro, :edit_blog, :create_blog, :update_self_intro]
   after_action :verify_authorized
 
   def show
@@ -44,6 +44,24 @@ class UsersController < ApplicationController
   def edit_avatar
     authorize @user
     render layout: 'admin'
+  end
+
+  def edit_blog
+    authorize @user
+    @blog = @user.blog
+    render layout: 'admin'
+  end
+
+  def create_blog
+    @blog = Board.new(name: I18n.t('users.default_blog_name', user_name: @user.nick), path: @user.id.to_s, parent: Node.blog, moderator_ids: [@user.id], creator_id: @user.id)
+
+    respond_to do |format|
+      if @blog.save
+        format.html { redirect_to :back, notice: 'Blog was successfully created.' }
+      else
+        format.html { redirect_to :back }
+      end
+    end
   end
 
   def edit_accounts

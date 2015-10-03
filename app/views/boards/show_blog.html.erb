@@ -1,0 +1,27 @@
+<% content_for :title do %>
+  <%= @board.name %>
+<% end %>
+
+<% content_for :left_side do %>
+  <%= render 'users/profile_left' %>
+<% end %>
+
+<div class="col-md-10 right-side-layout">
+  <div class="board-main">
+    <%= render partial: 'boards/board_head', locals: {board: @board} %>
+    <div class="board-intro">
+      <div class="intro-content">
+        <%= @board.intro %>
+      </div>
+    </div>
+    <div class="board-content">
+      <div class="blog-container">
+        <%= render partial: "posts/blog_post_list_item", as: :post, collection: @posts %>
+      </div>
+    </div>
+    <div class="board-pagination">
+      <%= paginate @posts, left: 1, right: 1, :theme => 'bootstrap3' %>
+    </div>
+  </div>
+</div>
+

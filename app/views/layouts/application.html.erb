@@ -17,7 +17,9 @@
     </header>
     <main role="main">
        <%= render 'layouts/messages' %>
-       <%= render 'layouts/left_side' %>
+      <div class="col-sm-2 left-side-layout hidden-sm hidden-xs">
+         <%= render 'layouts/left_side' %>
+        </div>
        <%= yield %>
     </main>
     <footer>

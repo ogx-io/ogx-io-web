@@ -185,6 +185,12 @@ a.weak-link {
 }
 
 .left-side-layout {
+  @media (min-width: 1024px) {
+    border-right: dotted #EEE 1px;
+  }
+  @media (min-width: 768px) {
+    min-height: 600px;
+  }
   margin-top: 15px;
   margin-left: -15px;
   .panel-body {
@@ -217,6 +223,7 @@ a.weak-link {
 }
 
 .right-side-layout {
+  margin-left: -1px;
   margin-top: 15px;
   @media (min-width: 1024px) {
     border-left: dotted #EEE 1px;
