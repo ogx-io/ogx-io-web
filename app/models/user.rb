@@ -103,7 +103,7 @@ class User
 
   def create_blog
     unless self.blog
-      Board.create(name: I18n.t('users.default_blog_name', user_name: @user.nick), path: self.id.to_s, parent: Node.blog, moderator_ids: [self.id], creator_id: self.id)
+      Board.create(name: I18n.t('users.default_blog_name', user_name: self.nick), path: self.id.to_s, parent: Node.blog, moderator_ids: [self.id], creator_id: self.id)
     end
   end
 
