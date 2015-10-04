@@ -65,7 +65,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to :back, notice: 'Blog was successfully created.' }
+        format.html { redirect_to :back, notice: I18n.t('global.create_successfully') }
       else
         format.html { redirect_to :back }
       end

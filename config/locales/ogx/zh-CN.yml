@@ -44,6 +44,7 @@ zh-CN:
     edit: '编辑'
     about: '关于'
     update_successfully: '更新成功！'
+    create_successfully: '创建成功！'
     status: '状态'
     delete_draft_tips: '您现在看到的内容是您之前编辑过程中自动保存的草稿，删除之后可以恢复成原来的样子'
     status_values:
