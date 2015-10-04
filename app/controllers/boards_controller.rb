@@ -37,7 +37,7 @@ class BoardsController < ApplicationController
     authorize @board
     respond_to do |format|
       if @board.update(board_params)
-        format.html { flash[:notice] = I18n.t('global.update_successfully'); redirect_to edit_board_path(@board) }
+        format.html { flash[:notice] = I18n.t('global.update_successfully'); redirect_to @board }
       else
         format.html { render :edit }
       end
