@@ -1,4 +1,4 @@
-<% cache [topic, topic.user.updated_at] do %>
+<% cache [topic, topic.user.updated_at, topic.board] do %>
     <div class="list-item">
       <div class="author-avatar pull-left">
         <%= avatar topic.user, 40 %>
