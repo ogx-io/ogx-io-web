@@ -33,8 +33,7 @@ class PostPolicy < ApplicationPolicy
     signed_in? &&
         test_if_not(user == record.author, I18n.t('policies.common.no_permission')) &&
         test_if(user.is_blocked?, I18n.t('policies.common.user_is_blocked_by_admin')) &&
-        test_if(record.board.is_blocking?(user), I18n.t('policies.common.user_is_blocked_by_moderator')) &&
-        test_if(record.board.is_blog? && user != record.board.creator, I18n.t('policies.common.no_permission'))
+        test_if(record.board.is_blocking?(user), I18n.t('policies.common.user_is_blocked_by_moderator'))
   end
 
   def set_elite?

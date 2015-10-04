@@ -113,4 +113,14 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe '#create_blog' do
+    it 'can create the blog of a user' do
+      sign_in :user, user
+      expect(user.blog).to be_nil
+      request.env["HTTP_REFERER"] = edit_blog_user_path(user)
+      post :create_blog, id: user.id
+      expect(user.blog).not_to be_nil
+    end
+  end
+
 end

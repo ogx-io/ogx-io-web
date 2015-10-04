@@ -61,10 +61,10 @@ class UsersController < ApplicationController
   end
 
   def create_blog
-    @blog = Board.new(name: I18n.t('users.default_blog_name', user_name: @user.nick), path: @user.id.to_s, parent: Node.blog, moderator_ids: [@user.id], creator_id: @user.id)
+    authorize @user
 
     respond_to do |format|
-      if @blog.save
+      if @user.create_blog
         format.html { redirect_to :back, notice: I18n.t('global.create_successfully') }
       else
         format.html { redirect_to :back }

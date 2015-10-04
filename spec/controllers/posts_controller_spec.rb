@@ -165,6 +165,33 @@ RSpec.describe PostsController, type: :controller do
         expect(response).to render_template(:new)
       end
 
+      it 'succeeds creating a new topic if the current user is the owner of the blog' do
+        another_user.create_blog
+        blog = another_user.blog
+        old_post_count = another_user.posts.count
+        old_topic_count = blog.topics.count
+        post :create, board_id: blog.id, post: @new_post_info
+        another_user.reload
+        expect(another_user.posts.count).to eq(old_post_count + 1)
+        expect(blog.topics.count).to eq(old_topic_count + 1)
+        new_one = another_user.posts.last
+        expect(response).to redirect_to(show_topic_post_path(new_one.topic.id, new_one.id))
+      end
+
+      it 'fails creating a new topic if the current user is the owner of the blog' do
+        author.create_blog
+        blog = author.blog
+        old_post_count = another_user.posts.count
+        old_topic_count = blog.topics.count
+        post :create, board_id: blog.id, post: @new_post_info
+        another_user.reload
+        expect(another_user.posts.count).to eq(old_post_count)
+        expect(blog.topics.count).to eq(old_topic_count)
+
+        expect(request.flash[:error]).not_to be_blank
+        expect(response).to render_template(:new)
+      end
+
       it 'fails creating a new topic if the current user is a user blocked by admin' do
         another_user.status = 1
         another_user.save
