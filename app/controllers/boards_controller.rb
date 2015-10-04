@@ -1,20 +1,12 @@
 class BoardsController < ApplicationController
+  include NodeShowing
+
   before_action :set_board, only: [:show, :favor, :disfavor, :edit, :update]
 
   # GET /boards/1
   # GET /boards/1.json
   def show
-    if @board.is_blog?
-      @user = @board.creator
-      @all_posts = @board.posts.normal
-      @posts = @all_posts.desc(:created_at).page(params[:page]).per(15)
-      render 'show_blog'
-    else
-      @all_topics = @board.topics.normal
-      @topics = @all_topics.desc(:replied_at).page(params[:page]).per(15)
-      @top_posts = @board.posts.top.desc(:top)
-      render 'topics/index'
-    end
+    show_node(@board)
   end
 
   def favor

@@ -131,6 +131,7 @@ Rails.application.routes.draw do
   end
 
   get '/@:name', to: 'users#show', as: :show_user
+  get '/@:name/blog', to: 'users#show_blog', as: :show_user_blog
   get '/@:name/topics', to: 'users#topics', as: :show_user_topics
   get '/@:name/posts', to: 'users#posts', as: :show_user_posts
   get '/@:name/elites', to: 'users#elites', as: :show_user_elites

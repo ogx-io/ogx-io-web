@@ -109,9 +109,13 @@ module ApplicationHelper
   end
 
   def pretty_path_for_node(node)
-    paths = node.full_path.split('/')
-    paths[0] = ''
-    paths.join('/')
+    if node.is_blog?
+      show_user_blog_path(node.creator.name)
+    else
+      paths = node.full_path.split('/')
+      paths[0] = ''
+      paths.join('/')
+    end
   end
 
   def get_post_draft_key(post, type)

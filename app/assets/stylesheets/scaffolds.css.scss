@@ -186,7 +186,7 @@ a.weak-link {
 
 .left-side-layout {
   @media (min-width: 1024px) {
-    border-right: dotted #EEE 1px;
+    border-right: solid #F6F6F6 1px;
   }
   @media (min-width: 768px) {
     min-height: 600px;
@@ -226,7 +226,7 @@ a.weak-link {
   margin-left: -1px;
   margin-top: 15px;
   @media (min-width: 1024px) {
-    border-left: dotted #EEE 1px;
+    border-left: solid #F6F6F6 1px;
   }
   @media (max-width: 1024px) {
     padding: 0;

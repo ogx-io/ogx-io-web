@@ -12,7 +12,7 @@
 <div class="col-sm-10 right-side-layout blog-show">
   <div class="row">
     <ol class="breadcrumb pull-left">
-      <li><%= link_to @board.name, @board %></li>
+      <li><%= link_to @board.name, show_user_blog_path(@board.creator.name) %></li>
       <li><%= @post.title %></li>
     </ol>
   </div>

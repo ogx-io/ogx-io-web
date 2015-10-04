@@ -18,7 +18,7 @@
       </div>
       <div class="profile-content blog-info">
         <div class="title">
-          <%= link_to @user.blog.name, @user.blog %>
+          <%= link_to @user.blog.name, show_user_blog_path(@user.name) %>
         </div>
         <% if @user.blog.intro %>
           <div class="intro">

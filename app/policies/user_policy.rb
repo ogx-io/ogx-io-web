@@ -50,6 +50,10 @@ class UserPolicy < ApplicationPolicy
     update?
   end
 
+  def show_blog?
+    true
+  end
+
   def edit_blog?
     update?
   end
