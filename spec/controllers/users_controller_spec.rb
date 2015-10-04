@@ -120,6 +120,7 @@ RSpec.describe UsersController, type: :controller do
       request.env["HTTP_REFERER"] = edit_blog_user_path(user)
       post :create_blog, id: user.id
       expect(user.blog).not_to be_nil
+      expect(user.blog.name).to eq(I18n.t('users.default_blog_name', user_name: user.nick))
     end
   end
 
