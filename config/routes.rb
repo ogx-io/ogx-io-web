@@ -114,6 +114,8 @@ Rails.application.routes.draw do
       get :edit_info
       get :edit_avatar
       get :edit_accounts
+      get :edit_blog
+      post :create_blog
       get :edit_self_intro
       patch :update_self_intro
       patch :unbind_account
@@ -124,9 +126,12 @@ Rails.application.routes.draw do
         delete :clean
       end
     end
+
+    resources :blogs, shallow: true
   end
 
   get '/@:name', to: 'users#show', as: :show_user
+  get '/@:name/blog', to: 'users#show_blog', as: :show_user_blog
   get '/@:name/topics', to: 'users#topics', as: :show_user_topics
   get '/@:name/posts', to: 'users#posts', as: :show_user_posts
   get '/@:name/elites', to: 'users#elites', as: :show_user_elites

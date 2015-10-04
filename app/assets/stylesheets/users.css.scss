@@ -11,30 +11,6 @@
   }
 }
 
-.user-profile {
-  .nick {
-    margin-top: 10px;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  .name {
-    color: #999;
-    font-weight: normal;
-    margin-bottom: 10px;
-  }
-  .intro {
-    margin-bottom: 15px;
-  }
-  .others {
-    .glyphicon {
-      color: #CCC;
-    }
-    p {
-      margin-bottom: 5px;
-    }
-  }
-}
-
 .user-topic-list {
   .avatar {
     display: none;
@@ -76,11 +52,9 @@
   .profile-title:first-of-type {
     margin-top: 15px;
   }
-
   .contribute-row {
     margin-bottom: 10px;
   }
-
   .contribute-item {
     width: 80px;
     float: left;
@@ -97,7 +71,6 @@
       font-size: 16px;
     }
   }
-
   .board-link-item {
     font-size: 16px;
     margin-right: 10px;
@@ -107,7 +80,6 @@
     display: inline-block;
     border-radius: 3px;
   }
-
   .self-intro {
     font-size: 14px;
     a {
@@ -115,6 +87,37 @@
     }
     p {
       line-height: 22px;
+    }
+  }
+  .blog-info {
+    .title {
+      a {
+        font-size: 16px;
+      }
+    }
+    .intro {
+      font-size: 14px;
+    }
+  }
+  .nick {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .name {
+    color: #999;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+  .intro {
+    margin-bottom: 15px;
+  }
+  .others {
+    .glyphicon {
+      color: #CCC;
+    }
+    p {
+      margin-bottom: 5px;
     }
   }
 }

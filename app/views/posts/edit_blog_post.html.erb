@@ -1,0 +1,9 @@
+<div class="edit-post-container col-sm-8 right-side-layout">
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li><%= link_to @post.board.name, show_user_blog_path(@post.board.creator.name) %></li>
+      <li>edit_post</li>
+    </ol>
+  </div>
+  <%= render 'form' %>
+</div>

@@ -14,8 +14,8 @@ class User
          :omniauthable, omniauth_providers: [:github]
 
   ## Database authenticatable
-  field :name,              :type => String, :default => ""
-  field :email,              :type => String, :default => ""
+  field :name, :type => String, :default => ""
+  field :email, :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
 
   ## Github user information
@@ -24,29 +24,29 @@ class User
   field :github_id, :type => String, :default => ""
 
   ## Recoverable
-  field :reset_password_token,   :type => String
+  field :reset_password_token, :type => String
   field :reset_password_sent_at, :type => Time
 
   ## Rememberable
   field :remember_created_at, :type => Time
 
   ## Trackable
-  field :sign_in_count,      :type => Integer, :default => 0
+  field :sign_in_count, :type => Integer, :default => 0
   field :current_sign_in_at, :type => Time
-  field :last_sign_in_at,    :type => Time
+  field :last_sign_in_at, :type => Time
   field :current_sign_in_ip, :type => String
-  field :last_sign_in_ip,    :type => String
+  field :last_sign_in_ip, :type => String
 
   ## Confirmable
-  field :confirmation_token,   :type => String
-  field :confirmed_at,         :type => Time
+  field :confirmation_token, :type => String
+  field :confirmed_at, :type => Time
   field :confirmation_sent_at, :type => Time
-  field :unconfirmed_email,    :type => String # Only if using reconfirmable
+  field :unconfirmed_email, :type => String # Only if using reconfirmable
 
   ## Lockable
   field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
-  field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
-  field :locked_at,       :type => Time
+  field :unlock_token, :type => String # Only if unlock strategy is :email or :both
+  field :locked_at, :type => Time
 
   ## Token authenticatable
   # field :authentication_token, :type => String
@@ -55,7 +55,7 @@ class User
   enum :role, Roles, default: :user
 
   ## User Info
-  field :nick, type: String  # a user will be displayed as 'nick(@name)'
+  field :nick, type: String # a user will be displayed as 'nick(@name)'
   field :intro, type: String # a short introduction of a user
   field :city, type: String # the city which the user is living
   field :website, type: String # the user's personal website
@@ -99,6 +99,16 @@ class User
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  def create_blog
+    unless self.blog
+      Board.create(name: I18n.t('users.default_blog_name', user_name: @user.nick), path: self.id.to_s, parent: Node.blog, moderator_ids: [self.id], creator_id: self.id)
+    end
+  end
+
+  def blog
+    Board.where(parent: Node.blog, creator: self).first
   end
 
   def merged_prs
@@ -226,10 +236,10 @@ class User
     if cur_user && token_owner
       # 通过token找到的用户就是登录的用户，不需要再绑定
       if token_owner == cur_user
-        return  GithubBindingStatus::TOKEN_OWNER_IS_CURRENT_USER
-      # 当前用户想要绑定的github账号被绑定了
+        return GithubBindingStatus::TOKEN_OWNER_IS_CURRENT_USER
+        # 当前用户想要绑定的github账号被绑定了
       elsif token_owner != cur_user
-        return  GithubBindingStatus::CURRENT_USER_IS_NOT_TOKEN_OWNER
+        return GithubBindingStatus::CURRENT_USER_IS_NOT_TOKEN_OWNER
       end
     end
 
@@ -240,7 +250,7 @@ class User
 
     # 通过github id 找到了一个用户，意味着这个人的token变了
     if github_id_owner && !cur_user
-      return  GithubBindingStatus::FOUND_BY_ID
+      return GithubBindingStatus::FOUND_BY_ID
     elsif github_id_owner && cur_user
       if github_id_owner == cur_user
         return GithubBindingStatus::TOKEN_OWNER_IS_CURRENT_USER_SHOULD_UPDATE_TOKEN
@@ -262,11 +272,11 @@ class User
         # 这种情况如果出现，一定是过去的bug，他的确绑定了，更新用户token吧
         if cur_user.binded_github?
           return GithubBindingStatus::TOKEN_OWNER_IS_CURRENT_USER_SHOULD_UPDATE_TOKEN
-        # 这种情况，用户使用同一个email注册两个账号，做绑定
+          # 这种情况，用户使用同一个email注册两个账号，做绑定
         else
           return GithubBindingStatus::BINDING_FOR_CURRENT_USER
         end
-      # 同一个用户，用a邮箱注册github和账号b，c邮箱注册账号d，要用账号d绑定github，给他绑定
+        # 同一个用户，用a邮箱注册github和账号b，c邮箱注册账号d，要用账号d绑定github，给他绑定
       elsif email_owner != cur_user
         if email_owner.binded_github?
           return GithubBindingStatus::FOUND_BY_EMAIL_BUT_BINDED_GITHUB

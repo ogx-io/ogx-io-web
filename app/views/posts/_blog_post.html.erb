@@ -1,0 +1,76 @@
+<% cache_unless post.new_record?, [post, post.author, policy(post).set_elite?, policy(post).unset_elite?, policy(post).destroy?, policy(post).resume?, policy(post).update?, policy(post).comment?] do %>
+  <div id="post-<%= post.id %>-container" class="post-container">
+    <div id="floor-<%= post.floor || 'preview' %>" name="floor-<%= post.floor || 'preview' %>" class="post-item panel panel-default post-id-<%= post.id %>">
+      <div class="panel-body">
+        <div class="blog-post-detail">
+          <h4 class="<%= 're-title' if post.title.start_with?('Re:') %>">
+            <% if !post.new_record? %>
+              <%= link_to post.title, post_path(post) %>
+            <% else %>
+              <%= post.title %>
+            <% end %>
+          </h4>
+
+          <div class="post-author">
+            <%= full_user_link post.author %>
+            <% if post.parent %>
+              <%= t('posts.reply_info_html', parent_author: user_link(post.parent.author), parent_floor: link_to('#' + post.parent.floor.to_s, post_path(post.parent), title: "#{post.parent.title}")) %>
+            <% end %>
+            <% if !post.new_record? %>
+              · <%= full_datetime post.created_at %>
+              <% if post.is_elite? %>
+                &nbsp;<%= link_to post.elite_post do %><span class="elite-mark"><%= t('global.elite') %></span>
+                <% end %>
+              <% end %>
+              <% if post.deleted? %>
+                &nbsp;<span class="deleted-mark">(<%= t('global.deleted') %>)</span>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="markdown-content"><%= sanitize_post post.body_html %></div>
+          <% if !post.new_record? %>
+            <div class="post-footer clearfix">
+              <div class="likes-container pull-left">
+
+                <% social_share_button_tag t('posts.social_share_content', title: post.title), url: post_url(post), via: 'ogxio', 'data-twitter-title' => t('posts.social_share_content_for_twitter', title: post.title) %>
+              </div>
+              <div class="pull-right">
+                <ul class="list-inline">
+                  <% if !post.deleted? && policy(post).destroy? %>
+                    <li>
+                      <%= link_to t('action.delete'), post_path(post), method: :delete, remote: true %>
+                    </li>
+                  <% end %>
+                  <% if post.deleted? && policy(post).resume? %>
+                    <li>
+                      <%= link_to t('action.resume'), resume_post_path(post), method: :patch, remote: true %>
+                    </li>
+                  <% end %>
+                  <% if policy(post).update? %>
+                    <li>
+                      <%= link_to t('action.modify'), edit_post_path(post) %>
+                    </li>
+                  <% end %>
+                  <li>
+                    <%= link_to t('action.comment') + (post.comments.normal.count > 0 ? "(#{post.comments.normal.count})" : ''), comments_post_path(post), remote: true, class: 'toggle-post-comments', 'data-post-id' => post.id %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="comment-container"></div>
+    <div class="reply-container hide">
+      <% if !post.new_record? %>
+        <%= render partial: 'posts/reply_form', locals: {post: post} %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<script type="text/javascript">
+  <% if !post.new_record? %>
+  $('#post-<%= post.id %>-container .likes-container').html("<%= j render partial: 'posts/post_likes', locals: {user: current_user, post: post} %>")
+  <% end %>
+</script>

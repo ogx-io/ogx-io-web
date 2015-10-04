@@ -2,16 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$post-item-padding: 13px;
+
 .post-item {
   margin-top: 15px;
   margin-bottom: 15px;
   .panel-body {
     padding: 0;
   }
-  $post-item-padding: 13px;
   .avatar {
     margin: $post-item-padding;
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       display: none;
     }
   }
@@ -90,6 +91,16 @@
         text-decoration: none;
       }
     }
+  }
+
+  .blog-post-detail {
+    @extend .post-detail
+  }
+
+  .blog-post-detail {
+    margin-left: 0;
+    padding: $post-item-padding;
+    border-left: none;
   }
 }
 
@@ -199,4 +210,26 @@
       }
     }
   }
+}
+
+.blog-post-item {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: dashed #DDD 1px;
+
+  .title {
+    a {
+      font-size: 16px;
+    }
+  }
+  .time {
+    color: #999;
+  }
+  .digest {
+    font-size: 13px;
+  }
+}
+
+.blog-post-item:last-of-type {
+  border-bottom: none;
 }

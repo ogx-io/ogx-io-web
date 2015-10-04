@@ -107,4 +107,15 @@ namespace :data do
     end
   end
 
+  desc 'move the old root node to public node'
+  task move_old_root_to_public: :environment do
+    old_root = Node.root
+    Node.all.each do |node|
+      node.layer += 1
+      node.save
+    end
+    old_root.update(name: 'public', path: 'public')
+    old_root.update(parent_id: Node.root.id)
+  end
+
 end

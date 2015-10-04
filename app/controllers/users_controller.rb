@@ -1,11 +1,19 @@
 # coding: utf-8
 class UsersController < ApplicationController
+  include NodeShowing
+
   before_filter :authenticate_user!, except: [:show, :posts, :topics, :elites]
-  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar, :edit_accounts, :unbind_account, :edit_self_intro, :update_self_intro]
+  before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar, :edit_accounts, :unbind_account, :edit_self_intro, :edit_blog, :create_blog, :update_self_intro, :show_blog]
   after_action :verify_authorized
 
   def show
     authorize @user
+  end
+
+  def show_blog
+    authorize @user
+    @board = @user.blog
+    show_node(@board)
   end
 
   def posts
@@ -44,6 +52,24 @@ class UsersController < ApplicationController
   def edit_avatar
     authorize @user
     render layout: 'admin'
+  end
+
+  def edit_blog
+    authorize @user
+    @blog = @user.blog
+    render layout: 'admin'
+  end
+
+  def create_blog
+    authorize @user
+
+    respond_to do |format|
+      if @user.create_blog
+        format.html { redirect_to :back, notice: I18n.t('global.create_successfully') }
+      else
+        format.html { redirect_to :back }
+      end
+    end
   end
 
   def edit_accounts

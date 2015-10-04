@@ -21,9 +21,10 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @comment.commentable = @post
 
-    @new_post = Post.new
-    @new_post.board = @board
-    @new_post.parent = @post
+    if @board.is_blog?
+      @user = @post.author
+      render 'blog_post_show'
+    end
   end
 
   def comments
@@ -38,11 +39,18 @@ class PostsController < ApplicationController
     @post.parent_id = params[:parent_id]
 
     authorize @post
+
+    if @board.is_blog?
+      render 'new_blog_post'
+    end
   end
 
   # GET /posts/1/edit
   def edit
     authorize @post
+    if @post.board.is_blog?
+      render 'edit_blog_post'
+    end
   end
 
   # POST /posts

@@ -1,16 +1,31 @@
 <% content_for :left_side do %>
-    <%= render 'profile_left' %>
+  <%= render 'profile_left' %>
 <% end %>
 <div class="col-lg-7 col-md-8 right-side-layout">
   <%= render partial: 'profile_nav', locals: {index: 1} %>
   <div class="user-profile">
     <% if @user.user_detail && !@user.user_detail.intro_html.blank? %>
-    <div class="profile-title">
-      <span><%= t('users.self_intro') %></span>
-    </div>
-    <div class="profile-content self-intro">
-      <%= sanitize_self_intro @user.user_detail.intro_html %>
-    </div>
+      <div class="profile-title">
+        <span><%= t('users.self_intro') %></span>
+      </div>
+      <div class="profile-content self-intro">
+        <%= sanitize_self_intro @user.user_detail.intro_html %>
+      </div>
+    <% end %>
+    <% if @user.blog %>
+      <div class="profile-title">
+        <span><%= t('users.blog') %></span>
+      </div>
+      <div class="profile-content blog-info">
+        <div class="title">
+          <%= link_to @user.blog.name, show_user_blog_path(@user.name) %>
+        </div>
+        <% if @user.blog.intro %>
+          <div class="intro">
+            <%= @user.blog.intro %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
     <div class="profile-title">
       <span><%= t('users.contributes') %></span>
@@ -28,31 +43,31 @@
       </div>
     </div>
     <% if @user.managing_boards.count > 0 %>
-        <div class="profile-title">
-          <span><%= t('users.managing_boards') %></span>
-        </div>
-        <div class="profile-content">
-          <% @user.managing_boards.each do |board| %>
+      <div class="profile-title">
+        <span><%= t('users.managing_boards') %></span>
+      </div>
+      <div class="profile-content">
+        <% @user.managing_boards.each do |board| %>
           <%= link_to board.name, pretty_path_for_node(board), class: 'board-link-item' %>
-          <% end %>
-        </div>
+        <% end %>
+      </div>
     <% end %>
     <% if @user.merged_prs.count > 0 %>
-        <div class="profile-title">
-          <span><%= t('merged_pull_requests.merged_pr') %></span>
-        </div>
-        <div class="profile-content">
-          <table class="table personal-merged-prs">
-            <tbody>
-            <% @user.merged_prs.desc(:merged_at).each do |pr| %>
-                <tr>
-                  <td class="title"><%= link_to pr.title, pr.link, target: '_blank' %></td>
-                  <td class="time"><%= time_date pr.merged_at %></td>
-                </tr>
-            <% end %>
-            </tbody>
-          </table>
-        </div>
+      <div class="profile-title">
+        <span><%= t('merged_pull_requests.merged_pr') %></span>
+      </div>
+      <div class="profile-content">
+        <table class="table personal-merged-prs">
+          <tbody>
+          <% @user.merged_prs.desc(:merged_at).each do |pr| %>
+            <tr>
+              <td class="title"><%= link_to pr.title, pr.link, target: '_blank' %></td>
+              <td class="time"><%= time_date pr.merged_at %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
     <% end %>
   </div>
 </div>

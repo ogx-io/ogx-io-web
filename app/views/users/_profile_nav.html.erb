@@ -6,5 +6,5 @@
 </ul>
 
 <% content_for :title do %>
-    <%= @user.get_nick %> - <%= ['', t('global.post'), t('global.topic'), t('global.elite')][index] %>
+    <%= @user.get_nick %> - <%= ['', t('users.profile'), t('global.topic'), t('global.post'), t('global.elite')][index] %>
 <% end %>

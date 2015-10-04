@@ -14,7 +14,7 @@
       <p class="help-block" style="color: red">* <%= t('posts._form.need_markdown') %>
         <a href="https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown" target="_blank"><%= t('posts._form.markdown_help') %></a></p>
     </div>
-    <% if @post.new_record? %>
+    <% if @post.new_record? && !@board.is_blog? %>
         <% if @post.parent %>
             <%= f.hidden_field :parent_id, value: @post.parent.id %>
         <% else %>

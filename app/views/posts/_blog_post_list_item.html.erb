@@ -1,0 +1,13 @@
+<div class="blog-post-item">
+  <div>
+    <div class="title">
+      <%= link_to post.title, post %>
+    </div>
+    <div class="time">
+      <%= full_datetime post.created_at %>
+    </div>
+    <div class="digest">
+      <%= sanitize_digest post.body_html %>
+    </div>
+  </div>
+</div>

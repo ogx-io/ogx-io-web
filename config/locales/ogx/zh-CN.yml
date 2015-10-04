@@ -44,6 +44,7 @@ zh-CN:
     edit: '编辑'
     about: '关于'
     update_successfully: '更新成功！'
+    create_successfully: '创建成功！'
     status: '状态'
     delete_draft_tips: '您现在看到的内容是您之前编辑过程中自动保存的草稿，删除之后可以恢复成原来的样子'
     status_values:
@@ -117,6 +118,9 @@ zh-CN:
     sign_up_with_github: '完善个人资料'
     sign_in_with_github: '用Github登录'
     update_user: '更新用户信息'
+    create_blog: '创建博客'
+    update_blog: '修改博客设置'
+    default_blog_name: '%{user_name}的博客'
     user_name: '用户名'
     user_name_hint: '4-20个小写英文字母、数字或下划线'
     nick: '昵称'
@@ -149,6 +153,7 @@ zh-CN:
     token_expired: 'Token已过期'
     profile: '个人资料'
     self_intro: '自我介绍'
+    blog: '博客'
     contributes: '社区贡献'
     managing_boards: '管理板块'
     edit_info: '基本信息'
@@ -256,9 +261,10 @@ zh-CN:
       collect: '收藏本版'
       uncollect: '取消收藏'
       post_button: '发 帖'
+    public: '公共板块'
     recruiting_moderator: '诚征版主中'
     board_statistic: '本版统计'
-    intro: '板块简介'
+    intro: '简介'
 
   merged_pull_requests:
     merged_time: '收录时间'

@@ -1,26 +1,24 @@
-<div class="col-sm-2 left-side-layout hidden-sm hidden-xs">
-  <% if content_for?(:left_side) %>
-      <%= yield :left_side %>
-  <% else %>
-      <div class="login-tips panel panel-default">
-        <div class="panel-body">
-          <% if user_signed_in? %>
-              <div class="nick"><%= link_to current_user.nick, show_user_path(current_user.name) %></div>
-              <div class="name">@<%= current_user.name %></div>
-          <% else %>
-              <%= t('layout.need_sign_in_html', sign_in: link_to(t('action.sign_in'), new_user_session_path), sign_up: link_to(t('action.sign_up'), new_user_registration_path)) %>
-          <% end %>
-        </div>
-      </div>
-      <ul class="favorite-board-list">
-        <% if user_signed_in? && current_user.favorite_boards.count > 0 %>
-            <li class="title"><%= t('layout.collections') %></li>
-            <% current_user.favorite_boards.each do |favorite| %>
-                <li><%= link_to favorite.favorable.name, pretty_path_for_node(favorite.favorable) %></li>
-            <% end %>
-        <% else %>
-            <li><%= t('layout.no_collection_tip') %></li>
-        <% end %>
-      </ul>
-  <% end %>
-</div>
+<% if content_for?(:left_side) %>
+  <%= yield :left_side %>
+<% else %>
+  <div class="login-tips panel panel-default">
+    <div class="panel-body">
+      <% if user_signed_in? %>
+        <div class="nick"><%= link_to current_user.nick, show_user_path(current_user.name) %></div>
+        <div class="name">@<%= current_user.name %></div>
+      <% else %>
+        <%= t('layout.need_sign_in_html', sign_in: link_to(t('action.sign_in'), new_user_session_path), sign_up: link_to(t('action.sign_up'), new_user_registration_path)) %>
+      <% end %>
+    </div>
+  </div>
+  <ul class="favorite-board-list">
+    <% if user_signed_in? && current_user.favorite_boards.count > 0 %>
+      <li class="title"><%= t('layout.collections') %></li>
+      <% current_user.favorite_boards.each do |favorite| %>
+        <li><%= link_to favorite.favorable.name, pretty_path_for_node(favorite.favorable) %></li>
+      <% end %>
+    <% else %>
+      <li><%= t('layout.no_collection_tip') %></li>
+    <% end %>
+  </ul>
+<% end %>
