@@ -49,14 +49,6 @@ class Node
     parent.id == Node.blog.id
   end
 
-  def show_path
-    if is_blog?
-      creator.name
-    else
-      path
-    end
-  end
-
   def self.root
     root = self.where(path: 'root', layer: 0).first
     unless root

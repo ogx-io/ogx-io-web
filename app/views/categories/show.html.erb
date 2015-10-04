@@ -1,6 +1,6 @@
 <div class="show-category col-md-10 right-side-layout">
   <%= render partial: 'nodes/breadcrumbs', locals: {node: @category, extras: nil} %>
-  <h3><%= @category.name %></h3>
+  <h3><%= @category.layer == 1 && @category.path == 'public' ? t('boards.public') : @category.name %></h3>
   <div class="board-list">
     <% @category.children.normal.boards.order_by(order: -1, name: 1).each do |board| %>
     <%= link_to board.name, pretty_path_for_node(board) %>

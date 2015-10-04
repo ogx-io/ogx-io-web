@@ -260,6 +260,7 @@ zh-CN:
       collect: '收藏本版'
       uncollect: '取消收藏'
       post_button: '发 帖'
+    public: '公共板块'
     recruiting_moderator: '诚征版主中'
     board_statistic: '本版统计'
     intro: '简介'
