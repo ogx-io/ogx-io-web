@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   include NodeShowing
 
-  before_filter :authenticate_user!, except: [:show, :posts, :topics, :elites]
+  before_filter :authenticate_user!, except: [:show, :show_blog, :posts, :topics, :elites]
   before_action :set_user, only: [:show, :update, :posts, :topics, :elites, :edit_info, :edit_avatar, :edit_accounts, :unbind_account, :edit_self_intro, :edit_blog, :create_blog, :update_self_intro, :show_blog]
   after_action :verify_authorized
 
