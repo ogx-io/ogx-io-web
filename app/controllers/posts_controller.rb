@@ -85,7 +85,11 @@ class PostsController < ApplicationController
       if params[:preview] == "true"
         if @post.valid?
           @post.convert_body
-          format.html { render partial: 'preview', locals: { type: 'new' } }
+          if @board.is_blog?
+            format.html { render partial: 'blog_preview', locals: { type: 'new' } }
+          else
+            format.html { render partial: 'preview', locals: { type: 'new' } }
+          end
         else
           format.html { render html: "<script type=\"text/javascript\">$('.post-form').submit()</script>".html_safe }
         end
@@ -121,7 +125,11 @@ class PostsController < ApplicationController
         if @post.valid?
           @post.author = current_user
           @post.convert_body
-          format.html { render partial: 'preview', locals: { type: 'edit' } }
+          if @board.is_blog?
+            format.html { render partial: 'blog_preview', locals: { type: 'edit' } }
+          else
+            format.html { render partial: 'preview', locals: { type: 'edit' } }
+          end
         else
           format.html { render html: "<script type=\"text/javascript\">$('.post-form').submit()</script>".html_safe }
         end

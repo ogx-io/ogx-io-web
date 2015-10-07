@@ -1,0 +1,21 @@
+<div class="post-preview-container col-sm-10 right-side-layout">
+  <div class="row">
+    <ol class="breadcrumb pull-left">
+      <li><%= link_to @board.name, show_user_blog_path(@board.creator.name) %></li>
+      <li><%= "<a class=\"back-to-editor\" href=\"javascript:;\">#{type}_post</a>".html_safe %></li>
+      <li>preview</li>
+    </ol>
+  </div>
+  <h4><%= t('global.preview_post') %></h4>
+  <div class="show-post">
+    <%= render partial: 'blog_post', locals: {post: @post, board: @board} %>
+    <ul class="list-inline center">
+      <li>
+        <button type="button" class="submit-post-form post-form-button btn btn-primary"><%= t('action.post') %></button>
+      </li>
+      <li>
+        <button type="button" class="back-to-editor post-form-button btn btn-default"><%= t('action.continue_editing') %></button>
+      </li>
+    </ul>
+  </div>
+</div>
